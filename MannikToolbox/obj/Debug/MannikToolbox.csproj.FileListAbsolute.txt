@@ -1,0 +1,13 @@
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.MainForm.resources
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.Properties.Resources.resources
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.csproj.GenerateResource.Cache
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.MySqlLoginForm.resources
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\MannikToolbox.exe.config
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\MannikToolbox.exe
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\MannikToolbox.pdb
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\DOLDatabase.dll
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\log4net.dll
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\MySql.Data.dll
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.exe
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.pdb
+C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.csprojResolveAssemblyReference.cache
