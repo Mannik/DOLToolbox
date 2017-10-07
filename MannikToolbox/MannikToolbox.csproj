@@ -63,19 +63,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MySqlLoginForm.cs">
+    <Compile Include="MySQLConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MySqlLoginForm.Designer.cs">
-      <DependentUpon>MySqlLoginForm.cs</DependentUpon>
+    <Compile Include="MySQLConfig.designer.cs">
+      <DependentUpon>MySQLConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MySqlLoginForm.resx">
-      <DependentUpon>MySqlLoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="MySQLConfig.resx">
+      <DependentUpon>MySQLConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,6 +85,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -104,6 +105,9 @@
   <ItemGroup>
     <Content Include="Resources\DOLDatabase.dll" />
     <Content Include="Resources\log4net.dll" />
+    <None Include="Resources\set_default_values_button.Image.png" />
+    <None Include="Resources\save_config_button.Image.png" />
+    <None Include="Resources\mysql_test_button.Image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
