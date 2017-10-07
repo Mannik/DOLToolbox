@@ -156,7 +156,7 @@
             this.ToolboxTabControl.Location = new System.Drawing.Point(0, 24);
             this.ToolboxTabControl.Name = "ToolboxTabControl";
             this.ToolboxTabControl.SelectedIndex = 0;
-            this.ToolboxTabControl.Size = new System.Drawing.Size(842, 518);
+            this.ToolboxTabControl.Size = new System.Drawing.Size(868, 518);
             this.ToolboxTabControl.TabIndex = 3;
             // 
             // tabSpell
@@ -171,7 +171,7 @@
             this.tabSpell.Location = new System.Drawing.Point(4, 22);
             this.tabSpell.Name = "tabSpell";
             this.tabSpell.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSpell.Size = new System.Drawing.Size(834, 492);
+            this.tabSpell.Size = new System.Drawing.Size(860, 492);
             this.tabSpell.TabIndex = 0;
             this.tabSpell.Text = "Spell";
             // 
@@ -283,7 +283,7 @@
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Location = new System.Drawing.Point(361, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(464, 371);
+            this.groupBox5.Size = new System.Drawing.Size(493, 371);
             this.groupBox5.TabIndex = 132;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Values";
@@ -332,7 +332,7 @@
             // 
             // btnInsertSpell
             // 
-            this.btnInsertSpell.Location = new System.Drawing.Point(389, 0);
+            this.btnInsertSpell.Location = new System.Drawing.Point(414, 19);
             this.btnInsertSpell.Name = "btnInsertSpell";
             this.btnInsertSpell.Size = new System.Drawing.Size(75, 23);
             this.btnInsertSpell.TabIndex = 113;
@@ -1166,7 +1166,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(842, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(868, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1181,7 +1181,7 @@
             // Menu_New
             // 
             this.Menu_New.Name = "Menu_New";
-            this.Menu_New.Size = new System.Drawing.Size(98, 22);
+            this.Menu_New.Size = new System.Drawing.Size(152, 22);
             this.Menu_New.Text = "New";
             // 
             // optionsToolStripMenuItem
@@ -1197,17 +1197,19 @@
             this.Menu_DB.Name = "Menu_DB";
             this.Menu_DB.Size = new System.Drawing.Size(122, 22);
             this.Menu_DB.Text = "Database";
-            this.Menu_DB.Click += new System.EventHandler(this.Menu_DB_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 542);
+            this.ClientSize = new System.Drawing.Size(868, 542);
             this.Controls.Add(this.ToolboxTabControl);
             this.Controls.Add(this.menuStrip1);
+            this.MaximumSize = new System.Drawing.Size(884, 581);
+            this.MinimumSize = new System.Drawing.Size(884, 581);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "Mannik Toolbox Version 2";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ToolboxTabControl.ResumeLayout(false);
             this.tabSpell.ResumeLayout(false);
