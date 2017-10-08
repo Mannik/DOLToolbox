@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.Text;  
+using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
@@ -20,22 +22,63 @@ namespace MannikToolbox
             InitializeComponent();
         }
 
+        private void ConfigExist()
+        {
+            // todo: allow users to change connection details!
+
+            #region Create connection Details : Loki
+
+            if (!File.Exists(Application.StartupPath + "AppConfig.xml"))
+            {
+                var result = MessageBox.Show(@"No config Create now!", @"Create Config", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Error);
+
+                if (result == DialogResult.Yes)
+                {
+                    new MySqlConfig().ShowDialog(this);
+                }
+                if (result == DialogResult.No)
+                {
+                    MessageBox.Show(@"Sorry, you must create Connection Details!.");
+                    Application.ExitThread();
+                }
+            }
+            else
+            {
+                var xmlDoc = XDocument.Load(Application.StartupPath + "AppConfig.xml");
+                var selectors = from elements in xmlDoc.Elements("root").Elements("Server")
+                    .Elements("DBConnectionString")
+                                select elements;
+                foreach (var element in selectors)
+                {
+                    var str = element.Value;
+                    var ext = str.Substring(0, str.LastIndexOf(";", StringComparison.Ordinal));
+                    var csb = new MySqlConnectionStringBuilder(ext);
+                    Settings.Default.Username = csb.UserID;
+                    Settings.Default.Password = csb.Password;
+                    Settings.Default.Hostname = csb.Server;
+                    Settings.Default.Database = csb.Database;
+                    Settings.Default.Port = csb.Port;
+                    DatabaseManager.SetDatabaseConnection(Settings.Default.Hostname, Settings.Default.Port,
+                        Settings.Default.Database, Settings.Default.Username, Settings.Default.Password);
+                }
+            }
+        }
+
+            #endregion
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+               ConfigExist();
             cmbxDmgType.SelectedIndex = 0;
             cmbxInstrument.SelectedIndex = 0;
-            string username = Properties.Settings.Default.Username;
-            string password = Properties.Settings.Default.Password;
-            string hostname = Properties.Settings.Default.Hostname;
-            string database = Properties.Settings.Default.Database;
-            uint port = Properties.Settings.Default.Port;
-            DatabaseManager.SetDatabaseConnection(hostname, port, database, username, password);
+            
         }
         #region Toolstrip
         private void Menu_DB_Click(object sender, EventArgs e)
         {
-            MySqlLoginForm DataForm = new MySqlLoginForm();
-            DataForm.Show();
+           
+           
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -150,7 +193,68 @@ namespace MannikToolbox
 
         private void btnInsertSpell_Click(object sender, EventArgs e)
         {
-            
+            // todo: Ensure only numerical values can be inserted into int textboxes, also prevent paste.
+            #region Some basic Error Checking : Loki
+
+            if (String.IsNullOrEmpty(txtbxName.Text))
+            {
+                MessageBox.Show(@"Name cannot be blank! ");
+                txtbxName.Focus();
+                return;
+            }
+            if (String.IsNullOrEmpty(txtbxSpellID.Text))
+            {
+                MessageBox.Show(@"SpellID cannot be blank! ");
+                txtbxSpellID.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtbxEffect.Text))
+            {
+                MessageBox.Show(@"Effect cannot be blank! ");
+                txtbxEffect.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtbxIcon.Text))
+            {
+                MessageBox.Show(@"Icon cannot be blank! ");
+                txtbxIcon.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtbxDescription.Text))
+            {
+                MessageBox.Show(@"Description cannot be blank! ");
+                txtbxDescription.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(cmbxTarget.Text))
+            {
+                MessageBox.Show(@"Target cannot be blank! ");
+                cmbxTarget.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtbxTooltip.Text))
+            {
+                MessageBox.Show(@"Tooltip cannot be blank! ");
+                txtbxTooltip.Focus();
+                return;
+            }
+            #endregion
+            // todo : Needs testing 
+            #region SpellID is Unique so lets check : Loki
+            var inv = DatabaseManager.Database.SelectObjects<DBSpell>("SpellID = '" + SpellID + "'");
+            if (inv.Count > 0)
+            {
+                MessageBox.Show(@"This SpellID already exist in the Database!");
+                txtbxSpellID.Clear();
+                txtbxSpellID.Focus();
+                return;
+            }
+            #endregion
 
             try
             {
@@ -241,7 +345,9 @@ namespace MannikToolbox
         #endregion
 
         #region Input Validation
+
         //todo
+
         #endregion
     }
 }

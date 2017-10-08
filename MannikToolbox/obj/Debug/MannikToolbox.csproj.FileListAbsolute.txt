@@ -11,3 +11,15 @@ C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\bin\Debug\MySql.Data.dll
 C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.exe
 C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.pdb
 C:\Users\Xachary\Desktop\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.csprojResolveAssemblyReference.cache
+D:\Repos\MannikToolbox\MannikToolbox\bin\Debug\MannikToolbox.exe.config
+D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.exe
+D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.pdb
+D:\Repos\MannikToolbox\MannikToolbox\bin\Debug\MannikToolbox.exe
+D:\Repos\MannikToolbox\MannikToolbox\bin\Debug\MannikToolbox.pdb
+D:\Repos\MannikToolbox\MannikToolbox\bin\Debug\DOLDatabase.dll
+D:\Repos\MannikToolbox\MannikToolbox\bin\Debug\log4net.dll
+D:\Repos\MannikToolbox\MannikToolbox\bin\Debug\MySql.Data.dll
+D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.MainForm.resources
+D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.Properties.Resources.resources
+D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.csproj.GenerateResource.Cache
+D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.MySqlConfig.resources
