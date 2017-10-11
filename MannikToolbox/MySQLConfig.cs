@@ -18,10 +18,7 @@ namespace MannikToolbox
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+      
 
         private void mysql_test_button_Click(object sender, EventArgs e)
         {

@@ -23,3 +23,16 @@ D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.MainForm.resources
 D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.Properties.Resources.resources
 D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.csproj.GenerateResource.Cache
 D:\Repos\MannikToolbox\MannikToolbox\obj\Debug\MannikToolbox.MySqlConfig.resources
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\bin\Debug\MannikToolbox.exe.config
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.exe
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.pdb
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\bin\Debug\MannikToolbox.exe
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\bin\Debug\MannikToolbox.pdb
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\bin\Debug\DOLDatabase.dll
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\bin\Debug\log4net.dll
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\bin\Debug\MySql.Data.dll
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.csprojResolveAssemblyReference.cache
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.MainForm.resources
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.MySqlConfig.resources
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.Properties.Resources.resources
+C:\Users\jay19\Desktop\Manniks\trunk\MannikToolbox\obj\Debug\MannikToolbox.csproj.GenerateResource.Cache

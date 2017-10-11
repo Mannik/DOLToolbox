@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;  
@@ -70,16 +71,18 @@ namespace MannikToolbox
         private void MainForm_Load(object sender, EventArgs e)
         {
                ConfigExist();
-            cmbxDmgType.SelectedIndex = 0;
+            cmbxDmgType.SelectedIndex = -1;
             cmbxInstrument.SelectedIndex = 0;
             
         }
         #region Toolstrip
         private void Menu_DB_Click(object sender, EventArgs e)
         {
-           
-           
-        }
+			new MySqlConfig().ShowDialog(this);
+			Application.Restart();
+			Environment.Exit(0);
+
+		}
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -101,7 +104,14 @@ namespace MannikToolbox
         string Spell_ID, SpellName, Description, Target, Type;
         string Message1, Message2, Message3, Message4, PackageID;
         int SpellID, ClientEffect, SpellIcon, Range, Power, DamageType, Duration, Frequency;
-        int Pulse, PulsePower, Radius, RecastDelay, ResurrectHealth, ResurrectMana;
+
+		private void clock_Tick(object sender, EventArgs e)
+		{
+			time.Text = DateTime.Now.ToString();
+			ServerIP.Text = Settings.Default.Hostname;
+		}
+
+		int Pulse, PulsePower, Radius, RecastDelay, ResurrectHealth, ResurrectMana;
         int Concentration, LifeDrainReturn, AmnesiaChance, InstrumentRequirement, SpellGroup;
         int EffectGroup, SubSpellID, SharedTimerGroup, TooltipId;
         Boolean IsFocus = false, AllowBolt = false, IsSecondary = false, IsPrimary = false, Uninterruptible = false, MoveCast = false;
@@ -191,7 +201,14 @@ namespace MannikToolbox
             func(Controls);
         }
 
-        private void btnInsertSpell_Click(object sender, EventArgs e)
+		#region Int Only in Int txtboxes : Loki
+		private void NumericOnly(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+		}
+		#endregion
+
+		private void btnInsertSpell_Click(object sender, EventArgs e)
         {
             // todo: Ensure only numerical values can be inserted into int textboxes, also prevent paste.
             #region Some basic Error Checking : Loki
@@ -326,28 +343,28 @@ namespace MannikToolbox
                 }
             }
         }
-        #endregion
+		#endregion
 
-      
 
-       
 
-        #region Item Insert Region
-        //todo
-        #endregion
 
-        #region Quest Insert Region
-        //todo
-        #endregion
 
-        #region NPCTemplate Insert Region
-        //todo
-        #endregion
+		#region Item Insert Region
+		//todo
+		#endregion
 
-        #region Input Validation
+		#region Quest Insert Region
+		//todo
+		#endregion
 
-        //todo
+		#region NPCTemplate Insert Region
+		//todo
+		#endregion
 
-        #endregion
-    }
+		#region Input Validation
+
+		//todo
+
+		#endregion
+	}
 }
