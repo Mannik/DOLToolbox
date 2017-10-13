@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;  
 using System.Xml.Linq;
 using System.Threading.Tasks;
@@ -18,16 +19,31 @@ namespace MannikToolbox
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+	    public MainForm()
         {
-            InitializeComponent();
+			InitializeComponent();
+		   
         }
 
-        private void ConfigExist()
-        {
-            // todo: allow users to change connection details!
+	   
 
-            #region Create connection Details : Loki
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			ConfigExist();
+			cmbxDmgType.SelectedIndex = -1;
+			cmbxInstrument.SelectedIndex = 0;
+
+		}
+
+		
+		
+		
+		#region Create connection Details : Loki
+		private void ConfigExist()
+        {
+            
+
+            
 
             if (!File.Exists(Application.StartupPath + "AppConfig.xml"))
             {
@@ -67,16 +83,27 @@ namespace MannikToolbox
         }
 
             #endregion
+		
+		#region Timer Functions/Stats : Loki
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-               ConfigExist();
-            cmbxDmgType.SelectedIndex = -1;
-            cmbxInstrument.SelectedIndex = 0;
-            
-        }
-        #region Toolstrip
-        private void Menu_DB_Click(object sender, EventArgs e)
+		private void clock_Tick(object sender, EventArgs e)
+		{
+			this.Text = @"Mannik/Loki's Toolbox " + @"("+DateTime.Now+@")";
+			ServerIP.Text = @"Database Server IP = " + Settings.Default.Hostname;
+			lblAccounts.Text = @"Accounts Created = " + DatabaseManager.Database.GetObjectCount<Account>();
+			lblChrCreated.Text = @"Characters Created = " + DatabaseManager.Database.GetObjectCount<DOLCharacters>();
+			lblBugReports.Text = @"Bug Reports = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+			lblAppeals.Text = @"Pending Appeals = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+			lblCPUUsage.Text = @"CPU Usage = " + ((int)(CPUperformance.NextValue())) + @"%";
+			
+
+
+		}
+		
+		#endregion
+
+		#region Toolstrip
+		private void Menu_DB_Click(object sender, EventArgs e)
         {
 			new MySqlConfig().ShowDialog(this);
 			Application.Restart();
@@ -88,27 +115,29 @@ namespace MannikToolbox
         {
             ClearUI();
         }
-        #endregion
-        #region global
-        string password = Properties.Settings.Default.Password;
-        string username = Properties.Settings.Default.Username;
-        string db = Properties.Settings.Default.Database;
-        uint port = Properties.Settings.Default.Port;
-        string host = Properties.Settings.Default.Hostname;
-       
+		#endregion
 
-        #endregion
+		#region global
 
-        #region Spell Insert Region
-        #region DefineSpellVariables
-        string Spell_ID, SpellName, Description, Target, Type;
+		#region Int Only in Int txtboxes : Loki
+		private void NumericOnly(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+		}
+		#endregion
+
+
+		#endregion
+
+		#region Spell Insert Region
+		#region DefineSpellVariables
+		string Spell_ID, SpellName, Description, Target, Type;
         string Message1, Message2, Message3, Message4, PackageID;
         int SpellID, ClientEffect, SpellIcon, Range, Power, DamageType, Duration, Frequency;
 
-		private void clock_Tick(object sender, EventArgs e)
+		private void tabPage1_Click(object sender, EventArgs e)
 		{
-			time.Text = DateTime.Now.ToString();
-			ServerIP.Text = Settings.Default.Hostname;
+
 		}
 
 		int Pulse, PulsePower, Radius, RecastDelay, ResurrectHealth, ResurrectMana;
@@ -201,16 +230,11 @@ namespace MannikToolbox
             func(Controls);
         }
 
-		#region Int Only in Int txtboxes : Loki
-		private void NumericOnly(object sender, KeyPressEventArgs e)
-		{
-			e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-		}
-		#endregion
+		
 
 		private void btnInsertSpell_Click(object sender, EventArgs e)
         {
-            // todo: Ensure only numerical values can be inserted into int textboxes, also prevent paste.
+           
             #region Some basic Error Checking : Loki
 
             if (String.IsNullOrEmpty(txtbxName.Text))
@@ -344,11 +368,7 @@ namespace MannikToolbox
             }
         }
 		#endregion
-
-
-
-
-
+		
 		#region Item Insert Region
 		//todo
 		#endregion
