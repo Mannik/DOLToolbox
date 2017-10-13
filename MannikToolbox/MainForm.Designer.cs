@@ -503,7 +503,7 @@
 			this.txtbxCastTime.Name = "txtbxCastTime";
 			this.txtbxCastTime.Size = new System.Drawing.Size(111, 20);
 			this.txtbxCastTime.TabIndex = 142;
-			this.txtbxCastTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericOnly);
+            this.txtbxCastTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericDecimalOnly);
 			// 
 			// label29
 			// 
@@ -675,7 +675,7 @@
 			this.txtbxDamage.Name = "txtbxDamage";
 			this.txtbxDamage.Size = new System.Drawing.Size(111, 20);
 			this.txtbxDamage.TabIndex = 123;
-			this.txtbxDamage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericOnly);
+            this.txtbxDamage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericDecimalOnly);
 			// 
 			// label17
 			// 
@@ -692,7 +692,7 @@
 			this.txtbxValue.Name = "txtbxValue";
 			this.txtbxValue.Size = new System.Drawing.Size(111, 20);
 			this.txtbxValue.TabIndex = 121;
-			this.txtbxValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericOnly);
+            this.txtbxValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericDecimalOnly);
 			// 
 			// label16
 			// 
@@ -1063,7 +1063,7 @@
 			this.txtbxType.Name = "txtbxType";
 			this.txtbxType.Size = new System.Drawing.Size(111, 20);
 			this.txtbxType.TabIndex = 125;
-			this.txtbxType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericOnly);
+
 			// 
 			// txtbxSpellID
 			// 

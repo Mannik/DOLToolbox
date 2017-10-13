@@ -147,6 +147,24 @@ namespace MannikToolbox
 		{
 			e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
 		}
+
+        //Doubles can have 1 decimal : Mannik
+        private void NumericDecimalOnly(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            {
+                // Allow Digits and BackSpace char
+            }
+            else if (e.KeyChar == '.' && !((TextBox)sender).Text.Contains('.'))
+            {
+                //Allows only one desimal
+            }
+            else
+            {
+                e.Handled = true;
+            }
+           
+        }
 		#endregion
 
 
@@ -325,6 +343,7 @@ namespace MannikToolbox
                 GetSpellVariables();
             DatabaseManager.SetDatabaseConnection(Settings.Default.Hostname, Settings.Default.Port, Settings.Default.Database, Settings.Default.Username, Settings.Default.Password);
             DBSpell spell = new DBSpell();
+            spell.AllowAdd = true;
             spell.AllowBolt = AllowBolt;
             spell.AmnesiaChance = AmnesiaChance;
             spell.CastTime = CastTime;
@@ -366,7 +385,6 @@ namespace MannikToolbox
             spell.Uninterruptible = Uninterruptible;
             spell.Value = Value;
             DatabaseManager.Database.AddObject(spell);
-
                 MessageBox.Show("Spell added to the database!");
             }
         catch (Exception g)
