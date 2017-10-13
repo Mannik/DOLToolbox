@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.ComponentModel;
@@ -187,4 +187,5 @@ namespace MannikToolbox
 
         #endregion
     }
+
 }
