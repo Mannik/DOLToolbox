@@ -131,18 +131,20 @@
 			this.tabItem = new System.Windows.Forms.TabPage();
 			this.tabNPCTemplate = new System.Windows.Forms.TabPage();
 			this.tabQuest = new System.Windows.Forms.TabPage();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.lblCPUUsage = new System.Windows.Forms.Label();
+			this.lblAccounts = new System.Windows.Forms.Label();
+			this.lblChrCreated = new System.Windows.Forms.Label();
+			this.lblBugReports = new System.Windows.Forms.Label();
+			this.lblAppeals = new System.Windows.Forms.Label();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Menu_New = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Menu_DB = new System.Windows.Forms.ToolStripMenuItem();
 			this.clock = new System.Windows.Forms.Timer(this.components);
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.label48 = new System.Windows.Forms.Label();
 			this.ServerIP = new System.Windows.Forms.Label();
-			this.time = new System.Windows.Forms.Label();
-			this.label46 = new System.Windows.Forms.Label();
+			this.CPUperformance = new System.Diagnostics.PerformanceCounter();
 			this.ToolboxTabControl.SuspendLayout();
 			this.tabSpell.SuspendLayout();
 			this.LinexSpell.SuspendLayout();
@@ -151,8 +153,9 @@
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
-			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.CPUperformance)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// ToolboxTabControl
@@ -167,6 +170,7 @@
 			this.ToolboxTabControl.Name = "ToolboxTabControl";
 			this.ToolboxTabControl.SelectedIndex = 0;
 			this.ToolboxTabControl.Size = new System.Drawing.Size(893, 555);
+			this.ToolboxTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
 			this.ToolboxTabControl.TabIndex = 3;
 			// 
 			// tabSpell
@@ -1146,7 +1150,7 @@
 			this.tabItem.Location = new System.Drawing.Point(4, 22);
 			this.tabItem.Name = "tabItem";
 			this.tabItem.Padding = new System.Windows.Forms.Padding(3);
-			this.tabItem.Size = new System.Drawing.Size(885, 529);
+			this.tabItem.Size = new System.Drawing.Size(885, 433);
 			this.tabItem.TabIndex = 1;
 			this.tabItem.Text = "Item";
 			// 
@@ -1155,7 +1159,7 @@
 			this.tabNPCTemplate.BackColor = System.Drawing.Color.LightGray;
 			this.tabNPCTemplate.Location = new System.Drawing.Point(4, 22);
 			this.tabNPCTemplate.Name = "tabNPCTemplate";
-			this.tabNPCTemplate.Size = new System.Drawing.Size(885, 529);
+			this.tabNPCTemplate.Size = new System.Drawing.Size(885, 433);
 			this.tabNPCTemplate.TabIndex = 2;
 			this.tabNPCTemplate.Text = "Npctemplate";
 			// 
@@ -1164,9 +1168,75 @@
 			this.tabQuest.BackColor = System.Drawing.Color.LightGray;
 			this.tabQuest.Location = new System.Drawing.Point(4, 22);
 			this.tabQuest.Name = "tabQuest";
-			this.tabQuest.Size = new System.Drawing.Size(885, 529);
+			this.tabQuest.Size = new System.Drawing.Size(885, 433);
 			this.tabQuest.TabIndex = 3;
 			this.tabQuest.Text = "Quest";
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.BackColor = System.Drawing.Color.White;
+			this.tabPage1.Controls.Add(this.lblCPUUsage);
+			this.tabPage1.Controls.Add(this.ServerIP);
+			this.tabPage1.Controls.Add(this.lblAccounts);
+			this.tabPage1.Controls.Add(this.lblChrCreated);
+			this.tabPage1.Controls.Add(this.lblBugReports);
+			this.tabPage1.Controls.Add(this.lblAppeals);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Size = new System.Drawing.Size(885, 529);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Server Details";
+			this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+			// 
+			// lblCPUUsage
+			// 
+			this.lblCPUUsage.AutoSize = true;
+			this.lblCPUUsage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblCPUUsage.Location = new System.Drawing.Point(8, 507);
+			this.lblCPUUsage.Name = "lblCPUUsage";
+			this.lblCPUUsage.Size = new System.Drawing.Size(93, 17);
+			this.lblCPUUsage.TabIndex = 7;
+			this.lblCPUUsage.Text = "CPU Usage =";
+			// 
+			// lblAccounts
+			// 
+			this.lblAccounts.AutoSize = true;
+			this.lblAccounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblAccounts.Location = new System.Drawing.Point(8, 51);
+			this.lblAccounts.Name = "lblAccounts";
+			this.lblAccounts.Size = new System.Drawing.Size(66, 17);
+			this.lblAccounts.TabIndex = 0;
+			this.lblAccounts.Text = "Accounts";
+			// 
+			// lblChrCreated
+			// 
+			this.lblChrCreated.AutoSize = true;
+			this.lblChrCreated.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblChrCreated.Location = new System.Drawing.Point(8, 79);
+			this.lblChrCreated.Name = "lblChrCreated";
+			this.lblChrCreated.Size = new System.Drawing.Size(131, 17);
+			this.lblChrCreated.TabIndex = 1;
+			this.lblChrCreated.Text = "Characters Created";
+			// 
+			// lblBugReports
+			// 
+			this.lblBugReports.AutoSize = true;
+			this.lblBugReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblBugReports.Location = new System.Drawing.Point(8, 107);
+			this.lblBugReports.Name = "lblBugReports";
+			this.lblBugReports.Size = new System.Drawing.Size(87, 17);
+			this.lblBugReports.TabIndex = 4;
+			this.lblBugReports.Text = "Bug Reports";
+			// 
+			// lblAppeals
+			// 
+			this.lblAppeals.AutoSize = true;
+			this.lblAppeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblAppeals.Location = new System.Drawing.Point(8, 135);
+			this.lblAppeals.Name = "lblAppeals";
+			this.lblAppeals.Size = new System.Drawing.Size(119, 17);
+			this.lblAppeals.TabIndex = 3;
+			this.lblAppeals.Text = "Pending Appeals ";
 			// 
 			// menuStrip1
 			// 
@@ -1215,77 +1285,34 @@
 			this.clock.Interval = 1000;
 			this.clock.Tick += new System.EventHandler(this.clock_Tick);
 			// 
-			// tabPage1
-			// 
-			this.tabPage1.BackColor = System.Drawing.Color.LightGray;
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(885, 529);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Server Details";
-			// 
-			// panel1
-			// 
-			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label48);
-			this.panel1.Controls.Add(this.ServerIP);
-			this.panel1.Controls.Add(this.time);
-			this.panel1.Controls.Add(this.label46);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 540);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(893, 39);
-			this.panel1.TabIndex = 135;
-			// 
-			// label48
-			// 
-			this.label48.AutoSize = true;
-			this.label48.Location = new System.Drawing.Point(712, 11);
-			this.label48.Name = "label48";
-			this.label48.Size = new System.Drawing.Size(73, 13);
-			this.label48.TabIndex = 3;
-			this.label48.Text = "Server Details";
-			// 
 			// ServerIP
 			// 
 			this.ServerIP.AutoSize = true;
-			this.ServerIP.Location = new System.Drawing.Point(791, 11);
+			this.ServerIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ServerIP.Location = new System.Drawing.Point(8, 23);
 			this.ServerIP.Name = "ServerIP";
-			this.ServerIP.Size = new System.Drawing.Size(76, 13);
+			this.ServerIP.Size = new System.Drawing.Size(131, 17);
 			this.ServerIP.TabIndex = 2;
-			this.ServerIP.Text = "xxx.xxx.xxx.xxx";
+			this.ServerIP.Text = "Database Server IP";
 			// 
-			// time
+			// CPUperformance
 			// 
-			this.time.AutoSize = true;
-			this.time.Location = new System.Drawing.Point(73, 11);
-			this.time.Name = "time";
-			this.time.Size = new System.Drawing.Size(58, 13);
-			this.time.TabIndex = 1;
-			this.time.Text = "Time/Date";
-			// 
-			// label46
-			// 
-			this.label46.AutoSize = true;
-			this.label46.Location = new System.Drawing.Point(4, 11);
-			this.label46.Name = "label46";
-			this.label46.Size = new System.Drawing.Size(64, 13);
-			this.label46.TabIndex = 0;
-			this.label46.Text = "Date/Time :";
+			this.CPUperformance.CategoryName = "Processor";
+			this.CPUperformance.CounterName = "% Processor Time";
+			this.CPUperformance.InstanceName = "_Total";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.LightGray;
 			this.ClientSize = new System.Drawing.Size(893, 579);
-			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.ToolboxTabControl);
 			this.Controls.Add(this.menuStrip1);
 			this.MaximumSize = new System.Drawing.Size(909, 618);
 			this.MinimumSize = new System.Drawing.Size(909, 618);
 			this.Name = "MainForm";
 			this.ShowIcon = false;
-			this.Text = "Mannik/Loki\'s Toolbox  (v1)";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ToolboxTabControl.ResumeLayout(false);
 			this.tabSpell.ResumeLayout(false);
@@ -1301,10 +1328,11 @@
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.CPUperformance)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1421,11 +1449,13 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_DB;
 		private System.Windows.Forms.Timer clock;
 		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Label label48;
 		private System.Windows.Forms.Label ServerIP;
-		private System.Windows.Forms.Label time;
-		private System.Windows.Forms.Label label46;
+		private System.Windows.Forms.Label lblBugReports;
+		private System.Windows.Forms.Label lblAppeals;
+		private System.Windows.Forms.Label lblChrCreated;
+		private System.Windows.Forms.Label lblAccounts;
+		private System.Windows.Forms.Label lblCPUUsage;
+		private System.Diagnostics.PerformanceCounter CPUperformance;
 	}
 }
 

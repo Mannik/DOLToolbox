@@ -50,8 +50,11 @@ namespace MannikToolbox
             DataConnection = new DataConnection(ConnectionType.DATABASE_MYSQL, connectionString);
             //Set the Database object
             Database = new MySQLObjectDatabase(m_dataConnection);
-
-            Database.RegisterDataObject(typeof(DBDataQuest));
+			Database.RegisterDataObject(typeof(Account));
+			Database.RegisterDataObject(typeof(BugReport));
+			Database.RegisterDataObject(typeof(DBAppeal));
+			Database.RegisterDataObject(typeof(DOLCharacters));
+			Database.RegisterDataObject(typeof(DBDataQuest));
             Database.RegisterDataObject(typeof(CharacterXDataQuest));
             Database.RegisterDataObject(typeof(Mob));
             Database.RegisterDataObject(typeof(DBNpcTemplate));
