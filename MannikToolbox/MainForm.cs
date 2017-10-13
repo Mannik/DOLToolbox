@@ -88,12 +88,35 @@ namespace MannikToolbox
 
 		private void clock_Tick(object sender, EventArgs e)
 		{
+            MySqlConnectionStringBuilder sb = new MySqlConnectionStringBuilder();
+            sb.Server = Settings.Default.Hostname;
+            sb.Port = Settings.Default.Port;
+            sb.Database = Settings.Default.Database;
+            sb.UserID = Settings.Default.Username;
+            sb.Password = Settings.Default.Password;
+            sb.ConnectionTimeout = 2;
+           MySqlConnection TestConnection = new MySqlConnection(sb.ConnectionString);
+            try { TestConnection.Open(); }
+            catch { }
+
+            if (TestConnection.State == System.Data.ConnectionState.Open)
+            {
+                lblAccounts.Text = @"Accounts Created = " + DatabaseManager.Database.GetObjectCount<Account>();
+                lblChrCreated.Text = @"Characters Created = " + DatabaseManager.Database.GetObjectCount<DOLCharacters>();
+                lblBugReports.Text = @"Bug Reports = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+                lblAppeals.Text = @"Pending Appeals = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+                TestConnection.Close();
+            }
+            else
+            {
+                lblAccounts.Text = @"Accounts Created = 0";
+                lblChrCreated.Text = @"Characters Created = 0";
+                lblBugReports.Text = @"Bug Reports = 0";
+                lblAppeals.Text = @"Pending Appeals = 0";
+            }
 			this.Text = @"Mannik/Loki's Toolbox " + @"("+DateTime.Now+@")";
 			ServerIP.Text = @"Database Server IP = " + Settings.Default.Hostname;
-			lblAccounts.Text = @"Accounts Created = " + DatabaseManager.Database.GetObjectCount<Account>();
-			lblChrCreated.Text = @"Characters Created = " + DatabaseManager.Database.GetObjectCount<DOLCharacters>();
-			lblBugReports.Text = @"Bug Reports = " + DatabaseManager.Database.GetObjectCount<BugReport>();
-			lblAppeals.Text = @"Pending Appeals = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+			
 			lblCPUUsage.Text = @"CPU Usage = " + ((int)(CPUperformance.NextValue())) + @"%";
 			
 
