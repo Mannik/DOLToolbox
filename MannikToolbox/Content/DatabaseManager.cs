@@ -8,6 +8,7 @@ using DOL.Database.Handlers;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using MannikToolbox.Services;
 
 namespace MannikToolbox
 {
@@ -22,7 +23,17 @@ namespace MannikToolbox
         private static IObjectDatabase m_database;
         internal static IObjectDatabase Database
         {
-            get { return m_database; }
+            get
+            {
+                if (m_database != null)
+                {
+                    return m_database;
+                }
+
+                SetDatabaseConnection();
+
+                return m_database;
+            }
             private set { m_database = value; }
         }
         private static DataConnection m_dataConnection;
@@ -32,17 +43,12 @@ namespace MannikToolbox
             private set { m_dataConnection = value; }
         }
 
-        public static void SetDatabaseConnection(string host, uint port, string database, string user, string password)
+        public static void SetDatabaseConnection()
         {
             string connectionString;
 
             //Create a connection string using the string builder
-            MySqlConnectionStringBuilder sb = new MySqlConnectionStringBuilder();
-            sb.Server = host;
-            sb.Port = port;
-            sb.Database = database;
-            sb.UserID = user;
-            sb.Password = password;
+            MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
             sb.ConnectionTimeout = 2;
             connectionString = sb.ConnectionString;
 

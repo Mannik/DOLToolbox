@@ -1,20 +1,10 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;  
-using System.Xml.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
 using MySql.Data.MySqlClient;
-using MannikToolbox.Properties;
 using DOL.Database;
+using MannikToolbox.Services;
+
 namespace MannikToolbox
 {
     public partial class MainForm : Form
@@ -22,82 +12,32 @@ namespace MannikToolbox
 	    public MainForm()
         {
 			InitializeComponent();
-		   
         }
-
-	   
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			ConfigExist();
 			cmbxDmgType.SelectedIndex = -1;
 			cmbxInstrument.SelectedIndex = 0;
 
 		}
 
-		
-		
-		
-		#region Create connection Details : Loki
-		private void ConfigExist()
-        {
-            
-
-            
-
-            if (!File.Exists(Application.StartupPath + "AppConfig.xml"))
-            {
-                var result = MessageBox.Show(@"No config Create now!", @"Create Config", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Error);
-
-                if (result == DialogResult.Yes)
-                {
-                    new MySqlConfig().ShowDialog(this);
-                }
-                if (result == DialogResult.No)
-                {
-                    MessageBox.Show(@"Sorry, you must create Connection Details!.");
-                    Application.ExitThread();
-                }
-            }
-            else
-            {
-                var xmlDoc = XDocument.Load(Application.StartupPath + "AppConfig.xml");
-                var selectors = from elements in xmlDoc.Elements("root").Elements("Server")
-                    .Elements("DBConnectionString")
-                                select elements;
-                foreach (var element in selectors)
-                {
-                    var str = element.Value;
-                    var ext = str.Substring(0, str.LastIndexOf(";", StringComparison.Ordinal));
-                    var csb = new MySqlConnectionStringBuilder(ext);
-                    Settings.Default.Username = csb.UserID;
-                    Settings.Default.Password = csb.Password;
-                    Settings.Default.Hostname = csb.Server;
-                    Settings.Default.Database = csb.Database;
-                    Settings.Default.Port = csb.Port;
-                    DatabaseManager.SetDatabaseConnection(Settings.Default.Hostname, Settings.Default.Port,
-                        Settings.Default.Database, Settings.Default.Username, Settings.Default.Password);
-                }
-            }
-        }
-
-            #endregion
-		
-		#region Timer Functions/Stats : Loki
-
 		private void clock_Tick(object sender, EventArgs e)
 		{
-            MySqlConnectionStringBuilder sb = new MySqlConnectionStringBuilder();
-            sb.Server = Settings.Default.Hostname;
-            sb.Port = Settings.Default.Port;
-            sb.Database = Settings.Default.Database;
-            sb.UserID = Settings.Default.Username;
-            sb.Password = Settings.Default.Password;
+		    MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
             sb.ConnectionTimeout = 2;
-           MySqlConnection TestConnection = new MySqlConnection(sb.ConnectionString);
-            try { TestConnection.Open(); }
-            catch { }
+            MySqlConnection TestConnection = new MySqlConnection(sb.ConnectionString);
+
+		    try
+		    {
+		        TestConnection.Open();
+		    }
+		    catch (MySqlException ex)
+		    {
+		        clock.Stop();
+		        MessageBox.Show($@"DB connection error: {ex.Message}");
+                new MySqlConfig().ShowDialog(this);
+		        clock.Start();
+            }
 
             if (TestConnection.State == System.Data.ConnectionState.Open)
             {
@@ -114,16 +54,13 @@ namespace MannikToolbox
                 lblBugReports.Text = @"Bug Reports = 0";
                 lblAppeals.Text = @"Pending Appeals = 0";
             }
-			this.Text = @"Mannik/Loki's Toolbox " + @"("+DateTime.Now+@")";
-			ServerIP.Text = @"Database Server IP = " + Settings.Default.Hostname;
+			this.Text = $@"Mannik/Loki's Toolbox ({ConnectionStringService.ConnectionString.Server})";
 			
 			lblCPUUsage.Text = @"CPU Usage = " + ((int)(CPUperformance.NextValue())) + @"%";
 			
 
 
 		}
-		
-		#endregion
 
 		#region Toolstrip
 		private void Menu_DB_Click(object sender, EventArgs e)
@@ -245,7 +182,7 @@ namespace MannikToolbox
             else
             { DamageType = cmbxDmgType.SelectedIndex; }
 
-            Spell_ID = (SpellName + SpellID.ToString()).ToString();
+            Spell_ID = SpellName + SpellID;
             int.TryParse(txtbxLevel.Text, out Level);
             LinexName = txtbxLineName.Text;
             LineXSpell_ID = Spell_ID + "_" + LinexName;
@@ -341,50 +278,50 @@ namespace MannikToolbox
             try
             {
                 GetSpellVariables();
-            DatabaseManager.SetDatabaseConnection(Settings.Default.Hostname, Settings.Default.Port, Settings.Default.Database, Settings.Default.Username, Settings.Default.Password);
-            DBSpell spell = new DBSpell();
-            spell.AllowAdd = true;
-            spell.AllowBolt = AllowBolt;
-            spell.AmnesiaChance = AmnesiaChance;
-            spell.CastTime = CastTime;
-            spell.ClientEffect = ClientEffect;
-            spell.Concentration = Concentration;
-            spell.Damage = Damage;
-            spell.DamageType = DamageType;
-            spell.Description = Description;
-            spell.Duration = Duration;
-            spell.EffectGroup = EffectGroup;
-            spell.Frequency = Frequency;
-            spell.Icon = SpellIcon;
-            spell.InstrumentRequirement = InstrumentRequirement;
-            spell.IsFocus = IsFocus;
-            spell.IsPrimary = IsPrimary;
-            spell.IsSecondary = IsSecondary;
-            spell.LifeDrainReturn = LifeDrainReturn;
-            spell.Message1 = Message1;
-            spell.Message2 = Message2;
-            spell.Message3 = Message3;
-            spell.Message4 = Message4;
-            spell.MoveCast = MoveCast;
-            spell.Name = SpellName;
-            spell.PackageID = PackageID;
-            spell.Power = Power;
-            spell.Pulse = Pulse;
-            spell.PulsePower = PulsePower;
-            spell.Radius = Radius;
-            spell.Range = Range;
-            spell.RecastDelay = RecastDelay;
-            spell.ResurrectHealth = ResurrectHealth;
-            spell.ResurrectMana = ResurrectMana;
-            spell.SharedTimerGroup = SharedTimerGroup;
-            spell.SpellGroup = SpellGroup;
-            spell.SpellID = SpellID;
-            spell.SubSpellID = SubSpellID;
-            spell.Target = Target;
-            spell.Type = Type;
-            spell.Uninterruptible = Uninterruptible;
-            spell.Value = Value;
-            DatabaseManager.Database.AddObject(spell);
+                DatabaseManager.SetDatabaseConnection();
+                DBSpell spell = new DBSpell();
+                spell.AllowAdd = true;
+                spell.AllowBolt = AllowBolt;
+                spell.AmnesiaChance = AmnesiaChance;
+                spell.CastTime = CastTime;
+                spell.ClientEffect = ClientEffect;
+                spell.Concentration = Concentration;
+                spell.Damage = Damage;
+                spell.DamageType = DamageType;
+                spell.Description = Description;
+                spell.Duration = Duration;
+                spell.EffectGroup = EffectGroup;
+                spell.Frequency = Frequency;
+                spell.Icon = SpellIcon;
+                spell.InstrumentRequirement = InstrumentRequirement;
+                spell.IsFocus = IsFocus;
+                spell.IsPrimary = IsPrimary;
+                spell.IsSecondary = IsSecondary;
+                spell.LifeDrainReturn = LifeDrainReturn;
+                spell.Message1 = Message1;
+                spell.Message2 = Message2;
+                spell.Message3 = Message3;
+                spell.Message4 = Message4;
+                spell.MoveCast = MoveCast;
+                spell.Name = SpellName;
+                spell.PackageID = PackageID;
+                spell.Power = Power;
+                spell.Pulse = Pulse;
+                spell.PulsePower = PulsePower;
+                spell.Radius = Radius;
+                spell.Range = Range;
+                spell.RecastDelay = RecastDelay;
+                spell.ResurrectHealth = ResurrectHealth;
+                spell.ResurrectMana = ResurrectMana;
+                spell.SharedTimerGroup = SharedTimerGroup;
+                spell.SpellGroup = SpellGroup;
+                spell.SpellID = SpellID;
+                spell.SubSpellID = SubSpellID;
+                spell.Target = Target;
+                spell.Type = Type;
+                spell.Uninterruptible = Uninterruptible;
+                spell.Value = Value;
+                DatabaseManager.Database.AddObject(spell);
                 MessageBox.Show("Spell added to the database!");
             }
         catch (Exception g)
@@ -396,7 +333,7 @@ namespace MannikToolbox
                 try
                 {
                     GetSpellVariables();
-                    DatabaseManager.SetDatabaseConnection(Settings.Default.Hostname, Settings.Default.Port, Settings.Default.Database, Settings.Default.Username, Settings.Default.Password);
+                    DatabaseManager.SetDatabaseConnection();
                     DBLineXSpell line = new DBLineXSpell();
                     line.Level = Level;
                     line.LineName = LinexName;
