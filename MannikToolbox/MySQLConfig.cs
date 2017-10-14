@@ -1,13 +1,9 @@
-#region
-
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Xml;
+using MannikToolbox.Services;
 using MySql.Data.MySqlClient;
-
-#endregion
 
 namespace MannikToolbox
 {
@@ -91,28 +87,9 @@ namespace MannikToolbox
             // mysql_test_button_Click(null, null);
 
             #endregion
-
-            #region Loki - Write to XML
-
-            try
-            {
-                using (var writer = XmlWriter.Create(Application.StartupPath + "AppConfig.xml"))
-                {
-                    writer.WriteStartElement("root");
-                    writer.WriteStartElement("Server");
-                    writer.WriteElementString("DBConnectionString", t);
-                    writer.WriteEndElement();
-                    writer.Flush();
-                }
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(@"Error" + ":" + ex.Message);
-                Application.Exit();
-            }
-
-            #endregion
+            
+            ConnectionStringService.SetString(sb.UserID, sb.Password, sb.Server, sb.Database, sb.Port);
+            Close();
         }
 
         #region Background Worker
