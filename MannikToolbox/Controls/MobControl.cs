@@ -70,5 +70,11 @@ namespace MannikToolbox.Controls
             _Race.ValueMember = "Key";
 
         }
+
+        private void btnMob_Search_Click(object sender, EventArgs e)
+        {
+            var mobsearch = new MobSearch();
+            mobsearch.Show(this);
+        }
     }
 }

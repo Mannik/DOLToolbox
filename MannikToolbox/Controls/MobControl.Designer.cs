@@ -59,6 +59,7 @@
             this._Level = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this._Race = new System.Windows.Forms.ComboBox();
             this._Flags = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this._Gender = new System.Windows.Forms.TextBox();
@@ -128,7 +129,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this._Race = new System.Windows.Forms.ComboBox();
+            this.btnMob_Search = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -450,6 +451,14 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "General";
+            // 
+            // _Race
+            // 
+            this._Race.FormattingEnabled = true;
+            this._Race.Location = new System.Drawing.Point(46, 143);
+            this._Race.Name = "_Race";
+            this._Race.Size = new System.Drawing.Size(66, 21);
+            this._Race.TabIndex = 7;
             // 
             // _Flags
             // 
@@ -1044,18 +1053,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // _Race
+            // btnMob_Search
             // 
-            this._Race.FormattingEnabled = true;
-            this._Race.Location = new System.Drawing.Point(46, 143);
-            this._Race.Name = "_Race";
-            this._Race.Size = new System.Drawing.Size(66, 21);
-            this._Race.TabIndex = 7;
+            this.btnMob_Search.Location = new System.Drawing.Point(164, 3);
+            this.btnMob_Search.Name = "btnMob_Search";
+            this.btnMob_Search.Size = new System.Drawing.Size(75, 23);
+            this.btnMob_Search.TabIndex = 8;
+            this.btnMob_Search.Text = "Search";
+            this.btnMob_Search.UseVisualStyleBackColor = true;
+            this.btnMob_Search.Click += new System.EventHandler(this.btnMob_Search_Click);
             // 
             // MobControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnMob_Search);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.groupBox6);
@@ -1186,5 +1198,6 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox _Race;
+        private System.Windows.Forms.Button btnMob_Search;
     }
 }
