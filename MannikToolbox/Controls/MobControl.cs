@@ -60,6 +60,7 @@ namespace MannikToolbox.Controls
 
             BindingService.BindData(_mob, this);
             BindFlags();
+            BindWeaponSlots();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -71,6 +72,7 @@ namespace MannikToolbox.Controls
 
             BindingService.SyncData(_mob, this);
             SyncFlags();
+            SyncWeaponSlots();
             _mobService.SaveMob(_mob);
         }
 
@@ -141,6 +143,57 @@ namespace MannikToolbox.Controls
             int[] array = new int[1];
             flagsArray.CopyTo(array, 0);
             _mob.Flags = (uint)array[0];
+        }
+
+        private void BindWeaponSlots()
+        {
+            switch (_mob.VisibleWeaponSlots)
+            {
+                case 16:
+                    _WpnSlotsSB.Checked = true;
+                    break;
+                case 34:
+                    _WpnSlots2H.Checked = true;
+                    break;
+                case 51:
+                    _WpnSlotsRange.Checked = true;
+                    break;
+                case 240:
+                    _WpnSlots1H.Checked = true;
+                    break;
+                default:
+                    _WpnSlotsNone.Checked = true;
+                    break;
+            }
+        }
+
+        private void SyncWeaponSlots()
+        {
+            if (_WpnSlotsSB.Checked)
+            {
+                _mob.VisibleWeaponSlots = 16;
+                return;
+            }
+
+            if (_WpnSlots2H.Checked)
+            {
+                _mob.VisibleWeaponSlots = 34;
+                return;
+            }
+
+            if (_WpnSlotsRange.Checked)
+            {
+                _mob.VisibleWeaponSlots = 51;
+                return;
+            }
+
+            if (_WpnSlots1H.Checked)
+            {
+                _mob.VisibleWeaponSlots = 240;
+                return;
+            }
+
+            _mob.VisibleWeaponSlots = 255;
         }
     }
 }
