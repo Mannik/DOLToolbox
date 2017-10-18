@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -35,9 +34,9 @@ namespace MannikToolbox.Services
                             break;
                         }
 
-                        var item = input.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(x => x.Key == value);
+                        var item = input.Items.Cast<ComboboxService.SelectItemModel>().FirstOrDefault(x => x.Id == value);
 
-                        if (item.Key == default(int))
+                        if (item?.Id == null)
                         {
                             break;
                         }
@@ -76,15 +75,20 @@ namespace MannikToolbox.Services
                             mobProperty.SetValue(destination, null);                            
                         }
 
-                        var selected = (KeyValuePair<int, string>)input.SelectedItem;
-                        BindValueFromInt(selected.Key, mobProperty, destination);
+                        var selected = (ComboboxService.SelectItemModel)input.SelectedItem;
+                        BindValueFromInt(selected?.Id, mobProperty, destination);
                         break;
                 }
             }
         }
 
-        private static void BindValueFromInt<T>(int input, PropertyInfo property, T obj)
+        private static void BindValueFromInt<T>(int? input, PropertyInfo property, T obj)
         {
+            if (!input.HasValue)
+            {
+                property.SetValue(obj, null);
+            }
+
             var propertyType = property.PropertyType;
 
             if (propertyType == typeof(int))

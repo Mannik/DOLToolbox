@@ -111,10 +111,10 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MobSearch.cs">
+    <Compile Include="Controls\MobSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MobSearch.Designer.cs">
+    <Compile Include="Controls\MobSearch.Designer.cs">
       <DependentUpon>MobSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="MySQLConfig.cs">
@@ -126,8 +126,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BindingService.cs" />
+    <Compile Include="Services\ComboboxService.cs" />
     <Compile Include="Services\ConnectionStringService.cs" />
     <Compile Include="Services\MobService.cs" />
+    <Compile Include="Services\ModelImageService.cs" />
     <EmbeddedResource Include="Controls\MobControl.resx">
       <DependentUpon>MobControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,7 +145,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MobSearch.resx">
+    <EmbeddedResource Include="Controls\MobSearch.resx">
       <DependentUpon>MobSearch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

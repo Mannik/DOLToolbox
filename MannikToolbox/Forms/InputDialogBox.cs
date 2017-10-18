@@ -23,5 +23,13 @@ namespace MannikToolbox.Forms
             Caption = lblCaption;
             Input = txtValue;
         }
+
+        private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
     }
 }
