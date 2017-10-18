@@ -40,6 +40,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(313, 20);
             this.txtValue.TabIndex = 0;
+            this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValue_KeyPress);
             // 
             // lblCaption
             // 
@@ -52,22 +53,22 @@
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Location = new System.Drawing.Point(170, 52);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Ok";
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(251, 52);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Cancel";
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.UseVisualStyleBackColor = true;
             // 
             // InputDialogBox

@@ -54,6 +54,9 @@ namespace MannikToolbox
             Database.RegisterDataObject(typeof(DBSpell));
             Database.RegisterDataObject(typeof(ItemTemplate));
             Database.RegisterDataObject(typeof(DBLineXSpell));
+            Database.RegisterDataObject(typeof(Race));
+            Database.RegisterDataObject(typeof(DBRegions));
+            Database.RegisterDataObject(typeof(Zones));
             TestConnection = new MySqlConnection(sb.ConnectionString);
 
             try { TestConnection.Open(); }

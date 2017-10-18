@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._Region = new System.Windows.Forms.TextBox();
+            this._Region = new System.Windows.Forms.ComboBox();
             this._Y = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,19 +59,17 @@
             this._Level = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this._BodyType = new System.Windows.Forms.ComboBox();
+            this._Gender = new System.Windows.Forms.ComboBox();
+            this._Realm = new System.Windows.Forms.ComboBox();
             this._Race = new System.Windows.Forms.ComboBox();
-            this._Flags = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this._Gender = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
-            this._BodyType = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this._RespawnInterval = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this._IsCloakHoodUp = new System.Windows.Forms.CheckBox();
             this._VisibleWeaponSlots = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
-            this._Realm = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this._NPCTemplateID = new System.Windows.Forms.TextBox();
@@ -110,6 +108,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this._ExamineArticle = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this._MeleeDamageType = new System.Windows.Forms.ComboBox();
             this.label39 = new System.Windows.Forms.Label();
             this._FactionID = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
@@ -117,7 +116,6 @@
             this.label37 = new System.Windows.Forms.Label();
             this._MaxDistance = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this._MeleeDamageType = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this._AggroRange = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
@@ -129,13 +127,26 @@
             this.label43 = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnMob_Search = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this._FlagsSwimming = new System.Windows.Forms.CheckBox();
+            this._FlagsStatue = new System.Windows.Forms.CheckBox();
+            this._FlagsTorch = new System.Windows.Forms.CheckBox();
+            this._FlagsFlying = new System.Windows.Forms.CheckBox();
+            this._FlagsPeace = new System.Windows.Forms.CheckBox();
+            this._FlagsNoTarget = new System.Windows.Forms.CheckBox();
+            this._FlagsHideName = new System.Windows.Forms.CheckBox();
+            this._FlagsStealth = new System.Windows.Forms.CheckBox();
+            this._FlagsGhost = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -159,10 +170,11 @@
             // 
             // _Region
             // 
+            this._Region.FormattingEnabled = true;
             this._Region.Location = new System.Drawing.Point(68, 116);
             this._Region.Name = "_Region";
-            this._Region.Size = new System.Drawing.Size(100, 20);
-            this._Region.TabIndex = 9;
+            this._Region.Size = new System.Drawing.Size(100, 21);
+            this._Region.TabIndex = 7;
             // 
             // _Y
             // 
@@ -410,19 +422,17 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this._Race);
-            this.groupBox2.Controls.Add(this._Flags);
-            this.groupBox2.Controls.Add(this.label47);
-            this.groupBox2.Controls.Add(this._Gender);
-            this.groupBox2.Controls.Add(this.label46);
             this.groupBox2.Controls.Add(this._BodyType);
+            this.groupBox2.Controls.Add(this._Gender);
+            this.groupBox2.Controls.Add(this._Realm);
+            this.groupBox2.Controls.Add(this._Race);
+            this.groupBox2.Controls.Add(this.label46);
             this.groupBox2.Controls.Add(this.label42);
             this.groupBox2.Controls.Add(this._RespawnInterval);
             this.groupBox2.Controls.Add(this.label41);
             this.groupBox2.Controls.Add(this._IsCloakHoodUp);
             this.groupBox2.Controls.Add(this._VisibleWeaponSlots);
             this.groupBox2.Controls.Add(this.label40);
-            this.groupBox2.Controls.Add(this._Realm);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this._NPCTemplateID);
@@ -452,6 +462,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "General";
             // 
+            // _BodyType
+            // 
+            this._BodyType.FormattingEnabled = true;
+            this._BodyType.Location = new System.Drawing.Point(161, 117);
+            this._BodyType.Name = "_BodyType";
+            this._BodyType.Size = new System.Drawing.Size(65, 21);
+            this._BodyType.TabIndex = 62;
+            // 
+            // _Gender
+            // 
+            this._Gender.FormattingEnabled = true;
+            this._Gender.Location = new System.Drawing.Point(455, 143);
+            this._Gender.Name = "_Gender";
+            this._Gender.Size = new System.Drawing.Size(58, 21);
+            this._Gender.TabIndex = 7;
+            // 
+            // _Realm
+            // 
+            this._Realm.FormattingEnabled = true;
+            this._Realm.Location = new System.Drawing.Point(161, 143);
+            this._Realm.Name = "_Realm";
+            this._Realm.Size = new System.Drawing.Size(65, 21);
+            this._Realm.TabIndex = 8;
+            // 
             // _Race
             // 
             this._Race.FormattingEnabled = true;
@@ -459,29 +493,6 @@
             this._Race.Name = "_Race";
             this._Race.Size = new System.Drawing.Size(66, 21);
             this._Race.TabIndex = 7;
-            // 
-            // _Flags
-            // 
-            this._Flags.Location = new System.Drawing.Point(567, 143);
-            this._Flags.Name = "_Flags";
-            this._Flags.Size = new System.Drawing.Size(48, 20);
-            this._Flags.TabIndex = 61;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(519, 146);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(32, 13);
-            this.label47.TabIndex = 60;
-            this.label47.Text = "Flags";
-            // 
-            // _Gender
-            // 
-            this._Gender.Location = new System.Drawing.Point(460, 143);
-            this._Gender.Name = "_Gender";
-            this._Gender.Size = new System.Drawing.Size(48, 20);
-            this._Gender.TabIndex = 59;
             // 
             // label46
             // 
@@ -491,13 +502,6 @@
             this.label46.Size = new System.Drawing.Size(42, 13);
             this.label46.TabIndex = 58;
             this.label46.Text = "Gender";
-            // 
-            // _BodyType
-            // 
-            this._BodyType.Location = new System.Drawing.Point(164, 117);
-            this._BodyType.Name = "_BodyType";
-            this._BodyType.Size = new System.Drawing.Size(48, 20);
-            this._BodyType.TabIndex = 57;
             // 
             // label42
             // 
@@ -549,13 +553,6 @@
             this.label40.Size = new System.Drawing.Size(107, 13);
             this.label40.TabIndex = 50;
             this.label40.Text = "Visible Weapon Slots";
-            // 
-            // _Realm
-            // 
-            this._Realm.Location = new System.Drawing.Point(163, 143);
-            this._Realm.Name = "_Realm";
-            this._Realm.Size = new System.Drawing.Size(48, 20);
-            this._Realm.TabIndex = 49;
             // 
             // label31
             // 
@@ -645,6 +642,7 @@
             this._Model.Name = "_Model";
             this._Model.Size = new System.Drawing.Size(48, 20);
             this._Model.TabIndex = 31;
+            this._Model.Leave += new System.EventHandler(this._Model_Leave);
             // 
             // label20
             // 
@@ -868,6 +866,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this._MeleeDamageType);
             this.groupBox5.Controls.Add(this.label39);
             this.groupBox5.Controls.Add(this._FactionID);
             this.groupBox5.Controls.Add(this.label38);
@@ -875,7 +874,6 @@
             this.groupBox5.Controls.Add(this.label37);
             this.groupBox5.Controls.Add(this._MaxDistance);
             this.groupBox5.Controls.Add(this.label36);
-            this.groupBox5.Controls.Add(this._MeleeDamageType);
             this.groupBox5.Controls.Add(this.label35);
             this.groupBox5.Controls.Add(this._AggroRange);
             this.groupBox5.Controls.Add(this.label34);
@@ -886,6 +884,14 @@
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Killer Stuff";
+            // 
+            // _MeleeDamageType
+            // 
+            this._MeleeDamageType.FormattingEnabled = true;
+            this._MeleeDamageType.Location = new System.Drawing.Point(115, 65);
+            this._MeleeDamageType.Name = "_MeleeDamageType";
+            this._MeleeDamageType.Size = new System.Drawing.Size(73, 21);
+            this._MeleeDamageType.TabIndex = 7;
             // 
             // label39
             // 
@@ -943,13 +949,6 @@
             this.label36.Size = new System.Drawing.Size(106, 13);
             this.label36.TabIndex = 26;
             this.label36.Text = "Melee Damage Type";
-            // 
-            // _MeleeDamageType
-            // 
-            this._MeleeDamageType.Location = new System.Drawing.Point(115, 65);
-            this._MeleeDamageType.Name = "_MeleeDamageType";
-            this._MeleeDamageType.Size = new System.Drawing.Size(73, 20);
-            this._MeleeDamageType.TabIndex = 27;
             // 
             // label35
             // 
@@ -1053,21 +1052,139 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnMob_Search
+            // pictureBox1
             // 
-            this.btnMob_Search.Location = new System.Drawing.Point(164, 3);
-            this.btnMob_Search.Name = "btnMob_Search";
-            this.btnMob_Search.Size = new System.Drawing.Size(75, 23);
-            this.btnMob_Search.TabIndex = 8;
-            this.btnMob_Search.Text = "Search";
-            this.btnMob_Search.UseVisualStyleBackColor = true;
-            this.btnMob_Search.Click += new System.EventHandler(this.btnMob_Search_Click);
+            this.pictureBox1.Location = new System.Drawing.Point(665, 209);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(217, 317);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this._FlagsSwimming);
+            this.groupBox7.Controls.Add(this._FlagsStatue);
+            this.groupBox7.Controls.Add(this._FlagsTorch);
+            this.groupBox7.Controls.Add(this._FlagsFlying);
+            this.groupBox7.Controls.Add(this._FlagsPeace);
+            this.groupBox7.Controls.Add(this._FlagsNoTarget);
+            this.groupBox7.Controls.Add(this._FlagsHideName);
+            this.groupBox7.Controls.Add(this._FlagsStealth);
+            this.groupBox7.Controls.Add(this._FlagsGhost);
+            this.groupBox7.Location = new System.Drawing.Point(389, 205);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(165, 155);
+            this.groupBox7.TabIndex = 8;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Flags";
+            // 
+            // _FlagsSwimming
+            // 
+            this._FlagsSwimming.AutoSize = true;
+            this._FlagsSwimming.Location = new System.Drawing.Point(84, 83);
+            this._FlagsSwimming.Name = "_FlagsSwimming";
+            this._FlagsSwimming.Size = new System.Drawing.Size(73, 17);
+            this._FlagsSwimming.TabIndex = 71;
+            this._FlagsSwimming.Text = "Swimming";
+            this._FlagsSwimming.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsStatue
+            // 
+            this._FlagsStatue.AutoSize = true;
+            this._FlagsStatue.Location = new System.Drawing.Point(84, 60);
+            this._FlagsStatue.Name = "_FlagsStatue";
+            this._FlagsStatue.Size = new System.Drawing.Size(57, 17);
+            this._FlagsStatue.TabIndex = 70;
+            this._FlagsStatue.Text = "Statue";
+            this._FlagsStatue.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsTorch
+            // 
+            this._FlagsTorch.AutoSize = true;
+            this._FlagsTorch.Location = new System.Drawing.Point(85, 37);
+            this._FlagsTorch.Name = "_FlagsTorch";
+            this._FlagsTorch.Size = new System.Drawing.Size(54, 17);
+            this._FlagsTorch.TabIndex = 69;
+            this._FlagsTorch.Text = "Torch";
+            this._FlagsTorch.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsFlying
+            // 
+            this._FlagsFlying.AutoSize = true;
+            this._FlagsFlying.Location = new System.Drawing.Point(84, 14);
+            this._FlagsFlying.Name = "_FlagsFlying";
+            this._FlagsFlying.Size = new System.Drawing.Size(53, 17);
+            this._FlagsFlying.TabIndex = 68;
+            this._FlagsFlying.Text = "Flying";
+            this._FlagsFlying.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsPeace
+            // 
+            this._FlagsPeace.AutoSize = true;
+            this._FlagsPeace.Location = new System.Drawing.Point(6, 106);
+            this._FlagsPeace.Name = "_FlagsPeace";
+            this._FlagsPeace.Size = new System.Drawing.Size(57, 17);
+            this._FlagsPeace.TabIndex = 67;
+            this._FlagsPeace.Text = "Peace";
+            this._FlagsPeace.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsNoTarget
+            // 
+            this._FlagsNoTarget.AutoSize = true;
+            this._FlagsNoTarget.Location = new System.Drawing.Point(6, 83);
+            this._FlagsNoTarget.Name = "_FlagsNoTarget";
+            this._FlagsNoTarget.Size = new System.Drawing.Size(74, 17);
+            this._FlagsNoTarget.TabIndex = 66;
+            this._FlagsNoTarget.Text = "No Target";
+            this._FlagsNoTarget.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsHideName
+            // 
+            this._FlagsHideName.AutoSize = true;
+            this._FlagsHideName.Location = new System.Drawing.Point(6, 60);
+            this._FlagsHideName.Name = "_FlagsHideName";
+            this._FlagsHideName.Size = new System.Drawing.Size(79, 17);
+            this._FlagsHideName.TabIndex = 65;
+            this._FlagsHideName.Text = "Hide Name";
+            this._FlagsHideName.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsStealth
+            // 
+            this._FlagsStealth.AutoSize = true;
+            this._FlagsStealth.Location = new System.Drawing.Point(6, 37);
+            this._FlagsStealth.Name = "_FlagsStealth";
+            this._FlagsStealth.Size = new System.Drawing.Size(59, 17);
+            this._FlagsStealth.TabIndex = 64;
+            this._FlagsStealth.Text = "Stealth";
+            this._FlagsStealth.UseVisualStyleBackColor = true;
+            // 
+            // _FlagsGhost
+            // 
+            this._FlagsGhost.AutoSize = true;
+            this._FlagsGhost.Location = new System.Drawing.Point(6, 14);
+            this._FlagsGhost.Name = "_FlagsGhost";
+            this._FlagsGhost.Size = new System.Drawing.Size(54, 17);
+            this._FlagsGhost.TabIndex = 63;
+            this._FlagsGhost.Text = "Ghost";
+            this._FlagsGhost.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(164, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Search";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MobControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnMob_Search);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.groupBox6);
@@ -1091,6 +1208,9 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1106,7 +1226,6 @@
         private System.Windows.Forms.TextBox _Z;
         private System.Windows.Forms.TextBox _Heading;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox _Region;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox _Strength;
         private System.Windows.Forms.Label label6;
@@ -1154,7 +1273,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox _EquipmentTemplateID;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox _Realm;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox _PathID;
@@ -1173,13 +1291,11 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox _MaxDistance;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox _MeleeDamageType;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox _AggroRange;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox _AggroLevel;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox _BodyType;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.TextBox _RespawnInterval;
         private System.Windows.Forms.Label label41;
@@ -1190,14 +1306,27 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox _ObjectId;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox _Flags;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox _Gender;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.TextBox _Piety;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox _Race;
-        private System.Windows.Forms.Button btnMob_Search;
+        private System.Windows.Forms.ComboBox _Realm;
+        private System.Windows.Forms.ComboBox _Gender;
+        private System.Windows.Forms.ComboBox _Region;
+        private System.Windows.Forms.ComboBox _MeleeDamageType;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox _BodyType;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckBox _FlagsTorch;
+        private System.Windows.Forms.CheckBox _FlagsFlying;
+        private System.Windows.Forms.CheckBox _FlagsPeace;
+        private System.Windows.Forms.CheckBox _FlagsNoTarget;
+        private System.Windows.Forms.CheckBox _FlagsHideName;
+        private System.Windows.Forms.CheckBox _FlagsStealth;
+        private System.Windows.Forms.CheckBox _FlagsGhost;
+        private System.Windows.Forms.CheckBox _FlagsSwimming;
+        private System.Windows.Forms.CheckBox _FlagsStatue;
+        private System.Windows.Forms.Button button2;
     }
 }
