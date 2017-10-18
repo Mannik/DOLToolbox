@@ -66,6 +66,7 @@ namespace MannikToolbox.Controls
             var mobId = dgd_MobSearch.SelectedRows[0].Cells[0].Value.ToString();
 
             SelectNpcClicked?.Invoke(mobId, e);
+            Close();
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)

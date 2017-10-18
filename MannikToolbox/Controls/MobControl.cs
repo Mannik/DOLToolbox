@@ -95,7 +95,7 @@ namespace MannikToolbox.Controls
                 LoadMob(o.ToString());
             };
             
-            mobsearch.Show(this);
+            mobsearch.ShowDialog(this);
         }
 
         private void SetupDropdowns()
