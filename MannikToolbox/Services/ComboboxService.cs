@@ -7,19 +7,39 @@ namespace MannikToolbox.Services
 {
     public static class ComboboxService
     {
-        public static void BindRaces(ComboBox input)
+       public static void BindRaces(ComboBox input)
         {
-            var items = DatabaseManager.Database.SelectAllObjects<Race>()
-                .OrderBy(x => x.Name)
-                    .Select(x => new SelectItemModel
-                    {
-                        Id = x.ID,
-                        Value = x.Name
-                    })
-                    .ToList();
-
-            BindData(input, items);
+            var races = new List<SelectItemModel>
+            {
+                new SelectItemModel(0, "Unknown"),
+                new SelectItemModel(1, "Briton"),
+                new SelectItemModel(2, "Avalonian"),
+                new SelectItemModel(3, "Highlander"),
+                new SelectItemModel(4, "Saracen"),
+                new SelectItemModel(5, "Norseman"),
+                new SelectItemModel(6, "Troll"),
+                new SelectItemModel(7, "Dwarf"),
+                new SelectItemModel(8, "Kobold"),
+                new SelectItemModel(9, "Celt"),
+                new SelectItemModel(10, "Firbolg"),
+                new SelectItemModel(11, "Elf"),
+                new SelectItemModel(12, "Lurikeen"),
+                new SelectItemModel(13, "Inconnu"),
+                new SelectItemModel(14, "Valkyn"),
+                new SelectItemModel(15, "Sylvan"),
+                new SelectItemModel(15, "HalfOgre"),
+                new SelectItemModel(15, "Frostalf"),
+                new SelectItemModel(17, "Shar"),
+                new SelectItemModel(19, "AlbionMinotaur"),
+                new SelectItemModel(20, "MidgardMinotaur"),
+                new SelectItemModel(21, "HiberniaMinotaur"),
+                new SelectItemModel(19, "Korazh"),
+                new SelectItemModel(20, "Deifrang"),
+                new SelectItemModel(21, "Graoch")
+            };
+            BindData(input, races);
         }
+        
         public static void BindRegions(ComboBox input)
         {
             var items = DatabaseManager.Database.SelectAllObjects<DBRegions>()
