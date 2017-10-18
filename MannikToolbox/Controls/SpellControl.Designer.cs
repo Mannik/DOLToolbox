@@ -29,102 +29,102 @@
         private void InitializeComponent()
         {
             this.LinexSpell = new System.Windows.Forms.GroupBox();
-            this.txtbxLineName = new System.Windows.Forms.TextBox();
+            this._LineName = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
-            this.txtbxLevel = new System.Windows.Forms.TextBox();
+            this._Level = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
-            this.cxLinexSpell = new System.Windows.Forms.CheckBox();
+            this._LinexSpell = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtbxTimer = new System.Windows.Forms.TextBox();
-            this.txtbxEffectGroup = new System.Windows.Forms.TextBox();
+            this._SharedTimerGroup = new System.Windows.Forms.TextBox();
+            this._EffectGroup = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
-            this.txtbxSpellGroup = new System.Windows.Forms.TextBox();
-            this.btnInsertSpell = new System.Windows.Forms.Button();
+            this._SpellGroup = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.txtbxMessage4 = new System.Windows.Forms.TextBox();
-            this.txtbxMessage3 = new System.Windows.Forms.TextBox();
-            this.txtbxMessage2 = new System.Windows.Forms.TextBox();
-            this.txtbxMessage1 = new System.Windows.Forms.TextBox();
+            this._Message4 = new System.Windows.Forms.TextBox();
+            this._Message3 = new System.Windows.Forms.TextBox();
+            this._Message2 = new System.Windows.Forms.TextBox();
+            this._Message1 = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.txtbxPulse = new System.Windows.Forms.TextBox();
+            this._Pulse = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.txtbxPulsePower = new System.Windows.Forms.TextBox();
-            this.txtbxCastTime = new System.Windows.Forms.TextBox();
+            this._PulsePower = new System.Windows.Forms.TextBox();
+            this._CastTime = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtbxCooldown = new System.Windows.Forms.TextBox();
+            this._RecastDelay = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtbxDuration = new System.Windows.Forms.TextBox();
+            this._Duration = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.txtbxFrequency = new System.Windows.Forms.TextBox();
+            this._Frequency = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.txtbxRange = new System.Windows.Forms.TextBox();
+            this._Range = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.txtbxCon = new System.Windows.Forms.TextBox();
+            this._Concentration = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtbxCost = new System.Windows.Forms.TextBox();
+            this._Power = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtbxRadius = new System.Windows.Forms.TextBox();
+            this._Radius = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.txtbxDamage = new System.Windows.Forms.TextBox();
+            this._Damage = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtbxValue = new System.Windows.Forms.TextBox();
+            this._Value = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.Insertspell = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtbxRezMana = new System.Windows.Forms.TextBox();
+            this._ResurrectMana = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtbxRezHP = new System.Windows.Forms.TextBox();
+            this._ResurrectHealth = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtbxLifedrain = new System.Windows.Forms.TextBox();
+            this._LifeDrainReturn = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtbxAmnesia = new System.Windows.Forms.TextBox();
+            this._AmnesiaChance = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.cmbxInstrument = new System.Windows.Forms.ComboBox();
+            this._InstrumentRequirement = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cxBolt = new System.Windows.Forms.CheckBox();
-            this.cxSecondary = new System.Windows.Forms.CheckBox();
-            this.cxPrimary = new System.Windows.Forms.CheckBox();
-            this.cxFocus = new System.Windows.Forms.CheckBox();
-            this.cxInterrupt = new System.Windows.Forms.CheckBox();
-            this.cxMove = new System.Windows.Forms.CheckBox();
+            this._AllowBolt = new System.Windows.Forms.CheckBox();
+            this._IsSecondary = new System.Windows.Forms.CheckBox();
+            this._IsPrimary = new System.Windows.Forms.CheckBox();
+            this._IsFocus = new System.Windows.Forms.CheckBox();
+            this._Uninterruptible = new System.Windows.Forms.CheckBox();
+            this._MoveCast = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
-            this.txtbxTooltip = new System.Windows.Forms.TextBox();
+            this._TooltipId = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cmbxDmgType = new System.Windows.Forms.ComboBox();
-            this.txtbxName = new System.Windows.Forms.TextBox();
-            this.txtbxSubSpell = new System.Windows.Forms.TextBox();
+            this._DamageType = new System.Windows.Forms.ComboBox();
+            this._Name = new System.Windows.Forms.TextBox();
+            this._SubSpellID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtbxDescription = new System.Windows.Forms.TextBox();
+            this._Description = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtbxPackageID = new System.Windows.Forms.TextBox();
+            this._PackageID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtbxType = new System.Windows.Forms.TextBox();
-            this.txtbxSpellID = new System.Windows.Forms.TextBox();
+            this._Type = new System.Windows.Forms.TextBox();
+            this._SpellID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbxTarget = new System.Windows.Forms.ComboBox();
-            this.txtbxIcon = new System.Windows.Forms.TextBox();
+            this._Target = new System.Windows.Forms.ComboBox();
+            this._Icon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtbxEffect = new System.Windows.Forms.TextBox();
+            this._ClientEffect = new System.Windows.Forms.TextBox();
             this.LinexSpell.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -135,11 +135,11 @@
             // 
             // LinexSpell
             // 
-            this.LinexSpell.Controls.Add(this.txtbxLineName);
+            this.LinexSpell.Controls.Add(this._LineName);
             this.LinexSpell.Controls.Add(this.label45);
-            this.LinexSpell.Controls.Add(this.txtbxLevel);
+            this.LinexSpell.Controls.Add(this._Level);
             this.LinexSpell.Controls.Add(this.label44);
-            this.LinexSpell.Controls.Add(this.cxLinexSpell);
+            this.LinexSpell.Controls.Add(this._LinexSpell);
             this.LinexSpell.Location = new System.Drawing.Point(8, 430);
             this.LinexSpell.Name = "LinexSpell";
             this.LinexSpell.Size = new System.Drawing.Size(817, 72);
@@ -147,12 +147,12 @@
             this.LinexSpell.TabStop = false;
             this.LinexSpell.Text = "LinexSpell";
             // 
-            // txtbxLineName
+            // _LineName
             // 
-            this.txtbxLineName.Location = new System.Drawing.Point(404, 20);
-            this.txtbxLineName.Name = "txtbxLineName";
-            this.txtbxLineName.Size = new System.Drawing.Size(294, 20);
-            this.txtbxLineName.TabIndex = 122;
+            this._LineName.Location = new System.Drawing.Point(404, 20);
+            this._LineName.Name = "_LineName";
+            this._LineName.Size = new System.Drawing.Size(294, 20);
+            this._LineName.TabIndex = 122;
             // 
             // label45
             // 
@@ -163,12 +163,12 @@
             this.label45.TabIndex = 121;
             this.label45.Text = "Line Name";
             // 
-            // txtbxLevel
+            // _Level
             // 
-            this.txtbxLevel.Location = new System.Drawing.Point(209, 19);
-            this.txtbxLevel.Name = "txtbxLevel";
-            this.txtbxLevel.Size = new System.Drawing.Size(111, 20);
-            this.txtbxLevel.TabIndex = 120;
+            this._Level.Location = new System.Drawing.Point(209, 19);
+            this._Level.Name = "_Level";
+            this._Level.Size = new System.Drawing.Size(111, 20);
+            this._Level.TabIndex = 120;
             // 
             // label44
             // 
@@ -179,64 +179,63 @@
             this.label44.TabIndex = 1;
             this.label44.Text = "Level";
             // 
-            // cxLinexSpell
+            // _LinexSpell
             // 
-            this.cxLinexSpell.AutoSize = true;
-            this.cxLinexSpell.Location = new System.Drawing.Point(6, 19);
-            this.cxLinexSpell.Name = "cxLinexSpell";
-            this.cxLinexSpell.Size = new System.Drawing.Size(112, 17);
-            this.cxLinexSpell.TabIndex = 0;
-            this.cxLinexSpell.Text = "Add To LinexSpell";
-            this.cxLinexSpell.UseVisualStyleBackColor = true;
+            this._LinexSpell.AutoSize = true;
+            this._LinexSpell.Location = new System.Drawing.Point(6, 19);
+            this._LinexSpell.Name = "_LinexSpell";
+            this._LinexSpell.Size = new System.Drawing.Size(112, 17);
+            this._LinexSpell.TabIndex = 0;
+            this._LinexSpell.Text = "Add To LinexSpell";
+            this._LinexSpell.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.txtbxTimer);
-            this.groupBox5.Controls.Add(this.txtbxEffectGroup);
+            this.groupBox5.Controls.Add(this._SharedTimerGroup);
+            this.groupBox5.Controls.Add(this._EffectGroup);
             this.groupBox5.Controls.Add(this.label42);
             this.groupBox5.Controls.Add(this.label41);
-            this.groupBox5.Controls.Add(this.txtbxSpellGroup);
-            this.groupBox5.Controls.Add(this.btnInsertSpell);
+            this.groupBox5.Controls.Add(this._SpellGroup);
             this.groupBox5.Controls.Add(this.label40);
             this.groupBox5.Controls.Add(this.label39);
             this.groupBox5.Controls.Add(this.label38);
             this.groupBox5.Controls.Add(this.label37);
             this.groupBox5.Controls.Add(this.label36);
             this.groupBox5.Controls.Add(this.label35);
-            this.groupBox5.Controls.Add(this.txtbxMessage4);
-            this.groupBox5.Controls.Add(this.txtbxMessage3);
-            this.groupBox5.Controls.Add(this.txtbxMessage2);
-            this.groupBox5.Controls.Add(this.txtbxMessage1);
+            this.groupBox5.Controls.Add(this._Message4);
+            this.groupBox5.Controls.Add(this._Message3);
+            this.groupBox5.Controls.Add(this._Message2);
+            this.groupBox5.Controls.Add(this._Message1);
             this.groupBox5.Controls.Add(this.label34);
             this.groupBox5.Controls.Add(this.label30);
             this.groupBox5.Controls.Add(this.label31);
             this.groupBox5.Controls.Add(this.label32);
-            this.groupBox5.Controls.Add(this.txtbxPulse);
+            this.groupBox5.Controls.Add(this._Pulse);
             this.groupBox5.Controls.Add(this.label33);
-            this.groupBox5.Controls.Add(this.txtbxPulsePower);
-            this.groupBox5.Controls.Add(this.txtbxCastTime);
+            this.groupBox5.Controls.Add(this._PulsePower);
+            this.groupBox5.Controls.Add(this._CastTime);
             this.groupBox5.Controls.Add(this.label29);
             this.groupBox5.Controls.Add(this.label28);
             this.groupBox5.Controls.Add(this.label27);
             this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.label25);
-            this.groupBox5.Controls.Add(this.txtbxCooldown);
+            this.groupBox5.Controls.Add(this._RecastDelay);
             this.groupBox5.Controls.Add(this.label22);
-            this.groupBox5.Controls.Add(this.txtbxDuration);
+            this.groupBox5.Controls.Add(this._Duration);
             this.groupBox5.Controls.Add(this.label23);
-            this.groupBox5.Controls.Add(this.txtbxFrequency);
+            this.groupBox5.Controls.Add(this._Frequency);
             this.groupBox5.Controls.Add(this.label24);
-            this.groupBox5.Controls.Add(this.txtbxRange);
+            this.groupBox5.Controls.Add(this._Range);
             this.groupBox5.Controls.Add(this.label19);
-            this.groupBox5.Controls.Add(this.txtbxCon);
+            this.groupBox5.Controls.Add(this._Concentration);
             this.groupBox5.Controls.Add(this.label20);
-            this.groupBox5.Controls.Add(this.txtbxCost);
+            this.groupBox5.Controls.Add(this._Power);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.txtbxRadius);
+            this.groupBox5.Controls.Add(this._Radius);
             this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.txtbxDamage);
+            this.groupBox5.Controls.Add(this._Damage);
             this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.txtbxValue);
+            this.groupBox5.Controls.Add(this._Value);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Location = new System.Drawing.Point(361, 27);
             this.groupBox5.Name = "groupBox5";
@@ -245,19 +244,19 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Values";
             // 
-            // txtbxTimer
+            // _SharedTimerGroup
             // 
-            this.txtbxTimer.Location = new System.Drawing.Point(378, 322);
-            this.txtbxTimer.Name = "txtbxTimer";
-            this.txtbxTimer.Size = new System.Drawing.Size(74, 20);
-            this.txtbxTimer.TabIndex = 165;
+            this._SharedTimerGroup.Location = new System.Drawing.Point(378, 322);
+            this._SharedTimerGroup.Name = "_SharedTimerGroup";
+            this._SharedTimerGroup.Size = new System.Drawing.Size(74, 20);
+            this._SharedTimerGroup.TabIndex = 165;
             // 
-            // txtbxEffectGroup
+            // _EffectGroup
             // 
-            this.txtbxEffectGroup.Location = new System.Drawing.Point(227, 321);
-            this.txtbxEffectGroup.Name = "txtbxEffectGroup";
-            this.txtbxEffectGroup.Size = new System.Drawing.Size(74, 20);
-            this.txtbxEffectGroup.TabIndex = 164;
+            this._EffectGroup.Location = new System.Drawing.Point(227, 321);
+            this._EffectGroup.Name = "_EffectGroup";
+            this._EffectGroup.Size = new System.Drawing.Size(74, 20);
+            this._EffectGroup.TabIndex = 164;
             // 
             // label42
             // 
@@ -277,22 +276,12 @@
             this.label41.TabIndex = 161;
             this.label41.Text = "Effect Group";
             // 
-            // txtbxSpellGroup
+            // _SpellGroup
             // 
-            this.txtbxSpellGroup.Location = new System.Drawing.Point(74, 321);
-            this.txtbxSpellGroup.Name = "txtbxSpellGroup";
-            this.txtbxSpellGroup.Size = new System.Drawing.Size(74, 20);
-            this.txtbxSpellGroup.TabIndex = 160;
-            // 
-            // btnInsertSpell
-            // 
-            this.btnInsertSpell.Location = new System.Drawing.Point(435, 15);
-            this.btnInsertSpell.Name = "btnInsertSpell";
-            this.btnInsertSpell.Size = new System.Drawing.Size(75, 23);
-            this.btnInsertSpell.TabIndex = 113;
-            this.btnInsertSpell.Text = "Add To DB";
-            this.btnInsertSpell.UseVisualStyleBackColor = true;
-            this.btnInsertSpell.Click += new System.EventHandler(this.btnInsertSpell_Click_1);
+            this._SpellGroup.Location = new System.Drawing.Point(74, 321);
+            this._SpellGroup.Name = "_SpellGroup";
+            this._SpellGroup.Size = new System.Drawing.Size(74, 20);
+            this._SpellGroup.TabIndex = 160;
             // 
             // label40
             // 
@@ -348,33 +337,33 @@
             this.label35.TabIndex = 154;
             this.label35.Text = "Message1 (Target Gain Effect)";
             // 
-            // txtbxMessage4
+            // _Message4
             // 
-            this.txtbxMessage4.Location = new System.Drawing.Point(186, 264);
-            this.txtbxMessage4.Name = "txtbxMessage4";
-            this.txtbxMessage4.Size = new System.Drawing.Size(272, 20);
-            this.txtbxMessage4.TabIndex = 153;
+            this._Message4.Location = new System.Drawing.Point(186, 264);
+            this._Message4.Name = "_Message4";
+            this._Message4.Size = new System.Drawing.Size(272, 20);
+            this._Message4.TabIndex = 153;
             // 
-            // txtbxMessage3
+            // _Message3
             // 
-            this.txtbxMessage3.Location = new System.Drawing.Point(186, 238);
-            this.txtbxMessage3.Name = "txtbxMessage3";
-            this.txtbxMessage3.Size = new System.Drawing.Size(272, 20);
-            this.txtbxMessage3.TabIndex = 152;
+            this._Message3.Location = new System.Drawing.Point(186, 238);
+            this._Message3.Name = "_Message3";
+            this._Message3.Size = new System.Drawing.Size(272, 20);
+            this._Message3.TabIndex = 152;
             // 
-            // txtbxMessage2
+            // _Message2
             // 
-            this.txtbxMessage2.Location = new System.Drawing.Point(186, 212);
-            this.txtbxMessage2.Name = "txtbxMessage2";
-            this.txtbxMessage2.Size = new System.Drawing.Size(272, 20);
-            this.txtbxMessage2.TabIndex = 151;
+            this._Message2.Location = new System.Drawing.Point(186, 212);
+            this._Message2.Name = "_Message2";
+            this._Message2.Size = new System.Drawing.Size(272, 20);
+            this._Message2.TabIndex = 151;
             // 
-            // txtbxMessage1
+            // _Message1
             // 
-            this.txtbxMessage1.Location = new System.Drawing.Point(186, 186);
-            this.txtbxMessage1.Name = "txtbxMessage1";
-            this.txtbxMessage1.Size = new System.Drawing.Size(272, 20);
-            this.txtbxMessage1.TabIndex = 150;
+            this._Message1.Location = new System.Drawing.Point(186, 186);
+            this._Message1.Name = "_Message1";
+            this._Message1.Size = new System.Drawing.Size(272, 20);
+            this._Message1.TabIndex = 150;
             // 
             // label34
             // 
@@ -412,12 +401,12 @@
             this.label32.TabIndex = 145;
             this.label32.Text = "Pulse";
             // 
-            // txtbxPulse
+            // _Pulse
             // 
-            this.txtbxPulse.Location = new System.Drawing.Point(294, 129);
-            this.txtbxPulse.Name = "txtbxPulse";
-            this.txtbxPulse.Size = new System.Drawing.Size(111, 20);
-            this.txtbxPulse.TabIndex = 146;
+            this._Pulse.Location = new System.Drawing.Point(294, 129);
+            this._Pulse.Name = "_Pulse";
+            this._Pulse.Size = new System.Drawing.Size(111, 20);
+            this._Pulse.TabIndex = 146;
             // 
             // label33
             // 
@@ -428,19 +417,19 @@
             this.label33.TabIndex = 143;
             this.label33.Text = "Pulse Power";
             // 
-            // txtbxPulsePower
+            // _PulsePower
             // 
-            this.txtbxPulsePower.Location = new System.Drawing.Point(294, 155);
-            this.txtbxPulsePower.Name = "txtbxPulsePower";
-            this.txtbxPulsePower.Size = new System.Drawing.Size(111, 20);
-            this.txtbxPulsePower.TabIndex = 144;
+            this._PulsePower.Location = new System.Drawing.Point(294, 155);
+            this._PulsePower.Name = "_PulsePower";
+            this._PulsePower.Size = new System.Drawing.Size(111, 20);
+            this._PulsePower.TabIndex = 144;
             // 
-            // txtbxCastTime
+            // _CastTime
             // 
-            this.txtbxCastTime.Location = new System.Drawing.Point(66, 22);
-            this.txtbxCastTime.Name = "txtbxCastTime";
-            this.txtbxCastTime.Size = new System.Drawing.Size(111, 20);
-            this.txtbxCastTime.TabIndex = 142;
+            this._CastTime.Location = new System.Drawing.Point(66, 22);
+            this._CastTime.Name = "_CastTime";
+            this._CastTime.Size = new System.Drawing.Size(111, 20);
+            this._CastTime.TabIndex = 142;
             // 
             // label29
             // 
@@ -487,12 +476,12 @@
             this.label25.TabIndex = 136;
             this.label25.Text = "Cooldown";
             // 
-            // txtbxCooldown
+            // _RecastDelay
             // 
-            this.txtbxCooldown.Location = new System.Drawing.Point(66, 100);
-            this.txtbxCooldown.Name = "txtbxCooldown";
-            this.txtbxCooldown.Size = new System.Drawing.Size(111, 20);
-            this.txtbxCooldown.TabIndex = 137;
+            this._RecastDelay.Location = new System.Drawing.Point(66, 100);
+            this._RecastDelay.Name = "_RecastDelay";
+            this._RecastDelay.Size = new System.Drawing.Size(111, 20);
+            this._RecastDelay.TabIndex = 137;
             // 
             // label22
             // 
@@ -503,12 +492,12 @@
             this.label22.TabIndex = 134;
             this.label22.Text = "Duration";
             // 
-            // txtbxDuration
+            // _Duration
             // 
-            this.txtbxDuration.Location = new System.Drawing.Point(294, 77);
-            this.txtbxDuration.Name = "txtbxDuration";
-            this.txtbxDuration.Size = new System.Drawing.Size(111, 20);
-            this.txtbxDuration.TabIndex = 135;
+            this._Duration.Location = new System.Drawing.Point(294, 77);
+            this._Duration.Name = "_Duration";
+            this._Duration.Size = new System.Drawing.Size(111, 20);
+            this._Duration.TabIndex = 135;
             // 
             // label23
             // 
@@ -519,12 +508,12 @@
             this.label23.TabIndex = 132;
             this.label23.Text = "Frequency";
             // 
-            // txtbxFrequency
+            // _Frequency
             // 
-            this.txtbxFrequency.Location = new System.Drawing.Point(294, 103);
-            this.txtbxFrequency.Name = "txtbxFrequency";
-            this.txtbxFrequency.Size = new System.Drawing.Size(111, 20);
-            this.txtbxFrequency.TabIndex = 133;
+            this._Frequency.Location = new System.Drawing.Point(294, 103);
+            this._Frequency.Name = "_Frequency";
+            this._Frequency.Size = new System.Drawing.Size(111, 20);
+            this._Frequency.TabIndex = 133;
             // 
             // label24
             // 
@@ -535,12 +524,12 @@
             this.label24.TabIndex = 130;
             this.label24.Text = "Cast Time";
             // 
-            // txtbxRange
+            // _Range
             // 
-            this.txtbxRange.Location = new System.Drawing.Point(294, 22);
-            this.txtbxRange.Name = "txtbxRange";
-            this.txtbxRange.Size = new System.Drawing.Size(111, 20);
-            this.txtbxRange.TabIndex = 131;
+            this._Range.Location = new System.Drawing.Point(294, 22);
+            this._Range.Name = "_Range";
+            this._Range.Size = new System.Drawing.Size(111, 20);
+            this._Range.TabIndex = 131;
             // 
             // label19
             // 
@@ -551,12 +540,12 @@
             this.label19.TabIndex = 128;
             this.label19.Text = "Value";
             // 
-            // txtbxCon
+            // _Concentration
             // 
-            this.txtbxCon.Location = new System.Drawing.Point(85, 154);
-            this.txtbxCon.Name = "txtbxCon";
-            this.txtbxCon.Size = new System.Drawing.Size(92, 20);
-            this.txtbxCon.TabIndex = 129;
+            this._Concentration.Location = new System.Drawing.Point(85, 154);
+            this._Concentration.Name = "_Concentration";
+            this._Concentration.Size = new System.Drawing.Size(92, 20);
+            this._Concentration.TabIndex = 129;
             // 
             // label20
             // 
@@ -567,12 +556,12 @@
             this.label20.TabIndex = 126;
             this.label20.Text = "Concentration";
             // 
-            // txtbxCost
+            // _Power
             // 
-            this.txtbxCost.Location = new System.Drawing.Point(66, 126);
-            this.txtbxCost.Name = "txtbxCost";
-            this.txtbxCost.Size = new System.Drawing.Size(111, 20);
-            this.txtbxCost.TabIndex = 127;
+            this._Power.Location = new System.Drawing.Point(66, 126);
+            this._Power.Name = "_Power";
+            this._Power.Size = new System.Drawing.Size(111, 20);
+            this._Power.TabIndex = 127;
             // 
             // label21
             // 
@@ -583,12 +572,12 @@
             this.label21.TabIndex = 124;
             this.label21.Text = "Radius";
             // 
-            // txtbxRadius
+            // _Radius
             // 
-            this.txtbxRadius.Location = new System.Drawing.Point(294, 48);
-            this.txtbxRadius.Name = "txtbxRadius";
-            this.txtbxRadius.Size = new System.Drawing.Size(111, 20);
-            this.txtbxRadius.TabIndex = 125;
+            this._Radius.Location = new System.Drawing.Point(294, 48);
+            this._Radius.Name = "_Radius";
+            this._Radius.Size = new System.Drawing.Size(111, 20);
+            this._Radius.TabIndex = 125;
             // 
             // label18
             // 
@@ -599,12 +588,12 @@
             this.label18.TabIndex = 122;
             this.label18.Text = "Damage";
             // 
-            // txtbxDamage
+            // _Damage
             // 
-            this.txtbxDamage.Location = new System.Drawing.Point(66, 74);
-            this.txtbxDamage.Name = "txtbxDamage";
-            this.txtbxDamage.Size = new System.Drawing.Size(111, 20);
-            this.txtbxDamage.TabIndex = 123;
+            this._Damage.Location = new System.Drawing.Point(66, 74);
+            this._Damage.Name = "_Damage";
+            this._Damage.Size = new System.Drawing.Size(111, 20);
+            this._Damage.TabIndex = 123;
             // 
             // label17
             // 
@@ -615,12 +604,12 @@
             this.label17.TabIndex = 120;
             this.label17.Text = "Power Cost";
             // 
-            // txtbxValue
+            // _Value
             // 
-            this.txtbxValue.Location = new System.Drawing.Point(66, 48);
-            this.txtbxValue.Name = "txtbxValue";
-            this.txtbxValue.Size = new System.Drawing.Size(111, 20);
-            this.txtbxValue.TabIndex = 121;
+            this._Value.Location = new System.Drawing.Point(66, 48);
+            this._Value.Name = "_Value";
+            this._Value.Size = new System.Drawing.Size(111, 20);
+            this._Value.TabIndex = 121;
             // 
             // label16
             // 
@@ -631,14 +620,24 @@
             this.label16.TabIndex = 118;
             this.label16.Text = "Range";
             // 
+            // Insertspell
+            // 
+            this.Insertspell.Location = new System.Drawing.Point(17, 3);
+            this.Insertspell.Name = "Insertspell";
+            this.Insertspell.Size = new System.Drawing.Size(75, 23);
+            this.Insertspell.TabIndex = 113;
+            this.Insertspell.Text = "Add To DB";
+            this.Insertspell.UseVisualStyleBackColor = true;
+            this.Insertspell.Click += new System.EventHandler(this.Insertspell_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.txtbxRezMana);
+            this.groupBox4.Controls.Add(this._ResurrectMana);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.txtbxRezHP);
+            this.groupBox4.Controls.Add(this._ResurrectHealth);
             this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.txtbxLifedrain);
+            this.groupBox4.Controls.Add(this._LifeDrainReturn);
             this.groupBox4.Location = new System.Drawing.Point(129, 324);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(226, 100);
@@ -655,12 +654,12 @@
             this.label13.TabIndex = 122;
             this.label13.Text = "Rez Mana";
             // 
-            // txtbxRezMana
+            // _ResurrectMana
             // 
-            this.txtbxRezMana.Location = new System.Drawing.Point(67, 71);
-            this.txtbxRezMana.Name = "txtbxRezMana";
-            this.txtbxRezMana.Size = new System.Drawing.Size(153, 20);
-            this.txtbxRezMana.TabIndex = 123;
+            this._ResurrectMana.Location = new System.Drawing.Point(67, 71);
+            this._ResurrectMana.Name = "_ResurrectMana";
+            this._ResurrectMana.Size = new System.Drawing.Size(153, 20);
+            this._ResurrectMana.TabIndex = 123;
             // 
             // label12
             // 
@@ -671,12 +670,12 @@
             this.label12.TabIndex = 120;
             this.label12.Text = "Rez HP";
             // 
-            // txtbxRezHP
+            // _ResurrectHealth
             // 
-            this.txtbxRezHP.Location = new System.Drawing.Point(67, 45);
-            this.txtbxRezHP.Name = "txtbxRezHP";
-            this.txtbxRezHP.Size = new System.Drawing.Size(153, 20);
-            this.txtbxRezHP.TabIndex = 121;
+            this._ResurrectHealth.Location = new System.Drawing.Point(67, 45);
+            this._ResurrectHealth.Name = "_ResurrectHealth";
+            this._ResurrectHealth.Size = new System.Drawing.Size(153, 20);
+            this._ResurrectHealth.TabIndex = 121;
             // 
             // label11
             // 
@@ -687,19 +686,19 @@
             this.label11.TabIndex = 118;
             this.label11.Text = "Lifedrain";
             // 
-            // txtbxLifedrain
+            // _LifeDrainReturn
             // 
-            this.txtbxLifedrain.Location = new System.Drawing.Point(67, 19);
-            this.txtbxLifedrain.Name = "txtbxLifedrain";
-            this.txtbxLifedrain.Size = new System.Drawing.Size(153, 20);
-            this.txtbxLifedrain.TabIndex = 119;
+            this._LifeDrainReturn.Location = new System.Drawing.Point(67, 19);
+            this._LifeDrainReturn.Name = "_LifeDrainReturn";
+            this._LifeDrainReturn.Size = new System.Drawing.Size(153, 20);
+            this._LifeDrainReturn.TabIndex = 119;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.txtbxAmnesia);
+            this.groupBox3.Controls.Add(this._AmnesiaChance);
             this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.cmbxInstrument);
+            this.groupBox3.Controls.Add(this._InstrumentRequirement);
             this.groupBox3.Location = new System.Drawing.Point(129, 242);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(226, 76);
@@ -716,12 +715,12 @@
             this.label15.TabIndex = 127;
             this.label15.Text = "Amnesia";
             // 
-            // txtbxAmnesia
+            // _AmnesiaChance
             // 
-            this.txtbxAmnesia.Location = new System.Drawing.Point(73, 47);
-            this.txtbxAmnesia.Name = "txtbxAmnesia";
-            this.txtbxAmnesia.Size = new System.Drawing.Size(147, 20);
-            this.txtbxAmnesia.TabIndex = 128;
+            this._AmnesiaChance.Location = new System.Drawing.Point(73, 47);
+            this._AmnesiaChance.Name = "_AmnesiaChance";
+            this._AmnesiaChance.Size = new System.Drawing.Size(147, 20);
+            this._AmnesiaChance.TabIndex = 128;
             // 
             // label14
             // 
@@ -732,28 +731,28 @@
             this.label14.TabIndex = 126;
             this.label14.Text = "Instrument";
             // 
-            // cmbxInstrument
+            // _InstrumentRequirement
             // 
-            this.cmbxInstrument.FormattingEnabled = true;
-            this.cmbxInstrument.Items.AddRange(new object[] {
+            this._InstrumentRequirement.FormattingEnabled = true;
+            this._InstrumentRequirement.Items.AddRange(new object[] {
             "None",
             "Drum",
             "Lute",
             "Flute",
             "Harp"});
-            this.cmbxInstrument.Location = new System.Drawing.Point(73, 16);
-            this.cmbxInstrument.Name = "cmbxInstrument";
-            this.cmbxInstrument.Size = new System.Drawing.Size(147, 21);
-            this.cmbxInstrument.TabIndex = 125;
+            this._InstrumentRequirement.Location = new System.Drawing.Point(73, 16);
+            this._InstrumentRequirement.Name = "_InstrumentRequirement";
+            this._InstrumentRequirement.Size = new System.Drawing.Size(147, 21);
+            this._InstrumentRequirement.TabIndex = 125;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cxBolt);
-            this.groupBox2.Controls.Add(this.cxSecondary);
-            this.groupBox2.Controls.Add(this.cxPrimary);
-            this.groupBox2.Controls.Add(this.cxFocus);
-            this.groupBox2.Controls.Add(this.cxInterrupt);
-            this.groupBox2.Controls.Add(this.cxMove);
+            this.groupBox2.Controls.Add(this._AllowBolt);
+            this.groupBox2.Controls.Add(this._IsSecondary);
+            this.groupBox2.Controls.Add(this._IsPrimary);
+            this.groupBox2.Controls.Add(this._IsFocus);
+            this.groupBox2.Controls.Add(this._Uninterruptible);
+            this.groupBox2.Controls.Add(this._MoveCast);
             this.groupBox2.Location = new System.Drawing.Point(8, 242);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(115, 163);
@@ -761,91 +760,91 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Specifics";
             // 
-            // cxBolt
+            // _AllowBolt
             // 
-            this.cxBolt.AutoSize = true;
-            this.cxBolt.Location = new System.Drawing.Point(9, 135);
-            this.cxBolt.Name = "cxBolt";
-            this.cxBolt.Size = new System.Drawing.Size(72, 17);
-            this.cxBolt.TabIndex = 5;
-            this.cxBolt.Text = "Allow Bolt";
-            this.cxBolt.UseVisualStyleBackColor = true;
+            this._AllowBolt.AutoSize = true;
+            this._AllowBolt.Location = new System.Drawing.Point(9, 135);
+            this._AllowBolt.Name = "_AllowBolt";
+            this._AllowBolt.Size = new System.Drawing.Size(72, 17);
+            this._AllowBolt.TabIndex = 5;
+            this._AllowBolt.Text = "Allow Bolt";
+            this._AllowBolt.UseVisualStyleBackColor = true;
             // 
-            // cxSecondary
+            // _IsSecondary
             // 
-            this.cxSecondary.AutoSize = true;
-            this.cxSecondary.Location = new System.Drawing.Point(9, 112);
-            this.cxSecondary.Name = "cxSecondary";
-            this.cxSecondary.Size = new System.Drawing.Size(103, 17);
-            this.cxSecondary.TabIndex = 4;
-            this.cxSecondary.Text = "Secondary Spell";
-            this.cxSecondary.UseVisualStyleBackColor = true;
+            this._IsSecondary.AutoSize = true;
+            this._IsSecondary.Location = new System.Drawing.Point(9, 112);
+            this._IsSecondary.Name = "_IsSecondary";
+            this._IsSecondary.Size = new System.Drawing.Size(103, 17);
+            this._IsSecondary.TabIndex = 4;
+            this._IsSecondary.Text = "Secondary Spell";
+            this._IsSecondary.UseVisualStyleBackColor = true;
             // 
-            // cxPrimary
+            // _IsPrimary
             // 
-            this.cxPrimary.AutoSize = true;
-            this.cxPrimary.Location = new System.Drawing.Point(9, 89);
-            this.cxPrimary.Name = "cxPrimary";
-            this.cxPrimary.Size = new System.Drawing.Size(86, 17);
-            this.cxPrimary.TabIndex = 3;
-            this.cxPrimary.Text = "Primary Spell";
-            this.cxPrimary.UseVisualStyleBackColor = true;
+            this._IsPrimary.AutoSize = true;
+            this._IsPrimary.Location = new System.Drawing.Point(9, 89);
+            this._IsPrimary.Name = "_IsPrimary";
+            this._IsPrimary.Size = new System.Drawing.Size(86, 17);
+            this._IsPrimary.TabIndex = 3;
+            this._IsPrimary.Text = "Primary Spell";
+            this._IsPrimary.UseVisualStyleBackColor = true;
             // 
-            // cxFocus
+            // _IsFocus
             // 
-            this.cxFocus.AutoSize = true;
-            this.cxFocus.Location = new System.Drawing.Point(9, 66);
-            this.cxFocus.Name = "cxFocus";
-            this.cxFocus.Size = new System.Drawing.Size(55, 17);
-            this.cxFocus.TabIndex = 2;
-            this.cxFocus.Text = "Focus";
-            this.cxFocus.UseVisualStyleBackColor = true;
+            this._IsFocus.AutoSize = true;
+            this._IsFocus.Location = new System.Drawing.Point(9, 66);
+            this._IsFocus.Name = "_IsFocus";
+            this._IsFocus.Size = new System.Drawing.Size(55, 17);
+            this._IsFocus.TabIndex = 2;
+            this._IsFocus.Text = "Focus";
+            this._IsFocus.UseVisualStyleBackColor = true;
             // 
-            // cxInterrupt
+            // _Uninterruptible
             // 
-            this.cxInterrupt.AutoSize = true;
-            this.cxInterrupt.Location = new System.Drawing.Point(9, 43);
-            this.cxInterrupt.Name = "cxInterrupt";
-            this.cxInterrupt.Size = new System.Drawing.Size(94, 17);
-            this.cxInterrupt.TabIndex = 1;
-            this.cxInterrupt.Text = "Uninterruptible";
-            this.cxInterrupt.UseVisualStyleBackColor = true;
+            this._Uninterruptible.AutoSize = true;
+            this._Uninterruptible.Location = new System.Drawing.Point(9, 43);
+            this._Uninterruptible.Name = "_Uninterruptible";
+            this._Uninterruptible.Size = new System.Drawing.Size(94, 17);
+            this._Uninterruptible.TabIndex = 1;
+            this._Uninterruptible.Text = "Uninterruptible";
+            this._Uninterruptible.UseVisualStyleBackColor = true;
             // 
-            // cxMove
+            // _MoveCast
             // 
-            this.cxMove.AutoSize = true;
-            this.cxMove.Location = new System.Drawing.Point(9, 20);
-            this.cxMove.Name = "cxMove";
-            this.cxMove.Size = new System.Drawing.Size(77, 17);
-            this.cxMove.TabIndex = 0;
-            this.cxMove.Text = "Move Cast";
-            this.cxMove.UseVisualStyleBackColor = true;
+            this._MoveCast.AutoSize = true;
+            this._MoveCast.Location = new System.Drawing.Point(9, 20);
+            this._MoveCast.Name = "_MoveCast";
+            this._MoveCast.Size = new System.Drawing.Size(77, 17);
+            this._MoveCast.TabIndex = 0;
+            this._MoveCast.Text = "Move Cast";
+            this._MoveCast.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label47);
             this.groupBox1.Controls.Add(this.label43);
-            this.groupBox1.Controls.Add(this.txtbxTooltip);
+            this.groupBox1.Controls.Add(this._TooltipId);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.cmbxDmgType);
-            this.groupBox1.Controls.Add(this.txtbxName);
-            this.groupBox1.Controls.Add(this.txtbxSubSpell);
+            this.groupBox1.Controls.Add(this._DamageType);
+            this.groupBox1.Controls.Add(this._Name);
+            this.groupBox1.Controls.Add(this._SubSpellID);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.txtbxDescription);
+            this.groupBox1.Controls.Add(this._Description);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtbxPackageID);
+            this.groupBox1.Controls.Add(this._PackageID);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtbxType);
-            this.groupBox1.Controls.Add(this.txtbxSpellID);
+            this.groupBox1.Controls.Add(this._Type);
+            this.groupBox1.Controls.Add(this._SpellID);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbxTarget);
-            this.groupBox1.Controls.Add(this.txtbxIcon);
+            this.groupBox1.Controls.Add(this._Target);
+            this.groupBox1.Controls.Add(this._Icon);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtbxEffect);
+            this.groupBox1.Controls.Add(this._ClientEffect);
             this.groupBox1.Location = new System.Drawing.Point(8, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(347, 209);
@@ -871,12 +870,12 @@
             this.label43.TabIndex = 134;
             this.label43.Text = "Tooltip";
             // 
-            // txtbxTooltip
+            // _TooltipId
             // 
-            this.txtbxTooltip.Location = new System.Drawing.Point(61, 183);
-            this.txtbxTooltip.Name = "txtbxTooltip";
-            this.txtbxTooltip.Size = new System.Drawing.Size(111, 20);
-            this.txtbxTooltip.TabIndex = 135;
+            this._TooltipId.Location = new System.Drawing.Point(61, 183);
+            this._TooltipId.Name = "_TooltipId";
+            this._TooltipId.Size = new System.Drawing.Size(111, 20);
+            this._TooltipId.TabIndex = 135;
             // 
             // label9
             // 
@@ -887,10 +886,10 @@
             this.label9.TabIndex = 130;
             this.label9.Text = "SubSpell";
             // 
-            // cmbxDmgType
+            // _DamageType
             // 
-            this.cmbxDmgType.FormattingEnabled = true;
-            this.cmbxDmgType.Items.AddRange(new object[] {
+            this._DamageType.FormattingEnabled = true;
+            this._DamageType.Items.AddRange(new object[] {
             "Natural",
             "Crush",
             "Slash",
@@ -901,24 +900,24 @@
             "Heat",
             "Matter",
             "Spirit"});
-            this.cmbxDmgType.Location = new System.Drawing.Point(240, 154);
-            this.cmbxDmgType.Name = "cmbxDmgType";
-            this.cmbxDmgType.Size = new System.Drawing.Size(101, 21);
-            this.cmbxDmgType.TabIndex = 133;
+            this._DamageType.Location = new System.Drawing.Point(240, 154);
+            this._DamageType.Name = "_DamageType";
+            this._DamageType.Size = new System.Drawing.Size(101, 21);
+            this._DamageType.TabIndex = 133;
             // 
-            // txtbxName
+            // _Name
             // 
-            this.txtbxName.Location = new System.Drawing.Point(47, 19);
-            this.txtbxName.Name = "txtbxName";
-            this.txtbxName.Size = new System.Drawing.Size(294, 20);
-            this.txtbxName.TabIndex = 115;
+            this._Name.Location = new System.Drawing.Point(47, 19);
+            this._Name.Name = "_Name";
+            this._Name.Size = new System.Drawing.Size(294, 20);
+            this._Name.TabIndex = 115;
             // 
-            // txtbxSubSpell
+            // _SubSpellID
             // 
-            this.txtbxSubSpell.Location = new System.Drawing.Point(61, 154);
-            this.txtbxSubSpell.Name = "txtbxSubSpell";
-            this.txtbxSubSpell.Size = new System.Drawing.Size(111, 20);
-            this.txtbxSubSpell.TabIndex = 131;
+            this._SubSpellID.Location = new System.Drawing.Point(61, 154);
+            this._SubSpellID.Name = "_SubSpellID";
+            this._SubSpellID.Size = new System.Drawing.Size(111, 20);
+            this._SubSpellID.TabIndex = 131;
             // 
             // label10
             // 
@@ -929,12 +928,12 @@
             this.label10.TabIndex = 132;
             this.label10.Text = "Dmg Type";
             // 
-            // txtbxDescription
+            // _Description
             // 
-            this.txtbxDescription.Location = new System.Drawing.Point(72, 128);
-            this.txtbxDescription.Name = "txtbxDescription";
-            this.txtbxDescription.Size = new System.Drawing.Size(269, 20);
-            this.txtbxDescription.TabIndex = 129;
+            this._Description.Location = new System.Drawing.Point(72, 128);
+            this._Description.Name = "_Description";
+            this._Description.Size = new System.Drawing.Size(269, 20);
+            this._Description.TabIndex = 129;
             // 
             // label8
             // 
@@ -945,12 +944,12 @@
             this.label8.TabIndex = 128;
             this.label8.Text = "Description";
             // 
-            // txtbxPackageID
+            // _PackageID
             // 
-            this.txtbxPackageID.Location = new System.Drawing.Point(234, 101);
-            this.txtbxPackageID.Name = "txtbxPackageID";
-            this.txtbxPackageID.Size = new System.Drawing.Size(107, 20);
-            this.txtbxPackageID.TabIndex = 127;
+            this._PackageID.Location = new System.Drawing.Point(234, 101);
+            this._PackageID.Name = "_PackageID";
+            this._PackageID.Size = new System.Drawing.Size(107, 20);
+            this._PackageID.TabIndex = 127;
             // 
             // label1
             // 
@@ -979,19 +978,19 @@
             this.label2.TabIndex = 116;
             this.label2.Text = "Spell ID";
             // 
-            // txtbxType
+            // _Type
             // 
-            this.txtbxType.Location = new System.Drawing.Point(56, 100);
-            this.txtbxType.Name = "txtbxType";
-            this.txtbxType.Size = new System.Drawing.Size(111, 20);
-            this.txtbxType.TabIndex = 125;
+            this._Type.Location = new System.Drawing.Point(56, 100);
+            this._Type.Name = "_Type";
+            this._Type.Size = new System.Drawing.Size(111, 20);
+            this._Type.TabIndex = 125;
             // 
-            // txtbxSpellID
+            // _SpellID
             // 
-            this.txtbxSpellID.Location = new System.Drawing.Point(56, 48);
-            this.txtbxSpellID.Name = "txtbxSpellID";
-            this.txtbxSpellID.Size = new System.Drawing.Size(111, 20);
-            this.txtbxSpellID.TabIndex = 117;
+            this._SpellID.Location = new System.Drawing.Point(56, 48);
+            this._SpellID.Name = "_SpellID";
+            this._SpellID.Size = new System.Drawing.Size(111, 20);
+            this._SpellID.TabIndex = 117;
             // 
             // label7
             // 
@@ -1011,10 +1010,10 @@
             this.label3.TabIndex = 118;
             this.label3.Text = "Icon";
             // 
-            // cmbxTarget
+            // _Target
             // 
-            this.cmbxTarget.FormattingEnabled = true;
-            this.cmbxTarget.Items.AddRange(new object[] {
+            this._Target.FormattingEnabled = true;
+            this._Target.Items.AddRange(new object[] {
             "",
             "Area",
             "Cone",
@@ -1025,17 +1024,17 @@
             "Pet",
             "Realm",
             "Self"});
-            this.cmbxTarget.Location = new System.Drawing.Point(214, 74);
-            this.cmbxTarget.Name = "cmbxTarget";
-            this.cmbxTarget.Size = new System.Drawing.Size(127, 21);
-            this.cmbxTarget.TabIndex = 123;
+            this._Target.Location = new System.Drawing.Point(214, 74);
+            this._Target.Name = "_Target";
+            this._Target.Size = new System.Drawing.Size(127, 21);
+            this._Target.TabIndex = 123;
             // 
-            // txtbxIcon
+            // _Icon
             // 
-            this.txtbxIcon.Location = new System.Drawing.Point(56, 74);
-            this.txtbxIcon.Name = "txtbxIcon";
-            this.txtbxIcon.Size = new System.Drawing.Size(111, 20);
-            this.txtbxIcon.TabIndex = 119;
+            this._Icon.Location = new System.Drawing.Point(56, 74);
+            this._Icon.Name = "_Icon";
+            this._Icon.Size = new System.Drawing.Size(111, 20);
+            this._Icon.TabIndex = 119;
             // 
             // label4
             // 
@@ -1055,12 +1054,12 @@
             this.label5.TabIndex = 120;
             this.label5.Text = "Effect";
             // 
-            // txtbxEffect
+            // _ClientEffect
             // 
-            this.txtbxEffect.Location = new System.Drawing.Point(214, 48);
-            this.txtbxEffect.Name = "txtbxEffect";
-            this.txtbxEffect.Size = new System.Drawing.Size(127, 20);
-            this.txtbxEffect.TabIndex = 121;
+            this._ClientEffect.Location = new System.Drawing.Point(214, 48);
+            this._ClientEffect.Name = "_ClientEffect";
+            this._ClientEffect.Size = new System.Drawing.Size(127, 20);
+            this._ClientEffect.TabIndex = 121;
             // 
             // SpellControl
             // 
@@ -1071,6 +1070,7 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.Insertspell);
             this.Controls.Add(this.groupBox1);
             this.Name = "SpellControl";
             this.Size = new System.Drawing.Size(885, 529);
@@ -1094,101 +1094,101 @@
         #endregion
 
         private System.Windows.Forms.GroupBox LinexSpell;
-        private System.Windows.Forms.TextBox txtbxLineName;
+        private System.Windows.Forms.TextBox _LineName;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox txtbxLevel;
+        private System.Windows.Forms.TextBox _Level;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.CheckBox cxLinexSpell;
+        private System.Windows.Forms.CheckBox _LinexSpell;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtbxTimer;
-        private System.Windows.Forms.TextBox txtbxEffectGroup;
+        private System.Windows.Forms.TextBox _SharedTimerGroup;
+        private System.Windows.Forms.TextBox _EffectGroup;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox txtbxSpellGroup;
-        private System.Windows.Forms.Button btnInsertSpell;
+        private System.Windows.Forms.TextBox _SpellGroup;
+        private System.Windows.Forms.Button Insertspell;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox txtbxMessage4;
-        private System.Windows.Forms.TextBox txtbxMessage3;
-        private System.Windows.Forms.TextBox txtbxMessage2;
-        private System.Windows.Forms.TextBox txtbxMessage1;
+        private System.Windows.Forms.TextBox _Message4;
+        private System.Windows.Forms.TextBox _Message3;
+        private System.Windows.Forms.TextBox _Message2;
+        private System.Windows.Forms.TextBox _Message1;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtbxPulse;
+        private System.Windows.Forms.TextBox _Pulse;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox txtbxPulsePower;
-        private System.Windows.Forms.TextBox txtbxCastTime;
+        private System.Windows.Forms.TextBox _PulsePower;
+        private System.Windows.Forms.TextBox _CastTime;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtbxCooldown;
+        private System.Windows.Forms.TextBox _RecastDelay;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtbxDuration;
+        private System.Windows.Forms.TextBox _Duration;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtbxFrequency;
+        private System.Windows.Forms.TextBox _Frequency;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtbxRange;
+        private System.Windows.Forms.TextBox _Range;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtbxCon;
+        private System.Windows.Forms.TextBox _Concentration;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtbxCost;
+        private System.Windows.Forms.TextBox _Power;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtbxRadius;
+        private System.Windows.Forms.TextBox _Radius;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtbxDamage;
+        private System.Windows.Forms.TextBox _Damage;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtbxValue;
+        private System.Windows.Forms.TextBox _Value;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtbxRezMana;
+        private System.Windows.Forms.TextBox _ResurrectMana;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtbxRezHP;
+        private System.Windows.Forms.TextBox _ResurrectHealth;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtbxLifedrain;
+        private System.Windows.Forms.TextBox _LifeDrainReturn;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtbxAmnesia;
+        private System.Windows.Forms.TextBox _AmnesiaChance;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox cmbxInstrument;
+        private System.Windows.Forms.ComboBox _InstrumentRequirement;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox cxBolt;
-        private System.Windows.Forms.CheckBox cxSecondary;
-        private System.Windows.Forms.CheckBox cxPrimary;
-        private System.Windows.Forms.CheckBox cxFocus;
-        private System.Windows.Forms.CheckBox cxInterrupt;
-        private System.Windows.Forms.CheckBox cxMove;
+        private System.Windows.Forms.CheckBox _AllowBolt;
+        private System.Windows.Forms.CheckBox _IsSecondary;
+        private System.Windows.Forms.CheckBox _IsPrimary;
+        private System.Windows.Forms.CheckBox _IsFocus;
+        private System.Windows.Forms.CheckBox _Uninterruptible;
+        private System.Windows.Forms.CheckBox _MoveCast;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox txtbxTooltip;
+        private System.Windows.Forms.TextBox _TooltipId;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cmbxDmgType;
-        private System.Windows.Forms.TextBox txtbxName;
-        private System.Windows.Forms.TextBox txtbxSubSpell;
+        private System.Windows.Forms.ComboBox _DamageType;
+        private System.Windows.Forms.TextBox _Name;
+        private System.Windows.Forms.TextBox _SubSpellID;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtbxDescription;
+        private System.Windows.Forms.TextBox _Description;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtbxPackageID;
+        private System.Windows.Forms.TextBox _PackageID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtbxType;
-        private System.Windows.Forms.TextBox txtbxSpellID;
+        private System.Windows.Forms.TextBox _Type;
+        private System.Windows.Forms.TextBox _SpellID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbxTarget;
-        private System.Windows.Forms.TextBox txtbxIcon;
+        private System.Windows.Forms.ComboBox _Target;
+        private System.Windows.Forms.TextBox _Icon;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtbxEffect;
+        private System.Windows.Forms.TextBox _ClientEffect;
     }
 }

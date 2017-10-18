@@ -130,6 +130,7 @@
     <Compile Include="Services\ConnectionStringService.cs" />
     <Compile Include="Services\MobService.cs" />
     <Compile Include="Services\ModelImageService.cs" />
+    <Compile Include="Services\SpellService.cs" />
     <EmbeddedResource Include="Controls\MobControl.resx">
       <DependentUpon>MobControl.cs</DependentUpon>
     </EmbeddedResource>
