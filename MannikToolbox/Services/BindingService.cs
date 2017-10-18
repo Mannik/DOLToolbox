@@ -107,6 +107,10 @@ namespace MannikToolbox.Services
             {
                 property.SetValue(obj, (ushort)input);
             }
+            else if (propertyType == typeof(short))
+            {
+                property.SetValue(obj, (short)input);
+            }
             else
             {
                 throw new ApplicationException($"Failed to bind {property.Name} of type {propertyType.Name}");
@@ -157,6 +161,16 @@ namespace MannikToolbox.Services
                 if (!success)
                 {
                     throw new ApplicationException($"Failed to parse {property.Name} into type ushort");
+                }
+
+                property.SetValue(obj, parsed);
+            }
+            else if (propertyType == typeof(short))
+            {
+                var success = short.TryParse(input, out short parsed);
+                if (!success)
+                {
+                    throw new ApplicationException($"Failed to parse {property.Name} into type short");
                 }
 
                 property.SetValue(obj, parsed);

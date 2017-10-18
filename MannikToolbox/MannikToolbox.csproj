@@ -87,6 +87,12 @@
     <Compile Include="Controls\MobControl.Designer.cs">
       <DependentUpon>MobControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NpcTemplateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NpcTemplateControl.Designer.cs">
+      <DependentUpon>NpcTemplateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ServerDetailsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,11 +134,15 @@
     <Compile Include="Services\BindingService.cs" />
     <Compile Include="Services\ComboboxService.cs" />
     <Compile Include="Services\ConnectionStringService.cs" />
+    <Compile Include="Services\NpcTemplateService.cs" />
     <Compile Include="Services\MobService.cs" />
     <Compile Include="Services\ModelImageService.cs" />
     <Compile Include="Services\SpellService.cs" />
     <EmbeddedResource Include="Controls\MobControl.resx">
       <DependentUpon>MobControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NpcTemplateControl.resx">
+      <DependentUpon>NpcTemplateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ServerDetailsControl.resx">
       <DependentUpon>ServerDetailsControl.cs</DependentUpon>
