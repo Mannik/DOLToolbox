@@ -68,8 +68,6 @@
             this._RespawnInterval = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this._IsCloakHoodUp = new System.Windows.Forms.CheckBox();
-            this._VisibleWeaponSlots = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this._NPCTemplateID = new System.Windows.Forms.TextBox();
@@ -139,6 +137,12 @@
             this._FlagsStealth = new System.Windows.Forms.CheckBox();
             this._FlagsGhost = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this._WpnSlotsSB = new System.Windows.Forms.RadioButton();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this._WpnSlots2H = new System.Windows.Forms.RadioButton();
+            this._WpnSlotsRange = new System.Windows.Forms.RadioButton();
+            this._WpnSlots1H = new System.Windows.Forms.RadioButton();
+            this._WpnSlotsNone = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -147,6 +151,7 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox7.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -431,8 +436,6 @@
             this.groupBox2.Controls.Add(this._RespawnInterval);
             this.groupBox2.Controls.Add(this.label41);
             this.groupBox2.Controls.Add(this._IsCloakHoodUp);
-            this.groupBox2.Controls.Add(this._VisibleWeaponSlots);
-            this.groupBox2.Controls.Add(this.label40);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this._NPCTemplateID);
@@ -465,15 +468,15 @@
             // _BodyType
             // 
             this._BodyType.FormattingEnabled = true;
-            this._BodyType.Location = new System.Drawing.Point(161, 117);
+            this._BodyType.Location = new System.Drawing.Point(238, 114);
             this._BodyType.Name = "_BodyType";
-            this._BodyType.Size = new System.Drawing.Size(65, 21);
+            this._BodyType.Size = new System.Drawing.Size(102, 21);
             this._BodyType.TabIndex = 62;
             // 
             // _Gender
             // 
             this._Gender.FormattingEnabled = true;
-            this._Gender.Location = new System.Drawing.Point(455, 143);
+            this._Gender.Location = new System.Drawing.Point(549, 137);
             this._Gender.Name = "_Gender";
             this._Gender.Size = new System.Drawing.Size(58, 21);
             this._Gender.TabIndex = 7;
@@ -481,9 +484,9 @@
             // _Realm
             // 
             this._Realm.FormattingEnabled = true;
-            this._Realm.Location = new System.Drawing.Point(161, 143);
+            this._Realm.Location = new System.Drawing.Point(238, 140);
             this._Realm.Name = "_Realm";
-            this._Realm.Size = new System.Drawing.Size(65, 21);
+            this._Realm.Size = new System.Drawing.Size(102, 21);
             this._Realm.TabIndex = 8;
             // 
             // _Race
@@ -491,13 +494,13 @@
             this._Race.FormattingEnabled = true;
             this._Race.Location = new System.Drawing.Point(46, 143);
             this._Race.Name = "_Race";
-            this._Race.Size = new System.Drawing.Size(66, 21);
+            this._Race.Size = new System.Drawing.Size(122, 21);
             this._Race.TabIndex = 7;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(412, 146);
+            this.label46.Location = new System.Drawing.Point(501, 146);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(42, 13);
             this.label46.TabIndex = 58;
@@ -506,7 +509,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(100, 120);
+            this.label42.Location = new System.Drawing.Point(177, 117);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(58, 13);
             this.label42.TabIndex = 56;
@@ -514,7 +517,7 @@
             // 
             // _RespawnInterval
             // 
-            this._RespawnInterval.Location = new System.Drawing.Point(359, 143);
+            this._RespawnInterval.Location = new System.Drawing.Point(448, 140);
             this._RespawnInterval.Name = "_RespawnInterval";
             this._RespawnInterval.Size = new System.Drawing.Size(48, 20);
             this._RespawnInterval.TabIndex = 55;
@@ -522,7 +525,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(228, 146);
+            this.label41.Location = new System.Drawing.Point(352, 143);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(90, 13);
             this.label41.TabIndex = 54;
@@ -531,33 +534,17 @@
             // _IsCloakHoodUp
             // 
             this._IsCloakHoodUp.AutoSize = true;
-            this._IsCloakHoodUp.Location = new System.Drawing.Point(413, 120);
+            this._IsCloakHoodUp.Location = new System.Drawing.Point(495, 114);
             this._IsCloakHoodUp.Name = "_IsCloakHoodUp";
             this._IsCloakHoodUp.Size = new System.Drawing.Size(110, 17);
             this._IsCloakHoodUp.TabIndex = 53;
             this._IsCloakHoodUp.Text = "Is Cloak Hood Up";
             this._IsCloakHoodUp.UseVisualStyleBackColor = true;
             // 
-            // _VisibleWeaponSlots
-            // 
-            this._VisibleWeaponSlots.Location = new System.Drawing.Point(359, 117);
-            this._VisibleWeaponSlots.Name = "_VisibleWeaponSlots";
-            this._VisibleWeaponSlots.Size = new System.Drawing.Size(48, 20);
-            this._VisibleWeaponSlots.TabIndex = 51;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(228, 120);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(107, 13);
-            this.label40.TabIndex = 50;
-            this.label40.Text = "Visible Weapon Slots";
-            // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(118, 146);
+            this.label31.Location = new System.Drawing.Point(195, 143);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(37, 13);
             this.label31.TabIndex = 48;
@@ -1178,10 +1165,80 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // _WpnSlotsSB
+            // 
+            this._WpnSlotsSB.AutoSize = true;
+            this._WpnSlotsSB.Location = new System.Drawing.Point(6, 16);
+            this._WpnSlotsSB.Name = "_WpnSlotsSB";
+            this._WpnSlotsSB.Size = new System.Drawing.Size(104, 17);
+            this._WpnSlotsSB.TabIndex = 11;
+            this._WpnSlotsSB.TabStop = true;
+            this._WpnSlotsSB.Text = "Hand and Shield";
+            this._WpnSlotsSB.UseVisualStyleBackColor = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this._WpnSlotsNone);
+            this.groupBox9.Controls.Add(this._WpnSlots1H);
+            this.groupBox9.Controls.Add(this._WpnSlotsRange);
+            this.groupBox9.Controls.Add(this._WpnSlots2H);
+            this.groupBox9.Controls.Add(this._WpnSlotsSB);
+            this.groupBox9.Location = new System.Drawing.Point(517, 366);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(142, 155);
+            this.groupBox9.TabIndex = 12;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Visible Weapon Slots";
+            // 
+            // _WpnSlots2H
+            // 
+            this._WpnSlots2H.AutoSize = true;
+            this._WpnSlots2H.Location = new System.Drawing.Point(6, 37);
+            this._WpnSlots2H.Name = "_WpnSlots2H";
+            this._WpnSlots2H.Size = new System.Drawing.Size(75, 17);
+            this._WpnSlots2H.TabIndex = 12;
+            this._WpnSlots2H.TabStop = true;
+            this._WpnSlots2H.Text = "Two Hand";
+            this._WpnSlots2H.UseVisualStyleBackColor = true;
+            // 
+            // _WpnSlotsRange
+            // 
+            this._WpnSlotsRange.AutoSize = true;
+            this._WpnSlotsRange.Location = new System.Drawing.Point(6, 60);
+            this._WpnSlotsRange.Name = "_WpnSlotsRange";
+            this._WpnSlotsRange.Size = new System.Drawing.Size(67, 17);
+            this._WpnSlotsRange.TabIndex = 13;
+            this._WpnSlotsRange.TabStop = true;
+            this._WpnSlotsRange.Text = "Distance";
+            this._WpnSlotsRange.UseVisualStyleBackColor = true;
+            // 
+            // _WpnSlots1H
+            // 
+            this._WpnSlots1H.AutoSize = true;
+            this._WpnSlots1H.Location = new System.Drawing.Point(6, 83);
+            this._WpnSlots1H.Name = "_WpnSlots1H";
+            this._WpnSlots1H.Size = new System.Drawing.Size(74, 17);
+            this._WpnSlots1H.TabIndex = 14;
+            this._WpnSlots1H.TabStop = true;
+            this._WpnSlots1H.Text = "One Hand";
+            this._WpnSlots1H.UseVisualStyleBackColor = true;
+            // 
+            // _WpnSlotsNone
+            // 
+            this._WpnSlotsNone.AutoSize = true;
+            this._WpnSlotsNone.Location = new System.Drawing.Point(6, 106);
+            this._WpnSlotsNone.Name = "_WpnSlotsNone";
+            this._WpnSlotsNone.Size = new System.Drawing.Size(51, 17);
+            this._WpnSlotsNone.TabIndex = 15;
+            this._WpnSlotsNone.TabStop = true;
+            this._WpnSlotsNone.Text = "None";
+            this._WpnSlotsNone.UseVisualStyleBackColor = true;
+            // 
             // MobControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.pictureBox1);
@@ -1211,6 +1268,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1300,8 +1359,6 @@
         private System.Windows.Forms.TextBox _RespawnInterval;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.CheckBox _IsCloakHoodUp;
-        private System.Windows.Forms.TextBox _VisibleWeaponSlots;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox _PackageID;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox _ObjectId;
@@ -1328,5 +1385,11 @@
         private System.Windows.Forms.CheckBox _FlagsSwimming;
         private System.Windows.Forms.CheckBox _FlagsStatue;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RadioButton _WpnSlotsSB;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton _WpnSlotsNone;
+        private System.Windows.Forms.RadioButton _WpnSlots1H;
+        private System.Windows.Forms.RadioButton _WpnSlotsRange;
+        private System.Windows.Forms.RadioButton _WpnSlots2H;
     }
 }
