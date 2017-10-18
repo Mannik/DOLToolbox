@@ -125,5 +125,39 @@ namespace MannikToolbox.Services
             public int? Id { get; set; }
             public string Value { get; set; }
         }
+
+        public static void BindTargets(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(0, "Area"),
+                new SelectItemModel(1, "Cone"),
+                new SelectItemModel(2, "Controlled"),
+                new SelectItemModel(3, "Corpse"),
+                new SelectItemModel(4, "Enemy"),
+                new SelectItemModel(5, "Group"),
+                new SelectItemModel(6, "KeepComponent"),
+                new SelectItemModel(7, "Pet"),
+                new SelectItemModel(8, "Realm"),
+                new SelectItemModel(9, "Self"),
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindInstrumentRequirements(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(0, "None"),
+                new SelectItemModel(1, "Drum"),
+                new SelectItemModel(2, "Lute"),
+                new SelectItemModel(3, "Flute"),
+                new SelectItemModel(4, "Harp"),
+
+            };
+
+            BindData(input, items);
+        }
     }
 }
