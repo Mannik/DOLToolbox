@@ -261,6 +261,7 @@
             this.MinimumSize = new System.Drawing.Size(909, 618);
             this.Name = "MobSearch";
             this.ShowIcon = false;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.MobSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgd_MobSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNPC)).EndInit();
