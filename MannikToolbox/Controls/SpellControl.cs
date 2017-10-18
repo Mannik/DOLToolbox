@@ -64,9 +64,9 @@ namespace MannikToolbox.Controls
 
         private void SetupDropdowns()
         {
-            ComboboxService.BindRaces(_DamageType);
-            ComboboxService.BindRealms(_Target);
-            ComboboxService.BindGenders(_InstrumentRequirement);
+            ComboboxService.BindWeaponDamageTypes(_DamageType);
+            ComboboxService.BindTargets(_Target);
+            ComboboxService.BindInstrumentRequirements(_InstrumentRequirement);
         }
 
         private void Insertspell_Click(object sender, EventArgs e)
