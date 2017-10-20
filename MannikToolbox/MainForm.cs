@@ -56,6 +56,9 @@ namespace MannikToolbox
 
             control = new ServerDetailsControl { Dock = DockStyle.Fill };
             tabServerDetails.Controls.Add(control);
+
+            control = new NpcTemplateControl { Dock = DockStyle.Fill };
+            tabNPCTemplate.Controls.Add(control);
         }
 
 		private void Menu_DB_Click(object sender, EventArgs e)
