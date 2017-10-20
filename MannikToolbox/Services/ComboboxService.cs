@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using DOL.Database;
 
 namespace MannikToolbox.Services
 {
     public static class ComboboxService
     {
-        public static void BindRaces(ComboBox input)
+        public static void BindPlayerRaces(ComboBox input)
         {
             var races = new List<SelectItemModel>
             {
@@ -36,6 +38,24 @@ namespace MannikToolbox.Services
                 new SelectItemModel(20, "Deifrang"),
                 new SelectItemModel(21, "Graoch")
             };
+            BindData(input, races);
+        }
+        public static async Task BindMobRaces(ComboBox input)
+        {
+            List<SelectItemModel> races = new List<SelectItemModel>();
+
+            await Task.Run(() =>
+            {
+                races = DatabaseManager.Database.SelectAllObjects<Race>()
+                    .Where(x => x.ID > 21)
+                    .Select(x => new SelectItemModel
+                    {
+                        Id = x.ID,
+                        Value = x.Name
+                    })
+                    .ToList();
+            });
+
             BindData(input, races);
         }
 

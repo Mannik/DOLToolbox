@@ -218,7 +218,7 @@
             this._Gender.FormattingEnabled = true;
             this._Gender.Location = new System.Drawing.Point(547, 117);
             this._Gender.Name = "_Gender";
-            this._Gender.Size = new System.Drawing.Size(58, 21);
+            this._Gender.Size = new System.Drawing.Size(89, 21);
             this._Gender.TabIndex = 7;
             // 
             // _AggroLevel
@@ -302,6 +302,7 @@
             this._Race.Name = "_Race";
             this._Race.Size = new System.Drawing.Size(122, 21);
             this._Race.TabIndex = 7;
+            this._Race.SelectedIndexChanged += new System.EventHandler(this._Race_SelectedIndexChanged);
             // 
             // _FlagsFlying
             // 
@@ -453,17 +454,17 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(315, 120);
+            this.label30.Location = new System.Drawing.Point(250, 120);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(33, 13);
+            this.label30.Size = new System.Drawing.Size(98, 13);
             this.label30.TabIndex = 46;
-            this.label30.Text = "Race";
+            this.label30.Text = "Resist Template (?)";
             // 
             // _ItemsListTemplateID
             // 
             this._ItemsListTemplateID.Location = new System.Drawing.Point(359, 64);
             this._ItemsListTemplateID.Name = "_ItemsListTemplateID";
-            this._ItemsListTemplateID.Size = new System.Drawing.Size(246, 20);
+            this._ItemsListTemplateID.Size = new System.Drawing.Size(277, 20);
             this._ItemsListTemplateID.TabIndex = 39;
             // 
             // label26
@@ -479,7 +480,7 @@
             // 
             this._EquipmentTemplateID.Location = new System.Drawing.Point(359, 38);
             this._EquipmentTemplateID.Name = "_EquipmentTemplateID";
-            this._EquipmentTemplateID.Size = new System.Drawing.Size(246, 20);
+            this._EquipmentTemplateID.Size = new System.Drawing.Size(277, 20);
             this._EquipmentTemplateID.TabIndex = 37;
             // 
             // _TemplateId
@@ -733,7 +734,7 @@
             // 
             this._ClassType.Location = new System.Drawing.Point(359, 13);
             this._ClassType.Name = "_ClassType";
-            this._ClassType.Size = new System.Drawing.Size(246, 20);
+            this._ClassType.Size = new System.Drawing.Size(277, 20);
             this._ClassType.TabIndex = 11;
             // 
             // _Charisma
@@ -1179,6 +1180,7 @@
             this.Controls.Add(this.groupBox3);
             this.Name = "NpcTemplateControl";
             this.Size = new System.Drawing.Size(885, 529);
+            this.Load += new System.EventHandler(this.NpcTemplateControl_Load);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox9.ResumeLayout(false);

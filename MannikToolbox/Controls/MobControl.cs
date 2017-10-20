@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Forms;
@@ -12,20 +14,31 @@ namespace MannikToolbox.Controls
     {
         private readonly MobService _mobService;
         private readonly ModelImageService _modelImageService;
+        private readonly ToolTip _toolTip;
         private Mob _mob;
+        private Dictionary<int, string> _raceResists;
 
         public MobControl()
         {
             InitializeComponent();
             _mobService = new MobService();
             _modelImageService = new ModelImageService();
+
+            _toolTip = new ToolTip
+            {
+                AutoPopDelay = 10000,
+                InitialDelay = 500,
+                ReshowDelay = 500,
+                ShowAlways = true
+            };
         }
 
-        private void MobControl_Load(object sender, EventArgs e)
+        private async void MobControl_Load(object sender, EventArgs e)
         {
             //var mob = _mobService.GetMob("0016de40-8dc3-4cd6-aefd-e34b9f720fa7");
 
-            SetupDropdowns();
+            await FillRaceResists();
+            await SetupDropdowns();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -98,14 +111,25 @@ namespace MannikToolbox.Controls
             mobsearch.ShowDialog(this);
         }
 
-        private void SetupDropdowns()
+        private async Task SetupDropdowns()
         {
-            ComboboxService.BindRaces(_Race);
+            await ComboboxService.BindMobRaces(_Race);
             ComboboxService.BindRealms(_Realm);
             ComboboxService.BindGenders(_Gender);
             ComboboxService.BindRegions(_Region);
             ComboboxService.BindWeaponDamageTypes(_MeleeDamageType);
             ComboboxService.BindBodyTypes(_BodyType);
+        }
+
+        private async Task FillRaceResists()
+        {
+            await Task.Run(() =>
+            {
+                _raceResists = DatabaseManager.Database.SelectAllObjects<Race>()
+                    .ToDictionary(x => x.ID,
+                        x =>
+                            $"Crush: {x.ResistCrush}, Slash: {x.ResistSlash}, Thrust: {x.ResistThrust}\nBody: {x.ResistBody}, Cold: {x.ResistCold}, Energy: {x.ResistEnergy}\nHeat: {x.ResistHeat}, Matter: {x.ResistMatter}, Spirit: {x.ResistSpirit}\nNatural: {x.ResistNatural}");
+            });
         }
 
         private void BindFlags()
@@ -194,6 +218,15 @@ namespace MannikToolbox.Controls
             }
 
             _mob.VisibleWeaponSlots = 255;
+        }
+
+        private void _Race_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selected = _Race.SelectedItem as ComboboxService.SelectItemModel;
+            if (_raceResists != null && selected?.Id != null && _raceResists.ContainsKey(selected.Id.Value))
+            {
+                _toolTip.SetToolTip(label30, _raceResists[selected.Id.Value]);
+            }
         }
     }
 }
