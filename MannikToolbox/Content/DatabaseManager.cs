@@ -9,6 +9,7 @@ namespace MannikToolbox
 {
     public class DatabaseManager
     {
+        private static readonly object Lock = new object();
         private static MySqlConnection m_testConnection;
         private static MySqlConnection TestConnection
         {
@@ -20,14 +21,17 @@ namespace MannikToolbox
         {
             get
             {
-                if (m_database != null)
+                lock (Lock)
                 {
+                    if (m_database != null)
+                    {
+                        return m_database;
+                    }
+
+                    SetDatabaseConnection();
+
                     return m_database;
                 }
-
-                SetDatabaseConnection();
-
-                return m_database;
             }
             private set { m_database = value; }
         }
