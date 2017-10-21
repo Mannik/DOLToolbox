@@ -87,6 +87,7 @@ namespace MannikToolbox.Controls
             SyncFlags();
             SyncWeaponSlots();
             _mobService.SaveMob(_mob);
+            BindingService.ClearData(this);
         }
 
         private void _Model_Leave(object sender, EventArgs e)
@@ -227,6 +228,11 @@ namespace MannikToolbox.Controls
             {
                 _toolTip.SetToolTip(label30, _raceResists[selected.Id.Value]);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            BindingService.ClearData(this);
         }
     }
 }

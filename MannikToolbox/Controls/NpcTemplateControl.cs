@@ -186,6 +186,7 @@ namespace MannikToolbox.Controls
             SyncFlags();
             SyncWeaponSlots();
             _npcTemplateService.Save(_template);
+            BindingService.ClearData(this);
         }
 
         private void _Race_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -195,6 +196,28 @@ namespace MannikToolbox.Controls
             {
                 _toolTip.SetToolTip(label30, _raceResists[selected.Id.Value]);
             }
+        }
+
+        private void button2_Click(object sender, System.EventArgs e)
+        {
+            var dialogResult = MessageBox.Show(@"You are about to create a new NPC Template record.\nAre you sure this is what you want to do?", @"Insert new NPC Template", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+            _template = new DBNpcTemplate();
+            BindingService.SyncData(_template, this);
+            SyncFlags();
+            SyncWeaponSlots();
+
+            _template.ObjectId = null;
+            _npcTemplateService.Save(_template);
+            BindingService.ClearData(this);
+        }
+
+        private void button3_Click(object sender, System.EventArgs e)
+        {
+            BindingService.ClearData(this);
         }
     }
 }

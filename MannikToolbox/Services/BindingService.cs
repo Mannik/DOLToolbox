@@ -7,6 +7,30 @@ namespace MannikToolbox.Services
 {
     class BindingService
     {
+        public static void ClearData<T>(T form) where T : UserControl
+        {
+            var formFields = form.GetType()
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (var formField in formFields)
+            {
+                switch (formField.GetValue(form))
+                {
+                    case TextBox input:
+                        input.Text = null;
+                        break;
+                    case CheckBox input:
+                        input.Checked = false;
+                        break;
+                    case RadioButton input:
+                        input.Checked = false;
+                        break;
+                    case ComboBox input:
+                        input.SelectedIndex = 0;
+                        break;
+                }
+            }
+        }
         public static void BindData<T, TF>(T source, TF form) where TF : UserControl
         {
             var formFields = form.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
