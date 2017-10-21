@@ -81,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\DatabaseManager.cs" />
+    <Compile Include="Controls\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MobControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <Compile Include="Services\MobService.cs" />
     <Compile Include="Services\ModelImageService.cs" />
     <Compile Include="Services\SpellService.cs" />
+    <EmbeddedResource Include="Controls\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MobControl.resx">
       <DependentUpon>MobControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,9 +189,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="libs\DOLDatabase.dll" />
     <Content Include="libs\GameServer.dll" />
     <Content Include="Resources\green_arrow_right.png" />
+    <None Include="Resources\loading.bmp" />
     <Content Include="Resources\mysql_test_button.Image.png" />
     <Content Include="Resources\save_config_button.Image.png" />
     <Content Include="Resources\set_default_values_button.Image.png" />
