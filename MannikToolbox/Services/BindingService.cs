@@ -100,40 +100,44 @@ namespace MannikToolbox.Services
                         }
 
                         var selected = (ComboboxService.SelectItemModel)input.SelectedItem;
-                        BindValueFromInt(selected?.Id, mobProperty, destination);
+                        BindValueFromCombobox(selected, mobProperty, destination);
                         break;
                 }
             }
         }
 
-        private static void BindValueFromInt<T>(int? input, PropertyInfo property, T obj)
+        private static void BindValueFromCombobox<T>(ComboboxService.SelectItemModel input, PropertyInfo property, T obj)
         {
-            if (!input.HasValue)
+            if (input?.Id == null)
             {
                 property.SetValue(obj, null);
             }
 
             var propertyType = property.PropertyType;
 
-            if (propertyType == typeof(int))
+            if (propertyType == typeof(string))
             {
-                property.SetValue(obj, input);
+                property.SetValue(obj, input?.Value);
+            }
+            else if (propertyType == typeof(int))
+            {
+                property.SetValue(obj, input.Id);
             }
             else if (propertyType == typeof(byte))
             {
-                property.SetValue(obj, (byte)input);
+                property.SetValue(obj, (byte)input.Id);
             }
             else if (propertyType == typeof(uint))
             {
-                property.SetValue(obj, (uint)input);
+                property.SetValue(obj, (uint)input.Id);
             }
             else if (propertyType == typeof(ushort))
             {
-                property.SetValue(obj, (ushort)input);
+                property.SetValue(obj, (ushort)input.Id);
             }
             else if (propertyType == typeof(short))
             {
-                property.SetValue(obj, (short)input);
+                property.SetValue(obj, (short)input.Id);
             }
             else
             {
@@ -205,6 +209,16 @@ namespace MannikToolbox.Services
                 if (!success)
                 {
                     throw new ApplicationException($"Failed to parse {property.Name} into type ushort");
+                }
+
+                property.SetValue(obj, parsed);
+            }
+            else if (propertyType == typeof(double))
+            {
+                var success = double.TryParse(input, out double parsed);
+                if (!success)
+                {
+                    throw new ApplicationException($"Failed to parse {property.Name} into type double");
                 }
 
                 property.SetValue(obj, parsed);
