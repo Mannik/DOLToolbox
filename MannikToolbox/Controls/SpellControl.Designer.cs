@@ -120,11 +120,14 @@
             this._SpellID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this._Target = new System.Windows.Forms.ComboBox();
+            this.Target = new System.Windows.Forms.ComboBox();
             this._Icon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this._ClientEffect = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.LinexSpell.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -622,11 +625,11 @@
             // 
             // Insertspell
             // 
-            this.Insertspell.Location = new System.Drawing.Point(17, 3);
+            this.Insertspell.Location = new System.Drawing.Point(161, 3);
             this.Insertspell.Name = "Insertspell";
             this.Insertspell.Size = new System.Drawing.Size(75, 23);
             this.Insertspell.TabIndex = 113;
-            this.Insertspell.Text = "Add To DB";
+            this.Insertspell.Text = "Insert";
             this.Insertspell.UseVisualStyleBackColor = true;
             this.Insertspell.Click += new System.EventHandler(this.Insertspell_Click);
             // 
@@ -840,7 +843,7 @@
             this.groupBox1.Controls.Add(this._SpellID);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this._Target);
+            this.groupBox1.Controls.Add(this.Target);
             this.groupBox1.Controls.Add(this._Icon);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
@@ -1010,24 +1013,13 @@
             this.label3.TabIndex = 118;
             this.label3.Text = "Icon";
             // 
-            // _Target
+            // Target
             // 
-            this._Target.FormattingEnabled = true;
-            this._Target.Items.AddRange(new object[] {
-            "",
-            "Area",
-            "Cone",
-            "Controlled",
-            "Corpse",
-            "Enemy",
-            "Group",
-            "Pet",
-            "Realm",
-            "Self"});
-            this._Target.Location = new System.Drawing.Point(214, 74);
-            this._Target.Name = "_Target";
-            this._Target.Size = new System.Drawing.Size(127, 21);
-            this._Target.TabIndex = 123;
+            this.Target.FormattingEnabled = true;
+            this.Target.Location = new System.Drawing.Point(214, 74);
+            this.Target.Name = "Target";
+            this.Target.Size = new System.Drawing.Size(127, 21);
+            this.Target.TabIndex = 123;
             // 
             // _Icon
             // 
@@ -1061,10 +1053,43 @@
             this._ClientEffect.Size = new System.Drawing.Size(127, 20);
             this._ClientEffect.TabIndex = 121;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 140;
+            this.button1.Text = "Load";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(80, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 141;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(802, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 142;
+            this.button3.Text = "Clear";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // SpellControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.LinexSpell);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -1185,10 +1210,13 @@
         private System.Windows.Forms.TextBox _SpellID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox _Target;
+        private System.Windows.Forms.ComboBox Target;
         private System.Windows.Forms.TextBox _Icon;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox _ClientEffect;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

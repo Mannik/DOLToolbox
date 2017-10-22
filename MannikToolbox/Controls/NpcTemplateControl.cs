@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Forms;
@@ -10,17 +12,43 @@ namespace MannikToolbox.Controls
     public partial class NpcTemplateControl : UserControl
     {
         private readonly NpcTemplateService _npcTemplateService = new NpcTemplateService();
+        private readonly ToolTip _toolTip;
         private DBNpcTemplate _template;
+        private Dictionary<int, string> _raceResists;
 
         public NpcTemplateControl()
         {
             InitializeComponent();
-            SetupDropdowns();
+
+            _toolTip = new ToolTip
+            {
+                AutoPopDelay = 10000,
+                InitialDelay = 500,
+                ReshowDelay = 500,
+                ShowAlways = true
+            };
         }
 
-        private void SetupDropdowns()
+        private async void NpcTemplateControl_Load(object sender, System.EventArgs e)
         {
-            ComboboxService.BindRaces(_Race);
+            await FillRaceResists();
+            await SetupDropdowns();
+        }
+
+        private async Task FillRaceResists()
+        {
+            await Task.Run(() =>
+            {
+                _raceResists = DatabaseManager.Database.SelectAllObjects<Race>()
+                    .ToDictionary(x => x.ID,
+                        x =>
+                            $"Crush: {x.ResistCrush}, Slash: {x.ResistSlash}, Thrust: {x.ResistThrust}\nBody: {x.ResistBody}, Cold: {x.ResistCold}, Energy: {x.ResistEnergy}\nHeat: {x.ResistHeat}, Matter: {x.ResistMatter}, Spirit: {x.ResistSpirit}\nNatural: {x.ResistNatural}");
+            });
+        }
+
+        private async Task SetupDropdowns()
+        {
+            await ComboboxService.BindMobRaces(_Race);
             ComboboxService.BindGenders(_Gender);
             ComboboxService.BindWeaponDamageTypes(_MeleeDamageType);
             ComboboxService.BindBodyTypes(_BodyType);
@@ -158,6 +186,38 @@ namespace MannikToolbox.Controls
             SyncFlags();
             SyncWeaponSlots();
             _npcTemplateService.Save(_template);
+            BindingService.ClearData(this);
+        }
+
+        private void _Race_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            var selected = _Race.SelectedItem as ComboboxService.SelectItemModel;
+            if (_raceResists != null && selected?.Id != null && _raceResists.ContainsKey(selected.Id.Value))
+            {
+                _toolTip.SetToolTip(label30, _raceResists[selected.Id.Value]);
+            }
+        }
+
+        private void button2_Click(object sender, System.EventArgs e)
+        {
+            var dialogResult = MessageBox.Show(@"You are about to create a new NPC Template record.\nAre you sure this is what you want to do?", @"Insert new NPC Template", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+            _template = new DBNpcTemplate();
+            BindingService.SyncData(_template, this);
+            SyncFlags();
+            SyncWeaponSlots();
+
+            _template.ObjectId = null;
+            _npcTemplateService.Save(_template);
+            BindingService.ClearData(this);
+        }
+
+        private void button3_Click(object sender, System.EventArgs e)
+        {
+            BindingService.ClearData(this);
         }
     }
 }

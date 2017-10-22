@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MannikToolbox.Controls;
@@ -41,6 +42,32 @@ namespace MannikToolbox
 
 		        isDbConnected = testConnection.State == System.Data.ConnectionState.Open;
 		    }
+
+            var loading = new LoadingForm();
+            loading.Show();
+		    var progress = new Progress<int>(percent =>
+		    {
+		        loading.ProgressBar.Value = percent;
+
+		        var item = percent / (100 / DatabaseManager.RegisteredObjects.Length);
+
+		        if (item < DatabaseManager.RegisteredObjects.Length)
+		        {
+		            var type = DatabaseManager.RegisteredObjects[item].Name;
+		            loading.ProgressText.Text = $@"Loading: {type}";
+		        }
+
+		        if (percent == 100)
+		        {
+		            loading.Close();
+		        }
+		    });
+
+            // doing this to start loading the db
+            Task.Run(() =>
+            {
+                DatabaseManager.SetDatabaseConnection(progress);
+            });
 
 		    Text = $@"Mannik/Loki's Toolbox ({ConnectionStringService.ConnectionString.Server})";
 		    LoadTabForms();

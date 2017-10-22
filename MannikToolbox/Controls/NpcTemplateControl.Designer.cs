@@ -136,6 +136,8 @@
             this.label47 = new System.Windows.Forms.Label();
             this._Model = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -218,7 +220,7 @@
             this._Gender.FormattingEnabled = true;
             this._Gender.Location = new System.Drawing.Point(547, 117);
             this._Gender.Name = "_Gender";
-            this._Gender.Size = new System.Drawing.Size(58, 21);
+            this._Gender.Size = new System.Drawing.Size(89, 21);
             this._Gender.TabIndex = 7;
             // 
             // _AggroLevel
@@ -302,6 +304,7 @@
             this._Race.Name = "_Race";
             this._Race.Size = new System.Drawing.Size(122, 21);
             this._Race.TabIndex = 7;
+            this._Race.SelectedIndexChanged += new System.EventHandler(this._Race_SelectedIndexChanged);
             // 
             // _FlagsFlying
             // 
@@ -453,17 +456,17 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(315, 120);
+            this.label30.Location = new System.Drawing.Point(250, 120);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(33, 13);
+            this.label30.Size = new System.Drawing.Size(98, 13);
             this.label30.TabIndex = 46;
-            this.label30.Text = "Race";
+            this.label30.Text = "Resist Template (?)";
             // 
             // _ItemsListTemplateID
             // 
             this._ItemsListTemplateID.Location = new System.Drawing.Point(359, 64);
             this._ItemsListTemplateID.Name = "_ItemsListTemplateID";
-            this._ItemsListTemplateID.Size = new System.Drawing.Size(246, 20);
+            this._ItemsListTemplateID.Size = new System.Drawing.Size(277, 20);
             this._ItemsListTemplateID.TabIndex = 39;
             // 
             // label26
@@ -479,7 +482,7 @@
             // 
             this._EquipmentTemplateID.Location = new System.Drawing.Point(359, 38);
             this._EquipmentTemplateID.Name = "_EquipmentTemplateID";
-            this._EquipmentTemplateID.Size = new System.Drawing.Size(246, 20);
+            this._EquipmentTemplateID.Size = new System.Drawing.Size(277, 20);
             this._EquipmentTemplateID.TabIndex = 37;
             // 
             // _TemplateId
@@ -733,7 +736,7 @@
             // 
             this._ClassType.Location = new System.Drawing.Point(359, 13);
             this._ClassType.Name = "_ClassType";
-            this._ClassType.Size = new System.Drawing.Size(246, 20);
+            this._ClassType.Size = new System.Drawing.Size(277, 20);
             this._ClassType.TabIndex = 11;
             // 
             // _Charisma
@@ -1162,10 +1165,32 @@
             this.label44.TabIndex = 36;
             this.label44.Text = "Models";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(164, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "Insert";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(807, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 28;
+            this.button3.Text = "Clear";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // NpcTemplateControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox5);
@@ -1179,6 +1204,7 @@
             this.Controls.Add(this.groupBox3);
             this.Name = "NpcTemplateControl";
             this.Size = new System.Drawing.Size(885, 529);
+            this.Load += new System.EventHandler(this.NpcTemplateControl_Load);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -1310,5 +1336,7 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox _Model;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

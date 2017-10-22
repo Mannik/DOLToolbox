@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using DOL.Database;
-using DOL.Database.Connection;
 using DOL.Database.Handlers;
 using MySql.Data.MySqlClient;
 using MannikToolbox.Services;
@@ -9,67 +8,58 @@ namespace MannikToolbox
 {
     public class DatabaseManager
     {
-        private static MySqlConnection m_testConnection;
-        private static MySqlConnection TestConnection
-        {
-            get { return m_testConnection; }
-            set { m_testConnection = value; }
-        }
-        private static IObjectDatabase m_database;
+        private static readonly object Lock = new object();
+        public static Type[] RegisteredObjects = {
+            typeof(Account),
+            typeof(BugReport),
+            typeof(DBAppeal),
+            typeof(DOLCharacters),
+            typeof(DBDataQuest),
+            typeof(CharacterXDataQuest),
+            typeof(Mob),
+            typeof(DBNpcTemplate),
+            typeof(DBSpell),
+            typeof(ItemTemplate),
+            typeof(DBLineXSpell),
+            typeof(Race),
+            typeof(DBRegions),
+            typeof(Zones)
+        };
+
+    private static IObjectDatabase m_database;
         internal static IObjectDatabase Database
         {
             get
             {
-                if (m_database != null)
+                lock (Lock)
                 {
+                    if (m_database != null)
+                    {
+                        return m_database;
+                    }
+
+                    SetDatabaseConnection();
+
                     return m_database;
                 }
-
-                SetDatabaseConnection();
-
-                return m_database;
             }
             private set { m_database = value; }
         }
 
-        public static void SetDatabaseConnection()
+        public static void SetDatabaseConnection(IProgress<int> progress = null)
         {
-            string connectionString;
-
             //Create a connection string using the string builder
             MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
             sb.ConnectionTimeout = 2;
-            connectionString = sb.ConnectionString;
-            
-            //Set the Database object
+            var connectionString = sb.ConnectionString;
+
             Database = new MySQLObjectDatabase(connectionString);
-			Database.RegisterDataObject(typeof(Account));
-			Database.RegisterDataObject(typeof(BugReport));
-			Database.RegisterDataObject(typeof(DBAppeal));
-			Database.RegisterDataObject(typeof(DOLCharacters));
-			Database.RegisterDataObject(typeof(DBDataQuest));
-            Database.RegisterDataObject(typeof(CharacterXDataQuest));
-            Database.RegisterDataObject(typeof(Mob));
-            Database.RegisterDataObject(typeof(DBNpcTemplate));
-            Database.RegisterDataObject(typeof(DBSpell));
-            Database.RegisterDataObject(typeof(ItemTemplate));
-            Database.RegisterDataObject(typeof(DBLineXSpell));
-            Database.RegisterDataObject(typeof(Race));
-            Database.RegisterDataObject(typeof(DBRegions));
-            Database.RegisterDataObject(typeof(Zones));
-            TestConnection = new MySqlConnection(sb.ConnectionString);
 
-            try { TestConnection.Open(); }
-            catch { }
-
-            if (TestConnection.State == System.Data.ConnectionState.Open)
+            for (int i = 0; i < RegisteredObjects.Length; i++)
             {
-                //   MessageBox.Show("Connection to the database was successful!");
-                TestConnection.Close();
-            }
-            else
-            {
-                //   MessageBox.Show("Could not connect to the database! Check your credentials!");
+                Database.RegisterDataObject(RegisteredObjects[i]);
+                var perc = ((i + 1) / (decimal)RegisteredObjects.Length) * 100;
+                progress?.Report((int)perc);
             }
         }
     }
