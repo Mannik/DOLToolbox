@@ -86,6 +86,9 @@ namespace MannikToolbox
 
             control = new NpcTemplateControl { Dock = DockStyle.Fill };
             tabNPCTemplate.Controls.Add(control);
+
+            control = new ItemTemplateControl { Dock = DockStyle.Fill };
+            tabItem.Controls.Add(control);
         }
 
 		private void Menu_DB_Click(object sender, EventArgs e)
@@ -94,5 +97,7 @@ namespace MannikToolbox
 			Application.Restart();
 			Environment.Exit(0);
 		}
+
+        
     }
 }

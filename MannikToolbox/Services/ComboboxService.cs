@@ -39,7 +39,9 @@ namespace MannikToolbox.Services
                 new SelectItemModel(21, "Graoch")
             };
             BindData(input, races);
-        }
+        } 
+      
+
         public static async Task BindMobRaces(ComboBox input)
         {
             List<SelectItemModel> races = new List<SelectItemModel>();
@@ -58,7 +60,7 @@ namespace MannikToolbox.Services
 
             BindData(input, races);
         }
-
+        #region regions
         public static void BindRegions(ComboBox input)
         {
             var zones = new List<SelectItemModel>
@@ -412,6 +414,7 @@ namespace MannikToolbox.Services
             };
             BindData(input, zones);
         }
+        #endregion
 
         public static void BindRealms(ComboBox input)
         {
@@ -521,6 +524,861 @@ namespace MannikToolbox.Services
 
             BindData(input, items);
         }
+
+        public static void BindItemSlot(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                 new SelectItemModel(7, "Horse Armor"),
+                 new SelectItemModel(8, "Horse Barding"),
+                 new SelectItemModel(9, "Horse"),
+                 new SelectItemModel(10, "Right Hand"),
+                 new SelectItemModel(11, "Left Hand"),
+                 new SelectItemModel(12, "Two Hand"),
+                 new SelectItemModel(13, "Ranged"),
+                 new SelectItemModel(14, "First Quiver"),
+                 new SelectItemModel(15, "Second Quiver"),
+                 new SelectItemModel(16, "Third Quiver"),
+                 new SelectItemModel(17, "Forth Quiver"),
+                 new SelectItemModel(21, "Helm"),
+                 new SelectItemModel(22, "Hands"),
+                 new SelectItemModel(23, "Feet"),
+                 new SelectItemModel(24, "Jewelry"),
+                 new SelectItemModel(25, "Torso"),
+                 new SelectItemModel(26, "Cloak"),
+                 new SelectItemModel(27, "Legs"),
+                 new SelectItemModel(28, "Arms"),
+                 new SelectItemModel(29, "Neck"),
+                 new SelectItemModel(30, "Bracers"),
+                 new SelectItemModel(31, "Shield"),
+                 new SelectItemModel(32, "Waist"),
+                 new SelectItemModel(33, "Left Wrist"),
+                 new SelectItemModel(34, "Right Wrist"),
+                 new SelectItemModel(35, "Left Ring"),
+                 new SelectItemModel(36, "Right Ring"),
+                 new SelectItemModel(37, "Mythical")
+    };
+
+
+
+            BindData(input, items);
+        }
+
+        public static void BindColors(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                 new SelectItemModel(0, "Whire"),
+                 new SelectItemModel(1, "Old Red"),
+                 new SelectItemModel(2, "Old Green"),
+                 new SelectItemModel(3, "Old Blue"),
+                 new SelectItemModel(4, "Old Yellow"),
+                 new SelectItemModel(5, "Old Purple"),
+                 new SelectItemModel(6, "Gray"),
+                 new SelectItemModel(7, "Old Turquoise"),
+                 new SelectItemModel(8, "Leather Yellow"),
+                 new SelectItemModel(9, "Leather Red"),
+                 new SelectItemModel(10, "Leather Green"),
+                 new SelectItemModel(11, "Leather Orange"),
+                 new SelectItemModel(12, "Leather Violet"),
+                 new SelectItemModel(13, "Leather Forest Green"),
+                 new SelectItemModel(14, "Leather Blue"),
+                 new SelectItemModel(15, "Leather Purple"),
+                 new SelectItemModel(16, "Bronze"),
+                 new SelectItemModel(17, "Iron"),
+                 new SelectItemModel(18, "Steel"),
+                 new SelectItemModel(19, "Alloy"),
+                 new SelectItemModel(20, "Fine Alloy"),
+                 new SelectItemModel(21, "Mithril"),
+                 new SelectItemModel(22, "Asterite"),
+                 new SelectItemModel(23, "Eog"),
+                 new SelectItemModel(24, "Xenium"),
+                 new SelectItemModel(25, "Vaanum"),
+                 new SelectItemModel(26, "Adamantium"),
+                 new SelectItemModel(27, "Red Cloth"),
+                 new SelectItemModel(28, "Orange Cloth"),
+                 new SelectItemModel(29, "Yellow-Orange Cloth"),
+                 new SelectItemModel(30, "Yellow Cloth"),
+                 new SelectItemModel(31, "Yellow-Green Cloth"),
+                 new SelectItemModel(32, "Green Cloth"),
+                 new SelectItemModel(33, "Blue-Green Cloth"),
+                 new SelectItemModel(34, "Turquoise Cloth"),
+                 new SelectItemModel(35, "Light Blue Cloth"),
+                 new SelectItemModel(36, "Blue Cloth"),
+                 new SelectItemModel(37, "Blue-Violet Cloth"),
+                 new SelectItemModel(38, "Violet Cloth"),
+                 new SelectItemModel(39, "Bright Violet Cloth"),
+                 new SelectItemModel(40, "Purple Cloth"),
+                 new SelectItemModel(41, "Bright Purple Cloth"),
+                 new SelectItemModel(42, "Purple-Red Cloth"),
+                 new SelectItemModel(43, "Black Cloth"),
+                 new SelectItemModel(44, "Brown Cloth"),
+                 new SelectItemModel(45, "Blue Metal"),
+                 new SelectItemModel(46, "Green Metal"),
+                 new SelectItemModel(47, "Yellow Metal"),
+                 new SelectItemModel(48, "Gold Metal"),
+                 new SelectItemModel(49, "Red Metal"),
+                 new SelectItemModel(50, "Purple Metal"),
+                 new SelectItemModel(51, "Blue 1"),
+                 new SelectItemModel(52, "Blue 2"),
+                 new SelectItemModel(53, "Blue 3"),
+                 new SelectItemModel(54, "Blue 4"),
+                 new SelectItemModel(55, "Turquoise 1"),
+                 new SelectItemModel(56, "Turquoise 2"),
+                 new SelectItemModel(57, "Turquoise 3"),
+                 new SelectItemModel(58, "Teal 1"),
+                 new SelectItemModel(59, "Teal 2"),
+                 new SelectItemModel(60, "Teal 3"),
+                 new SelectItemModel(61, "Brown 1"),
+                 new SelectItemModel(62, "Brown 2"),
+                 new SelectItemModel(63, "Brown 3"),
+                 new SelectItemModel(64, "Red 1"),
+                 new SelectItemModel(65, "Red 2"),
+                 new SelectItemModel(66, "Red 3"),
+                 new SelectItemModel(67, "Red 4"),
+                 new SelectItemModel(68, "Green 1"),
+                 new SelectItemModel(69, "Green 2"),
+                 new SelectItemModel(70, "Green 3"),
+                 new SelectItemModel(71, "Green 4"),
+                 new SelectItemModel(72, "Gray 1"),
+                 new SelectItemModel(73, "Gray 2"),
+                 new SelectItemModel(74, "Gray 3"),
+                 new SelectItemModel(75, "Orange 1"),
+                 new SelectItemModel(76, "Orange 2"),
+                 new SelectItemModel(77, "Orange 3"),
+                 new SelectItemModel(78, "Purple 1"),
+                 new SelectItemModel(79, "Purple 2"),
+                 new SelectItemModel(80, "Purple 3"),
+                 new SelectItemModel(81, "Yellow 1"),
+                 new SelectItemModel(82, "Yellow 2"),
+                 new SelectItemModel(83, "Yelow 3"),
+                 new SelectItemModel(84, "violet"),
+                 new SelectItemModel(85, "mauve"),
+                 new SelectItemModel(86, "Blue 4"),
+                 new SelectItemModel(87, "Purple 4"),
+                 new SelectItemModel(100, "Ship Red"),
+                  new SelectItemModel(101, "Ship Red 2"),
+                 new SelectItemModel(102, "Ship Orange"),
+                 new SelectItemModel(103, "Ship Orange 2"),
+                 new SelectItemModel(104, "Orange 3"),
+                 new SelectItemModel(105, "Ship Yellow"),
+                 new SelectItemModel(106, "Ship Lime Green"),
+                 new SelectItemModel(107, "Ship Green"),
+                 new SelectItemModel(108, "Ship Green 2"),
+                 new SelectItemModel(109, "Ship Turquiose"),
+                 new SelectItemModel(110, "Ship Turqiose 2"),
+                 new SelectItemModel(111, "Ship Blue"),
+                 new SelectItemModel(112, "Ship Blue 2"),
+                 new SelectItemModel(113, "Ship Blue 3"),
+                 new SelectItemModel(114, "Ship Purple"),
+                 new SelectItemModel(115, "Ship Purple 2"),
+                 new SelectItemModel(116, "Ship Purple 3"),
+                 new SelectItemModel(117, "Ship Pink"),
+                 new SelectItemModel(118, "Ship Charcoal"),
+                 new SelectItemModel(119, "Ship Charcoal 2"),
+                 new SelectItemModel(120, "red - crafter only"),
+                 new SelectItemModel(121, "plum - crafter only"),
+                 new SelectItemModel(122, "purple - crafter only"),
+                 new SelectItemModel(123, "dark purple - crafter only"),
+                 new SelectItemModel(124, "dusky purple - crafter only"),
+                 new SelectItemModel(125, "light gold - crafter only"),
+                 new SelectItemModel(126, "dark gold - crafter only"),
+                 new SelectItemModel(127, "dirty orange - crafter only"),
+                 new SelectItemModel(128, "dark tan - crafter only"),
+                 new SelectItemModel(129, "brown - crafter only"),
+                 new SelectItemModel(130, "light green - crafter only"),
+                 new SelectItemModel(131, "olive green - crafter only"),
+                 new SelectItemModel(132, "cornflower blue - crafter only"),
+                 new SelectItemModel(133, "light gray - crafter only"),
+                 new SelectItemModel(134, "hot pink - crafter only"),
+                 new SelectItemModel(135, "dusky rose - crafter only"),
+                 new SelectItemModel(136, "sage green - crafter only"),
+                 new SelectItemModel(137, "lime green - crafter only"),
+                 new SelectItemModel(138, "gray teal - crafter only"),
+                 new SelectItemModel(139, "gray blue - crafter only"),
+                 new SelectItemModel(140, "olive gray - crafter only"),
+                 new SelectItemModel(141, "Navy Blue - crafter only"),
+                 new SelectItemModel(142, "Forest Green - crafter only"),
+                 new SelectItemModel(143, "Burgundy - crafter only")
+    };
+
+
+            BindData(input, items);
+        }
+
+
+
+
+
+        public static void BindObjectType(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                    new SelectItemModel( 0, "generic (item)"),
+                    new SelectItemModel( 1, "generic (weapon)"),
+                    new SelectItemModel( 2, "crushing (weapon)"),
+                    new SelectItemModel( 3, "slashing (weapon)"),
+                    new SelectItemModel( 4, "thrusting (weapon)"),
+                    new SelectItemModel( 5, "fired (weapon)"),
+                    new SelectItemModel( 6, "twohanded (weapon)"),
+                    new SelectItemModel( 7, "polearm (weapon)"),
+                    new SelectItemModel( 8, "staff (weapon)"),
+                    new SelectItemModel( 9, "longbow (weapon)"),
+                    new SelectItemModel( 10, "crossbow (weapon)"),
+                    new SelectItemModel( 11, "sword (weapon)"),
+                    new SelectItemModel( 12, "hammer (weapon)"),
+                    new SelectItemModel( 13, "axe (weapon)"),
+                    new SelectItemModel( 14, "spear (weapon)"),
+                    new SelectItemModel( 15, "composite bow (weapon)"),
+                    new SelectItemModel( 16, "thrown (weapon)"),
+                    new SelectItemModel( 17, "left axe (weapon)"),
+                    new SelectItemModel( 18, "recurve bow (weapon)"),
+                    new SelectItemModel( 19, "blades (weapon)"),
+                    new SelectItemModel( 20, "blunt (weapon)"),
+                    new SelectItemModel( 21, "piercing (weapon)"),
+                    new SelectItemModel( 22, "large (weapon)"),
+                    new SelectItemModel( 23, "celtic spear (weapon)"),
+                    new SelectItemModel( 24, "flexible (weapon)"),
+                    new SelectItemModel( 25, "hand to hand (weapon)"),
+                    new SelectItemModel( 26, "scythe (weapon)"),
+                    new SelectItemModel( 27, "fist wraps (weapon)"),
+                    new SelectItemModel( 28, "mauler staff (weapon)"),
+                    new SelectItemModel( 31, "generic (armor)"),
+                    new SelectItemModel( 32, "cloth (armor)"),
+                    new SelectItemModel( 33, "leather (armor)"),
+                    new SelectItemModel( 34, "studded leather (armor)"),
+                    new SelectItemModel( 35, "chain (armor)"),
+                    new SelectItemModel( 36, "plate (armor)"),
+                    new SelectItemModel( 37, "reinforced (armor)"),
+                    new SelectItemModel( 38, "scale (armor)"),
+                    new SelectItemModel( 41, "magical (item)"),
+                    new SelectItemModel( 42, "shield (armor)"),
+                    new SelectItemModel( 43, "arrow (item)"),
+                    new SelectItemModel( 44, "bolt (item)"),
+                    new SelectItemModel( 45, "instrument (item)"),
+                    new SelectItemModel( 46, "poison (item)"),
+                    new SelectItemModel( 47, "alchemy tincture"),
+                    new SelectItemModel( 48, "spellcrafting gem"),
+                    new SelectItemModel( 49, "garden object"),
+                    new SelectItemModel( 50, "house wall object"),
+                    new SelectItemModel( 51, "house floor object"),
+                    new SelectItemModel( 53, "house npc"),
+                    new SelectItemModel( 54, "house vault"),
+                    new SelectItemModel( 55, "house crafting object"),
+                    new SelectItemModel( 68, "house bindstone")
+        };
+            BindData(input, items);
+        }
+        #region BonusCatagorys
+        public static void BindBonusCatagory(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(1, "All"),
+                new SelectItemModel(2, "Stats"),
+                new SelectItemModel(3, "Stat Cap"),
+                new SelectItemModel(4, "Resists"),
+                new SelectItemModel(5, "Resist Cap"),
+                new SelectItemModel(6, "Skills"),
+                new SelectItemModel(7, "Focus"),
+                new SelectItemModel(8, "Trials of Atlantis"),
+                new SelectItemModel(9, "Other"),
+                new SelectItemModel(10, "Mythical")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusStats(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(1, "Strength"),
+                 new SelectItemModel(2, "Dexterity"),
+                 new SelectItemModel(3, "Constitution"),
+                 new SelectItemModel(4, "Quickness"),
+                 new SelectItemModel(5, "Intelligence"),
+                 new SelectItemModel(6, "Piety"),
+                 new SelectItemModel(7, "Empathy"),
+                 new SelectItemModel(8, "Charisma"),
+                 new SelectItemModel(9, "Max Mana"),
+                 new SelectItemModel(10, "Max Health"),
+                 new SelectItemModel(156, "Acuity")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusStatCap(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(201, "Strength Cap"),
+                 new SelectItemModel(202, "Dexterity Cap"),
+                 new SelectItemModel(203, "Constitution Cap"),
+                 new SelectItemModel(204, "Quickness Cap"),
+                 new SelectItemModel(205, "Intelligence Cap"),
+                 new SelectItemModel(206, "Piety Cap"),
+                 new SelectItemModel(207, "Empathy Cap"),
+                 new SelectItemModel(208, "Charisma Cap"),
+                 new SelectItemModel(209, "Acuity Cap"),
+                 new SelectItemModel(210, "Max Health Cap"),
+                 new SelectItemModel(211, "Max Mana Cap")
+
+            };
+
+            BindData(input, items);
+        }
+        public static void BindBonusResists(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(11, "Body Resist"),
+                 new SelectItemModel(12, "Cold Resist"),
+                 new SelectItemModel(13, "Crush Resist"),
+                 new SelectItemModel(14, "Energy Resist"),
+                 new SelectItemModel(15, "Heat Resist"),
+                 new SelectItemModel(16, "Matter Resist"),
+                 new SelectItemModel(17, "Slash Resist"),
+                 new SelectItemModel(18, "Spirit Resist"),
+                 new SelectItemModel(19, "Thrust Resist")
+
+            };
+
+            BindData(input, items);
+        }
+        public static void BindBonusResistCap(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(221, "Body Resist Cap"),
+                 new SelectItemModel(222, "Cold Resist Cap"),
+                 new SelectItemModel(223, "Crush Resist Cap"),
+                 new SelectItemModel(224, "Energy Resist Cap"),
+                 new SelectItemModel(225, "Heat Resist Cap"),
+                 new SelectItemModel(226, "Matter Resist Cap"),
+                 new SelectItemModel(227, "Slash Resist Cap"),
+                 new SelectItemModel(228, "Spirit Resist Cap"),
+                 new SelectItemModel(229, "Thrust Resist Cap")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusSkills(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(20, "Two Handed Skill"),
+                 new SelectItemModel(21, "Body Magic Skill"),
+                 new SelectItemModel(22, "Chants Skill"),
+                 new SelectItemModel(23, "Critical Strikes Skill"),
+                 new SelectItemModel(24, "Cross Bows Skill"),
+                 new SelectItemModel(25, "Crushing Skill"),
+                 new SelectItemModel(26, "Death Servant Skill"),
+                 new SelectItemModel(27, "Death Sight Skill"),
+                 new SelectItemModel(28, "Dual Wield Skill"),
+                 new SelectItemModel(29, "Earth Magic Skill"),
+                 new SelectItemModel(30, "Enhancement Skill"),
+                 new SelectItemModel(31, "Envenom Skill"),
+                 new SelectItemModel(32, "Fire Magic Skill"),
+                 new SelectItemModel(33, "Flexible Skill"),
+                 new SelectItemModel(34, "Cold Magic Skill"),
+                 new SelectItemModel(35, "Instruments Skill"),
+                 new SelectItemModel(36, "Long Bows Skill"),
+                 new SelectItemModel(37, "Matter Magic Skill"),
+                 new SelectItemModel(38, "Mind Magic Skill"),
+                 new SelectItemModel(39, "Painworking Skill"),
+                 new SelectItemModel(40, "Parry Skill"),
+                 new SelectItemModel(41, "Polearms Skill"),
+                 new SelectItemModel(42, "Rejuvenation Skill"),
+                 new SelectItemModel(43, "Shields Skill"),
+                 new SelectItemModel(44, "Slashing Skill"),
+                 new SelectItemModel(45, "Smiting Skill"),
+                 new SelectItemModel(46, "Soulrending Skill"),
+                 new SelectItemModel(47, "Spirit Magic Skill"),
+                 new SelectItemModel(48, "Staff Skill"),
+                 new SelectItemModel(49, "Stealth Skill"),
+                 new SelectItemModel(50, "Thrusting Skill"),
+                 new SelectItemModel(51, "Wind Magic Skill"),
+                 new SelectItemModel(52, "Sword Skill"),
+                 new SelectItemModel(53, "Hammer Skill"),
+                 new SelectItemModel(54, "Axe Skill"),
+                 new SelectItemModel(55, "Left Axe Skill"),
+                 new SelectItemModel(56, "Spear Skill"),
+                 new SelectItemModel(57, "Mending Skill"),
+                 new SelectItemModel(58, "Augmentation Skill"),
+                 new SelectItemModel(60, "Darkness Magic Skill"),
+                 new SelectItemModel(61, "Suppression Magic Skill"),
+                 new SelectItemModel(62, "Runecarving Skill"),
+                 new SelectItemModel(63, "Stormcalling Skill"),
+                 new SelectItemModel(64, "Beast Craft Skill"),
+                 new SelectItemModel(65, "Light Magic Skill"),
+                 new SelectItemModel(66, "Void Magic Skill"),
+                 new SelectItemModel(67, "Mana Magic Skill"),
+                 new SelectItemModel(68, "Composite Bow Skill"),
+                 new SelectItemModel(69, "Battlesongs Skill"),
+                 new SelectItemModel(70, "Enchantments Skill"),
+                 new SelectItemModel(72, "Blades Skill"),
+                 new SelectItemModel(73, "Blunt Skill"),
+                 new SelectItemModel(74, "Piercing Skill"),
+                 new SelectItemModel(75, "Large Weapon Skill"),
+                 new SelectItemModel(76, "Mentalism Skill"),
+                 new SelectItemModel(77, "Regrowth Skill"),
+                 new SelectItemModel(78, "Nurture Skill"),
+                 new SelectItemModel(79, "Nature Skill"),
+                 new SelectItemModel(80, "Music Skill"),
+                 new SelectItemModel(81, "Celtic Dual Skill"),
+                 new SelectItemModel(82, "Celtic Spear Skill"),
+                 new SelectItemModel(83, "Recurved Bow Skill"),
+                 new SelectItemModel(84, "Valor Skill"),
+                 new SelectItemModel(85, "Subterranean Skill"),
+                 new SelectItemModel(86, "Bone Army Skill"),
+                 new SelectItemModel(87, "Verdant Path Skill"),
+                 new SelectItemModel(88, "Creeping Path Skill"),
+                 new SelectItemModel(89, "Arboreal Path Skill"),
+                 new SelectItemModel(90, "Scythe Skill"),
+                 new SelectItemModel(91, "Thrown Weapons Skill"),
+                 new SelectItemModel(92, "Hand to Hand Skill"),
+                 new SelectItemModel(93, "Short Bow Skill"),
+                 new SelectItemModel(94, "Pacification Skill"),
+                 new SelectItemModel(95, "Savagery Skill"),
+                 new SelectItemModel(96, "Nightshade Magic Skill"),
+                 new SelectItemModel(97, "Pathfinding Skill"),
+                 new SelectItemModel(98, "Summoning Magic Skill"),
+                 new SelectItemModel(99, "Dementia Skill"),
+                 new SelectItemModel(100, "Shadow Mastery Skill"),
+                 new SelectItemModel(101, "Vampiiric Embrace Skill"),
+                 new SelectItemModel(102, "Ethereal Shriek Skill"),
+                 new SelectItemModel(103, "Phantasmal Wail Skill"),
+                 new SelectItemModel(104, "Spectral Force Skill"),
+                 new SelectItemModel(105, "Odins Will Skill"),
+                 new SelectItemModel(106, "Cursing Skill"),
+                 new SelectItemModel(107, "Hexing Skill"),
+                 new SelectItemModel(108, "Witchcraft Skill"),
+                 new SelectItemModel(109, "Mauler Staff Skill"),
+                 new SelectItemModel(110, "Fist Wraps Skill"),
+                 new SelectItemModel(111, "Power Strikes Skill"),
+                 new SelectItemModel(112, "Magnetism Skill"),
+                 new SelectItemModel(113, "Aura Manipulation Skill"),
+                 new SelectItemModel(114, "Spectral Guard Skill"),
+                 new SelectItemModel(115, "Archery Skill")
+       
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusFocus(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(120, "Darkness Focus"),
+                 new SelectItemModel(121, "Suppression Focus"),
+                 new SelectItemModel(122, "Runecarving Focus"),
+                 new SelectItemModel(123, "Spirit Magic Focus"),
+                 new SelectItemModel(124, "Fire Magic Focus"),
+                 new SelectItemModel(125, "Air Magic Focus"),
+                 new SelectItemModel(126, "Cold Magic Focus"),
+                 new SelectItemModel(127, "Earth Magic Focus"),
+                 new SelectItemModel(128, "Light Magic Focus"),
+                 new SelectItemModel(129, "Body Magic Focus"),
+                 new SelectItemModel(130, "Matter Magic Focus"),
+                 new SelectItemModel(132, "Mind Magic Focus"),
+                 new SelectItemModel(133, "Void Magic Focus"),
+                 new SelectItemModel(134, "Mana Magic Focus"),
+                 new SelectItemModel(135, "Enchantments Focus"),
+                 new SelectItemModel(136, "Mentalism Focus"),
+                 new SelectItemModel(137, "Summoning Magic Focus"),
+                 new SelectItemModel(138, "Bone Army Focus"),
+                 new SelectItemModel(139, "Painworking Focus"),
+                 new SelectItemModel(140, "Death Sight Focus"),
+                 new SelectItemModel(141, "Death Servant Focus"),
+                 new SelectItemModel(142, "Verdant Path Focus"),
+                 new SelectItemModel(143, "Creeping Path Focus"),
+                 new SelectItemModel(144, "Arboreal Path Focus"),
+                 new SelectItemModel(157, "Ethereal Shriek Focus"),
+                 new SelectItemModel(158, "Phantasmal Wail Focus"),
+                 new SelectItemModel(159, "Spectral Force Focus"),
+                 new SelectItemModel(160, "Cursing Focus"),
+                 new SelectItemModel(161, "Hexing Focus"),
+                 new SelectItemModel(162, "Witchcraft Focus")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusTOA(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(188, "Archery Speed"),
+                 new SelectItemModel(189, "Arrow Recovery"),
+                 new SelectItemModel(190, "Buff Effectiveness"),
+                 new SelectItemModel(191, "Casting Speed"),
+                 new SelectItemModel(192, "Death EXP Loss Redution"),
+                 new SelectItemModel(193, "Debuff Effectiveness"),
+                 new SelectItemModel(194, "Fatigue"),
+                 new SelectItemModel(195, "Healing Effectiveness"),
+                 new SelectItemModel(196, "Power Pool"),
+                 new SelectItemModel(197, "Resist Pierce"),
+                 new SelectItemModel(198, "Spell Damage"),
+                 new SelectItemModel(199, "Spell Duration"),
+                 new SelectItemModel(200, "Style Damage")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusMythical(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(233, "MythicalSafeFall"),
+                 new SelectItemModel(234, "MythicalDiscumbering"),
+                 new SelectItemModel(235, "MythicalCoin"),
+                 new SelectItemModel(236, "MythicalStrCapBonus"),
+                 new SelectItemModel(237, "MythicalDexCapBonus"),
+                 new SelectItemModel(238, "MythicalConCapBonus"),
+                 new SelectItemModel(239, "MythicalQuiCapBonus"),
+                 new SelectItemModel(240, "MythicalIntCapBonus"),
+                 new SelectItemModel(241, "MythicalPieCapBonus"),
+                 new SelectItemModel(242, "MythicalEmpCapBonus"),
+                 new SelectItemModel(243, "MythicalChaCapBonus"),
+                 new SelectItemModel(244, "MythicalAcuCapBonus")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusOther(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+
+                 new SelectItemModel(145, "Max Speed"),
+                 new SelectItemModel(147, "Max Concentration"),
+                 new SelectItemModel(148, "Armor Factor"),
+                 new SelectItemModel(149, "Armor Absorption"),
+                 new SelectItemModel(150, "HealthRegenerationRate"),
+                 new SelectItemModel(151, "PowerRegenerationRate"),
+                 new SelectItemModel(152, "EnduranceRegenerationRate"),
+                 new SelectItemModel(153, "SpellRange"),
+                 new SelectItemModel(154, "ArcheryRange"),
+                 new SelectItemModel(155, "MeleeSpeed"),
+                 new SelectItemModel(163, "AllMagicSkills"),
+                 new SelectItemModel(164, "AllMeleeWeaponSkills"),
+                 new SelectItemModel(165, "AllFocusLevels"),
+                 new SelectItemModel(166, "LivingEffectiveLevel"),
+                 new SelectItemModel(167, "AllDualWieldingSkills"),
+                 new SelectItemModel(168, "AllArcherySkills"),
+                 new SelectItemModel(169, "EvadeChance"),
+                 new SelectItemModel(170, "BlockChance"),
+                 new SelectItemModel(171, "ParryChance"),
+                 new SelectItemModel(172, "FatigueConsumption"),
+                 new SelectItemModel(173, "MeleeDamage"),
+                 new SelectItemModel(174, "RangedDamage"),
+                 new SelectItemModel(175, "FumbleChance"),
+                 new SelectItemModel(176, "MesmerizeDurationReduction"),
+                 new SelectItemModel(177, "StunDurationReduction"),
+                 new SelectItemModel(178, "SpeedDecreaseDurationReduction"),
+                 new SelectItemModel(179, "BladeturnReinforcement"),
+                 new SelectItemModel(180, "DefensiveBonus"),
+                 new SelectItemModel(181, "SpellFumbleChance"),
+                 new SelectItemModel(182, "NegativeReduction"),
+                 new SelectItemModel(183, "PieceAblative"),
+                 new SelectItemModel(184, "ReactionaryStyleDamage"),
+                 new SelectItemModel(185, "SpellPowerCost"),
+                 new SelectItemModel(186, "StyleCostReduction"),
+                 new SelectItemModel(187, "ToHitBonus"),
+                 new SelectItemModel(212, "WeaponSkill"),
+                 new SelectItemModel(213, "AllSkills"),
+                 new SelectItemModel(214, "CriticalMeleeHitChance"),
+                 new SelectItemModel(215, "CriticalArcheryHitChance"),
+                 new SelectItemModel(216, "CriticalSpellHitChance"),
+                 new SelectItemModel(217, "WaterSpeed"),
+                 new SelectItemModel(218, "SpellLevel"),
+                 new SelectItemModel(219, "MissHit"),
+                 new SelectItemModel(220, "KeepDamage"),
+                 new SelectItemModel(230, "DPS"),
+                 new SelectItemModel(231, "MagicAbsorption"),
+                 new SelectItemModel(232, "CriticalHealHitChance"),
+                 new SelectItemModel(247, "BountyPoints"),
+                 new SelectItemModel(248, "XpPoints"),
+                 new SelectItemModel(249, "Resist_Natural"),
+                 new SelectItemModel(250, "ExtraHP"),
+                 new SelectItemModel(251, "Conversion"),
+                 new SelectItemModel(252, "StyleAbsorb"),
+                 new SelectItemModel(253, "RealmPoints"),
+                 new SelectItemModel(254, "ArcaneSyphon"),
+                 new SelectItemModel(255, "LivingEffectiveness")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindBonusAll(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                 new SelectItemModel(1, "Strength"),
+                 new SelectItemModel(2, "Dexterity"),
+                 new SelectItemModel(3, "Constitution"),
+                 new SelectItemModel(4, "Quickness"),
+                 new SelectItemModel(5, "Intelligence"),
+                 new SelectItemModel(6, "Piety"),
+                 new SelectItemModel(7, "Empathy"),
+                 new SelectItemModel(8, "Charisma"),
+                 new SelectItemModel(9, "Max Mana"),
+                 new SelectItemModel(10, "Max Health"),
+                 new SelectItemModel(156, "Acuity"),
+                 new SelectItemModel(201, "Strength Cap"),
+                 new SelectItemModel(202, "Dexterity Cap"),
+                 new SelectItemModel(203, "Constitution Cap"),
+                 new SelectItemModel(204, "Quickness Cap"),
+                 new SelectItemModel(205, "Intelligence Cap"),
+                 new SelectItemModel(206, "Piety Cap"),
+                 new SelectItemModel(207, "Empathy Cap"),
+                 new SelectItemModel(208, "Charisma Cap"),
+                 new SelectItemModel(209, "Acuity Cap"),
+                 new SelectItemModel(210, "Max Health Cap"),
+                 new SelectItemModel(211, "Max Mana Cap"),
+                 new SelectItemModel(11, "Body Resist"),
+                 new SelectItemModel(12, "Cold Resist"),
+                 new SelectItemModel(13, "Crush Resist"),
+                 new SelectItemModel(14, "Energy Resist"),
+                 new SelectItemModel(15, "Heat Resist"),
+                 new SelectItemModel(16, "Matter Resist"),
+                 new SelectItemModel(17, "Slash Resist"),
+                 new SelectItemModel(18, "Spirit Resist"),
+                 new SelectItemModel(19, "Thrust Resist"),
+                 new SelectItemModel(221, "Body Resist Cap"),
+                 new SelectItemModel(222, "Cold Resist Cap"),
+                 new SelectItemModel(223, "Crush Resist Cap"),
+                 new SelectItemModel(224, "Energy Resist Cap"),
+                 new SelectItemModel(225, "Heat Resist Cap"),
+                 new SelectItemModel(226, "Matter Resist Cap"),
+                 new SelectItemModel(227, "Slash Resist Cap"),
+                 new SelectItemModel(228, "Spirit Resist Cap"),
+                 new SelectItemModel(229, "Thrust Resist Cap"),
+                 new SelectItemModel(20, "Two Handed Skill"),
+                 new SelectItemModel(21, "Body Magic Skill"),
+                 new SelectItemModel(22, "Chants Skill"),
+                 new SelectItemModel(23, "Critical Strikes Skill"),
+                 new SelectItemModel(24, "Cross Bows Skill"),
+                 new SelectItemModel(25, "Crushing Skill"),
+                 new SelectItemModel(26, "Death Servant Skill"),
+                 new SelectItemModel(27, "Death Sight Skill"),
+                 new SelectItemModel(28, "Dual Wield Skill"),
+                 new SelectItemModel(29, "Earth Magic Skill"),
+                 new SelectItemModel(30, "Enhancement Skill"),
+                 new SelectItemModel(31, "Envenom Skill"),
+                 new SelectItemModel(32, "Fire Magic Skill"),
+                 new SelectItemModel(33, "Flexible Skill"),
+                 new SelectItemModel(34, "Cold Magic Skill"),
+                 new SelectItemModel(35, "Instruments Skill"),
+                 new SelectItemModel(36, "Long Bows Skill"),
+                 new SelectItemModel(37, "Matter Magic Skill"),
+                 new SelectItemModel(38, "Mind Magic Skill"),
+                 new SelectItemModel(39, "Painworking Skill"),
+                 new SelectItemModel(40, "Parry Skill"),
+                 new SelectItemModel(41, "Polearms Skill"),
+                 new SelectItemModel(42, "Rejuvenation Skill"),
+                 new SelectItemModel(43, "Shields Skill"),
+                 new SelectItemModel(44, "Slashing Skill"),
+                 new SelectItemModel(45, "Smiting Skill"),
+                 new SelectItemModel(46, "Soulrending Skill"),
+                 new SelectItemModel(47, "Spirit Magic Skill"),
+                 new SelectItemModel(48, "Staff Skill"),
+                 new SelectItemModel(49, "Stealth Skill"),
+                 new SelectItemModel(50, "Thrusting Skill"),
+                 new SelectItemModel(51, "Wind Magic Skill"),
+                 new SelectItemModel(52, "Sword Skill"),
+                 new SelectItemModel(53, "Hammer Skill"),
+                 new SelectItemModel(54, "Axe Skill"),
+                 new SelectItemModel(55, "Left Axe Skill"),
+                 new SelectItemModel(56, "Spear Skill"),
+                 new SelectItemModel(57, "Mending Skill"),
+                 new SelectItemModel(58, "Augmentation Skill"),
+                 new SelectItemModel(60, "Darkness Magic Skill"),
+                 new SelectItemModel(61, "Suppression Magic Skill"),
+                 new SelectItemModel(62, "Runecarving Skill"),
+                 new SelectItemModel(63, "Stormcalling Skill"),
+                 new SelectItemModel(64, "Beast Craft Skill"),
+                 new SelectItemModel(65, "Light Magic Skill"),
+                 new SelectItemModel(66, "Void Magic Skill"),
+                 new SelectItemModel(67, "Mana Magic Skill"),
+                 new SelectItemModel(68, "Composite Bow Skill"),
+                 new SelectItemModel(69, "Battlesongs Skill"),
+                 new SelectItemModel(70, "Enchantments Skill"),
+                 new SelectItemModel(72, "Blades Skill"),
+                 new SelectItemModel(73, "Blunt Skill"),
+                 new SelectItemModel(74, "Piercing Skill"),
+                 new SelectItemModel(75, "Large Weapon Skill"),
+                 new SelectItemModel(76, "Mentalism Skill"),
+                 new SelectItemModel(77, "Regrowth Skill"),
+                 new SelectItemModel(78, "Nurture Skill"),
+                 new SelectItemModel(79, "Nature Skill"),
+                 new SelectItemModel(80, "Music Skill"),
+                 new SelectItemModel(81, "Celtic Dual Skill"),
+                 new SelectItemModel(82, "Celtic Spear Skill"),
+                 new SelectItemModel(83, "Recurved Bow Skill"),
+                 new SelectItemModel(84, "Valor Skill"),
+                 new SelectItemModel(85, "Subterranean Skill"),
+                 new SelectItemModel(86, "Bone Army Skill"),
+                 new SelectItemModel(87, "Verdant Path Skill"),
+                 new SelectItemModel(88, "Creeping Path Skill"),
+                 new SelectItemModel(89, "Arboreal Path Skill"),
+                 new SelectItemModel(90, "Scythe Skill"),
+                 new SelectItemModel(91, "Thrown Weapons Skill"),
+                 new SelectItemModel(92, "Hand to Hand Skill"),
+                 new SelectItemModel(93, "Short Bow Skill"),
+                 new SelectItemModel(94, "Pacification Skill"),
+                 new SelectItemModel(95, "Savagery Skill"),
+                 new SelectItemModel(96, "Nightshade Magic Skill"),
+                 new SelectItemModel(97, "Pathfinding Skill"),
+                 new SelectItemModel(98, "Summoning Magic Skill"),
+                 new SelectItemModel(99, "Dementia Skill"),
+                 new SelectItemModel(100, "Shadow Mastery Skill"),
+                 new SelectItemModel(101, "Vampiiric Embrace Skill"),
+                 new SelectItemModel(102, "Ethereal Shriek Skill"),
+                 new SelectItemModel(103, "Phantasmal Wail Skill"),
+                 new SelectItemModel(104, "Spectral Force Skill"),
+                 new SelectItemModel(105, "Odins Will Skill"),
+                 new SelectItemModel(106, "Cursing Skill"),
+                 new SelectItemModel(107, "Hexing Skill"),
+                 new SelectItemModel(108, "Witchcraft Skill"),
+                 new SelectItemModel(109, "Mauler Staff Skill"),
+                 new SelectItemModel(110, "Fist Wraps Skill"),
+                 new SelectItemModel(111, "Power Strikes Skill"),
+                 new SelectItemModel(112, "Magnetism Skill"),
+                 new SelectItemModel(113, "Aura Manipulation Skill"),
+                 new SelectItemModel(114, "Spectral Guard Skill"),
+                 new SelectItemModel(115, "Archery Skill"),
+                 new SelectItemModel(120, "Darkness Focus"),
+                 new SelectItemModel(121, "Suppression Focus"),
+                 new SelectItemModel(122, "Runecarving Focus"),
+                 new SelectItemModel(123, "Spirit Magic Focus"),
+                 new SelectItemModel(124, "Fire Magic Focus"),
+                 new SelectItemModel(125, "Air Magic Focus"),
+                 new SelectItemModel(126, "Cold Magic Focus"),
+                 new SelectItemModel(127, "Earth Magic Focus"),
+                 new SelectItemModel(128, "Light Magic Focus"),
+                 new SelectItemModel(129, "Body Magic Focus"),
+                 new SelectItemModel(130, "Matter Magic Focus"),
+                 new SelectItemModel(132, "Mind Magic Focus"),
+                 new SelectItemModel(133, "Void Magic Focus"),
+                 new SelectItemModel(134, "Mana Magic Focus"),
+                 new SelectItemModel(135, "Enchantments Focus"),
+                 new SelectItemModel(136, "Mentalism Focus"),
+                 new SelectItemModel(137, "Summoning Magic Focus"),
+                 new SelectItemModel(138, "Bone Army Focus"),
+                 new SelectItemModel(139, "Painworking Focus"),
+                 new SelectItemModel(140, "Death Sight Focus"),
+                 new SelectItemModel(141, "Death Servant Focus"),
+                 new SelectItemModel(142, "Verdant Path Focus"),
+                 new SelectItemModel(143, "Creeping Path Focus"),
+                 new SelectItemModel(144, "Arboreal Path Focus"),
+                 new SelectItemModel(157, "Ethereal Shriek Focus"),
+                 new SelectItemModel(158, "Phantasmal Wail Focus"),
+                 new SelectItemModel(159, "Spectral Force Focus"),
+                 new SelectItemModel(160, "Cursing Focus"),
+                 new SelectItemModel(161, "Hexing Focus"),
+                 new SelectItemModel(162, "Witchcraft Focus"),
+                 new SelectItemModel(188, "Archery Speed"),
+                 new SelectItemModel(189, "Arrow Recovery"),
+                 new SelectItemModel(190, "Buff Effectiveness"),
+                 new SelectItemModel(191, "Casting Speed"),
+                 new SelectItemModel(192, "Death EXP Loss Redution"),
+                 new SelectItemModel(193, "Debuff Effectiveness"),
+                 new SelectItemModel(194, "Fatigue"),
+                 new SelectItemModel(195, "Healing Effectiveness"),
+                 new SelectItemModel(196, "Power Pool"),
+                 new SelectItemModel(197, "Resist Pierce"),
+                 new SelectItemModel(198, "Spell Damage"),
+                 new SelectItemModel(199, "Spell Duration"),
+                 new SelectItemModel(200, "Style Damage"),
+                 new SelectItemModel(233, "MythicalSafeFall"),
+                 new SelectItemModel(234, "MythicalDiscumbering"),
+                 new SelectItemModel(235, "MythicalCoin"),
+                 new SelectItemModel(236, "MythicalStrCapBonus"),
+                 new SelectItemModel(237, "MythicalDexCapBonus"),
+                 new SelectItemModel(238, "MythicalConCapBonus"),
+                 new SelectItemModel(239, "MythicalQuiCapBonus"),
+                 new SelectItemModel(240, "MythicalIntCapBonus"),
+                 new SelectItemModel(241, "MythicalPieCapBonus"),
+                 new SelectItemModel(242, "MythicalEmpCapBonus"),
+                 new SelectItemModel(243, "MythicalChaCapBonus"),
+                 new SelectItemModel(244, "MythicalAcuCapBonus"),
+                 new SelectItemModel(145, "Max Speed"),
+                 new SelectItemModel(147, "Max Concentration"),
+                 new SelectItemModel(148, "Armor Factor"),
+                 new SelectItemModel(149, "Armor Absorption"),
+                 new SelectItemModel(150, "HealthRegenerationRate"),
+                 new SelectItemModel(151, "PowerRegenerationRate"),
+                 new SelectItemModel(152, "EnduranceRegenerationRate"),
+                 new SelectItemModel(153, "SpellRange"),
+                 new SelectItemModel(154, "ArcheryRange"),
+                 new SelectItemModel(155, "MeleeSpeed"),
+                 new SelectItemModel(163, "AllMagicSkills"),
+                 new SelectItemModel(164, "AllMeleeWeaponSkills"),
+                 new SelectItemModel(165, "AllFocusLevels"),
+                 new SelectItemModel(166, "LivingEffectiveLevel"),
+                 new SelectItemModel(167, "AllDualWieldingSkills"),
+                 new SelectItemModel(168, "AllArcherySkills"),
+                 new SelectItemModel(169, "EvadeChance"),
+                 new SelectItemModel(170, "BlockChance"),
+                 new SelectItemModel(171, "ParryChance"),
+                 new SelectItemModel(172, "FatigueConsumption"),
+                 new SelectItemModel(173, "MeleeDamage"),
+                 new SelectItemModel(174, "RangedDamage"),
+                 new SelectItemModel(175, "FumbleChance"),
+                 new SelectItemModel(176, "MesmerizeDurationReduction"),
+                 new SelectItemModel(177, "StunDurationReduction"),
+                 new SelectItemModel(178, "SpeedDecreaseDurationReduction"),
+                 new SelectItemModel(179, "BladeturnReinforcement"),
+                 new SelectItemModel(180, "DefensiveBonus"),
+                 new SelectItemModel(181, "SpellFumbleChance"),
+                 new SelectItemModel(182, "NegativeReduction"),
+                 new SelectItemModel(183, "PieceAblative"),
+                 new SelectItemModel(184, "ReactionaryStyleDamage"),
+                 new SelectItemModel(185, "SpellPowerCost"),
+                 new SelectItemModel(186, "StyleCostReduction"),
+                 new SelectItemModel(187, "ToHitBonus"),
+                 new SelectItemModel(212, "WeaponSkill"),
+                 new SelectItemModel(213, "AllSkills"),
+                 new SelectItemModel(214, "CriticalMeleeHitChance"),
+                 new SelectItemModel(215, "CriticalArcheryHitChance"),
+                 new SelectItemModel(216, "CriticalSpellHitChance"),
+                 new SelectItemModel(217, "WaterSpeed"),
+                 new SelectItemModel(218, "SpellLevel"),
+                 new SelectItemModel(219, "MissHit"),
+                 new SelectItemModel(220, "KeepDamage"),
+                 new SelectItemModel(230, "DPS"),
+                 new SelectItemModel(231, "MagicAbsorption"),
+                 new SelectItemModel(232, "CriticalHealHitChance"),
+                 new SelectItemModel(247, "BountyPoints"),
+                 new SelectItemModel(248, "XpPoints"),
+                 new SelectItemModel(249, "Resist_Natural"),
+                 new SelectItemModel(250, "ExtraHP"),
+                 new SelectItemModel(251, "Conversion"),
+                 new SelectItemModel(252, "StyleAbsorb"),
+                 new SelectItemModel(253, "RealmPoints"),
+                 new SelectItemModel(254, "ArcaneSyphon"),
+                 new SelectItemModel(255, "LivingEffectiveness")
+            };
+
+            BindData(input, items);
+        }
+        #endregion
 
         public class SelectItemModel
         {
