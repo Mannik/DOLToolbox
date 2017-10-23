@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Forms;
@@ -113,494 +113,115 @@ namespace MannikToolbox.Controls
             ComboboxService.BindColors(_Color);
             ComboboxService.BindItemSlot(_Item_Type);
 
+            _Object_Type.AutoCompleteCustomSource.AddRange(_Object_Type.Items.Cast<ComboboxService.SelectItemModel>().Select(x => x.Value).ToArray());
         }
 
-      
-        #region BonusCatagory Code
+        private void TypeBinder(string prefix)
+        {
+            var categoryField = GetType()
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .First(x => x.Name == $@"{prefix}Catagory");
+
+            var bonusField = GetType()
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .First(x => x.Name == $@"_{prefix}Type");
+
+            var category = categoryField.GetValue(this) as ComboBox;
+            var type = bonusField.GetValue(this) as ComboBox;
+
+            if (type == null || category == null)
+            {
+                return;
+            }
+
+            switch (category.SelectedIndex)
+            {
+                case 1:
+                    ComboboxService.BindBonusAll(type);
+                    break;
+                case 2:
+                    ComboboxService.BindBonusStats(type);
+                    break;
+                case 3:
+                    ComboboxService.BindBonusStatCap(type);
+                    break;
+                case 4:
+                    ComboboxService.BindBonusResists(type);
+                    break;
+                case 5:
+                    ComboboxService.BindBonusResistCap(type);
+                    break;
+                case 6:
+                    ComboboxService.BindBonusSkills(type);
+                    break;
+                case 7:
+                    ComboboxService.BindBonusFocus(type);
+                    break;
+                case 8:
+                    ComboboxService.BindBonusToa(type);
+                    break;
+                case 9:
+                    ComboboxService.BindBonusOther(type);
+                    break;
+                case 10:
+                    ComboboxService.BindBonusMythical(type);
+                    break;
+            }
+        }
+        
         private void Bonus1Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus1Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus1Type);
-            }
-            else if (Bonus1Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus1Type);
-            }
+            TypeBinder("Bonus1");
         }
 
         private void Bonus2Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus2Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus2Type);
-            }
-            else if (Bonus2Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus2Type);
-            }
+            TypeBinder("Bonus2");
         }
 
         private void Bonus3Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus3Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus3Type);
-            }
-            else if (Bonus3Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus3Type);
-            }
+            TypeBinder("Bonus3");
         }
 
         private void Bonus4Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus4Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus4Type);
-            }
-            else if (Bonus4Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus4Type);
-            }
+            TypeBinder("Bonus4");
         }
 
         private void Bonus5Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus5Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus5Type);
-            }
-            else if (Bonus5Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus5Type);
-            }
+            TypeBinder("Bonus5");
         }
 
         private void Bonus6Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus6Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus6Type);
-            }
-            else if (Bonus6Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus6Type);
-            }
+            TypeBinder("Bonus6");
         }
 
         private void Bonus7Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus7Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus7Type);
-            }
-            else if (Bonus7Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus7Type);
-            }
+            TypeBinder("Bonus7");
         }
 
         private void Bonus8Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus8Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus8Type);
-            }
-            else if (Bonus8Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus8Type);
-            }
+            TypeBinder("Bonus8");
         }
 
         private void Bonus9Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus9Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus9Type);
-            }
-            else if (Bonus9Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus9Type);
-            }
+            TypeBinder("Bonus9");
         }
 
         private void Bonus10Catagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Bonus10Catagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_Bonus10Type);
-            }
-            else if (Bonus10Catagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_Bonus10Type);
-            }
+            TypeBinder("Bonus10");
         }
 
         private void ExtraBonusCatagory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ExtraBonusCatagory.SelectedIndex == 1)
-            {
-                ComboboxService.BindBonusAll(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 2)
-            {
-                ComboboxService.BindBonusStats(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 3)
-            {
-                ComboboxService.BindBonusStatCap(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 4)
-            {
-                ComboboxService.BindBonusResists(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 5)
-            {
-                ComboboxService.BindBonusResistCap(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 6)
-            {
-                ComboboxService.BindBonusSkills(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 7)
-            {
-                ComboboxService.BindBonusFocus(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 8)
-            {
-                ComboboxService.BindBonusTOA(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 9)
-            {
-                ComboboxService.BindBonusOther(_ExtraBonusType);
-            }
-            else if (ExtraBonusCatagory.SelectedIndex == 10)
-            {
-                ComboboxService.BindBonusMythical(_ExtraBonusType);
-            }
+            TypeBinder("ExtraBonus");
         }
-        #endregion
-
     }
 }
