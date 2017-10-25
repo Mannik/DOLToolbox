@@ -146,6 +146,7 @@
     <Compile Include="Services\BindingService.cs" />
     <Compile Include="Services\ComboboxService.cs" />
     <Compile Include="Services\ConnectionStringService.cs" />
+    <Compile Include="Services\ItemBonusService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\NpcTemplateService.cs" />
     <Compile Include="Services\MobService.cs" />
