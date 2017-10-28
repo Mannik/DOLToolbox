@@ -736,6 +736,7 @@
             // 
             // _InstrumentRequirement
             // 
+            this._InstrumentRequirement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._InstrumentRequirement.FormattingEnabled = true;
             this._InstrumentRequirement.Items.AddRange(new object[] {
             "None",
@@ -891,6 +892,7 @@
             // 
             // _DamageType
             // 
+            this._DamageType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._DamageType.FormattingEnabled = true;
             this._DamageType.Items.AddRange(new object[] {
             "Natural",
@@ -1015,6 +1017,7 @@
             // 
             // Target
             // 
+            this.Target.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Target.FormattingEnabled = true;
             this.Target.Location = new System.Drawing.Point(214, 74);
             this.Target.Name = "Target";

@@ -178,6 +178,7 @@
             // 
             // _Region
             // 
+            this._Region.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Region.FormattingEnabled = true;
             this._Region.Location = new System.Drawing.Point(68, 116);
             this._Region.Name = "_Region";
@@ -470,6 +471,7 @@
             // 
             // _BodyType
             // 
+            this._BodyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._BodyType.FormattingEnabled = true;
             this._BodyType.Location = new System.Drawing.Point(239, 120);
             this._BodyType.Name = "_BodyType";
@@ -478,6 +480,7 @@
             // 
             // _Gender
             // 
+            this._Gender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Gender.FormattingEnabled = true;
             this._Gender.Location = new System.Drawing.Point(408, 118);
             this._Gender.Name = "_Gender";
@@ -486,6 +489,7 @@
             // 
             // _Realm
             // 
+            this._Realm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Realm.FormattingEnabled = true;
             this._Realm.Location = new System.Drawing.Point(360, 143);
             this._Realm.Name = "_Realm";
@@ -494,6 +498,7 @@
             // 
             // _Race
             // 
+            this._Race.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Race.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this._Race.FormattingEnabled = true;
             this._Race.Location = new System.Drawing.Point(90, 143);
@@ -880,6 +885,7 @@
             // 
             // _MeleeDamageType
             // 
+            this._MeleeDamageType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._MeleeDamageType.FormattingEnabled = true;
             this._MeleeDamageType.Location = new System.Drawing.Point(115, 65);
             this._MeleeDamageType.Name = "_MeleeDamageType";
