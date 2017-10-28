@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MannikToolbox.Controls
+namespace MannikToolbox.Forms
 {
     public partial class LoadingForm : Form
     {
