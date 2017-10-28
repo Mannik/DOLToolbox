@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,25 +50,19 @@ namespace MannikToolbox.Controls
             };
 
             if (dialog.ShowDialog(this) == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.Input.Text))
-            {
                 LoadMob(dialog.Input.Text);
-            }
             dialog.Dispose();
         }
 
         private void LoadMob(string mobId)
         {
             if (string.IsNullOrWhiteSpace(mobId))
-            {
                 return;
-            }
 
             _mob = _mobService.GetMob(mobId);
 
             if (_mob == null)
-            {
                 return;
-            }
 
             pictureBox1.Image = _modelImageService.LoadMob(_mob.Model);
 
@@ -79,9 +74,7 @@ namespace MannikToolbox.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             if (_mob == null)
-            {
                 return;
-            }
 
             BindingService.SyncData(_mob, this);
             SyncFlags();
@@ -95,20 +88,15 @@ namespace MannikToolbox.Controls
             pictureBox1.Image = null;
 
             if (int.TryParse(_Model.Text, out var modelId))
-            {
                 pictureBox1.Image = _modelImageService.LoadMob(modelId);
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             var mobsearch = new MobSearch();
 
-            mobsearch.SelectNpcClicked += (o, args) =>
-            {
-                LoadMob(o.ToString());
-            };
-            
+            mobsearch.SelectNpcClicked += (o, args) => { LoadMob(o.ToString()); };
+
             mobsearch.ShowDialog(this);
         }
 
@@ -135,7 +123,7 @@ namespace MannikToolbox.Controls
 
         private void BindFlags()
         {
-            var flagsArray = new BitArray(new[] { (int)_mob.Flags }).Cast<bool>().ToArray();
+            var flagsArray = new BitArray(new[] {(int) _mob.Flags}).Cast<bool>().ToArray();
 
             _FlagsGhost.Checked = flagsArray[0];
             _FlagsStealth.Checked = flagsArray[1];
@@ -165,9 +153,9 @@ namespace MannikToolbox.Controls
             var flagsArray = new BitArray(boolArray);
 
 
-            int[] array = new int[1];
+            var array = new int[1];
             flagsArray.CopyTo(array, 0);
-            _mob.Flags = (uint)array[0];
+            _mob.Flags = (uint) array[0];
         }
 
         private void BindWeaponSlots()
@@ -221,18 +209,33 @@ namespace MannikToolbox.Controls
             _mob.VisibleWeaponSlots = 255;
         }
 
-        private void _Race_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selected = _Race.SelectedItem as ComboboxService.SelectItemModel;
-            if (_raceResists != null && selected?.Id != null && _raceResists.ContainsKey(selected.Id.Value))
-            {
-                _toolTip.SetToolTip(label30, _raceResists[selected.Id.Value]);
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             BindingService.ClearData(this);
         }
+
+        private void _Race_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            using (var br = new SolidBrush(e.ForeColor))
+            {
+                e.Graphics.DrawString(_Race.GetItemText(_Race.Items[e.Index]), e.Font, br, e.Bounds);
+            }
+
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected) return;
+            var selected = _Race.SelectedItem as ComboboxService.SelectItemModel;
+            if (_raceResists != null && selected?.Id != null && _raceResists.ContainsKey(selected.Id.Value))
+            {
+                toolTip1.Show(_raceResists[selected.Id.Value], _Race, e.Bounds.Right, e.Bounds.Bottom);
+            }
+            else
+            {
+                toolTip1.Hide(_Race);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void _Race_DropDownClosed(object sender, EventArgs e) => toolTip1.Hide(_Race);
     }
 }
