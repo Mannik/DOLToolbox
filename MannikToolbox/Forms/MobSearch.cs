@@ -25,7 +25,7 @@ namespace MannikToolbox.Forms
 
         private void MobSearch_Load(object sender, EventArgs e)
         {
-            Text = $@"Mannik/Loki's Toolbox ({ConnectionStringService.ConnectionString.Server})";
+            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
             GetPage();
         }
 
