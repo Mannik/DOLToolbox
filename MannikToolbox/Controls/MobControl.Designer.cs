@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._Region = new System.Windows.Forms.ComboBox();
             this._Y = new System.Windows.Forms.TextBox();
@@ -143,7 +144,8 @@
             this._WpnSlots1H = new System.Windows.Forms.RadioButton();
             this._WpnSlotsRange = new System.Windows.Forms.RadioButton();
             this._WpnSlots2H = new System.Windows.Forms.RadioButton();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -497,12 +499,14 @@
             // _Race
             // 
             this._Race.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Race.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this._Race.FormattingEnabled = true;
-            this._Race.Location = new System.Drawing.Point(104, 143);
+            this._Race.Location = new System.Drawing.Point(90, 143);
             this._Race.Name = "_Race";
-            this._Race.Size = new System.Drawing.Size(107, 21);
+            this._Race.Size = new System.Drawing.Size(131, 21);
             this._Race.TabIndex = 7;
-            this._Race.SelectedIndexChanged += new System.EventHandler(this._Race_SelectedIndexChanged);
+            this._Race.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this._Race_DrawItem);
+            this._Race.DropDownClosed += new System.EventHandler(this._Race_DropDownClosed);
             // 
             // label46
             // 
@@ -562,9 +566,9 @@
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(0, 146);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(98, 13);
+            this.label30.Size = new System.Drawing.Size(86, 13);
             this.label30.TabIndex = 46;
-            this.label30.Text = "Resist Template (?)";
+            this.label30.Text = "Resist Template ";
             // 
             // _NPCTemplateID
             // 
@@ -1242,21 +1246,21 @@
             this._WpnSlots2H.Text = "Two Hand";
             this._WpnSlots2H.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnClear
             // 
-            this.button3.Location = new System.Drawing.Point(807, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Clear";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnClear.Location = new System.Drawing.Point(807, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 13;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.Button3_Click);
             // 
             // MobControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox7);
@@ -1410,6 +1414,7 @@
         private System.Windows.Forms.RadioButton _WpnSlots1H;
         private System.Windows.Forms.RadioButton _WpnSlotsRange;
         private System.Windows.Forms.RadioButton _WpnSlots2H;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
