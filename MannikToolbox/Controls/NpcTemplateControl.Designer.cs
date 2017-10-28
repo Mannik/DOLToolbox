@@ -192,6 +192,7 @@
             // 
             // _BodyType
             // 
+            this._BodyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._BodyType.FormattingEnabled = true;
             this._BodyType.Location = new System.Drawing.Point(359, 90);
             this._BodyType.Name = "_BodyType";
@@ -200,6 +201,7 @@
             // 
             // _MeleeDamageType
             // 
+            this._MeleeDamageType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._MeleeDamageType.FormattingEnabled = true;
             this._MeleeDamageType.Location = new System.Drawing.Point(124, 64);
             this._MeleeDamageType.Name = "_MeleeDamageType";
@@ -217,6 +219,7 @@
             // 
             // _Gender
             // 
+            this._Gender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Gender.FormattingEnabled = true;
             this._Gender.Location = new System.Drawing.Point(547, 117);
             this._Gender.Name = "_Gender";
@@ -299,6 +302,7 @@
             // 
             // _Race
             // 
+            this._Race.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Race.FormattingEnabled = true;
             this._Race.Location = new System.Drawing.Point(359, 117);
             this._Race.Name = "_Race";

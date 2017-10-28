@@ -784,6 +784,24 @@ namespace MannikToolbox.Services
             BindData(input, items);
         }
 
+        public static void BindItemExtension(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(0, "0"),
+                new SelectItemModel(1, "1"),
+                new SelectItemModel(2, "2"),
+                new SelectItemModel(3, "3"),
+                new SelectItemModel(4, "4"),
+                new SelectItemModel(5, "5"),
+                new SelectItemModel(6, "6"),
+                new SelectItemModel(7, "7"),
+                new SelectItemModel(8, "8")
+            };
+
+            BindData(input, items);
+        }
+
         public static void BindBonusStats(ComboBox input)
         {
             var items = ItemBonusService.Bonuses

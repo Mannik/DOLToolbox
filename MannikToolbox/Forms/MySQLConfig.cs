@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using MannikToolbox.Services;
 using MySql.Data.MySqlClient;
 
-namespace MannikToolbox
+namespace MannikToolbox.Forms
 {
     public partial class MySqlConfig : Form
     {

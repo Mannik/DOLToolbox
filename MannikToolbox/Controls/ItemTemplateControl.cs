@@ -55,7 +55,7 @@ namespace MannikToolbox.Controls
                 return;
             }
 
-            pictureBox1.Image = _modelImageService.LoadItem(_item.Model);
+            pictureBox1.Image = _modelImageService.LoadItem(_item.Model, pictureBox1.Width, pictureBox1.Height);
 
             BindingService.BindData(_item, this);
 
@@ -96,6 +96,7 @@ namespace MannikToolbox.Controls
 
         private void SetupDropdowns()
         {
+            ComboboxService.BindItemExtension(_Extension);
             ComboboxService.BindRealms(_Realm);
             ComboboxService.BindWeaponDamageTypes(_Type_Damage);
             ComboboxService.BindObjectType(_Object_Type);
@@ -222,6 +223,24 @@ namespace MannikToolbox.Controls
         private void ExtraBonusCatagory_SelectedIndexChanged(object sender, EventArgs e)
         {
             TypeBinder("ExtraBonus");
+        }
+
+        private void itemSearch_Click_1(object sender, EventArgs e)
+        {
+            var search = new ItemSearchForm();
+
+            search.SelectClicked += (o, args) =>
+            {
+                if (!(o is ItemTemplate item))
+                {
+                    return;
+                }
+
+                LoadItem(item.ObjectId);
+
+            };
+
+            search.ShowDialog(this);
         }
     }
 }

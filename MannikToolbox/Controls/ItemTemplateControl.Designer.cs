@@ -227,6 +227,7 @@
             this.itemSearch.TabIndex = 2;
             this.itemSearch.Text = "Search";
             this.itemSearch.UseVisualStyleBackColor = true;
+            this.itemSearch.Click += new System.EventHandler(this.itemSearch_Click_1);
             // 
             // groupBox2
             // 
@@ -315,6 +316,7 @@
             // 
             // _Effect
             // 
+            this._Effect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Effect.FormattingEnabled = true;
             this._Effect.Location = new System.Drawing.Point(297, 16);
             this._Effect.Name = "_Effect";
@@ -463,6 +465,7 @@
             // 
             // _Realm
             // 
+            this._Realm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Realm.FormattingEnabled = true;
             this._Realm.Location = new System.Drawing.Point(458, 64);
             this._Realm.Name = "_Realm";
@@ -546,6 +549,7 @@
             // 
             // _Type_Damage
             // 
+            this._Type_Damage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Type_Damage.FormattingEnabled = true;
             this._Type_Damage.Location = new System.Drawing.Point(416, 39);
             this._Type_Damage.Name = "_Type_Damage";
@@ -563,17 +567,8 @@
             // 
             // _Extension
             // 
+            this._Extension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Extension.FormattingEnabled = true;
-            this._Extension.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8"});
             this._Extension.Location = new System.Drawing.Point(416, 16);
             this._Extension.Name = "_Extension";
             this._Extension.Size = new System.Drawing.Size(68, 21);
@@ -688,6 +683,7 @@
             // 
             // _Color
             // 
+            this._Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Color.FormattingEnabled = true;
             this._Color.Location = new System.Drawing.Point(179, 39);
             this._Color.Name = "_Color";
@@ -705,6 +701,7 @@
             // 
             // _Item_Type
             // 
+            this._Item_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Item_Type.FormattingEnabled = true;
             this._Item_Type.Location = new System.Drawing.Point(46, 65);
             this._Item_Type.Name = "_Item_Type";
@@ -743,6 +740,7 @@
             // 
             // _Object_Type
             // 
+            this._Object_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Object_Type.FormattingEnabled = true;
             this._Object_Type.Location = new System.Drawing.Point(179, 64);
             this._Object_Type.Name = "_Object_Type";
@@ -883,6 +881,7 @@
             // 
             // _ExtraBonusType
             // 
+            this._ExtraBonusType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ExtraBonusType.FormattingEnabled = true;
             this._ExtraBonusType.Location = new System.Drawing.Point(175, 316);
             this._ExtraBonusType.Name = "_ExtraBonusType";
@@ -891,6 +890,7 @@
             // 
             // ExtraBonusCatagory
             // 
+            this.ExtraBonusCatagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ExtraBonusCatagory.FormattingEnabled = true;
             this.ExtraBonusCatagory.Location = new System.Drawing.Point(71, 316);
             this.ExtraBonusCatagory.Name = "ExtraBonusCatagory";
@@ -925,6 +925,7 @@
             // 
             // _Bonus10Type
             // 
+            this._Bonus10Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus10Type.FormattingEnabled = true;
             this._Bonus10Type.Location = new System.Drawing.Point(175, 285);
             this._Bonus10Type.Name = "_Bonus10Type";
@@ -933,6 +934,7 @@
             // 
             // Bonus10Catagory
             // 
+            this.Bonus10Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus10Catagory.FormattingEnabled = true;
             this.Bonus10Catagory.Location = new System.Drawing.Point(71, 285);
             this.Bonus10Catagory.Name = "Bonus10Catagory";
@@ -967,6 +969,7 @@
             // 
             // _Bonus9Type
             // 
+            this._Bonus9Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus9Type.FormattingEnabled = true;
             this._Bonus9Type.Location = new System.Drawing.Point(175, 255);
             this._Bonus9Type.Name = "_Bonus9Type";
@@ -975,6 +978,7 @@
             // 
             // Bonus9Catagory
             // 
+            this.Bonus9Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus9Catagory.FormattingEnabled = true;
             this.Bonus9Catagory.Location = new System.Drawing.Point(71, 255);
             this.Bonus9Catagory.Name = "Bonus9Catagory";
@@ -1009,6 +1013,7 @@
             // 
             // _Bonus8Type
             // 
+            this._Bonus8Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus8Type.FormattingEnabled = true;
             this._Bonus8Type.Location = new System.Drawing.Point(175, 225);
             this._Bonus8Type.Name = "_Bonus8Type";
@@ -1017,6 +1022,7 @@
             // 
             // Bonus8Catagory
             // 
+            this.Bonus8Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus8Catagory.FormattingEnabled = true;
             this.Bonus8Catagory.Location = new System.Drawing.Point(71, 225);
             this.Bonus8Catagory.Name = "Bonus8Catagory";
@@ -1051,6 +1057,7 @@
             // 
             // _Bonus7Type
             // 
+            this._Bonus7Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus7Type.FormattingEnabled = true;
             this._Bonus7Type.Location = new System.Drawing.Point(175, 194);
             this._Bonus7Type.Name = "_Bonus7Type";
@@ -1059,6 +1066,7 @@
             // 
             // Bonus7Catagory
             // 
+            this.Bonus7Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus7Catagory.FormattingEnabled = true;
             this.Bonus7Catagory.Location = new System.Drawing.Point(71, 194);
             this.Bonus7Catagory.Name = "Bonus7Catagory";
@@ -1093,6 +1101,7 @@
             // 
             // _Bonus6Type
             // 
+            this._Bonus6Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus6Type.FormattingEnabled = true;
             this._Bonus6Type.Location = new System.Drawing.Point(175, 163);
             this._Bonus6Type.Name = "_Bonus6Type";
@@ -1101,6 +1110,7 @@
             // 
             // Bonus6Catagory
             // 
+            this.Bonus6Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus6Catagory.FormattingEnabled = true;
             this.Bonus6Catagory.Location = new System.Drawing.Point(71, 163);
             this.Bonus6Catagory.Name = "Bonus6Catagory";
@@ -1135,6 +1145,7 @@
             // 
             // _Bonus5Type
             // 
+            this._Bonus5Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus5Type.FormattingEnabled = true;
             this._Bonus5Type.Location = new System.Drawing.Point(175, 133);
             this._Bonus5Type.Name = "_Bonus5Type";
@@ -1143,6 +1154,7 @@
             // 
             // Bonus5Catagory
             // 
+            this.Bonus5Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus5Catagory.FormattingEnabled = true;
             this.Bonus5Catagory.Location = new System.Drawing.Point(71, 133);
             this.Bonus5Catagory.Name = "Bonus5Catagory";
@@ -1177,6 +1189,7 @@
             // 
             // _Bonus4Type
             // 
+            this._Bonus4Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus4Type.FormattingEnabled = true;
             this._Bonus4Type.Location = new System.Drawing.Point(175, 102);
             this._Bonus4Type.Name = "_Bonus4Type";
@@ -1185,6 +1198,7 @@
             // 
             // Bonus4Catagory
             // 
+            this.Bonus4Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus4Catagory.FormattingEnabled = true;
             this.Bonus4Catagory.Location = new System.Drawing.Point(71, 102);
             this.Bonus4Catagory.Name = "Bonus4Catagory";
@@ -1219,6 +1233,7 @@
             // 
             // _Bonus3Type
             // 
+            this._Bonus3Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus3Type.FormattingEnabled = true;
             this._Bonus3Type.Location = new System.Drawing.Point(175, 72);
             this._Bonus3Type.Name = "_Bonus3Type";
@@ -1227,6 +1242,7 @@
             // 
             // Bonus3Catagory
             // 
+            this.Bonus3Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus3Catagory.FormattingEnabled = true;
             this.Bonus3Catagory.Location = new System.Drawing.Point(71, 72);
             this.Bonus3Catagory.Name = "Bonus3Catagory";
@@ -1261,6 +1277,7 @@
             // 
             // _Bonus2Type
             // 
+            this._Bonus2Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus2Type.FormattingEnabled = true;
             this._Bonus2Type.Location = new System.Drawing.Point(175, 42);
             this._Bonus2Type.Name = "_Bonus2Type";
@@ -1269,6 +1286,7 @@
             // 
             // Bonus2Catagory
             // 
+            this.Bonus2Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus2Catagory.FormattingEnabled = true;
             this.Bonus2Catagory.Location = new System.Drawing.Point(71, 42);
             this.Bonus2Catagory.Name = "Bonus2Catagory";
@@ -1303,6 +1321,7 @@
             // 
             // _Bonus1Type
             // 
+            this._Bonus1Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus1Type.FormattingEnabled = true;
             this._Bonus1Type.Location = new System.Drawing.Point(175, 13);
             this._Bonus1Type.Name = "_Bonus1Type";
@@ -1311,6 +1330,7 @@
             // 
             // Bonus1Catagory
             // 
+            this.Bonus1Catagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bonus1Catagory.FormattingEnabled = true;
             this.Bonus1Catagory.Location = new System.Drawing.Point(71, 13);
             this.Bonus1Catagory.Name = "Bonus1Catagory";
