@@ -23,6 +23,7 @@ namespace MannikToolbox
             typeof(DBLineXSpell),
             typeof(Race),
             typeof(DBRegions),
+            typeof(MerchantItem),
             typeof(Zones)
         };
 

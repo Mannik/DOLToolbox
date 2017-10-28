@@ -1,4 +1,4 @@
-﻿namespace MannikToolbox.Controls
+﻿namespace MannikToolbox.Forms
 {
     partial class LoadingForm
     {

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MannikToolbox.Controls;
+using MannikToolbox.Forms;
 using MannikToolbox.Services;
 
 namespace MannikToolbox
@@ -89,6 +90,9 @@ namespace MannikToolbox
 
             control = new ItemTemplateControl { Dock = DockStyle.Fill };
             tabItem.Controls.Add(control);
+
+            control = new MerchantItemsControl { Dock = DockStyle.Fill };
+            tabMerchantItems.Controls.Add(control);
         }
 
 		private void Menu_DB_Click(object sender, EventArgs e)

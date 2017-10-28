@@ -6,7 +6,7 @@ using DOL.Database;
 using DOL.GS;
 using MannikToolbox.Services;
 
-namespace MannikToolbox.Controls
+namespace MannikToolbox.Forms
 {
     public partial class MobSearch : Form
     {
