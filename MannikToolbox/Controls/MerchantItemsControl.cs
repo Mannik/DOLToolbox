@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 using DOL.GS;
@@ -21,6 +23,7 @@ namespace MannikToolbox.Controls
         private PageItemModel _selected;
         private int _page;
         private int _selectedIndex;
+        private string _itemListId;
 
         public MerchantItemsControl()
         {
@@ -67,6 +70,7 @@ namespace MannikToolbox.Controls
             }
 
             _merchantItems = _merchantItemService.Get(id);
+            CondenseItems();
 
             if (_merchantItems == null || _merchantItems.Count == 0)
             {
@@ -76,10 +80,24 @@ namespace MannikToolbox.Controls
             LoadPage();
         }
 
+        // method to remove any empty slots in an item list
+        private void CondenseItems()
+        {
+            var pages = _merchantItems.GroupBy(x => x.PageNumber).ToList();
+
+            foreach (var page in pages)
+            {
+                page
+                    .OrderBy(x => x.SlotPosition)
+                    .Select((x, i) => new { Item = x, Index = i})
+                    .ForEach(x => x.Item.SlotPosition = x.Index);
+            }
+        }
+
         private class PageItemModel
         {
             public string Name { get; set; }
-            public long Value { get; set; }
+            public string Value { get; set; }
             public int Level { get; set; }
             public int Position { get; set; }
             public MerchantItem MerchantItem { get; set; }
@@ -89,7 +107,8 @@ namespace MannikToolbox.Controls
 
         private void LoadPage()
         {
-            txtItemListId.Text = _merchantItems.FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.ItemListID))?.ItemListID;
+            _itemListId = _merchantItems.FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.ItemListID))?.ItemListID;
+            txtItemListId.Text = _itemListId;
 
             var page =
                 (from merchItem in _merchantItems.Where(x => x.PageNumber == _page)
@@ -98,7 +117,7 @@ namespace MannikToolbox.Controls
                     select new PageItemModel
                     {
                         Name = item?.Name ?? merchItem.ItemTemplateID,
-                        Value = item?.Price ?? 0,
+                        Value = ValueFormat(item?.Price ?? 0),
                         Level = item?.Level ?? 0,
                         IsItemMissing = item == null,
                         Position = merchItem.SlotPosition + 1,
@@ -119,6 +138,34 @@ namespace MannikToolbox.Controls
             {
                 dataGridView1.Rows[_selectedIndex].Selected = true;
             }
+        }
+
+        private string ValueFormat(long value)
+        {
+            var chars = value.ToString().Reverse().ToList();
+
+            var sb = new StringBuilder("c");
+            for (int i = 0; i < chars.Count; i++)
+            {
+                switch (i)
+                {
+                    case 2:
+                        sb.Insert(0, "s");
+                        break;
+                    case 4:
+                        sb.Insert(0, "g");
+                        break;
+                    case 7:
+                        sb.Insert(0, "p");
+                        break;
+                }
+
+                sb.Insert(0, chars[i]);
+            }
+
+            var strValue = sb.ToString().Replace("00c", "").Replace("00s", "");
+
+            return strValue;
         }
 
         private void SetGridColumns()
@@ -160,12 +207,67 @@ namespace MannikToolbox.Controls
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Clear();
+        }
+
+        private async Task Save()
+        {
+            var loading = new LoadingForm
+            {
+                ProgressText = { Text = @"Saving list" }
+            };
+            loading.Show();
+
+            var templateId = await _merchantItemService.Save(_merchantItems, txtItemListId.Text);
+
+            loading.Close();
+
+            LoadItems(templateId);
+        }
+
+        private void Clear()
+        {
             dataGridView1.DataSource = null;
             _merchantItems.Clear();
             _page = 0;
             _selectedIndex = 0;
             pictureBox1.Image = null;
             txtItemListId.Text = null;
+        }
+
+        private void AddItem()
+        {
+            var search = new ItemSearchForm(_items);
+
+            search.SelectClicked += async (o, args) =>
+            {
+                if (!(o is ItemTemplate item))
+                {
+                    return;
+                }
+
+                var slot = 0;
+                if (_merchantItems != null && _merchantItems.Count(x => x.PageNumber == _page) > 0)
+                {
+                    slot = _merchantItems.Where(x => x.PageNumber == _page).Max(x => x.SlotPosition) + 1;
+                }
+                else
+                {
+                    _merchantItems = new List<MerchantItem>();
+                }
+
+                var merchantItem = new MerchantItem
+                {
+                    ItemTemplateID = item.Id_nb,
+                    PageNumber = _page,
+                    SlotPosition = slot
+                };
+                _merchantItems.Add(merchantItem);
+
+                await Save();
+            };
+
+            search.ShowDialog(this);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -190,7 +292,7 @@ namespace MannikToolbox.Controls
             LoadPage();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private async void button6_Click(object sender, EventArgs e)
         {
             var selectedItem = GetSelected();
             if (selectedItem == null)
@@ -213,14 +315,12 @@ namespace MannikToolbox.Controls
             prevItem.SlotPosition += 1;
             selectedItem.MerchantItem.SlotPosition -= 1;
 
-            var templateId = _merchantItemService.Save(_merchantItems);
-            _merchantItemService.Get(templateId);
+            await Save();
 
-            LoadPage();
             button6.Enabled = true;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private async void button7_Click(object sender, EventArgs e)
         {
             var selectedItem = GetSelected();
             if (selectedItem == null)
@@ -243,14 +343,12 @@ namespace MannikToolbox.Controls
             nextItem.SlotPosition -= 1;
             selectedItem.MerchantItem.SlotPosition += 1;
 
-            var templateId = _merchantItemService.Save(_merchantItems);
-            _merchantItemService.Get(templateId);
+            await Save();
 
-            LoadPage();
             button7.Enabled = true;
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private async void button8_Click(object sender, EventArgs e)
         {
             var selectedItem = GetSelected();
             if (selectedItem == null)
@@ -271,9 +369,7 @@ namespace MannikToolbox.Controls
                                 x.SlotPosition > selectedItem.MerchantItem.SlotPosition)
                     .ForEach(x => x.SlotPosition -= 1);
 
-                var templateId = _merchantItemService.Save(_merchantItems);
-                _merchantItemService.Get(templateId);
-                LoadPage();
+                await Save();
             }
             button7.Enabled = true;
         }
@@ -311,7 +407,7 @@ namespace MannikToolbox.Controls
                 TopMost = true
             };
 
-            search.SelectClicked += (o, args) =>
+            search.SelectClicked += async (o, args) =>
             {
                 var selected = GetSelected();
 
@@ -327,11 +423,7 @@ namespace MannikToolbox.Controls
 
                 selected.MerchantItem.ItemTemplateID = item.Id_nb;
 
-                var templateId = _merchantItemService.Save(_merchantItems);
-                _merchantItemService.Get(templateId);
-
-                LoadPage();
-
+                await Save();
             };
 
             search.ShowDialog(this);
@@ -339,43 +431,13 @@ namespace MannikToolbox.Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AddItem();
+        }
 
-            var search = new ItemSearchForm(_items);
-
-            search.SelectClicked += (o, args) =>
-            {
-                if (!(o is ItemTemplate item))
-                {
-                    return;
-                }
-
-                var slot = 0;
-                if (_merchantItems != null && _merchantItems.Count(x => x.PageNumber == _page) > 0)
-                {
-                    slot = _merchantItems.Where(x => x.PageNumber == _page).Max(x => x.SlotPosition) + 1;
-                }
-                else
-                {
-                    _merchantItems = new List<MerchantItem>();
-                }
-
-                var merchantItem = new MerchantItem
-                {
-                    ItemTemplateID = item.Id_nb,
-                    PageNumber = _page,
-                    SlotPosition = slot,
-                    
-                };
-                _merchantItems.Add(merchantItem);
-
-                var templateId = _merchantItemService.Save(_merchantItems);
-                _merchantItemService.Get(templateId);
-
-                LoadPage();
-
-            };
-
-            search.ShowDialog(this);
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Clear();
+            AddItem();
         }
     }
 }
