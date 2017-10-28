@@ -40,7 +40,7 @@ namespace MannikToolbox.Forms
                 _allData = await _itemService.GetItems();
             }
 
-            Text = $@"Mannik/Loki's Toolbox ({ConnectionStringService.ConnectionString.Server})";
+            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
             GetPage();
         }
 

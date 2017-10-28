@@ -70,7 +70,7 @@ namespace MannikToolbox
                 DatabaseManager.SetDatabaseConnection(progress);
             });
 
-		    Text = $@"Mannik/Loki's Toolbox ({ConnectionStringService.ConnectionString.Server})";
+		    Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
 		    LoadTabForms();
 		}
         
