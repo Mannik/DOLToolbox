@@ -92,6 +92,9 @@ namespace MannikToolbox.Forms
 
             control = new MerchantItemsControl { Dock = DockStyle.Fill };
             tabMerchantItems.Controls.Add(control);
+
+            control = new NpcEquipmentControl { Dock = DockStyle.Fill };
+            tabNpcEquipment.Controls.Add(control);
         }
 
 		private void Menu_DB_Click(object sender, EventArgs e)

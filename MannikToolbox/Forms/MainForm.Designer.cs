@@ -34,13 +34,14 @@
             this.tabNPCTemplate = new System.Windows.Forms.TabPage();
             this.tabQuest = new System.Windows.Forms.TabPage();
             this.tabMob = new System.Windows.Forms.TabPage();
+            this.tabMerchantItems = new System.Windows.Forms.TabPage();
             this.tabServerDetails = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_New = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_DB = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabMerchantItems = new System.Windows.Forms.TabPage();
+            this.tabNpcEquipment = new System.Windows.Forms.TabPage();
             this.ToolboxTabControl.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             this.ToolboxTabControl.Controls.Add(this.tabQuest);
             this.ToolboxTabControl.Controls.Add(this.tabMob);
             this.ToolboxTabControl.Controls.Add(this.tabMerchantItems);
+            this.ToolboxTabControl.Controls.Add(this.tabNpcEquipment);
             this.ToolboxTabControl.Controls.Add(this.tabServerDetails);
             this.ToolboxTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ToolboxTabControl.Location = new System.Drawing.Point(0, 24);
@@ -110,6 +112,15 @@
             this.tabMob.Text = "Mob";
             this.tabMob.UseVisualStyleBackColor = true;
             // 
+            // tabMerchantItems
+            // 
+            this.tabMerchantItems.Location = new System.Drawing.Point(4, 22);
+            this.tabMerchantItems.Name = "tabMerchantItems";
+            this.tabMerchantItems.Size = new System.Drawing.Size(885, 529);
+            this.tabMerchantItems.TabIndex = 6;
+            this.tabMerchantItems.Text = "Merchant Items";
+            this.tabMerchantItems.UseVisualStyleBackColor = true;
+            // 
             // tabServerDetails
             // 
             this.tabServerDetails.BackColor = System.Drawing.Color.White;
@@ -160,14 +171,14 @@
             this.Menu_DB.Text = "Change MySQL Credentials ";
             this.Menu_DB.Click += new System.EventHandler(this.Menu_DB_Click);
             // 
-            // tabMerchantItems
+            // tabNpcEquipment
             // 
-            this.tabMerchantItems.Location = new System.Drawing.Point(4, 22);
-            this.tabMerchantItems.Name = "tabMerchantItems";
-            this.tabMerchantItems.Size = new System.Drawing.Size(885, 529);
-            this.tabMerchantItems.TabIndex = 6;
-            this.tabMerchantItems.Text = "Merchant Items";
-            this.tabMerchantItems.UseVisualStyleBackColor = true;
+            this.tabNpcEquipment.Location = new System.Drawing.Point(4, 22);
+            this.tabNpcEquipment.Name = "tabNpcEquipment";
+            this.tabNpcEquipment.Size = new System.Drawing.Size(885, 529);
+            this.tabNpcEquipment.TabIndex = 7;
+            this.tabNpcEquipment.Text = "NPC Equipment";
+            this.tabNpcEquipment.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -205,6 +216,7 @@
 		private System.Windows.Forms.TabPage tabServerDetails;
         private System.Windows.Forms.TabPage tabMob;
         private System.Windows.Forms.TabPage tabMerchantItems;
+        private System.Windows.Forms.TabPage tabNpcEquipment;
     }
 }
 

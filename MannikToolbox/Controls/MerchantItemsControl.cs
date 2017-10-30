@@ -16,7 +16,7 @@ namespace MannikToolbox.Controls
     {
         private readonly MerchantItemService _merchantItemService;
         private readonly ItemService _itemService;
-        private readonly ModelImageService _modelImageService;
+        private readonly ImageService _modelImageService;
 
         private List<MerchantItem> _merchantItems;
         private List<ItemTemplate> _items;
@@ -31,7 +31,7 @@ namespace MannikToolbox.Controls
 
             _merchantItemService = new MerchantItemService();
             _itemService = new ItemService();
-            _modelImageService =  new ModelImageService();
+            _modelImageService =  new ImageService();
         }
 
         private async void MerchantItemsControl_Load(object sender, EventArgs e)
@@ -309,15 +309,15 @@ namespace MannikToolbox.Controls
             {
                 return;
             }
+            var button = (Button)sender;
 
-            button6.Enabled = false;
+            button.Enabled = false;
             _selectedIndex = dataGridView1.SelectedRows[0].Index - 1;
             prevItem.SlotPosition += 1;
             selectedItem.MerchantItem.SlotPosition -= 1;
 
             await Save();
-
-            button6.Enabled = true;
+            button.Enabled = true;
         }
 
         private async void button7_Click(object sender, EventArgs e)
@@ -337,15 +337,15 @@ namespace MannikToolbox.Controls
             {
                 return;
             }
+            var button = (Button)sender;
 
-            button7.Enabled = false;
+            button.Enabled = false;
             _selectedIndex = dataGridView1.SelectedRows[0].Index + 1;
             nextItem.SlotPosition -= 1;
             selectedItem.MerchantItem.SlotPosition += 1;
 
             await Save();
-
-            button7.Enabled = true;
+            button.Enabled = true;
         }
 
         private async void button8_Click(object sender, EventArgs e)
@@ -355,8 +355,9 @@ namespace MannikToolbox.Controls
             {
                 return;
             }
+            var button = (Button)sender;
 
-            button8.Enabled = false;
+            button.Enabled = false;
             var confirmResult = MessageBox.Show(@"Are you sure to delete the selected item",
                 @"Confirm Delete!!",
                 MessageBoxButtons.YesNo);
@@ -371,7 +372,8 @@ namespace MannikToolbox.Controls
 
                 await Save();
             }
-            button7.Enabled = true;
+
+            button.Enabled = true;
         }
 
         private PageItemModel GetSelected()
@@ -438,6 +440,34 @@ namespace MannikToolbox.Controls
         {
             Clear();
             AddItem();
+        }
+
+        private async void button10_Click(object sender, EventArgs e)
+        {
+            var selectedItem = GetSelected();
+            if (selectedItem == null)
+            {
+                return;
+            }
+            var button = (Button) sender;
+
+            button.Enabled = false;
+            var confirmResult = MessageBox.Show(@"Are you sure to delete the selected list",
+                @"Confirm Delete!!",
+                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                _merchantItems.Remove(selectedItem.MerchantItem);
+
+                _merchantItems
+                    .Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber &&
+                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition)
+                    .ForEach(x => x.SlotPosition -= 1);
+
+                await _merchantItemService.DeleteList(selectedItem.MerchantItem.ItemListID);
+                Clear();
+            }
+            button.Enabled = true;
         }
     }
 }

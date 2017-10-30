@@ -6,19 +6,20 @@ using System.Reflection;
 
 namespace MannikToolbox.Services
 {
-    public class ModelImageService
+    public class ImageService
     {
-        private static string BasePath => $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Assets\Models\";
+        private static string BasePath => $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Assets\";
 
         public Image LoadMob(int modelId)
         {
-            return LoadAsset(modelId, "mobs");
+            return LoadAsset(modelId, @"models\mobs");
         }
 
         public Image LoadItem(int modelId)
         {
-            return LoadAsset(modelId, "items");
+            return LoadAsset(modelId, @"models\items");
         }
+
         public Image LoadMob(int modelId, int maxWidth, int maxHeight)
         {
             var image = LoadMob(modelId);
@@ -31,13 +32,42 @@ namespace MannikToolbox.Services
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
-        private Image LoadAsset(int modelId, string type)
+        public Image Load(string filename)
         {
-            var filePath = $@"{BasePath}{type}\{modelId}.jpg";
+            return LoadAsset(filename);
+        }
+
+        public Image Load(string filename, int maxWidth, int maxHeight)
+        {
+            var image = LoadAsset(filename);
+            return ScaleImage(image, maxWidth, maxHeight);
+        }
+
+        private Image LoadAsset(int modelId, string path)
+        {
+            var filePath = $@"{BasePath}{path}\{modelId}.jpg";
+
+            // have already checked for this model. it returned 404
+            if (File.Exists(filePath.Replace(".jpg", ".txt")))
+            {
+                return null;
+            }
 
             if (!File.Exists(filePath))
             {
-                return DownloadAsset(modelId, filePath, type);
+                return DownloadAsset(modelId, filePath, path);
+            }
+
+            return Image.FromFile(filePath);
+        }
+
+        private Image LoadAsset(string file)
+        {
+            var filePath = $@"{BasePath}\{file}";
+
+            if (!File.Exists(filePath))
+            {
+                return null;
             }
 
             return Image.FromFile(filePath);
@@ -58,8 +88,9 @@ namespace MannikToolbox.Services
                     webClient.DownloadFile($"http://www.dolserver.net/models/Models/{type}/{modelId}.jpg", filePath);
                     return Image.FromFile(filePath);
                 }
-                catch (WebException)
+                catch (WebException ex)  when(ex.Message == "The remote server returned an error: (404) Not Found.")
                 {
+                    File.Create(filePath.Replace(".jpg", ".txt"));
                 }
             }
 

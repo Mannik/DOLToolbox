@@ -14,7 +14,7 @@ namespace MannikToolbox.Controls
     public partial class MobControl : UserControl
     {
         private readonly MobService _mobService;
-        private readonly ModelImageService _modelImageService;
+        private readonly ImageService _modelImageService;
         private readonly ToolTip _toolTip;
         private Mob _mob;
         private Dictionary<int, string> _raceResists;
@@ -23,7 +23,7 @@ namespace MannikToolbox.Controls
         {
             InitializeComponent();
             _mobService = new MobService();
-            _modelImageService = new ModelImageService();
+            _modelImageService = new ImageService();
 
             _toolTip = new ToolTip
             {
@@ -50,7 +50,10 @@ namespace MannikToolbox.Controls
             };
 
             if (dialog.ShowDialog(this) == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.Input.Text))
+            {
                 LoadMob(dialog.Input.Text);
+            }
+
             dialog.Dispose();
         }
 

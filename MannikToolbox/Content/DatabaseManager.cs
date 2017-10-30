@@ -24,7 +24,8 @@ namespace MannikToolbox
             typeof(Race),
             typeof(DBRegions),
             typeof(MerchantItem),
-            typeof(Zones)
+            typeof(Zones),
+            typeof(NPCEquipment)
         };
 
     private static IObjectDatabase m_database;
