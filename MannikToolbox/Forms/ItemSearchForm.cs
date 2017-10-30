@@ -10,7 +10,7 @@ namespace MannikToolbox.Forms
 {
     public partial class ItemSearchForm : Form
     {
-        private readonly ModelImageService _modelImageService = new ModelImageService();
+        private readonly ImageService _modelImageService = new ImageService();
         private readonly ItemService _itemService = new ItemService();
 
         private int _page;
@@ -18,6 +18,7 @@ namespace MannikToolbox.Forms
         private int _selectedIndex;
         private List<ItemTemplate> _allData;
         private List<ItemTemplate> _data;
+        private SearchModel _model = new SearchModel();
 
         public event EventHandler SelectClicked;
 
@@ -33,6 +34,14 @@ namespace MannikToolbox.Forms
             InitializeComponent();
         }
 
+        public ItemSearchForm(List<ItemTemplate> allItems, SearchModel model = null)
+        {
+            _allData = allItems;
+            _model = model;
+
+            InitializeComponent();
+        }
+
         private async  void ItemSearchForm_Load(object sender, EventArgs e)
         {
             if (_allData == null || _allData.Count == 0)
@@ -44,16 +53,37 @@ namespace MannikToolbox.Forms
             GetPage();
         }
 
+        public class SearchModel
+        {
+            public string Name { get; set; }
+            public int? Slot { get; set; }
+        }
+
+        private List<ItemTemplate> Search()
+        {
+            var query = _allData.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(_model.Name))
+            {
+                query = query.Where(x => x.Name.ToLower().Contains(_model.Name));
+            }
+
+            if (_model.Slot.HasValue)
+            {
+                query = query.Where(x => x.Item_Type == _model.Slot);
+            }
+
+            return query.ToList();
+        }
+
         private void GetPage(bool paging = false)
         {
             dataGridView1.Rows.Clear();
 
             if (!paging)
             {
-                var filter = txtFilterMob.Text?.ToLower();
-                _data = _allData
-                    .Where(x => string.IsNullOrWhiteSpace(filter) || x.Name.ToLower().Contains(filter))
-                    .ToList();
+                _model.Name = txtFilterMob.Text?.ToLower();
+                _data = Search();
             }
 
             var page = _data

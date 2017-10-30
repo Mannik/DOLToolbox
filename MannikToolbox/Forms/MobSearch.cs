@@ -14,7 +14,7 @@ namespace MannikToolbox.Forms
         private int _pageSize = 50;
         private List<Mob> _data;
         private IList<Mob> _allData = DatabaseManager.Database.SelectAllObjects<Mob>();
-        private readonly ModelImageService _modelImageService = new ModelImageService();
+        private readonly ImageService _modelImageService = new ImageService();
 
         public event EventHandler SelectNpcClicked;
 

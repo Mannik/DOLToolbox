@@ -11,14 +11,14 @@ namespace MannikToolbox.Controls
     public partial class ItemTemplateControl : UserControl
     {
         private readonly ItemService _itemService;
-        private readonly ModelImageService _modelImageService;
+        private readonly ImageService _modelImageService;
         private ItemTemplate _item;
 
         public ItemTemplateControl()
         {
             InitializeComponent();
             _itemService = new ItemService();
-            _modelImageService = new ModelImageService();
+            _modelImageService = new ImageService();
         }
         private void ItemTemplateControl_Load(object sender, EventArgs e)
         {
@@ -97,6 +97,7 @@ namespace MannikToolbox.Controls
         private void SetupDropdowns()
         {
             ComboboxService.BindItemExtension(_Extension);
+            ComboboxService.BindItemEffect(_Effect);
             ComboboxService.BindRealms(_Realm);
             ComboboxService.BindWeaponDamageTypes(_Type_Damage);
             ComboboxService.BindObjectType(_Object_Type);

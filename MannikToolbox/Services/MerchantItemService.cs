@@ -66,5 +66,15 @@ namespace MannikToolbox.Services
                 return itemListId;
             });
         }
+
+        public async Task DeleteList(string listId)
+        {
+            var items = Get(listId);
+
+            await Task.Run(() =>
+             {
+                 items.ForEach(x => DatabaseManager.Database.DeleteObject(x));
+             });
+        }
     }
 }
