@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Forms;
 using MannikToolbox.Services;
+using System.Threading.Tasks;
 
 namespace MannikToolbox.Controls
 {
@@ -55,7 +56,8 @@ namespace MannikToolbox.Controls
                 return;
             }
 
-            pictureBox1.Image = _modelImageService.LoadItem(_item.Model, pictureBox1.Width, pictureBox1.Height);
+            _modelImageService.LoadItem(_item.Model, pictureBox1.Width, pictureBox1.Height)
+                .ContinueWith(x => pictureBox1.Image = x.Result);
 
             BindingService.BindData(_item, this);
 
@@ -78,7 +80,8 @@ namespace MannikToolbox.Controls
 
             if (int.TryParse(_Model.Text, out var modelId))
             {
-                pictureBox1.Image = _modelImageService.LoadItem(modelId);
+                _modelImageService.LoadItem(modelId, pictureBox1.Width, pictureBox1.Height)
+                    .ContinueWith(x => pictureBox1.Image = x.Result);
             }
         }
 

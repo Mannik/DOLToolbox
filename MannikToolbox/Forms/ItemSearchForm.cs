@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Services;
+using System.Threading.Tasks;
 
 namespace MannikToolbox.Forms
 {
@@ -222,7 +223,8 @@ namespace MannikToolbox.Forms
                 return;
             }
             
-            pictureBox1.Image = _modelImageService.LoadItem(selected.Model);
+            _modelImageService.LoadItem(selected.Model)
+                .ContinueWith(x => pictureBox1.Image = x.Result);
         }
     }
 }

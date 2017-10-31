@@ -66,8 +66,9 @@ namespace MannikToolbox.Controls
 
             if (_mob == null)
                 return;
-
-            pictureBox1.Image = _modelImageService.LoadMob(_mob.Model);
+            
+            _modelImageService.LoadMob(_mob.Model)
+                .ContinueWith(x => pictureBox1.Image = x.Result);
 
             BindingService.BindData(_mob, this);
             BindFlags();
@@ -91,7 +92,10 @@ namespace MannikToolbox.Controls
             pictureBox1.Image = null;
 
             if (int.TryParse(_Model.Text, out var modelId))
-                pictureBox1.Image = _modelImageService.LoadMob(modelId);
+            {
+                _modelImageService.LoadMob(modelId)
+                    .ContinueWith(x => pictureBox1.Image = x.Result);                
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -219,6 +223,11 @@ namespace MannikToolbox.Controls
 
         private void _Race_DrawItem(object sender, DrawItemEventArgs e)
         {
+            if(e.Index == -1)
+            {
+                return;
+            }
+
             e.DrawBackground();
             using (var br = new SolidBrush(e.ForeColor))
             {

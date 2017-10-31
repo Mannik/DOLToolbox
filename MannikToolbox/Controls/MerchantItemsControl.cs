@@ -393,7 +393,8 @@ namespace MannikToolbox.Controls
 
             if (_selected?.Item?.Model != null)
             {
-                pictureBox1.Image = _modelImageService.LoadItem(_selected.Item.Model);
+                _modelImageService.LoadItem(_selected.Item.Model)
+                    .ContinueWith(x => pictureBox1.Image = x.Result);
             }
         }
 

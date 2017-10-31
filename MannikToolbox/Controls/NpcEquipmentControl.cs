@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Forms;
 using MannikToolbox.Services;
+using System.Threading.Tasks;
 
 namespace MannikToolbox.Controls
 {
@@ -139,7 +140,8 @@ namespace MannikToolbox.Controls
 
             _selected = selected.Item;
             BindingService.BindData(selected.Item, this);
-            pictureBox1.Image = _imageService.LoadItem(selected.Item.Model, pictureBox1.Width, pictureBox1.Height);
+            _imageService.LoadItem(selected.Item.Model, pictureBox1.Width, pictureBox1.Height)
+                .ContinueWith(x => pictureBox1.Image = x.Result);
         }
 
         private EquipmentGridModel GetSelected()
@@ -206,7 +208,8 @@ namespace MannikToolbox.Controls
                 }
 
                 _Model.Text = item.Model.ToString();
-                pictureBox1.Image = _imageService.LoadItem(item.Model, pictureBox1.Width, pictureBox1.Height);
+                _imageService.LoadItem(item.Model, pictureBox1.Width, pictureBox1.Height)
+                    .ContinueWith(x => pictureBox1.Image = x.Result);
             };
 
             search.ShowDialog(this);
@@ -252,7 +255,8 @@ namespace MannikToolbox.Controls
         {
             if (int.TryParse(_Model.Text, out int modelId))
             {
-                pictureBox1.Image = _imageService.LoadItem(modelId, pictureBox1.Width, pictureBox1.Height);
+                _imageService.LoadItem(modelId, pictureBox1.Width, pictureBox1.Height)
+                    .ContinueWith(x => pictureBox1.Image = x.Result);
             }
         }
     }

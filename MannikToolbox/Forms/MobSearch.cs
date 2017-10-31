@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 using DOL.GS;
@@ -41,7 +42,9 @@ namespace MannikToolbox.Forms
                 var mobId = dgd_MobSearch.SelectedRows[0].Cells[0].Value.ToString();
                 var mob = _allData.First(x => x.ObjectId == mobId);
                 lblMob_ID.Text = mobId;
-                picNPC.Image = _modelImageService.LoadMob(mob.Model);
+                
+                _modelImageService.LoadMob(mob.Model)
+                    .ContinueWith(x => picNPC.Image = x.Result);
             }
             catch
             {
