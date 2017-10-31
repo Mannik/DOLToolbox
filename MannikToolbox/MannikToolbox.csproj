@@ -232,9 +232,6 @@
     <Content Include="Assets\loading.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\wireframe.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="libs\DOLDatabase.dll" />
     <Content Include="libs\GameServer.dll" />
     <Content Include="Resources\green_arrow_right.png" />

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace MannikToolbox.Services
 {
@@ -10,25 +11,25 @@ namespace MannikToolbox.Services
     {
         private static string BasePath => $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Assets\";
 
-        public Image LoadMob(int modelId)
+        public async Task<Image> LoadMob(int modelId)
         {
-            return LoadAsset(modelId, @"models\mobs");
+            return await LoadAsset(modelId, @"Models\mobs");
         }
 
-        public Image LoadItem(int modelId)
+        public async Task<Image> LoadItem(int modelId)
         {
-            return LoadAsset(modelId, @"models\items");
+            return await LoadAsset(modelId, @"Models\items");
         }
 
-        public Image LoadMob(int modelId, int maxWidth, int maxHeight)
+        public async Task<Image> LoadMob(int modelId, int maxWidth, int maxHeight)
         {
-            var image = LoadMob(modelId);
+            var image = await LoadMob(modelId);
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
-        public Image LoadItem(int modelId, int maxWidth, int maxHeight)
+        public async Task<Image> LoadItem(int modelId, int maxWidth, int maxHeight)
         {
-            var image = LoadItem(modelId);
+            var image = await LoadItem(modelId);
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
@@ -43,19 +44,13 @@ namespace MannikToolbox.Services
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
-        private Image LoadAsset(int modelId, string path)
+        private async Task<Image> LoadAsset(int modelId, string path)
         {
             var filePath = $@"{BasePath}{path}\{modelId}.jpg";
 
-            // have already checked for this model. it returned 404
-            if (File.Exists(filePath.Replace(".jpg", ".txt")))
-            {
-                return null;
-            }
-
             if (!File.Exists(filePath))
             {
-                return DownloadAsset(modelId, filePath, path);
+                return await DownloadAsset(modelId, filePath, path);
             }
 
             return Image.FromFile(filePath);
@@ -73,7 +68,7 @@ namespace MannikToolbox.Services
             return Image.FromFile(filePath);
         }
 
-        private Image DownloadAsset(int modelId, string filePath, string type)
+        private async Task<Image> DownloadAsset(int modelId, string filePath, string type)
         {
             var directory = Path.GetDirectoryName(filePath);
             if (!Directory.Exists(directory))
@@ -85,12 +80,15 @@ namespace MannikToolbox.Services
             {
                 try
                 {
-                    webClient.DownloadFile($"http://www.dolserver.net/models/Models/{type}/{modelId}.jpg", filePath);
-                    return Image.FromFile(filePath);
+                    var url = $"www.dolserver.net/models/{(type.Replace("\\", "/"))}/{modelId}.jpg";
+                    var data = await webClient.DownloadDataTaskAsync(new Uri("http://" + url));
+                    var image = Image.FromStream(new MemoryStream(data));
+
+                    image.Save(filePath);
+                    return image;
                 }
                 catch (WebException ex)  when(ex.Message == "The remote server returned an error: (404) Not Found.")
                 {
-                    File.Create(filePath.Replace(".jpg", ".txt"));
                 }
             }
 
