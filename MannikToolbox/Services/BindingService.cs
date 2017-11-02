@@ -26,7 +26,10 @@ namespace MannikToolbox.Services
                         input.Checked = false;
                         break;
                     case ComboBox input:
-                        input.SelectedIndex = 0;
+                        if (input.Items.Count > 0)
+                        {
+                            input.SelectedIndex = 0;
+                        }
                         break;
                 }
             }
@@ -108,16 +111,22 @@ namespace MannikToolbox.Services
 
         private static void BindValueFromCombobox<T>(ComboboxService.SelectItemModel input, PropertyInfo property, T obj)
         {
-            if (input?.Id == null)
+            if (input?.Id == null && Nullable.GetUnderlyingType(property.PropertyType) == null)
+            {
+                property.SetValue(obj, default(int));
+                return;
+            }
+            if(input?.Id == null)
             {
                 property.SetValue(obj, null);
+                return;
             }
 
             var propertyType = property.PropertyType;
 
             if (propertyType == typeof(string))
             {
-                property.SetValue(obj, input?.Value);
+                property.SetValue(obj, input.Value);
             }
             else if (propertyType == typeof(int))
             {
@@ -219,6 +228,16 @@ namespace MannikToolbox.Services
                 if (!success)
                 {
                     throw new ApplicationException($"Failed to parse {property.Name} into type double");
+                }
+
+                property.SetValue(obj, parsed);
+            }
+            else if (propertyType == typeof(long))
+            {
+                var success = long.TryParse(input, out long parsed);
+                if (!success)
+                {
+                    throw new ApplicationException($"Failed to parse {property.Name} into type long");
                 }
 
                 property.SetValue(obj, parsed);

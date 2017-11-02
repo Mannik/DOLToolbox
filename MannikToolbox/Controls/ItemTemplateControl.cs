@@ -63,17 +63,6 @@ namespace MannikToolbox.Controls
 
         }
 
-        private void itemSave_Click(object sender, EventArgs e)
-        {
-            if (_item == null)
-            {
-                return;
-            }
-
-            BindingService.SyncData(_item, this);
-            _itemService.SaveItem(_item);
-        }
-
         private void _Model_Leave(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
@@ -245,6 +234,34 @@ namespace MannikToolbox.Controls
             };
 
             search.ShowDialog(this);
+        }
+
+        private void itemSave_Click_1(object sender, EventArgs e)
+        {
+            if (_item == null)
+            {
+                _item = new ItemTemplate
+                {
+                    ObjectId = null
+                };
+            }
+
+            try
+            {
+                BindingService.SyncData(_item, this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            _itemService.SaveItem(_item);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BindingService.ClearData(this);
+            _item = null;
         }
     }
 }

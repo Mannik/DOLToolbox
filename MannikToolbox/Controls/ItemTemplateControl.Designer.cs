@@ -192,6 +192,7 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this._AllowedClasses = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -218,6 +219,7 @@
             this.itemSave.TabIndex = 1;
             this.itemSave.Text = "Save";
             this.itemSave.UseVisualStyleBackColor = true;
+            this.itemSave.Click += new System.EventHandler(this.itemSave_Click_1);
             // 
             // itemSearch
             // 
@@ -1760,8 +1762,19 @@
             this._AllowedClasses.Size = new System.Drawing.Size(217, 160);
             this._AllowedClasses.TabIndex = 69;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(806, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 70;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ItemTemplateControl
             // 
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this._AllowedClasses);
             this.Controls.Add(this.groupBox4);
@@ -1957,5 +1970,6 @@
         private System.Windows.Forms.ComboBox _Effect;
         private System.Windows.Forms.TextBox _Level;
         private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Button button1;
     }
 }
