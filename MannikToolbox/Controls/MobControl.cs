@@ -78,9 +78,23 @@ namespace MannikToolbox.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             if (_mob == null)
-                return;
+            {
+                _mob = new Mob
+                {
+                    ObjectId = null
+                };
+            }
 
-            BindingService.SyncData(_mob, this);
+            try
+            {
+                BindingService.SyncData(_mob, this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
             SyncFlags();
             SyncWeaponSlots();
             _mobService.SaveMob(_mob);

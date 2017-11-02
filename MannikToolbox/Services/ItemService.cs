@@ -17,15 +17,18 @@ namespace MannikToolbox.Services
             return await Task.Run(() => DatabaseManager.Database.SelectAllObjects<ItemTemplate>().ToList());
         }
 
-        public void SaveItem(ItemTemplate Item)
+        public void SaveItem(ItemTemplate _item)
         {
-            if (string.IsNullOrWhiteSpace(Item.Id_nb))
+            _item.AllowUpdate = true;
+            _item.Dirty = true;
+
+            if (string.IsNullOrWhiteSpace(_item.ObjectId))
             {
-                DatabaseManager.Database.AddObject(Item);
+                DatabaseManager.Database.AddObject(_item);
                 return;
             }
 
-            DatabaseManager.Database.SaveObject(Item);
+            DatabaseManager.Database.SaveObject(_item);
         }
     }
 }
