@@ -232,6 +232,13 @@ namespace MannikToolbox.Controls
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            ClearMob();
+        }
+
+        private void ClearMob()
+        {
+            _mob = null;
+            pictureBox1.Image = null;
             BindingService.ClearData(this);
         }
 
@@ -263,5 +270,15 @@ namespace MannikToolbox.Controls
         }
 
         private void _Race_DropDownClosed(object sender, EventArgs e) => toolTip1.Hide(_Race);
+
+        private void button_click_delete_mob(object sender, EventArgs e)
+        {
+            if (_mob == null)
+            {
+                return;
+            }
+            _mobService.DeleteMob(_mob);
+            ClearMob();
+        }
     }
 }

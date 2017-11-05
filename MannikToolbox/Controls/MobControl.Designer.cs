@@ -146,6 +146,7 @@
             this._WpnSlots2H = new System.Windows.Forms.RadioButton();
             this.btnClear = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -498,8 +499,8 @@
             // 
             // _Race
             // 
-            this._Race.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Race.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this._Race.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Race.FormattingEnabled = true;
             this._Race.Location = new System.Drawing.Point(90, 143);
             this._Race.Name = "_Race";
@@ -1256,10 +1257,22 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.Button3_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.button3.Location = new System.Drawing.Point(245, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "Delete";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button_click_delete_mob);
+            // 
             // MobControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.button2);
@@ -1416,5 +1429,6 @@
         private System.Windows.Forms.RadioButton _WpnSlots2H;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button3;
     }
 }
