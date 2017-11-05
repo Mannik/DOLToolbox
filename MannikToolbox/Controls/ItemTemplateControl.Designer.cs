@@ -44,6 +44,10 @@
 			this.label64 = new System.Windows.Forms.Label();
 			this._PackageID = new System.Windows.Forms.TextBox();
 			this.label63 = new System.Windows.Forms.Label();
+			this._ClassType = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this._Extension = new System.Windows.Forms.ComboBox();
+			this.label52 = new System.Windows.Forms.Label();
 			this._LevelRequirement = new System.Windows.Forms.TextBox();
 			this.label62 = new System.Windows.Forms.Label();
 			this._BonusLevel = new System.Windows.Forms.TextBox();
@@ -82,11 +86,6 @@
 			this._Model = new System.Windows.Forms.TextBox();
 			this.label31 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
-			this.label68 = new System.Windows.Forms.Label();
-			this._Extension = new System.Windows.Forms.ComboBox();
-			this.label52 = new System.Windows.Forms.Label();
-			this._ClassType = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label25 = new System.Windows.Forms.Label();
 			this._ExtraBonus = new System.Windows.Forms.TextBox();
@@ -385,6 +384,40 @@
 			this.label63.TabIndex = 89;
 			this.label63.Text = "Package ID";
 			// 
+			// _ClassType
+			// 
+			this._ClassType.Location = new System.Drawing.Point(387, 66);
+			this._ClassType.Name = "_ClassType";
+			this._ClassType.Size = new System.Drawing.Size(106, 20);
+			this._ClassType.TabIndex = 49;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(350, 70);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(32, 13);
+			this.label14.TabIndex = 10;
+			this.label14.Text = "Class";
+			// 
+			// _Extension
+			// 
+			this._Extension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this._Extension.FormattingEnabled = true;
+			this._Extension.Location = new System.Drawing.Point(689, 40);
+			this._Extension.Name = "_Extension";
+			this._Extension.Size = new System.Drawing.Size(86, 21);
+			this._Extension.TabIndex = 68;
+			// 
+			// label52
+			// 
+			this.label52.AutoSize = true;
+			this.label52.Location = new System.Drawing.Point(630, 43);
+			this.label52.Name = "label52";
+			this.label52.Size = new System.Drawing.Size(53, 13);
+			this.label52.TabIndex = 67;
+			this.label52.Text = "Extension";
+			// 
 			// _LevelRequirement
 			// 
 			this._LevelRequirement.Location = new System.Drawing.Point(845, 36);
@@ -621,7 +654,7 @@
 			// 
 			this._Item_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._Item_Type.FormattingEnabled = true;
-			this._Item_Type.Location = new System.Drawing.Point(46, 65);
+			this._Item_Type.Location = new System.Drawing.Point(46, 66);
 			this._Item_Type.Name = "_Item_Type";
 			this._Item_Type.Size = new System.Drawing.Size(90, 21);
 			this._Item_Type.TabIndex = 50;
@@ -653,7 +686,7 @@
 			// 
 			this._Object_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._Object_Type.FormattingEnabled = true;
-			this._Object_Type.Location = new System.Drawing.Point(179, 64);
+			this._Object_Type.Location = new System.Drawing.Point(184, 66);
 			this._Object_Type.Name = "_Object_Type";
 			this._Object_Type.Size = new System.Drawing.Size(161, 21);
 			this._Object_Type.TabIndex = 8;
@@ -686,7 +719,7 @@
 			// label31
 			// 
 			this.label31.AutoSize = true;
-			this.label31.Location = new System.Drawing.Point(135, 68);
+			this.label31.Location = new System.Drawing.Point(141, 70);
 			this.label31.Name = "label31";
 			this.label31.Size = new System.Drawing.Size(38, 13);
 			this.label31.TabIndex = 48;
@@ -700,50 +733,6 @@
 			this.label20.Size = new System.Drawing.Size(36, 13);
 			this.label20.TabIndex = 30;
 			this.label20.Text = "Model";
-			// 
-			// label68
-			// 
-			this.label68.AutoSize = true;
-			this.label68.Location = new System.Drawing.Point(618, 24);
-			this.label68.Name = "label68";
-			this.label68.Size = new System.Drawing.Size(31, 13);
-			this.label68.TabIndex = 97;
-			this.label68.Text = "Type";
-			this.label68.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			// 
-			// _Extension
-			// 
-			this._Extension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this._Extension.FormattingEnabled = true;
-			this._Extension.Location = new System.Drawing.Point(689, 40);
-			this._Extension.Name = "_Extension";
-			this._Extension.Size = new System.Drawing.Size(86, 21);
-			this._Extension.TabIndex = 68;
-			// 
-			// label52
-			// 
-			this.label52.AutoSize = true;
-			this.label52.Location = new System.Drawing.Point(630, 43);
-			this.label52.Name = "label52";
-			this.label52.Size = new System.Drawing.Size(53, 13);
-			this.label52.TabIndex = 67;
-			this.label52.Text = "Extension";
-			// 
-			// _ClassType
-			// 
-			this._ClassType.Location = new System.Drawing.Point(388, 66);
-			this._ClassType.Name = "_ClassType";
-			this._ClassType.Size = new System.Drawing.Size(106, 20);
-			this._ClassType.TabIndex = 49;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(352, 69);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(32, 13);
-			this.label14.TabIndex = 10;
-			this.label14.Text = "Class";
 			// 
 			// groupBox1
 			// 
@@ -1723,7 +1712,6 @@
 			this.Controls.Add(this._AllowedClasses);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
-			this.Controls.Add(this.label68);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.groupBox2);
@@ -1745,7 +1733,6 @@
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
@@ -1904,7 +1891,6 @@
         private System.Windows.Forms.CheckBox _IsTradable;
         private System.Windows.Forms.TextBox _TranslationId;
         private System.Windows.Forms.Label label69;
-        private System.Windows.Forms.Label label68;
         private System.Windows.Forms.TextBox _Description;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.CheckBox _CanDropAsLoot;
