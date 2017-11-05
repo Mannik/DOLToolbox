@@ -14,7 +14,7 @@ namespace MannikToolbox.Forms
         private int _page = 0;
         private int _pageSize = 50;
         private List<Mob> _data;
-        private IList<Mob> _allData = DatabaseManager.Database.SelectAllObjects<Mob>();
+        private IList<Mob> _allData;
         private readonly ImageService _modelImageService = new ImageService();
 
         public event EventHandler SelectNpcClicked;
@@ -24,9 +24,19 @@ namespace MannikToolbox.Forms
             InitializeComponent();
         }
 
-        private void MobSearch_Load(object sender, EventArgs e)
+        private async void MobSearch_Load(object sender, EventArgs e)
         {
             Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
+
+            var loading = new LoadingForm
+            {
+                ProgressText = { Text = @"Loading: Mobs" }
+            };
+            loading.Show();
+
+            _allData = await Task.Run(() => DatabaseManager.Database.SelectAllObjects<Mob>());
+
+            loading.Close();
             GetPage();
         }
 
@@ -144,6 +154,12 @@ namespace MannikToolbox.Forms
 
             _page = totalPages - 1;
             GetPage(true);
+        }
+
+        private void MobSearch_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _allData = null;
+            _data = null;
         }
     }
 }
