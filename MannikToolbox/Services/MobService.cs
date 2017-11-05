@@ -19,5 +19,10 @@ namespace MannikToolbox.Services
             
             DatabaseManager.Database.SaveObject(mob);
         }
+
+        public void DeleteMob(Mob mob)
+        {
+            DatabaseManager.Database.DeleteObject(mob);
+        }
     }
 }
