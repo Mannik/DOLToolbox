@@ -44,7 +44,9 @@ namespace MannikToolbox.Forms
 		    }
 
             var loading = new LoadingForm();
-            loading.Show();
+			//prevent clicking behind berfore connections made : Loki
+			ToolboxTabControl.Enabled = false;
+			loading.Show();
 		    var progress = new Progress<int>(percent =>
 		    {
 		        loading.ProgressBar.Value = percent;
@@ -59,7 +61,8 @@ namespace MannikToolbox.Forms
 
 		        if (percent == 100)
 		        {
-		            loading.Close();
+					ToolboxTabControl.Enabled = true;
+					loading.Close();
 		        }
 		    });
 
