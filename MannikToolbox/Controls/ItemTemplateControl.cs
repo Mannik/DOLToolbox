@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Forms;
 using MannikToolbox.Services;
-using System.Threading.Tasks;
 
 namespace MannikToolbox.Controls
 {
@@ -61,29 +60,6 @@ namespace MannikToolbox.Controls
 
             BindingService.BindData(_item, this);
 
-        }
-
-        private void _Model_Leave(object sender, EventArgs e)
-        {
-            pictureBox1.Image = null;
-
-            if (int.TryParse(_Model.Text, out var modelId))
-            {
-                _modelImageService.LoadItem(modelId, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
-            }
-        }
-
-        private void itemSearch_Click(object sender, EventArgs e)
-        {
-            var itemsearch = new MobSearch();
-
-            itemsearch.SelectNpcClicked += (o, args) =>
-            {
-                LoadItem(o.ToString());
-            };
-
-            itemsearch.ShowDialog(this);
         }
 
         private void SetupDropdowns()
