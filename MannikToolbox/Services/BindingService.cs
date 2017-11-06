@@ -111,14 +111,9 @@ namespace MannikToolbox.Services
 
         private static void BindValueFromCombobox<T>(ComboboxService.SelectItemModel input, PropertyInfo property, T obj)
         {
-            if (input?.Id == null && Nullable.GetUnderlyingType(property.PropertyType) == null)
+            if (input?.Id == null)
             {
-                property.SetValue(obj, default(int));
-                return;
-            }
-            if(input?.Id == null)
-            {
-                property.SetValue(obj, null);
+                property.SetValue(obj, GetDefault(property.PropertyType));
                 return;
             }
 
@@ -157,6 +152,12 @@ namespace MannikToolbox.Services
         private static void BindValueFromString<T>(string input, PropertyInfo property, T obj)
         {
             var propertyType = property.PropertyType;
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                property.SetValue(obj, GetDefault(property.PropertyType));
+                return;
+            }
 
             if (propertyType == typeof(string))
             {
@@ -245,6 +246,18 @@ namespace MannikToolbox.Services
             else
             {
                 throw new ApplicationException($"Unsupported binding type {propertyType.Name}");
+            }
+        }
+
+        private static object GetDefault(Type type)
+        {
+            try
+            {
+                return Activator.CreateInstance(type);
+            }
+            catch (MissingMethodException)
+            {
+                return null;
             }
         }
     }
