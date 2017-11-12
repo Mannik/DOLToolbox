@@ -15,7 +15,6 @@ namespace MannikToolbox.Controls
     {
         private readonly MobService _mobService;
         private readonly ImageService _modelImageService;
-        private readonly ToolTip _toolTip;
         private Mob _mob;
         private Dictionary<int, string> _raceResists;
 
@@ -24,14 +23,6 @@ namespace MannikToolbox.Controls
             InitializeComponent();
             _mobService = new MobService();
             _modelImageService = new ImageService();
-
-            _toolTip = new ToolTip
-            {
-                AutoPopDelay = 10000,
-                InitialDelay = 500,
-                ReshowDelay = 500,
-                ShowAlways = true
-            };
         }
 
         private async void MobControl_Load(object sender, EventArgs e)
@@ -116,7 +107,7 @@ namespace MannikToolbox.Controls
         {
             var mobsearch = new MobSearch();
 
-            mobsearch.SelectNpcClicked += (o, args) => { LoadMob(o.ToString()); };
+            mobsearch.SelectNpcClicked += (o, args) => { LoadMob(((Mob)o).ObjectId); };
 
             mobsearch.ShowDialog(this);
         }

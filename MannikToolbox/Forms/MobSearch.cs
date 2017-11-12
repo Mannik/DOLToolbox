@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
-using DOL.GS;
 using MannikToolbox.Services;
 
 namespace MannikToolbox.Forms
 {
     public partial class MobSearch : Form
     {
-        private int _page = 0;
+        private int _page;
         private int _pageSize = 50;
         private List<Mob> _data;
         private IList<Mob> _allData;
@@ -23,42 +23,43 @@ namespace MannikToolbox.Forms
         {
             InitializeComponent();
         }
+        public MobSearch(IList<Mob> data)
+        {
+            InitializeComponent();
+            _allData = data;
+        }
 
         private async void MobSearch_Load(object sender, EventArgs e)
         {
             Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
 
-            var loading = new LoadingForm
+            if (_allData == null || !_allData.Any())
             {
-                ProgressText = { Text = @"Loading: Mobs" }
-            };
-            loading.Show();
+                var loading = new LoadingForm
+                {
+                    ProgressText = { Text = @"Loading: Mobs" }
+                };
+                loading.Show();
 
-            _allData = await Task.Run(() => DatabaseManager.Database.SelectAllObjects<Mob>());
+                _allData = await Task.Run(() => DatabaseManager.Database.SelectAllObjects<Mob>());
 
-            loading.Close();
+                loading.Close();
+            }
+
             GetPage();
         }
 
         private void Dgd_MobSearch_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgd_MobSearch.SelectedRows.Count == 0 || dgd_MobSearch.SelectedRows[0].Cells.Count == 0)
+            var selected = GetSelected();
+            if (selected == null)
             {
                 return;
             }
             
-            try
-            {
-                var mobId = dgd_MobSearch.SelectedRows[0].Cells[0].Value.ToString();
-                var mob = _allData.First(x => x.ObjectId == mobId);
-                lblMob_ID.Text = mobId;
-                
-                _modelImageService.LoadMob(mob.Model)
-                    .ContinueWith(x => picNPC.Image = x.Result);
-            }
-            catch
-            {
-            }
+            lblMob_ID.Text = selected.ObjectId;
+            _modelImageService.LoadMob(selected.Model, picNPC.Width, picNPC.Height)
+                .ContinueWith(x => picNPC.Image = x.Result);
         }
 
         private void BtnReset_Click(object sender, EventArgs e)
@@ -71,15 +72,24 @@ namespace MannikToolbox.Forms
 
         private void BtnSelectNPC_Click(object sender, EventArgs e)
         {
-            if (dgd_MobSearch.SelectedRows.Count == 0 || dgd_MobSearch.SelectedRows[0].Cells.Count == 0)
+            var selected = GetSelected();
+            if (selected == null)
             {
                 return;
             }
 
-            var mobId = dgd_MobSearch.SelectedRows[0].Cells[0].Value.ToString();
-
-            SelectNpcClicked?.Invoke(mobId, e);
+            SelectNpcClicked?.Invoke(selected, e);
             Close();
+        }
+
+        private Mob GetSelected()
+        {
+            if (dgd_MobSearch.SelectedRows.Count < 1)
+            {
+                return null;
+            }
+
+            return dgd_MobSearch.SelectedRows[0].DataBoundItem as Mob;
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -99,12 +109,49 @@ namespace MannikToolbox.Forms
                     .Where(x => string.IsNullOrWhiteSpace(filter) || x.Name.ToLower().Contains(filter))
                     .ToList();
 
-            _data
+            var page = _data
                 .Skip(_page * _pageSize)
                 .Take(_pageSize)
-                .ForEach(x => dgd_MobSearch.Rows.Add(x.ObjectId, x.Name, x.Guild, x.Model, x.Region));
+                .ToList();
+                //.ForEach(x => dgd_MobSearch.Rows.Add(x.ObjectId, x.Name, x.Guild, x.Model, x.Region));
+
+
+            var bindingList = new BindingList<Mob>(page);
+            var source = new BindingSource(bindingList, null);
+            dgd_MobSearch.DataSource = source;
+
+            SetGridColumns();
 
             lblPage.Text = $@"Page {_page + 1} of {Math.Ceiling(_data.Count / (decimal) _pageSize)}";
+        }
+
+        private void SetGridColumns()
+        {
+            dgd_MobSearch.Columns.Clear();
+
+            dgd_MobSearch.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Name",
+                HeaderText = @"Name",
+                Name = "Name",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            });
+
+            dgd_MobSearch.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Guild",
+                HeaderText = @"Guild",
+                Name = "Guild",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            });
+
+            dgd_MobSearch.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Region",
+                HeaderText = @"Region",
+                Name = "Region",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            });
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)

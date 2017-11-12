@@ -117,7 +117,7 @@ namespace MannikToolbox.Controls
                     select new PageItemModel
                     {
                         Name = item?.Name ?? merchItem.ItemTemplateID,
-                        Value = ValueFormat(item?.Price ?? 0),
+                        Value = _itemService.PriceFormat(item?.Price ?? 0),
                         Level = item?.Level ?? 0,
                         IsItemMissing = item == null,
                         Position = merchItem.SlotPosition + 1,
@@ -134,38 +134,10 @@ namespace MannikToolbox.Controls
             SetGridColumns();
             lblPage.Text = $@"Page {_page + 1} of 5";
 
-            if(dataGridView1.Rows.Count  -1 >= _selectedIndex)
+            if(dataGridView1.Rows.Count -1 >= _selectedIndex)
             {
                 dataGridView1.Rows[_selectedIndex].Selected = true;
             }
-        }
-
-        private string ValueFormat(long value)
-        {
-            var chars = value.ToString().Reverse().ToList();
-
-            var sb = new StringBuilder("c");
-            for (int i = 0; i < chars.Count; i++)
-            {
-                switch (i)
-                {
-                    case 2:
-                        sb.Insert(0, "s");
-                        break;
-                    case 4:
-                        sb.Insert(0, "g");
-                        break;
-                    case 7:
-                        sb.Insert(0, "p");
-                        break;
-                }
-
-                sb.Insert(0, chars[i]);
-            }
-
-            var strValue = sb.ToString().Replace("00c", "").Replace("00s", "");
-
-            return strValue;
         }
 
         private void SetGridColumns()
@@ -393,7 +365,7 @@ namespace MannikToolbox.Controls
 
             if (_selected?.Item?.Model != null)
             {
-                _modelImageService.LoadItem(_selected.Item.Model)
+                _modelImageService.LoadItem(_selected.Item.Model, pictureBox1.Width, pictureBox1.Height)
                     .ContinueWith(x => pictureBox1.Image = x.Result);
             }
         }

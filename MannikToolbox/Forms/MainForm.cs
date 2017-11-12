@@ -98,6 +98,9 @@ namespace MannikToolbox.Forms
 
             control = new NpcEquipmentControl { Dock = DockStyle.Fill };
             tabNpcEquipment.Controls.Add(control);
+
+            control = new LootTemplateControl { Dock = DockStyle.Fill };
+            tabLootTemplate.Controls.Add(control);
         }
 
 		private void Menu_DB_Click(object sender, EventArgs e)
@@ -106,7 +109,5 @@ namespace MannikToolbox.Forms
 			Application.Restart();
 			Environment.Exit(0);
 		}
-
-        
     }
 }
