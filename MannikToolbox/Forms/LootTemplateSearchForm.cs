@@ -5,40 +5,32 @@ using System.Linq;
 using System.Windows.Forms;
 using DOL.Database;
 using MannikToolbox.Services;
-using System.Threading.Tasks;
 
 namespace MannikToolbox.Forms
 {
-    public partial class ItemSearchForm : Form
+    public partial class LootTemplateSearchForm : Form
     {
-        private readonly ImageService _modelImageService = new ImageService();
-        private readonly ItemService _itemService = new ItemService();
+        private readonly List<Mob> _mobs;
+        private readonly LootTemplateService _lootTemplateService = new LootTemplateService();
+        private readonly ImageService _imageService = new ImageService();
 
         private int _page;
         private int _pageSize = 50;
         private int _selectedIndex;
-        private List<ItemTemplate> _allData;
-        private List<ItemTemplate> _data;
-        private SearchModel _model = new SearchModel();
+        private List<MobXLootTemplate> _allData;
+        private List<MobXLootTemplate> _data;
 
         public event EventHandler SelectClicked;
 
-        public ItemSearchForm()
+        public LootTemplateSearchForm(List<Mob> mobs)
         {
+            _mobs = mobs;
             InitializeComponent();
         }
 
-        public ItemSearchForm(List<ItemTemplate> allItems)
+        public LootTemplateSearchForm(List<MobXLootTemplate> allTemplates)
         {
-            _allData = allItems;
-
-            InitializeComponent();
-        }
-
-        public ItemSearchForm(List<ItemTemplate> allItems, SearchModel model = null)
-        {
-            _allData = allItems;
-            _model = model;
+            _allData = allTemplates;
 
             InitializeComponent();
         }
@@ -47,7 +39,7 @@ namespace MannikToolbox.Forms
         {
             if (_allData == null || _allData.Count == 0)
             {
-                _allData = await _itemService.GetItems();
+                _allData = await _lootTemplateService.Get();
             }
 
             Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
@@ -60,18 +52,13 @@ namespace MannikToolbox.Forms
             public int? Slot { get; set; }
         }
 
-        private List<ItemTemplate> Search()
+        private List<MobXLootTemplate> Search()
         {
             var query = _allData.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(_model.Name))
+            if (!string.IsNullOrWhiteSpace(txtFilterMob.Text?.ToLower()))
             {
-                query = query.Where(x => x.Name.ToLower().Contains(_model.Name));
-            }
-
-            if (_model.Slot.HasValue)
-            {
-                query = query.Where(x => x.Item_Type == _model.Slot);
+                query = query.Where(x => x.LootTemplateName.ToLower().Contains(txtFilterMob.Text.ToLower()));
             }
 
             return query.ToList();
@@ -83,7 +70,6 @@ namespace MannikToolbox.Forms
 
             if (!paging)
             {
-                _model.Name = txtFilterMob.Text?.ToLower();
                 _data = Search();
             }
 
@@ -92,7 +78,7 @@ namespace MannikToolbox.Forms
                 .Take(_pageSize)
                 .ToList();
 
-            var bindingList = new BindingList<ItemTemplate>(page);
+            var bindingList = new BindingList<MobXLootTemplate>(page);
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
 
@@ -111,29 +97,37 @@ namespace MannikToolbox.Forms
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "Name",
-                HeaderText = @"Name",
-                Name = "Name",
+                DataPropertyName = "MobName",
+                HeaderText = @"Mob Name",
+                Name = "MobName",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "Level",
-                HeaderText = @"Level",
-                Name = "Level",
+                DataPropertyName = "LootTemplateName",
+                HeaderText = @"Loot Template Name",
+                Name = "LootTemplateName",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "DropCount",
+                HeaderText = @"Drop Count",
+                Name = "DropCount",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
         }
 
-        private ItemTemplate GetSelected()
+        private MobXLootTemplate GetSelected()
         {
             if (dataGridView1.SelectedRows.Count < 1)
             {
                 return null;
             }
 
-            return dataGridView1.SelectedRows[0].DataBoundItem as ItemTemplate;
+            return dataGridView1.SelectedRows[0].DataBoundItem as MobXLootTemplate;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -216,15 +210,19 @@ namespace MannikToolbox.Forms
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             var selected = GetSelected();
-
+            pictureBox1.Image = null;
 
             if (selected == null)
             {
                 return;
             }
-            
-            _modelImageService.LoadItem(selected.Model, pictureBox1.Width, pictureBox1.Height)
-                .ContinueWith(x => pictureBox1.Image = x.Result);
+
+            var mob = _mobs.FirstOrDefault(x => x.Name.Equals(selected.MobName, StringComparison.InvariantCultureIgnoreCase));
+            if (mob != null)
+            {
+                _imageService.LoadMob(mob.Model, pictureBox1.Width, pictureBox1.Height)
+                    .ContinueWith(x => pictureBox1.Image = x.Result);
+            }
         }
     }
 }

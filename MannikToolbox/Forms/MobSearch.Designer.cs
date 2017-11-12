@@ -159,7 +159,7 @@
             this.btnSelectNPC.Name = "btnSelectNPC";
             this.btnSelectNPC.Size = new System.Drawing.Size(248, 23);
             this.btnSelectNPC.TabIndex = 7;
-            this.btnSelectNPC.Text = "&Edit this NPC";
+            this.btnSelectNPC.Text = "Select this NPC";
             this.btnSelectNPC.UseVisualStyleBackColor = true;
             this.btnSelectNPC.Click += new System.EventHandler(this.BtnSelectNPC_Click);
             // 

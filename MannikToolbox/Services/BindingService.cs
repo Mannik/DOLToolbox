@@ -5,9 +5,26 @@ using System.Windows.Forms;
 
 namespace MannikToolbox.Services
 {
-    class BindingService
+    public static class BindingService
     {
-        public static void ClearData<T>(T form) where T : UserControl
+        public static void ToggleEnabled<T>(T form, bool? overrideValue = null)
+            where T : UserControl
+        {
+            typeof(T)
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .Where(x => x.FieldType.IsSubclassOf(typeof(Control)))
+                .ToList()
+                .ForEach(x =>
+                {
+                    if (x.GetValue(form) is Control control)
+                    {
+                        control.Enabled = overrideValue ?? !control.Enabled;
+                    }
+                });
+        }
+
+        public static void ClearData<T>(T form)
+            where T : UserControl
         {
             var formFields = form.GetType()
                 .GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
@@ -34,7 +51,8 @@ namespace MannikToolbox.Services
                 }
             }
         }
-        public static void BindData<T, TF>(T source, TF form) where TF : UserControl
+        public static void BindData<T, TF>(T source, TF form)
+            where TF : UserControl
         {
             var formFields = form.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -74,7 +92,8 @@ namespace MannikToolbox.Services
             }
         }
 
-        public static void SyncData<T, TF>(T destination, TF form) where TF : UserControl
+        public static void SyncData<T, TF>(T destination, TF form)
+            where TF : UserControl
         {
             var formFields = form.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 

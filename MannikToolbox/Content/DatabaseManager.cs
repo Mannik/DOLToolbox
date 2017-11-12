@@ -25,7 +25,9 @@ namespace MannikToolbox
             typeof(DBRegions),
             typeof(MerchantItem),
             typeof(Zones),
-            typeof(NPCEquipment)
+            typeof(NPCEquipment),
+            typeof(MobXLootTemplate),
+            typeof(LootTemplate)
         };
 
     private static IObjectDatabase m_database;

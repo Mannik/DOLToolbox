@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DOL.Database;
 
@@ -29,6 +30,35 @@ namespace MannikToolbox.Services
             }
 
             DatabaseManager.Database.SaveObject(_item);
+        }
+
+
+        public string PriceFormat(long value)
+        {
+            var chars = value.ToString().Reverse().ToList();
+
+            var sb = new StringBuilder("c");
+            for (int i = 0; i < chars.Count; i++)
+            {
+                switch (i)
+                {
+                    case 2:
+                        sb.Insert(0, "s");
+                        break;
+                    case 4:
+                        sb.Insert(0, "g");
+                        break;
+                    case 7:
+                        sb.Insert(0, "p");
+                        break;
+                }
+
+                sb.Insert(0, chars[i]);
+            }
+
+            var strValue = sb.ToString().Replace("00c", "").Replace("00s", "");
+
+            return strValue;
         }
     }
 }
