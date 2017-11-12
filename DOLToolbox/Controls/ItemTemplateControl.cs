@@ -41,6 +41,8 @@ namespace DOLToolbox.Controls
 
         private void LoadItem(string itemId)
         {
+            Clear();
+
             if (string.IsNullOrWhiteSpace(itemId))
             {
                 return;
@@ -104,34 +106,34 @@ namespace DOLToolbox.Controls
 
             switch (category.SelectedIndex)
             {
-                case 1:
+                case 0:
                     ComboboxService.BindBonusAll(type);
                     break;
-                case 2:
+                case 1:
                     ComboboxService.BindBonusStats(type);
                     break;
-                case 3:
+                case 2:
                     ComboboxService.BindBonusStatCap(type);
                     break;
-                case 4:
+                case 3:
                     ComboboxService.BindBonusResists(type);
                     break;
-                case 5:
+                case 4:
                     ComboboxService.BindBonusResistCap(type);
                     break;
-                case 6:
+                case 5:
                     ComboboxService.BindBonusSkills(type);
                     break;
-                case 7:
+                case 6:
                     ComboboxService.BindBonusFocus(type);
                     break;
-                case 8:
+                case 7:
                     ComboboxService.BindBonusToa(type);
                     break;
-                case 9:
+                case 8:
                     ComboboxService.BindBonusOther(type);
                     break;
-                case 10:
+                case 9:
                     ComboboxService.BindBonusMythical(type);
                     break;
             }
