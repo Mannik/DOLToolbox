@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public static class ComboboxService
     {

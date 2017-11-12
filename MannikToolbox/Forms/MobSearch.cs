@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
-using MannikToolbox.Services;
+using DOLToolbox.Services;
 
-namespace MannikToolbox.Forms
+namespace DOLToolbox.Forms
 {
     public partial class MobSearch : Form
     {

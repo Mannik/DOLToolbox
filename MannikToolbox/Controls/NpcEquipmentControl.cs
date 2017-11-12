@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using DOL.Database;
-using MannikToolbox.Forms;
-using MannikToolbox.Services;
+using DOLToolbox.Forms;
+using DOLToolbox.Services;
 using System.Threading.Tasks;
 
-namespace MannikToolbox.Controls
+namespace DOLToolbox.Controls
 {
     public partial class NpcEquipmentControl : UserControl
     {

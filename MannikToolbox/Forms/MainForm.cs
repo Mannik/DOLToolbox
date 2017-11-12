@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MannikToolbox.Controls;
-using MannikToolbox.Services;
+using DOLToolbox.Controls;
+using DOLToolbox.Services;
 using MySql.Data.MySqlClient;
 
-namespace MannikToolbox.Forms
+namespace DOLToolbox.Forms
 {
     public partial class MainForm : Form
     {

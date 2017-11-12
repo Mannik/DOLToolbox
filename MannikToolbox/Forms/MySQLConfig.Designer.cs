@@ -1,4 +1,6 @@
-﻿namespace MannikToolbox.Forms
+﻿using DOLToolbox.Properties;
+
+namespace DOLToolbox.Forms
 {
     partial class MySqlConfig
     {
@@ -74,7 +76,7 @@
 			// save_config_button
 			// 
 			this.save_config_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.save_config_button.Image = global::MannikToolbox.Properties.Resources.save_config_button_Image;
+			this.save_config_button.Image = Resources.save_config_button_Image;
 			this.save_config_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.save_config_button.Location = new System.Drawing.Point(278, 254);
 			this.save_config_button.Name = "save_config_button";
@@ -184,7 +186,7 @@
 			// 
 			// mysql_test_button
 			// 
-			this.mysql_test_button.Image = global::MannikToolbox.Properties.Resources.mysql_test_button_Image;
+			this.mysql_test_button.Image = Resources.mysql_test_button_Image;
 			this.mysql_test_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.mysql_test_button.Location = new System.Drawing.Point(99, 154);
 			this.mysql_test_button.Name = "mysql_test_button";

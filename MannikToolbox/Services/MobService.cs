@@ -1,6 +1,6 @@
 ﻿using DOL.Database;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class MobService
     {

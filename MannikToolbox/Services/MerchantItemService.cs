@@ -5,7 +5,7 @@ using DOL.Database;
 using DOL.Database.UniqueID;
 using DOL.GS;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class MerchantItemService
     {

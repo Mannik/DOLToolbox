@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DOL.Database;
 
-namespace MannikToolbox.Models
+namespace DOLToolbox.Models
 {
     public class LootTemplateModel
     {

@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using DOL.Database;
-using MannikToolbox.Services;
+using DOLToolbox.Services;
 using MySql.Data.MySqlClient;
 
-namespace MannikToolbox.Controls
+namespace DOLToolbox.Controls
 {
     public partial class ServerDetailsControl : UserControl
     {

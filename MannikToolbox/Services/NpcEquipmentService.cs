@@ -3,7 +3,7 @@ using System.Linq;
 using DOL.Database;
 using DOL.Database.UniqueID;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class NpcEquipmentService
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class ImageService
     {

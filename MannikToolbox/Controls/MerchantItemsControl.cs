@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 using DOL.GS;
-using MannikToolbox.Forms;
-using MannikToolbox.Services;
+using DOLToolbox.Forms;
+using DOLToolbox.Services;
 
-namespace MannikToolbox.Controls
+namespace DOLToolbox.Controls
 {
     public partial class MerchantItemsControl : UserControl
     {
