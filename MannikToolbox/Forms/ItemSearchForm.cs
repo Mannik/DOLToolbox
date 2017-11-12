@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using DOL.Database;
-using MannikToolbox.Services;
+using DOLToolbox.Services;
 using System.Threading.Tasks;
 
-namespace MannikToolbox.Forms
+namespace DOLToolbox.Forms
 {
     public partial class ItemSearchForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace MannikToolbox.Controls
+﻿namespace DOLToolbox.Controls
 {
     partial class ItemTemplateControl
     {

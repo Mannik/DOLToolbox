@@ -3,10 +3,10 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using DOL.Database;
-using MannikToolbox.Forms;
-using MannikToolbox.Services;
+using DOLToolbox.Forms;
+using DOLToolbox.Services;
 
-namespace MannikToolbox.Controls
+namespace DOLToolbox.Controls
 {
     public partial class ItemTemplateControl : UserControl
     {

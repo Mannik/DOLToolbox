@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using DOL.Database;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class SpellService
     {

@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using MySql.Data.MySqlClient;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public static class ConnectionStringService
     {

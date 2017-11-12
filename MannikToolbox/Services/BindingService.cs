@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public static class BindingService
     {

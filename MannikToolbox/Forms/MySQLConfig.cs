@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using MannikToolbox.Services;
+using DOLToolbox.Services;
 using MySql.Data.MySqlClient;
 
-namespace MannikToolbox.Forms
+namespace DOLToolbox.Forms
 {
     public partial class MySqlConfig : Form
     {

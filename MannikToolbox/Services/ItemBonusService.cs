@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class ItemBonusService
     {

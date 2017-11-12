@@ -2,9 +2,9 @@
 using DOL.Database;
 using DOL.Database.Handlers;
 using MySql.Data.MySqlClient;
-using MannikToolbox.Services;
+using DOLToolbox.Services;
 
-namespace MannikToolbox
+namespace DOLToolbox
 {
     public class DatabaseManager
     {

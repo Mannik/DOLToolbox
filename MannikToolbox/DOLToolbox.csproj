@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACDB8CC4-BD41-4BF7-9E90-143E88B02425}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DOLToolbox</RootNamespace>
+    <AssemblyName>DOLToolbox</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DOLDatabase, Version=1.9.5.37002, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\DOLDatabase.dll</HintPath>
+    </Reference>
+    <Reference Include="GameServer, Version=1.9.7.18353, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\GameServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Content\DatabaseManager.cs" />
+    <Compile Include="Controls\LootTemplateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LootTemplateControl.Designer.cs">
+      <DependentUpon>LootTemplateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LootTemplateSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LootTemplateSearchForm.Designer.cs">
+      <DependentUpon>LootTemplateSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LootTemplateModel.cs" />
+    <Compile Include="Controls\NpcEquipmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NpcEquipmentControl.Designer.cs">
+      <DependentUpon>NpcEquipmentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MerchantItemsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MerchantItemsControl.Designer.cs">
+      <DependentUpon>MerchantItemsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MobControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MobControl.Designer.cs">
+      <DependentUpon>MobControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NpcTemplateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NpcTemplateControl.Designer.cs">
+      <DependentUpon>NpcTemplateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ServerDetailsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ServerDetailsControl.Designer.cs">
+      <DependentUpon>ServerDetailsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemTemplateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ItemTemplateControl.Designer.cs">
+      <DependentUpon>ItemTemplateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpellControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SpellControl.Designer.cs">
+      <DependentUpon>SpellControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputDialogBox.Designer.cs">
+      <DependentUpon>InputDialogBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ItemSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemSearchForm.Designer.cs">
+      <DependentUpon>ItemSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MobSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MobSearch.Designer.cs">
+      <DependentUpon>MobSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MySQLConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MySQLConfig.Designer.cs">
+      <DependentUpon>MySQLConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BindingService.cs" />
+    <Compile Include="Services\ComboboxService.cs" />
+    <Compile Include="Services\ConnectionStringService.cs" />
+    <Compile Include="Services\ItemBonusService.cs" />
+    <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\LootTemplateService.cs" />
+    <Compile Include="Services\NpcEquipmentService.cs" />
+    <Compile Include="Services\MerchantItemService.cs" />
+    <Compile Include="Services\NpcTemplateService.cs" />
+    <Compile Include="Services\MobService.cs" />
+    <Compile Include="Services\ImageService.cs" />
+    <Compile Include="Services\SpellService.cs" />
+    <EmbeddedResource Include="Controls\LootTemplateControl.resx">
+      <DependentUpon>LootTemplateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NpcEquipmentControl.resx">
+      <DependentUpon>NpcEquipmentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LootTemplateSearchForm.resx">
+      <DependentUpon>LootTemplateSearchForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MerchantItemsControl.resx">
+      <DependentUpon>MerchantItemsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MobControl.resx">
+      <DependentUpon>MobControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NpcTemplateControl.resx">
+      <DependentUpon>NpcTemplateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ServerDetailsControl.resx">
+      <DependentUpon>ServerDetailsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ItemTemplateControl.resx">
+      <DependentUpon>ItemTemplateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SpellControl.resx">
+      <DependentUpon>SpellControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputDialogBox.resx">
+      <DependentUpon>InputDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemSearchForm.resx">
+      <DependentUpon>ItemSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MobSearch.resx">
+      <DependentUpon>MobSearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MySQLConfig.resx">
+      <DependentUpon>MySQLConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\DOLDatabase.dll" />
+    <Content Include="libs\GameServer.dll" />
+    <Content Include="Resources\green_arrow_right.png" />
+    <None Include="Resources\loading.bmp" />
+    <Content Include="Resources\mysql_test_button.Image.png" />
+    <Content Include="Resources\save_config_button.Image.png" />
+    <Content Include="Resources\set_default_values_button.Image.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

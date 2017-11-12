@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using MannikToolbox.Forms;
+using DOLToolbox.Forms;
 
-namespace MannikToolbox
+namespace DOLToolbox
 {
     static class Program
     {

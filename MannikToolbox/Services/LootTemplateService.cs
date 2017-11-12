@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DOL.Database; 
-using MannikToolbox.Models;
+using DOLToolbox.Models;
 
-namespace MannikToolbox.Services
+namespace DOLToolbox.Services
 {
     public class LootTemplateService
     {

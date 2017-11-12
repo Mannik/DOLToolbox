@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using DOL.Database;
-using MannikToolbox.Services;
+using DOLToolbox.Services;
 
-namespace MannikToolbox.Forms
+namespace DOLToolbox.Forms
 {
     public partial class LootTemplateSearchForm : Form
     {
