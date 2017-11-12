@@ -1,4 +1,4 @@
-# MannikToolbox
+# DOLToolbox
 Dawn of Light Database Toolbox
 
 ## Goal

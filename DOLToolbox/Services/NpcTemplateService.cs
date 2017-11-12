@@ -19,5 +19,10 @@ namespace DOLToolbox.Services
             
             DatabaseManager.Database.SaveObject(template);
         }
+
+        public void Delete(DBNpcTemplate template)
+        {
+            DatabaseManager.Database.DeleteObject(template);
+        }
     }
 }

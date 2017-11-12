@@ -60,5 +60,10 @@ namespace DOLToolbox.Services
 
             return strValue;
         }
+
+        public void Delete(ItemTemplate item)
+        {
+            DatabaseManager.Database.DeleteObject(item);
+        }
     }
 }

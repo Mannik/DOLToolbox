@@ -29,5 +29,10 @@ namespace DOLToolbox.Services
                        .Select(x => x.SpellID)
                        .FirstOrDefault() + 1;
         }
+
+        public void Delete(DBSpell spell)
+        {
+            DatabaseManager.Database.DeleteObject(spell);
+        }
     }
 }

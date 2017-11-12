@@ -11,31 +11,16 @@ namespace DOLToolbox.Services
     {
         private static string BasePath => $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Assets\";
 
-        public async Task<Image> LoadMob(int modelId)
-        {
-            return await LoadAsset(modelId, @"Models\mobs");
-        }
-
-        public async Task<Image> LoadItem(int modelId)
-        {
-            return await LoadAsset(modelId, @"Models\items");
-        }
-
         public async Task<Image> LoadMob(int modelId, int maxWidth, int maxHeight)
         {
-            var image = await LoadMob(modelId);
+            var image = await LoadAsset(modelId, @"Models\mobs");
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
         public async Task<Image> LoadItem(int modelId, int maxWidth, int maxHeight)
         {
-            var image = await LoadItem(modelId);
+            var image = await LoadAsset(modelId, @"Models\items");
             return ScaleImage(image, maxWidth, maxHeight);
-        }
-
-        public Image Load(string filename)
-        {
-            return LoadAsset(filename);
         }
 
         public Image Load(string filename, int maxWidth, int maxHeight)
@@ -71,6 +56,11 @@ namespace DOLToolbox.Services
         private async Task<Image> DownloadAsset(int modelId, string filePath, string type)
         {
             var directory = Path.GetDirectoryName(filePath);
+            if (string.IsNullOrWhiteSpace(directory))
+            {
+                return null;
+            }
+
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);

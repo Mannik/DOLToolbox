@@ -196,7 +196,7 @@
             // 
             this._Count.Location = new System.Drawing.Point(531, 378);
             this._Count.Name = "_Count";
-            this._Count.Size = new System.Drawing.Size(129, 20);
+            this._Count.Size = new System.Drawing.Size(126, 20);
             this._Count.TabIndex = 33;
             // 
             // label2
@@ -221,7 +221,7 @@
             // 
             this._Chance.Location = new System.Drawing.Point(531, 352);
             this._Chance.Name = "_Chance";
-            this._Chance.Size = new System.Drawing.Size(129, 20);
+            this._Chance.Size = new System.Drawing.Size(126, 20);
             this._Chance.TabIndex = 31;
             // 
             // label4
@@ -272,7 +272,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(806, 156);
+            this.button7.Location = new System.Drawing.Point(582, 156);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 39;
@@ -302,7 +302,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(725, 156);
+            this.button10.Location = new System.Drawing.Point(501, 156);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 42;
@@ -322,9 +322,9 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(531, 156);
+            this.pictureBox2.Location = new System.Drawing.Point(663, 154);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(188, 164);
+            this.pictureBox2.Size = new System.Drawing.Size(218, 164);
             this.pictureBox2.TabIndex = 44;
             this.pictureBox2.TabStop = false;
             // 
