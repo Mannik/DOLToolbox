@@ -483,10 +483,10 @@ namespace DOLToolbox.Services
             BindData(input, items);
         }
 
-        private static void BindData(ComboBox input, List<SelectItemModel> data)
+        private static void BindData(ComboBox input, List<SelectItemModel> data, string nullLabel = "Undefined")
         {
             if (data.All(x => x.Id != null))
-                data.Insert(0, new SelectItemModel(null, "Undefined"));
+                data.Insert(0, new SelectItemModel(null, nullLabel));
 
             input.DataSource = new BindingSource(data, null);
             input.DisplayMember = "Value";
@@ -789,19 +789,18 @@ namespace DOLToolbox.Services
         {
             var items = new List<SelectItemModel>
             {
-                new SelectItemModel(1, "All"),
-                new SelectItemModel(2, "Stats"),
-                new SelectItemModel(3, "Stat Cap"),
-                new SelectItemModel(4, "Resists"),
-                new SelectItemModel(5, "Resist Cap"),
-                new SelectItemModel(6, "Skills"),
-                new SelectItemModel(7, "Focus"),
-                new SelectItemModel(8, "Trials of Atlantis"),
-                new SelectItemModel(9, "Other"),
-                new SelectItemModel(10, "Mythical")
+                new SelectItemModel(1, "Stats"),
+                new SelectItemModel(2, "Stat Cap"),
+                new SelectItemModel(3, "Resists"),
+                new SelectItemModel(4, "Resist Cap"),
+                new SelectItemModel(5, "Skills"),
+                new SelectItemModel(6, "Focus"),
+                new SelectItemModel(7, "Trials of Atlantis"),
+                new SelectItemModel(8, "Other"),
+                new SelectItemModel(9, "Mythical")
             };
 
-            BindData(input, items);
+            BindData(input, items, "All");
         }
 
         public static void BindItemExtension(ComboBox input)
