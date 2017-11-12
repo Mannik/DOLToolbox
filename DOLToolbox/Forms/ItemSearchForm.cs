@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DOL.Database;
 using DOLToolbox.Services;
-using System.Threading.Tasks;
 
 namespace DOLToolbox.Forms
 {

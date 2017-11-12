@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using DOL.Database;
 using DOLToolbox.Forms;
 using DOLToolbox.Services;
-using System.Threading.Tasks;
 
 namespace DOLToolbox.Controls
 {

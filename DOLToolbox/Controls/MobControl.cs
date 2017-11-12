@@ -27,8 +27,6 @@ namespace DOLToolbox.Controls
 
         private async void MobControl_Load(object sender, EventArgs e)
         {
-            //var mob = _mobService.GetMob("0016de40-8dc3-4cd6-aefd-e34b9f720fa7");
-
             await FillRaceResists();
             await SetupDropdowns();
         }
@@ -58,7 +56,7 @@ namespace DOLToolbox.Controls
             if (_mob == null)
                 return;
             
-            _modelImageService.LoadMob(_mob.Model)
+            _modelImageService.LoadMob(_mob.Model, pictureBox1.Width, pictureBox1.Height)
                 .ContinueWith(x => pictureBox1.Image = x.Result);
 
             BindingService.BindData(_mob, this);
@@ -98,7 +96,7 @@ namespace DOLToolbox.Controls
 
             if (int.TryParse(_Model.Text, out var modelId))
             {
-                _modelImageService.LoadMob(modelId)
+                _modelImageService.LoadMob(modelId, pictureBox1.Width, pictureBox1.Height)
                     .ContinueWith(x => pictureBox1.Image = x.Result);                
             }
         }
@@ -268,6 +266,16 @@ namespace DOLToolbox.Controls
             {
                 return;
             }
+            
+            var confirmResult = MessageBox.Show(@"Are you sure to delete the selected object",
+                @"Confirm Delete!!",
+                MessageBoxButtons.YesNo);
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
             _mobService.DeleteMob(_mob);
             ClearMob();
         }

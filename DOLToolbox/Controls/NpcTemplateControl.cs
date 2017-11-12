@@ -217,7 +217,33 @@ namespace DOLToolbox.Controls
 
         private void button3_Click(object sender, System.EventArgs e)
         {
+            Clear();
+            _template = null;
+        }
+
+        private void Clear()
+        {
             BindingService.ClearData(this);
+        }
+
+        private void button4_Click(object sender, System.EventArgs e)
+        {
+            if (_template == null)
+            {
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(@"Are you sure to delete the selected object",
+                @"Confirm Delete!!",
+                MessageBoxButtons.YesNo);
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            _npcTemplateService.Delete(_template);
+            Clear();
         }
     }
 }

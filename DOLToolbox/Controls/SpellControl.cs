@@ -20,8 +20,6 @@ namespace DOLToolbox.Controls
 
         private void SpellControl_Load(object sender, EventArgs e)
         {
-            //var spell = _spellService.GetSpell("0016de40-8dc3-4cd6-aefd-e34b9f720fa7");
-
             SetupDropdowns();
         }
 
@@ -41,9 +39,6 @@ namespace DOLToolbox.Controls
 
             BindingService.BindData(_spell, this);
         }
-
-   
-      
 
         private void SetupDropdowns()
         {
@@ -91,17 +86,43 @@ namespace DOLToolbox.Controls
 
             SyncSpell();
             _spellService.Save(_spell);
-            BindingService.ClearData(this);
+            Clear();
         }
 
         private void SyncSpell()
         {
+            Clear();
+        }
+
+        private void Clear()
+        {
             BindingService.SyncData(_spell, this);
+            _spell = null;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             BindingService.ClearData(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (_spell == null)
+            {
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(@"Are you sure to delete the selected object",
+                @"Confirm Delete!!",
+                MessageBoxButtons.YesNo);
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            _spellService.Delete(_spell);
+            Clear();
         }
     }
 }

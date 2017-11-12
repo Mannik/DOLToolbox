@@ -22,8 +22,6 @@ namespace DOLToolbox.Controls
         }
         private void ItemTemplateControl_Load(object sender, EventArgs e)
         {
-            //var item = _itemService.GetItem("0016de40-8dc3-4cd6-aefd-e34b9f720fa7");
-
             SetupDropdowns();
         }
 
@@ -236,8 +234,33 @@ namespace DOLToolbox.Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Clear();
+        }
+
+        private void Clear()
+        {
             BindingService.ClearData(this);
             _item = null;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (_item == null)
+            {
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(@"Are you sure to delete the selected object",
+                @"Confirm Delete!!",
+                MessageBoxButtons.YesNo);
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            _itemService.Delete(_item);
+            Clear();
         }
     }
 }
