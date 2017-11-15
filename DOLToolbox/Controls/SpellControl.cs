@@ -34,6 +34,7 @@ namespace DOLToolbox.Controls
 
             if (_spell == null)
             {
+                MessageBox.Show($@"Object with ObjectId: {spellId} not found", @"Object not found");
                 return;
             }
 

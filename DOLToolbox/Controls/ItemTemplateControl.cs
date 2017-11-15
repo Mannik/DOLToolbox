@@ -50,8 +50,10 @@ namespace DOLToolbox.Controls
 
             _item = _itemService.GetItem(itemId);
 
+
             if (_item == null)
             {
+                MessageBox.Show($@"Object with ObjectId: {itemId} not found", @"Object not found");
                 return;
             }
 

@@ -54,6 +54,7 @@ namespace DOLToolbox.Controls
 
             if (_model == null)
             {
+                MessageBox.Show($@"Object with ObjectId: {templateId} not found", @"Object not found");
                 return;
             }
 
