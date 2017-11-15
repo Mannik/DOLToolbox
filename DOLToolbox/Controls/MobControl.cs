@@ -54,7 +54,10 @@ namespace DOLToolbox.Controls
             _mob = _mobService.GetMob(mobId);
 
             if (_mob == null)
+            {
+                MessageBox.Show($@"Object with ObjectId: {mobId} not found", @"Object not found");
                 return;
+            }
             
             _modelImageService.LoadMob(_mob.Model, pictureBox1.Width, pictureBox1.Height)
                 .ContinueWith(x => pictureBox1.Image = x.Result);

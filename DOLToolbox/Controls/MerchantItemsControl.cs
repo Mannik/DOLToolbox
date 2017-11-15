@@ -73,6 +73,7 @@ namespace DOLToolbox.Controls
 
             if (_merchantItems == null || _merchantItems.Count == 0)
             {
+                MessageBox.Show($@"Object with ObjectId: {id} not found", @"Object not found");
                 return;
             }
 

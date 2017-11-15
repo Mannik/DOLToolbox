@@ -198,7 +198,7 @@
             // 
             // itemLoad
             // 
-            this.itemLoad.Location = new System.Drawing.Point(3, 3);
+            this.itemLoad.Location = new System.Drawing.Point(165, 3);
             this.itemLoad.Name = "itemLoad";
             this.itemLoad.Size = new System.Drawing.Size(75, 23);
             this.itemLoad.TabIndex = 0;
@@ -218,7 +218,7 @@
             // 
             // itemSearch
             // 
-            this.itemSearch.Location = new System.Drawing.Point(165, 3);
+            this.itemSearch.Location = new System.Drawing.Point(3, 3);
             this.itemSearch.Name = "itemSearch";
             this.itemSearch.Size = new System.Drawing.Size(75, 23);
             this.itemSearch.TabIndex = 2;

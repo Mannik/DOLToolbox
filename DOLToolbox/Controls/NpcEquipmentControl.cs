@@ -65,12 +65,21 @@ namespace DOLToolbox.Controls
             public int? SlotId { get; set; }
         }
 
-        private void LoadItems(string mobId)
+        private void LoadItems(string templateId)
         {
-            if (string.IsNullOrWhiteSpace(mobId))
+            if (string.IsNullOrWhiteSpace(templateId))
+            {
                 return;
+            }
 
-            _equipment = _npcEquipmentService.Get(mobId);
+            _equipment = _npcEquipmentService.Get(templateId);
+
+            if (_equipment == null || !_equipment.Any())
+            {
+                MessageBox.Show($@"Object with ObjectId: {templateId} not found", @"Object not found");
+                return;
+            }
+
             _templateId = _equipment.FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.TemplateID))?.TemplateID;
 
             var items =
