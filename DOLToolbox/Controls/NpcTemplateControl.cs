@@ -246,5 +246,23 @@ namespace DOLToolbox.Controls
             _npcTemplateService.Delete(_template);
             Clear();
         }
+
+        private void button5_Click(object sender, System.EventArgs e)
+        {
+            var search = new NpcTemplateSearchForm();
+
+            search.SelectClicked += (o, args) =>
+            {
+                if (!(o is DBNpcTemplate item))
+                {
+                    return;
+                }
+
+                LoadItem(item.ObjectId);
+
+            };
+
+            search.ShowDialog(this);
+        }
     }
 }

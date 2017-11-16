@@ -199,6 +199,7 @@
             this.ClientSize = new System.Drawing.Size(893, 579);
             this.Controls.Add(this.ToolboxTabControl);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(909, 618);
             this.MinimumSize = new System.Drawing.Size(909, 618);
             this.Name = "MainForm";
