@@ -181,5 +181,11 @@ namespace DOLToolbox.Forms
             SelectClicked?.Invoke(item, e);
             Close();
         }
+
+        private void SpellSearchForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _allData = null;
+            _data = null;
+        }
     }
 }
