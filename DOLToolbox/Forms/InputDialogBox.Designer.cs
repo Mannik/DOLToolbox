@@ -80,6 +80,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblCaption);
             this.Controls.Add(this.txtValue);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "InputDialogBox";
             this.Text = "Input";
             this.ResumeLayout(false);

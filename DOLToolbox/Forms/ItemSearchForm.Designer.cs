@@ -175,6 +175,7 @@
             this.Controls.Add(this.txtFilterMob);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ItemSearchForm";
             this.Text = "ItemSearchForm";
             this.Load += new System.EventHandler(this.ItemSearchForm_Load);

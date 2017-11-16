@@ -1,6 +1,6 @@
 ﻿namespace DOLToolbox.Forms
 {
-    partial class SpellSearchForm
+    partial class NpcTemplateSearchForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,9 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPage
@@ -136,22 +138,32 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(518, 533);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(490, 565);
+            this.button1.Location = new System.Drawing.Point(786, 565);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 23);
+            this.button1.Size = new System.Drawing.Size(89, 23);
             this.button1.TabIndex = 32;
-            this.button1.Text = "Select";
+            this.button1.Text = "Use Selection";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // SpellSearchForm
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(536, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(353, 533);
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            // 
+            // NpcTemplateSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 600);
+            this.ClientSize = new System.Drawing.Size(887, 600);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblPage);
             this.Controls.Add(this.btnNext);
@@ -164,11 +176,12 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "SpellSearchForm";
-            this.Text = "SpellSearchForm";
+            this.Name = "NpcTemplateSearchForm";
+            this.Text = "Npc Template Search";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SpellSearchForm_FormClosed);
             this.Load += new System.EventHandler(this.SpellSearchForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +200,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
