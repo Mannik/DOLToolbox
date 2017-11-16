@@ -125,5 +125,23 @@ namespace DOLToolbox.Controls
             _spellService.Delete(_spell);
             Clear();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var search = new SpellSearchForm();
+
+            search.SelectClicked += async (o, args) =>
+            {
+                if (!(o is DBSpell item))
+                {
+                    return;
+                }
+
+                await LoadSpell(item.ObjectId);
+
+            };
+
+            search.ShowDialog(this);
+        }
     }
 }

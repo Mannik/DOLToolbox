@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DOL.Database;
 
@@ -8,7 +9,14 @@ namespace DOLToolbox.Services
     {
         public async Task<DBSpell> Get(string objectId)
         {
-            return await Task.Run(() => DatabaseManager.Database.FindObjectByKey<DBSpell>(objectId));
+            return await Task.Run(() => DatabaseManager.Database.FindObjectByKey<DBSpell>(objectId) ??
+                                        DatabaseManager.Database.SelectObjects<DBSpell>("`SpellID` = @Id",
+                                            new QueryParameter("@Id", objectId)).FirstOrDefault());
+        }
+
+        public async Task<List<DBSpell>> Get()
+        {
+            return await Task.Run(() => DatabaseManager.Database.SelectAllObjects<DBSpell>().ToList());
         }
 
         public void Save(DBSpell spell)

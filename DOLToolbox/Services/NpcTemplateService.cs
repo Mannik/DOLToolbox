@@ -1,4 +1,5 @@
-﻿using DOL.Database;
+﻿using System.Linq;
+using DOL.Database;
 
 namespace DOLToolbox.Services
 {
@@ -6,7 +7,9 @@ namespace DOLToolbox.Services
     {
         public DBNpcTemplate Get(string id)
         {
-            return DatabaseManager.Database.FindObjectByKey<DBNpcTemplate>(id);
+            return DatabaseManager.Database.FindObjectByKey<DBNpcTemplate>(id) ??
+                   DatabaseManager.Database.SelectObjects<DBNpcTemplate>("`TemplateId` = @Id",
+                       new QueryParameter("@Id", id)).FirstOrDefault();
         }
 
         public void Save(DBNpcTemplate template)
