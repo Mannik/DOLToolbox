@@ -166,7 +166,7 @@ namespace DOLToolbox.Controls
         {
             var dialog = new InputDialogBox
             {
-                Caption = { Text = @"Please enter Mob ID" }
+                Caption = { Text = @"Please enter object id" }
             };
 
             if (dialog.ShowDialog(this) == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.Input.Text))
