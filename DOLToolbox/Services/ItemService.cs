@@ -10,7 +10,9 @@ namespace DOLToolbox.Services
     {
         public ItemTemplate GetItem(string itemId)
         {
-            return DatabaseManager.Database.FindObjectByKey<ItemTemplate>(itemId);
+            return DatabaseManager.Database.FindObjectByKey<ItemTemplate>(itemId) ??
+                   DatabaseManager.Database.SelectObjects<ItemTemplate>("`Id_nb` = @Id",
+                       new QueryParameter("@Id", itemId)).FirstOrDefault();
         }
 
         public async Task<List<ItemTemplate>> GetItems()

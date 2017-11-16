@@ -56,6 +56,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\DOLDatabase.dll</HintPath>
     </Reference>
+    <Reference Include="DOLModelViewer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\DOLModelViewer.dll</HintPath>
+    </Reference>
     <Reference Include="GameServer, Version=1.9.7.18353, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\GameServer.dll</HintPath>
@@ -92,6 +96,12 @@
     </Compile>
     <Compile Include="Forms\LootTemplateSearchForm.Designer.cs">
       <DependentUpon>LootTemplateSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpellSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpellSearchForm.Designer.cs">
+      <DependentUpon>SpellSearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\LootTemplateModel.cs" />
     <Compile Include="Controls\NpcEquipmentControl.cs">
@@ -233,6 +243,9 @@
     <EmbeddedResource Include="Forms\MySQLConfig.resx">
       <DependentUpon>MySQLConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpellSearchForm.resx">
+      <DependentUpon>SpellSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -254,6 +267,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="libs\DOLDatabase.dll" />
+    <Content Include="libs\DOLModelViewer.dll" />
     <Content Include="libs\GameServer.dll" />
     <Content Include="Resources\green_arrow_right.png" />
     <None Include="Resources\loading.bmp" />
