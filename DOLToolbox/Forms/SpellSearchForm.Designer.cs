@@ -165,6 +165,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "SpellSearchForm";
             this.Text = "SpellSearchForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SpellSearchForm_FormClosed);
             this.Load += new System.EventHandler(this.SpellSearchForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
