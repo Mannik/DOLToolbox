@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
+using DOLToolbox.Extensions;
 using DOLToolbox.Services;
 
 namespace DOLToolbox.Forms
@@ -106,14 +108,15 @@ namespace DOLToolbox.Forms
             _data = paging
                 ? _data
                 : _allData
-                    .Where(x => string.IsNullOrWhiteSpace(filter) || x.Name.ToLower().Contains(filter))
+                    .Where(x =>
+                        string.IsNullOrWhiteSpace(filter) ||
+                        Regex.IsMatch(x.Name, txtFilterMob.Text.ToWildcardRegex(), RegexOptions.IgnoreCase))
                     .ToList();
 
             var page = _data
                 .Skip(_page * _pageSize)
                 .Take(_pageSize)
                 .ToList();
-                //.ForEach(x => dgd_MobSearch.Rows.Add(x.ObjectId, x.Name, x.Guild, x.Model, x.Region));
 
 
             var bindingList = new BindingList<Mob>(page);

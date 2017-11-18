@@ -13,7 +13,6 @@ namespace DOLToolbox.Controls
     {
         private readonly NpcEquipmentService _npcEquipmentService = new NpcEquipmentService();
         private readonly ImageService _imageService = new ImageService();
-        private readonly ItemService _itemService = new ItemService();
         
         private readonly List<ComboboxService.SelectItemModel> _equipmentSlots =
             new List<ComboboxService.SelectItemModel>
@@ -34,7 +33,6 @@ namespace DOLToolbox.Controls
         private List<NPCEquipment> _equipment;
         private NPCEquipment _selected;
         private string _templateId;
-        private List<ItemTemplate> _items;
 
         public NpcEquipmentControl()
         {
@@ -200,11 +198,6 @@ namespace DOLToolbox.Controls
             };
 
             modelViewer.Show(this);
-        }
-
-        private async void NpcEquipmentControl_Load(object sender, EventArgs e)
-        {
-            _items =  await _itemService.GetItems();
         }
 
         private void button3_Click(object sender, EventArgs e)

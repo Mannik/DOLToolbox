@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DOL.Database;
+using DOLToolbox.Extensions;
 using DOLToolbox.Services;
 
 namespace DOLToolbox.Forms
@@ -56,9 +58,11 @@ namespace DOLToolbox.Forms
         {
             var query = _allData.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(txtFilterMob.Text?.ToLower()))
+            var filter = txtFilterMob.Text;
+            if (!string.IsNullOrWhiteSpace(filter))
             {
-                query = query.Where(x => x.LootTemplateName.ToLower().Contains(txtFilterMob.Text.ToLower()));
+                filter = filter.ToWildcardRegex();
+                _data = _allData.Where(x => Regex.IsMatch(x.LootTemplateName, filter, RegexOptions.IgnoreCase)).ToList();
             }
 
             return query.ToList();

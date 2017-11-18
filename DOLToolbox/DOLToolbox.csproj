@@ -98,6 +98,7 @@
     <Compile Include="Controls\LootTemplateControl.Designer.cs">
       <DependentUpon>LootTemplateControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Forms\LootTemplateSearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +297,9 @@
     <Content Include="libs\DOLModelViewer.dll" />
     <Content Include="libs\GameServer.dll" />
     <Content Include="libs\System.Data.SQLite.dll" />
+    <Content Include="libs\System.Data.SQLite.xml" />
+    <Content Include="libs\x64\SQLite.Interop.dll" />
+    <Content Include="libs\x86\SQLite.Interop.dll" />
     <Content Include="Resources\green_arrow_right.png" />
     <None Include="Resources\loading.bmp" />
     <Content Include="Resources\mysql_test_button.Image.png" />

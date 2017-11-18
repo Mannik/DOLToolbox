@@ -263,7 +263,6 @@
             this.Controls.Add(this.btnLoad);
             this.Name = "NpcEquipmentControl";
             this.Size = new System.Drawing.Size(885, 529);
-            this.Load += new System.EventHandler(this.NpcEquipmentControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

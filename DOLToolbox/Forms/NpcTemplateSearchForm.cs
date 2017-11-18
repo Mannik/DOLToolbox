@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DOL.Database;
+using DOLToolbox.Extensions;
 using DOLToolbox.Services;
 
 namespace DOLToolbox.Forms
@@ -45,8 +47,17 @@ namespace DOLToolbox.Forms
 
             if (!paging)
             {
-                var filter = txtFilter.Text?.ToLower();
-                _data = _allData.Where(x => string.IsNullOrWhiteSpace(filter) || x.Name.ToLower().Contains(filter)).ToList();
+                var filter = txtFilter.Text;
+                if (string.IsNullOrWhiteSpace(filter))
+                {
+                    _data = _allData.ToList();
+                }
+                else
+                {
+                    filter = filter.ToWildcardRegex();
+                    _data = _allData.Where(x => Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase)).ToList();
+                }
+
             }
 
             var page = _data
