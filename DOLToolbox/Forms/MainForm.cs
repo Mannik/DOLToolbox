@@ -14,7 +14,7 @@ namespace DOLToolbox.Forms
 			InitializeComponent();
         }
 
-		private void MainForm_Load(object sender, EventArgs e)
+		private async void MainForm_Load(object sender, EventArgs e)
 		{
             // do not open app until db connection is valid
 		    bool isDbConnected = false;
@@ -58,21 +58,20 @@ namespace DOLToolbox.Forms
 		            var type = DatabaseManager.RegisteredObjects[item].Name;
 		            loading.ProgressText.Text = $@"Loading: {type}";
 		        }
-
-		        if (percent == 100)
-		        {
-					ToolboxTabControl.Enabled = true;
-					loading.Close();
-		        }
 		    });
 
             // doing this to start loading the db
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 DatabaseManager.SetDatabaseConnection(progress);
             });
 
-		    Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
+            loading.ProgressText.Text = @"Loading: Model Viewer";
+		    await Task.Run(() => new ModelViewerService());
+
+            loading.Close();
+            ToolboxTabControl.Enabled = true;
+            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
 		    LoadTabForms();
 		}
         

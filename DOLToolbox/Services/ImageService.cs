@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -11,15 +10,21 @@ namespace DOLToolbox.Services
     {
         private static string BasePath => $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Assets\";
 
+        private enum ModelType
+        {
+            Item, Mob
+        }
+
+
         public async Task<Image> LoadMob(int modelId, int maxWidth, int maxHeight)
         {
-            var image = await LoadAsset(modelId, @"Models\mobs");
+            var image = await LoadAsset(modelId, ModelType.Mob);
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
         public async Task<Image> LoadItem(int modelId, int maxWidth, int maxHeight)
         {
-            var image = await LoadAsset(modelId, @"Models\items");
+            var image = await LoadAsset(modelId, ModelType.Item);
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
@@ -29,16 +34,21 @@ namespace DOLToolbox.Services
             return ScaleImage(image, maxWidth, maxHeight);
         }
 
-        private async Task<Image> LoadAsset(int modelId, string path)
+        private async Task<Image> LoadAsset(int modelId, ModelType type)
         {
-            var filePath = $@"{BasePath}{path}\{modelId}.jpg";
-
-            if (!File.Exists(filePath))
+            return await Task.Run(() =>
             {
-                return await DownloadAsset(modelId, filePath, path);
-            }
+                if (type == ModelType.Item)
+                {
+                    var item = ModelViewerService.Viewer.GetItem(modelId);
 
-            return Image.FromFile(filePath);
+                    return item == null ? null : ModelViewerService.Viewer.GetItemPicture(item);
+                }
+
+                var mob = ModelViewerService.Viewer.GetMob(modelId);
+
+                return mob == null ? null : ModelViewerService.Viewer.GetMobPicture(mob);
+            });
         }
 
         private Image LoadAsset(string file)
@@ -51,38 +61,6 @@ namespace DOLToolbox.Services
             }
 
             return Image.FromFile(filePath);
-        }
-
-        private async Task<Image> DownloadAsset(int modelId, string filePath, string type)
-        {
-            var directory = Path.GetDirectoryName(filePath);
-            if (string.IsNullOrWhiteSpace(directory))
-            {
-                return null;
-            }
-
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-
-            using (var webClient = new WebClient())
-            {
-                try
-                {
-                    var url = $"www.dolserver.net/models/{(type.Replace("\\", "/"))}/{modelId}.jpg";
-                    var data = await webClient.DownloadDataTaskAsync(new Uri("http://" + url));
-                    var image = Image.FromStream(new MemoryStream(data));
-
-                    image.Save(filePath);
-                    return image;
-                }
-                catch (WebException ex)  when(ex.Message == "The remote server returned an error: (404) Not Found.")
-                {
-                }
-            }
-
-            return null;
         }
 
         private static Image ScaleImage(Image image, int maxWidth, int maxHeight)

@@ -140,6 +140,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -1104,6 +1105,7 @@
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.button6);
             this.groupBox10.Controls.Add(this._Abilities);
             this.groupBox10.Controls.Add(this.label48);
             this.groupBox10.Controls.Add(this._Styles);
@@ -1157,9 +1159,9 @@
             // 
             // _Model
             // 
-            this._Model.Location = new System.Drawing.Point(76, 49);
+            this._Model.Location = new System.Drawing.Point(76, 50);
             this._Model.Name = "_Model";
-            this._Model.Size = new System.Drawing.Size(366, 20);
+            this._Model.Size = new System.Drawing.Size(334, 20);
             this._Model.TabIndex = 37;
             // 
             // label44
@@ -1210,6 +1212,16 @@
             this.button5.Text = "Search";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(416, 47);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(26, 23);
+            this.button6.TabIndex = 31;
+            this.button6.Text = "?";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // NpcTemplateControl
             // 
@@ -1368,5 +1380,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

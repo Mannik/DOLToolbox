@@ -190,37 +190,16 @@ namespace DOLToolbox.Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var model = new ItemSearchForm.SearchModel();
-            if (_Slot.SelectedItem is ComboboxService.SelectItemModel selection)
+            var modelViewer = new ModelViewerSearchForm(ModelViewerSearchForm.ModelType.Item);
+
+            modelViewer.SelectClicked += (o, args) =>
             {
-                model.Slot = selection.Id;
-            }
-
-            var search = new ItemSearchForm(_items, model)
-            {
-                TopMost = true
-            };
-
-            search.SelectClicked += (o, args) =>
-            {
-                var selected = GetSelected();
-
-                if (selected == null)
-                {
-                    return;
-                }
-
-                if (!(o is ItemTemplate item))
-                {
-                    return;
-                }
-
-                _Model.Text = item.Model.ToString();
-                _imageService.LoadItem(item.Model, pictureBox1.Width, pictureBox1.Height)
+                _Model.Text = o.ToString();
+                _imageService.LoadItem((int)o, pictureBox1.Width, pictureBox1.Height)
                     .ContinueWith(x => pictureBox1.Image = x.Result);
             };
 
-            search.ShowDialog(this);
+            modelViewer.Show(this);
         }
 
         private async void NpcEquipmentControl_Load(object sender, EventArgs e)
