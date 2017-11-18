@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DOL.Util.DOLModelViewer;
+using DOLToolbox.Extensions;
 using DOLToolbox.Services;
 
 namespace DOLToolbox.Forms
@@ -87,11 +89,13 @@ namespace DOLToolbox.Forms
         {
             var items = ModelViewerService.Viewer.GetItems().AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            var filter = txtSearch.Text;
+            if (!string.IsNullOrWhiteSpace(filter))
             {
-                items = items.Where(x => 
-                    x.Name.IndexOf(txtSearch.Text, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
-                    x.Category.IndexOf(txtSearch.Text, StringComparison.InvariantCultureIgnoreCase) >= 0);
+                filter = filter.ToWildcardRegex();
+                items = items.Where(x =>
+                    Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase) ||
+                    Regex.IsMatch(x.Category, filter, RegexOptions.IgnoreCase));
             }
 
             if (!string.IsNullOrWhiteSpace(cboType.SelectedItem?.ToString()))
@@ -135,10 +139,11 @@ namespace DOLToolbox.Forms
         {
             var mobs = ModelViewerService.Viewer.GetMobs().AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            var filter = txtSearch.Text;
+            if (!string.IsNullOrWhiteSpace(filter))
             {
-                mobs = mobs.Where(x =>
-                    x.Name.IndexOf(txtSearch.Text, StringComparison.InvariantCultureIgnoreCase) >= 0);
+                filter = filter.ToWildcardRegex();
+                mobs = mobs.Where(x => Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase));
             }
 
             if (!string.IsNullOrWhiteSpace(cboType.SelectedItem?.ToString()))
