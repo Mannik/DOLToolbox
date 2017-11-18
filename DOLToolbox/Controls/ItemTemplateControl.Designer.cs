@@ -188,6 +188,7 @@
             this._AllowedClasses = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -228,6 +229,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this._Level);
             this.groupBox2.Controls.Add(this.label70);
             this.groupBox2.Controls.Add(this._Effect);
@@ -309,7 +311,7 @@
             // 
             this._Effect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Effect.FormattingEnabled = true;
-            this._Effect.Location = new System.Drawing.Point(284, 12);
+            this._Effect.Location = new System.Drawing.Point(500, 12);
             this._Effect.Name = "_Effect";
             this._Effect.Size = new System.Drawing.Size(269, 21);
             this._Effect.TabIndex = 100;
@@ -529,7 +531,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(243, 16);
+            this.label54.Location = new System.Drawing.Point(459, 16);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(35, 13);
             this.label54.TabIndex = 72;
@@ -637,7 +639,7 @@
             // 
             this._Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Color.FormattingEnabled = true;
-            this._Color.Location = new System.Drawing.Point(598, 12);
+            this._Color.Location = new System.Drawing.Point(590, 65);
             this._Color.Name = "_Color";
             this._Color.Size = new System.Drawing.Size(177, 21);
             this._Color.TabIndex = 54;
@@ -645,7 +647,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(561, 15);
+            this.label35.Location = new System.Drawing.Point(553, 68);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(31, 13);
             this.label35.TabIndex = 53;
@@ -1716,6 +1718,16 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(243, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(17, 23);
+            this.button3.TabIndex = 72;
+            this.button3.Text = "?";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // ItemTemplateControl
             // 
             this.Controls.Add(this.button2);
@@ -1911,5 +1923,6 @@
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

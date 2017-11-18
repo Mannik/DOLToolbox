@@ -11,6 +11,8 @@
     <AssemblyName>DOLToolbox</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -74,6 +76,11 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net46\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -96,6 +103,12 @@
     </Compile>
     <Compile Include="Forms\LootTemplateSearchForm.Designer.cs">
       <DependentUpon>LootTemplateSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModelViewerSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModelViewerSearchForm.Designer.cs">
+      <DependentUpon>ModelViewerSearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NpcTemplateSearchForm.cs">
       <SubType>Form</SubType>
@@ -196,6 +209,7 @@
     <Compile Include="Services\ItemBonusService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\LootTemplateService.cs" />
+    <Compile Include="Services\ModelViewerService.cs" />
     <Compile Include="Services\NpcEquipmentService.cs" />
     <Compile Include="Services\MerchantItemService.cs" />
     <Compile Include="Services\NpcTemplateService.cs" />
@@ -246,6 +260,9 @@
       <DependentUpon>MobSearch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModelViewerSearchForm.resx">
+      <DependentUpon>ModelViewerSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MySQLConfig.resx">
       <DependentUpon>MySQLConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -278,6 +295,7 @@
     <Content Include="libs\DOLDatabase.dll" />
     <Content Include="libs\DOLModelViewer.dll" />
     <Content Include="libs\GameServer.dll" />
+    <Content Include="libs\System.Data.SQLite.dll" />
     <Content Include="Resources\green_arrow_right.png" />
     <None Include="Resources\loading.bmp" />
     <Content Include="Resources\mysql_test_button.Image.png" />
@@ -285,6 +303,13 @@
     <Content Include="Resources\set_default_values_button.Image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

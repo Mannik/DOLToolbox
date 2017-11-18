@@ -282,5 +282,14 @@ namespace DOLToolbox.Controls
             _mobService.DeleteMob(_mob);
             ClearMob();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var modelViewer = new ModelViewerSearchForm(ModelViewerSearchForm.ModelType.Mob);
+
+            modelViewer.SelectClicked += (o, args) => { _Model.Text = o.ToString(); };
+
+            modelViewer.Show(this);
+        }
     }
 }
