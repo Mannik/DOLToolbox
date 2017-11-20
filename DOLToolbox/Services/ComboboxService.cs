@@ -586,7 +586,7 @@ namespace DOLToolbox.Services
         {
             var items = new List<SelectItemModel>
             {
-                new SelectItemModel(0, "Whire"),
+                new SelectItemModel(0, "White"),
                 new SelectItemModel(1, "Old Red"),
                 new SelectItemModel(2, "Old Green"),
                 new SelectItemModel(3, "Old Blue"),
