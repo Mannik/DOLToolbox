@@ -87,7 +87,6 @@ namespace DOLToolbox.Forms
                 DataPropertyName = "Name",
                 HeaderText = @"Name",
                 Name = "Name",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -95,7 +94,6 @@ namespace DOLToolbox.Forms
                 DataPropertyName = "TemplateId",
                 HeaderText = @"TemplateId",
                 Name = "TemplateId",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -103,9 +101,12 @@ namespace DOLToolbox.Forms
                 DataPropertyName = "ClassType",
                 HeaderText = @"ClassType",
                 Name = "ClassType",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
-        }
+			foreach (DataGridViewColumn column in dataGridView1.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			}
+		}
 
         private DBNpcTemplate GetSelected()
         {

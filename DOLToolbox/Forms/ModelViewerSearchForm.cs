@@ -198,16 +198,14 @@ namespace DOLToolbox.Forms
             {
                 DataPropertyName = "ModelId",
                 HeaderText = @"ModelId",
-                Name = "ModelId",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                Name = "ModelId",                
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Name",
                 HeaderText = @"Name",
-                Name = "Name",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                Name = "Name",                
             });
 
             dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn
@@ -262,8 +260,7 @@ namespace DOLToolbox.Forms
             {
                 DataPropertyName = "MountId",
                 HeaderText = @"MountId",
-                Name = "MountId",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                Name = "MountId",                
             });
         }
 
@@ -273,24 +270,21 @@ namespace DOLToolbox.Forms
             {
                 DataPropertyName = "ModelId",
                 HeaderText = @"ModelId",
-                Name = "ModelId",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                Name = "ModelId",               
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Name",
                 HeaderText = @"Name",
-                Name = "Name",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                Name = "Name",              
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Category",
                 HeaderText = @"Category",
-                Name = "Category",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                Name = "Category",                
             });
 
             dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn
@@ -313,8 +307,7 @@ namespace DOLToolbox.Forms
             {
                 DataPropertyName = "WeaponHandName",
                 HeaderText = @"WeaponHand",
-                Name = "WeaponHandName",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                Name = "WeaponHandName",                
             });
 
             dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn
@@ -356,7 +349,11 @@ namespace DOLToolbox.Forms
                 Name = "IsOther",
                 Width = 20
             });
-        }
+			foreach (DataGridViewColumn column in dataGridView1.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			}
+		}
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {

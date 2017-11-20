@@ -43,8 +43,6 @@ namespace DOLToolbox.Forms
             {
                 _allData = await _lootTemplateService.Get();
             }
-
-            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
             GetPage();
         }
 

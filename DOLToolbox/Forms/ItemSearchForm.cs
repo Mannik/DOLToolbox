@@ -51,7 +51,6 @@ namespace DOLToolbox.Forms
                 _allData = await _itemService.GetItems();
             }
 
-            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
             GetPage();
         }
 
