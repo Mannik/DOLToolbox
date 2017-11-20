@@ -10,193 +10,194 @@ using DOLToolbox.Services;
 
 namespace DOLToolbox.Forms
 {
-    public partial class SpellSearchForm : Form
-    {
-        private readonly SpellService _spellService = new SpellService();
-        
-        private List<DBSpell> _allData;
-        private List<DBSpell> _data;
-        private int _page;
-        private int _pageSize = 50;
-        private int _selectedIndex;
+	public partial class SpellSearchForm : Form
+	{
+		private readonly SpellService _spellService = new SpellService();
 
-        public event EventHandler SelectClicked;
+		private List<DBSpell> _allData;
+		private List<DBSpell> _data;
+		private int _page;
+		private int _pageSize = 50;
+		private int _selectedIndex;
 
-        public SpellSearchForm()
-        {
-            InitializeComponent();
-        }
+		public event EventHandler SelectClicked;
 
-        private async void SpellSearchForm_Load(object sender, EventArgs e)
-        {
-            var loading = new LoadingForm
-            {
-                ProgressText = { Text = @"Loading: Spells" }
-            };
-            loading.Show();
+		public SpellSearchForm()
+		{
+			InitializeComponent();
+		}
 
-            _allData = await _spellService.Get();
+		private async void SpellSearchForm_Load(object sender, EventArgs e)
+		{
+			var loading = new LoadingForm
+			{
+				ProgressText = { Text = @"Loading: Spells" }
+			};
+			loading.Show();
 
-            loading.Close();
-            GetPage();
-        }
-        private void GetPage(bool paging = false)
-        {
-            dataGridView1.Rows.Clear();
+			_allData = await _spellService.Get();
 
-            if (!paging)
-            {
-                var filter = txtFilter.Text?.ToLower();
+			loading.Close();
+			GetPage();
+		}
+		private void GetPage(bool paging = false)
+		{
+			dataGridView1.Rows.Clear();
 
-                if (string.IsNullOrWhiteSpace(filter))
-                {
-                    _data = _allData.ToList();
-                }
-                else
-                {
-                    filter = filter.ToWildcardRegex();
-                    _data = _allData.Where(x => Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase)).ToList();
-                }
-            }
+			if (!paging)
+			{
+				var filter = txtFilter.Text?.ToLower();
 
-            var page = _data
-                .Skip(_page * _pageSize)
-                .Take(_pageSize)
-                .ToList();
+				if (string.IsNullOrWhiteSpace(filter))
+				{
+					_data = _allData.ToList();
+				}
+				else
+				{
+					filter = filter.ToWildcardRegex();
+					_data = _allData.Where(x => Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase)).ToList();
+				}
+			}
 
-            var bindingList = new BindingList<DBSpell>(page);
-            var source = new BindingSource(bindingList, null);
-            dataGridView1.DataSource = source;
+			var page = _data
+				.Skip(_page * _pageSize)
+				.Take(_pageSize)
+				.ToList();
 
-            SetGridColumns();
+			var bindingList = new BindingList<DBSpell>(page);
+			var source = new BindingSource(bindingList, null);
+			dataGridView1.DataSource = source;
 
-            if (dataGridView1.Rows.Count - 1 >= _selectedIndex)
-            {
-                dataGridView1.Rows[_selectedIndex].Selected = true;
-            }
-            lblPage.Text = $@"Page {_page + 1} of {Math.Ceiling(_data.Count / (decimal)_pageSize)}";
-        }
+			SetGridColumns();
 
-        private void SetGridColumns()
-        {
-            dataGridView1.Columns.Clear();
+			if (dataGridView1.Rows.Count - 1 >= _selectedIndex)
+			{
+				dataGridView1.Rows[_selectedIndex].Selected = true;
+			}
+			lblPage.Text = $@"Page {_page + 1} of {Math.Ceiling(_data.Count / (decimal)_pageSize)}";
+		}
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Name",
-                HeaderText = @"Name",
-                Name = "Name",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
+		private void SetGridColumns()
+		{
+			dataGridView1.Columns.Clear();
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Target",
-                HeaderText = @"Target",
-                Name = "Target",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
+			dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+			{
+				DataPropertyName = "Name",
+				HeaderText = @"Name",
+				Name = "Name",
+			});
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Type",
-                HeaderText = @"Type",
-                Name = "Type",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-        }
+			dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+			{
+				DataPropertyName = "Target",
+				HeaderText = @"Target",
+				Name = "Target",
+			});
 
-        private DBSpell GetSelected()
-        {
-            if (dataGridView1.SelectedRows.Count < 1)
-            {
-                return null;
-            }
+			dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+			{
+				DataPropertyName = "Type",
+				HeaderText = @"Type",
+				Name = "Type",
+			});
+			foreach (DataGridViewColumn column in dataGridView1.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			}
+		}
 
-            return dataGridView1.SelectedRows[0].DataBoundItem as DBSpell;
-        }
+		private DBSpell GetSelected()
+		{
+			if (dataGridView1.SelectedRows.Count < 1)
+			{
+				return null;
+			}
 
-        private void btnPrevious_Click(object sender, EventArgs e)
-        {
-            if (_page == 0)
-            {
-                return;
-            }
+			return dataGridView1.SelectedRows[0].DataBoundItem as DBSpell;
+		}
 
-            _page = _page - 1;
-            GetPage(true);
-        }
+		private void btnPrevious_Click(object sender, EventArgs e)
+		{
+			if (_page == 0)
+			{
+				return;
+			}
 
-        // First
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (_page == 0)
-            {
-                return;
-            }
+			_page = _page - 1;
+			GetPage(true);
+		}
 
-            _page = 0;
-            GetPage(true);
-        }
+		// First
+		private void button3_Click(object sender, EventArgs e)
+		{
+			if (_page == 0)
+			{
+				return;
+			}
 
-        private void btnLast_Click(object sender, EventArgs e)
-        {
-            var totalPages = (int)Math.Ceiling(_data.Count / (decimal)_pageSize);
+			_page = 0;
+			GetPage(true);
+		}
 
-            if (_page == totalPages - 1)
-            {
-                return;
-            }
+		private void btnLast_Click(object sender, EventArgs e)
+		{
+			var totalPages = (int)Math.Ceiling(_data.Count / (decimal)_pageSize);
 
-            _page = totalPages - 1;
-            GetPage(true);
-        }
+			if (_page == totalPages - 1)
+			{
+				return;
+			}
 
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            var totalPages = Math.Ceiling(_data.Count / (decimal)_pageSize);
+			_page = totalPages - 1;
+			GetPage(true);
+		}
 
-            if (_page == totalPages - 1)
-            {
-                return;
-            }
+		private void btnNext_Click(object sender, EventArgs e)
+		{
+			var totalPages = Math.Ceiling(_data.Count / (decimal)_pageSize);
 
-            _page = _page + 1;
-            GetPage(true);
-        }
+			if (_page == totalPages - 1)
+			{
+				return;
+			}
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            _page = 0;
-            _selectedIndex = 0;
-            GetPage();
-        }
+			_page = _page + 1;
+			GetPage(true);
+		}
 
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            txtFilter.Clear();
-            _selectedIndex = 0;
-            _page = 0;
-            GetPage();
-        }
+		private void btnSearch_Click(object sender, EventArgs e)
+		{
+			_page = 0;
+			_selectedIndex = 0;
+			GetPage();
+		}
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var item = GetSelected();
+		private void btnReset_Click(object sender, EventArgs e)
+		{
+			txtFilter.Clear();
+			_selectedIndex = 0;
+			_page = 0;
+			GetPage();
+		}
 
-            if (item == null)
-            {
-                return;
-            }
+		private void button1_Click(object sender, EventArgs e)
+		{
+			var item = GetSelected();
 
-            SelectClicked?.Invoke(item, e);
-            Close();
-        }
+			if (item == null)
+			{
+				return;
+			}
 
-        private void SpellSearchForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            _allData = null;
-            _data = null;
-        }
-    }
+			SelectClicked?.Invoke(item, e);
+			Close();
+		}
+
+		private void SpellSearchForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			_allData = null;
+			_data = null;
+		}
+	}
 }

@@ -199,8 +199,8 @@ namespace DOLToolbox.Controls
 
         private void Clear()
         {
-            dataGridView1.DataSource = null;
-            _merchantItems.Clear();
+            dataGridView1.DataSource = null;			 
+            _merchantItems?.Clear();
             _page = 0;
             _selectedIndex = 0;
             pictureBox1.Image = null;
