@@ -25,6 +25,8 @@ namespace DOLToolbox.Controls
 
         private async Task LoadSpell(string spellId)
         {
+            Clear();
+
             if (string.IsNullOrWhiteSpace(spellId))
             {
                 return;
@@ -44,7 +46,7 @@ namespace DOLToolbox.Controls
         private void SetupDropdowns()
         {
             ComboboxService.BindWeaponDamageTypes(_DamageType);
-            ComboboxService.BindTargets(Target);
+            ComboboxService.BindTargets(_Target);
             ComboboxService.BindInstrumentRequirements(_InstrumentRequirement);
         }
 
@@ -92,12 +94,11 @@ namespace DOLToolbox.Controls
 
         private void SyncSpell()
         {
-            Clear();
+            BindingService.SyncData(_spell, this);
         }
 
         private void Clear()
         {
-            BindingService.SyncData(_spell, this);
             _spell = null;
         }
 
