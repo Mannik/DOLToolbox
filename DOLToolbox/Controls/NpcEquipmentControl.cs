@@ -147,7 +147,7 @@ namespace DOLToolbox.Controls
             _selected = selected.Item;
             BindingService.BindData(selected.Item, this);
             _imageService.LoadItem(selected.Item.Model, pictureBox1.Width, pictureBox1.Height)
-                .ContinueWith(x => pictureBox1.Image = x.Result);
+                .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
         }
 
         private EquipmentGridModel GetSelected()
@@ -194,7 +194,7 @@ namespace DOLToolbox.Controls
             {
                 _Model.Text = o.ToString();
                 _imageService.LoadItem((int)o, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
             };
 
             modelViewer.Show(this);
@@ -236,7 +236,7 @@ namespace DOLToolbox.Controls
             if (int.TryParse(_Model.Text, out int modelId))
             {
                 _imageService.LoadItem(modelId, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
             }
         }
     }

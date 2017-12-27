@@ -3,6 +3,8 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using EODModelViewer;
 
 namespace DOLToolbox.Services
 {
@@ -15,6 +17,18 @@ namespace DOLToolbox.Services
             Item, Mob
         }
 
+        public void AttachImage(PictureBox box, Task<Image> task)
+        {
+            box.Image?.Dispose();
+
+            if (task.Status != TaskStatus.RanToCompletion)
+            {
+                box.Image = null;
+                return;
+            }
+
+            box.Image = task.Result;
+        }
 
         public async Task<Image> LoadMob(int modelId, int maxWidth, int maxHeight)
         {
@@ -36,18 +50,19 @@ namespace DOLToolbox.Services
 
         private async Task<Image> LoadAsset(int modelId, ModelType type)
         {
+            // ModelService: https://github.com/Eve-of-Darkness/EODModelViewer
             return await Task.Run(() =>
             {
                 if (type == ModelType.Item)
                 {
-                    var item = ModelViewerService.Viewer.GetItem(modelId);
+                    var item = ModelService.Instance.GetItem(modelId);
 
-                    return item == null ? null : ModelViewerService.Viewer.GetItemPicture(item);
+                    return item == null ? null : ModelService.Instance.GetItemPicture(modelId);
                 }
 
-                var mob = ModelViewerService.Viewer.GetMob(modelId);
+                var mob = ModelService.Instance.GetMob(modelId);
 
-                return mob == null ? null : ModelViewerService.Viewer.GetMobPicture(mob);
+                return mob == null ? null : ModelService.Instance.GetMobPicture(modelId);
             });
         }
 

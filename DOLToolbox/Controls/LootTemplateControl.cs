@@ -65,7 +65,7 @@ namespace DOLToolbox.Controls
             if (mob != null)
             {
                 await _modelImageService.LoadMob(mob.Model, pictureBox2.Width, pictureBox2.Height)
-                    .ContinueWith(x => pictureBox2.Image = x.Result);
+                    .ContinueWith(x => _modelImageService.AttachImage(pictureBox2, x));
             }
 
             var bindingList = new BindingList<LootTemplate>(_model.LootTemplates);
@@ -147,7 +147,7 @@ namespace DOLToolbox.Controls
             if (item?.Model != null)
             {
                 _modelImageService.LoadItem(item.Model, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
             }
         }
 
@@ -167,7 +167,7 @@ namespace DOLToolbox.Controls
 
                 _ItemTemplateID.Text = item.Id_nb;
                 _modelImageService.LoadItem(item.Model, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
             };
 
             search.ShowDialog(this);
@@ -235,7 +235,7 @@ namespace DOLToolbox.Controls
 
                 _MobName.Text = mob.Name;
                 _modelImageService.LoadMob(mob.Model, pictureBox2.Width, pictureBox2.Height)
-                    .ContinueWith(x => pictureBox2.Image = x.Result);
+                    .ContinueWith(x => _modelImageService.AttachImage(pictureBox2, x));
             };
 
             search.ShowDialog(this);
