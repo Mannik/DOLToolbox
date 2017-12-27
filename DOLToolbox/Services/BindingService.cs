@@ -74,19 +74,30 @@ namespace DOLToolbox.Services
                         input.Checked = mobProperty.GetValue(source) is bool && (bool)mobProperty.GetValue(source);
                         break;
                     case ComboBox input:
-                        if (!int.TryParse(mobProperty.GetValue(source)?.ToString(), out var value))
+                        var sourceValue = mobProperty.GetValue(source)?.ToString();
+                        if (int.TryParse(sourceValue, out var value))
                         {
-                            break;
+                            var item = input.Items.Cast<ComboboxService.SelectItemModel>().FirstOrDefault(x => x.Id == value);
+
+                            if (item?.Id == null)
+                            {
+                                break;
+                            }
+
+                            input.SelectedItem = item;
+                        }
+                        else if(mobProperty.PropertyType == typeof(string))
+                        {
+                            var item = input.Items.Cast<ComboboxService.SelectItemModel>().FirstOrDefault(x => x.Value == sourceValue);
+
+                            if (item?.Id == null)
+                            {
+                                break;
+                            }
+
+                            input.SelectedItem = item;
                         }
 
-                        var item = input.Items.Cast<ComboboxService.SelectItemModel>().FirstOrDefault(x => x.Id == value);
-
-                        if (item?.Id == null)
-                        {
-                            break;
-                        }
-
-                        input.SelectedItem = item;
                         break;
                 }
             }

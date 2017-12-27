@@ -120,7 +120,7 @@
             this._SpellID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Target = new System.Windows.Forms.ComboBox();
+            this._Target = new System.Windows.Forms.ComboBox();
             this._Icon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -846,7 +846,7 @@
             this.groupBox1.Controls.Add(this._SpellID);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.Target);
+            this.groupBox1.Controls.Add(this._Target);
             this.groupBox1.Controls.Add(this._Icon);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
@@ -1017,14 +1017,14 @@
             this.label3.TabIndex = 118;
             this.label3.Text = "Icon";
             // 
-            // Target
+            // _Target
             // 
-            this.Target.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Target.FormattingEnabled = true;
-            this.Target.Location = new System.Drawing.Point(214, 74);
-            this.Target.Name = "Target";
-            this.Target.Size = new System.Drawing.Size(127, 21);
-            this.Target.TabIndex = 123;
+            this._Target.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Target.FormattingEnabled = true;
+            this._Target.Location = new System.Drawing.Point(214, 74);
+            this._Target.Name = "_Target";
+            this._Target.Size = new System.Drawing.Size(127, 21);
+            this._Target.TabIndex = 123;
             // 
             // _Icon
             // 
@@ -1237,7 +1237,7 @@
         private System.Windows.Forms.TextBox _SpellID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox Target;
+        private System.Windows.Forms.ComboBox _Target;
         private System.Windows.Forms.TextBox _Icon;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
