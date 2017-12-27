@@ -3,9 +3,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using DOL.Util.DOLModelViewer;
 using DOLToolbox.Extensions;
 using DOLToolbox.Services;
+using EODModelViewer;
+using EODModelViewer.Models;
 
 namespace DOLToolbox.Forms
 {
@@ -87,7 +88,7 @@ namespace DOLToolbox.Forms
 
         private void LoadItems()
         {
-            var items = ModelViewerService.Viewer.GetItems().AsQueryable();
+            var items = ModelService.Instance.GetItems().AsQueryable();
 
             var filter = txtSearch.Text;
             if (!string.IsNullOrWhiteSpace(filter))
@@ -137,7 +138,7 @@ namespace DOLToolbox.Forms
 
         private void LoadMobs()
         {
-            var mobs = ModelViewerService.Viewer.GetMobs().AsQueryable();
+            var mobs = ModelService.Instance.GetMobs().AsQueryable();
 
             var filter = txtSearch.Text;
             if (!string.IsNullOrWhiteSpace(filter))
@@ -394,16 +395,16 @@ namespace DOLToolbox.Forms
             if (_type == ModelType.Item)
             {
                 _imageService.LoadItem(selected.ModelId, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
             }
             else
             {
                 _imageService.LoadMob(selected.ModelId, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
             }
         }
 
-        private BaseDataObject GetSelected()
+        private IModelObject GetSelected()
         {
 
             if (dataGridView1.SelectedRows.Count < 1)
@@ -411,7 +412,7 @@ namespace DOLToolbox.Forms
                 return null;
             }
 
-            return dataGridView1.SelectedRows[0].DataBoundItem as BaseDataObject;
+            return dataGridView1.SelectedRows[0].DataBoundItem as IModelObject;
         }
 
         private void button2_Click(object sender, EventArgs e)

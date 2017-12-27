@@ -60,7 +60,7 @@ namespace DOLToolbox.Controls
             }
             
             _modelImageService.LoadMob(_mob.Model, pictureBox1.Width, pictureBox1.Height)
-                .ContinueWith(x => pictureBox1.Image = x.Result);
+                .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
 
             BindingService.BindData(_mob, this);
             BindFlags();
@@ -100,7 +100,7 @@ namespace DOLToolbox.Controls
             if (int.TryParse(_Model.Text, out var modelId))
             {
                 _modelImageService.LoadMob(modelId, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);                
+                    .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
             }
         }
 

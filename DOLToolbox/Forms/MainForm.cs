@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOLToolbox.Controls;
 using DOLToolbox.Services;
+using EODModelViewer;
 using MySql.Data.MySqlClient;
 
 namespace DOLToolbox.Forms
@@ -17,7 +18,7 @@ namespace DOLToolbox.Forms
 		private async void MainForm_Load(object sender, EventArgs e)
 		{
             // do not open app until db connection is valid
-		    bool isDbConnected = false;
+            bool isDbConnected = false;
 		    while (!isDbConnected)
 		    {
 		        MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
@@ -67,14 +68,14 @@ namespace DOLToolbox.Forms
             });
 
             loading.ProgressText.Text = @"Loading: Model Viewer";
-		    await Task.Run(() => new ModelViewerService());
+		    await Task.Run(() => ModelService.Instance);
 
             loading.Close();
             ToolboxTabControl.Enabled = true;
             Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
 		    LoadTabForms();
-		}
-        
+        }
+
         private void LoadTabForms()
         {
             UserControl control = new SpellControl { Dock = DockStyle.Fill };

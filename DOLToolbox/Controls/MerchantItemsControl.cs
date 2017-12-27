@@ -366,7 +366,7 @@ namespace DOLToolbox.Controls
             if (_selected?.Item?.Model != null)
             {
                 _modelImageService.LoadItem(_selected.Item.Model, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
             }
         }
 

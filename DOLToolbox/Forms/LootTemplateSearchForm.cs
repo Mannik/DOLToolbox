@@ -223,7 +223,7 @@ namespace DOLToolbox.Forms
             if (mob != null)
             {
                 _imageService.LoadMob(mob.Model, pictureBox1.Width, pictureBox1.Height)
-                    .ContinueWith(x => pictureBox1.Image = x.Result);
+                    .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
             }
         }
     }

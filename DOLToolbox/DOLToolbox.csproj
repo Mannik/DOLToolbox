@@ -58,9 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\DOLDatabase.dll</HintPath>
     </Reference>
-    <Reference Include="DOLModelViewer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EODModelViewer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\DOLModelViewer.dll</HintPath>
+      <HintPath>libs\EODModelViewer.dll</HintPath>
     </Reference>
     <Reference Include="GameServer, Version=1.9.7.18353, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -69,18 +69,15 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.10\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net46\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -210,7 +207,6 @@
     <Compile Include="Services\ItemBonusService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\LootTemplateService.cs" />
-    <Compile Include="Services\ModelViewerService.cs" />
     <Compile Include="Services\NpcEquipmentService.cs" />
     <Compile Include="Services\MerchantItemService.cs" />
     <Compile Include="Services\NpcTemplateService.cs" />
@@ -294,12 +290,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="libs\DOLDatabase.dll" />
-    <Content Include="libs\DOLModelViewer.dll" />
+    <Content Include="libs\EODModelViewer.dll" />
     <Content Include="libs\GameServer.dll" />
-    <Content Include="libs\System.Data.SQLite.dll" />
-    <Content Include="libs\System.Data.SQLite.xml" />
-    <Content Include="libs\x64\SQLite.Interop.dll" />
-    <Content Include="libs\x86\SQLite.Interop.dll" />
     <Content Include="Resources\green_arrow_right.png" />
     <None Include="Resources\Small.ico" />
     <None Include="Resources\loading.bmp" />

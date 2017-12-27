@@ -59,7 +59,7 @@ namespace DOLToolbox.Forms
             
             lblMob_ID.Text = selected.ObjectId;
             _modelImageService.LoadMob(selected.Model, picNPC.Width, picNPC.Height)
-                .ContinueWith(x => picNPC.Image = x.Result);
+                .ContinueWith(x => _modelImageService.AttachImage(picNPC, x));
         }
 
         private void BtnReset_Click(object sender, EventArgs e)

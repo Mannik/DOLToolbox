@@ -216,7 +216,7 @@ namespace DOLToolbox.Forms
                 if(int.TryParse(modelId, out int model))
                 {
                     _imageService.LoadMob(model, pictureBox1.Width, pictureBox1.Height)
-                        .ContinueWith(x => pictureBox1.Image = x.Result);
+                        .ContinueWith(x => _imageService.AttachImage(pictureBox1, x));
                 }
             }
         }
