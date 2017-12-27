@@ -32,9 +32,7 @@ namespace DOLToolbox.Forms
         }
 
         private async void MobSearch_Load(object sender, EventArgs e)
-        {
-            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
-
+        { 
             if (_allData == null || !_allData.Any())
             {
                 var loading = new LoadingForm
