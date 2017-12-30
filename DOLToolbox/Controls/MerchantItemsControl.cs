@@ -204,6 +204,7 @@ namespace DOLToolbox.Controls
             _page = 0;
             _selectedIndex = 0;
             pictureBox1.Image = null;
+            lblItemName.Text = null;
             txtItemListId.Text = null;
         }
 
@@ -365,6 +366,7 @@ namespace DOLToolbox.Controls
 
             if (_selected?.Item?.Model != null)
             {
+                lblItemName.Text = _selected.Item.Id_nb;
                 _modelImageService.LoadItem(_selected.Item.Model, pictureBox1.Width, pictureBox1.Height)
                     .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
             }
