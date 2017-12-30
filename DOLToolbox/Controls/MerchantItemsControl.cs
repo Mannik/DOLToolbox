@@ -444,5 +444,19 @@ namespace DOLToolbox.Controls
             }
             button.Enabled = true;
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var selected = GetSelected();
+            if (selected?.Item?.Id_nb == null)
+            {
+                return;
+            }
+
+            var form = new ControlForm();
+            form.Controls.Add(new ItemTemplateControl(selected.Item.Id_nb));
+
+            form.ShowDialog();
+        }
     }
 }
