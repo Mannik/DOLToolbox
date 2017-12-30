@@ -44,6 +44,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.lblItemName = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -156,9 +158,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(503, 32);
+            this.pictureBox1.Location = new System.Drawing.Point(503, 48);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(317, 397);
+            this.pictureBox1.Size = new System.Drawing.Size(317, 353);
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
             // 
@@ -208,10 +210,30 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
+            // lblItemName
+            // 
+            this.lblItemName.AutoSize = true;
+            this.lblItemName.Location = new System.Drawing.Point(546, 32);
+            this.lblItemName.Name = "lblItemName";
+            this.lblItemName.Size = new System.Drawing.Size(36, 13);
+            this.lblItemName.TabIndex = 31;
+            this.lblItemName.Text = "ItemId";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(503, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "Id_nb:";
+            // 
             // MerchantItemsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblItemName);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button1);
@@ -256,5 +278,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label lblItemName;
+        private System.Windows.Forms.Label label2;
     }
 }
