@@ -10,16 +10,22 @@ namespace DOLToolbox.Controls
 {
     public partial class ItemTemplateControl : UserControl
     {
-        private readonly ItemService _itemService;
-        private readonly ImageService _modelImageService;
+        private readonly ItemService _itemService = new ItemService();
+        private readonly ImageService _modelImageService = new ImageService();
         private ItemTemplate _item;
 
         public ItemTemplateControl()
         {
             InitializeComponent();
-            _itemService = new ItemService();
-            _modelImageService = new ImageService();
         }
+
+        public ItemTemplateControl(string itemId)
+        {
+            InitializeComponent();
+
+            LoadItem(itemId);
+        }
+
         private void ItemTemplateControl_Load(object sender, EventArgs e)
         {
             SetupDropdowns();
