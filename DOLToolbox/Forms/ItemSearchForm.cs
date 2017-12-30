@@ -67,7 +67,7 @@ namespace DOLToolbox.Forms
             if (!string.IsNullOrWhiteSpace(_model.Name))
             {
                 var filter = _model.Name.ToWildcardRegex();
-                query = query.Where(x => Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase));
+                query = query.Where(x => Regex.IsMatch(x.Name, filter, RegexOptions.IgnoreCase) || Regex.IsMatch(x.Id_nb, filter, RegexOptions.IgnoreCase));
             }
 
             if (_model.Slot.HasValue)
