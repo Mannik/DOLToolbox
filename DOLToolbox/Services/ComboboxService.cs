@@ -556,7 +556,8 @@ namespace DOLToolbox.Services
                 new SelectItemModel(34, "Right Wrist"),
                 new SelectItemModel(35, "Left Ring"),
                 new SelectItemModel(36, "Right Ring"),
-                new SelectItemModel(37, "Mythical")
+                new SelectItemModel(37, "Mythical"),
+                new SelectItemModel(40, "Inventory")
             };
 
             BindData(input, items);

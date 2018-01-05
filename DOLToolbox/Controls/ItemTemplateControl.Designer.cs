@@ -117,6 +117,32 @@
             this.label47 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this._CanUseEvery = new System.Windows.Forms.TextBox();
+            this._TranslationId = new System.Windows.Forms.TextBox();
+            this._PackSize = new System.Windows.Forms.TextBox();
+            this._SalvageYieldID = new System.Windows.Forms.TextBox();
+            this._MaxCount = new System.Windows.Forms.TextBox();
+            this._ExamineArticle = new System.Windows.Forms.TextBox();
+            this._MessageArticle = new System.Windows.Forms.TextBox();
+            this._Description = new System.Windows.Forms.TextBox();
+            this._DPS_AF = new System.Windows.Forms.TextBox();
+            this._SPD_ABS = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this._Hand = new System.Windows.Forms.ComboBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this._Extension = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this._Type_Damage = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -162,32 +188,6 @@
             this._Name = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this._CanUseEvery = new System.Windows.Forms.TextBox();
-            this._TranslationId = new System.Windows.Forms.TextBox();
-            this._PackSize = new System.Windows.Forms.TextBox();
-            this._SalvageYieldID = new System.Windows.Forms.TextBox();
-            this._MaxCount = new System.Windows.Forms.TextBox();
-            this._ExamineArticle = new System.Windows.Forms.TextBox();
-            this._MessageArticle = new System.Windows.Forms.TextBox();
-            this._Description = new System.Windows.Forms.TextBox();
-            this._DPS_AF = new System.Windows.Forms.TextBox();
-            this._SPD_ABS = new System.Windows.Forms.TextBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this._Hand = new System.Windows.Forms.ComboBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this._Extension = new System.Windows.Forms.ComboBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this._Type_Damage = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -246,7 +246,7 @@
             // 
             this._ExtraBonusType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ExtraBonusType.FormattingEnabled = true;
-            this._ExtraBonusType.Location = new System.Drawing.Point(229, 300);
+            this._ExtraBonusType.Location = new System.Drawing.Point(229, 297);
             this._ExtraBonusType.Name = "_ExtraBonusType";
             this._ExtraBonusType.Size = new System.Drawing.Size(149, 21);
             this._ExtraBonusType.TabIndex = 101;
@@ -290,7 +290,7 @@
             // 
             this._Bonus10Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus10Type.FormattingEnabled = true;
-            this._Bonus10Type.Location = new System.Drawing.Point(230, 274);
+            this._Bonus10Type.Location = new System.Drawing.Point(229, 271);
             this._Bonus10Type.Name = "_Bonus10Type";
             this._Bonus10Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus10Type.TabIndex = 96;
@@ -334,7 +334,7 @@
             // 
             this._Bonus9Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus9Type.FormattingEnabled = true;
-            this._Bonus9Type.Location = new System.Drawing.Point(230, 244);
+            this._Bonus9Type.Location = new System.Drawing.Point(229, 241);
             this._Bonus9Type.Name = "_Bonus9Type";
             this._Bonus9Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus9Type.TabIndex = 91;
@@ -378,7 +378,7 @@
             // 
             this._Bonus8Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus8Type.FormattingEnabled = true;
-            this._Bonus8Type.Location = new System.Drawing.Point(230, 214);
+            this._Bonus8Type.Location = new System.Drawing.Point(229, 211);
             this._Bonus8Type.Name = "_Bonus8Type";
             this._Bonus8Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus8Type.TabIndex = 86;
@@ -422,7 +422,7 @@
             // 
             this._Bonus7Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus7Type.FormattingEnabled = true;
-            this._Bonus7Type.Location = new System.Drawing.Point(229, 184);
+            this._Bonus7Type.Location = new System.Drawing.Point(229, 181);
             this._Bonus7Type.Name = "_Bonus7Type";
             this._Bonus7Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus7Type.TabIndex = 81;
@@ -466,7 +466,7 @@
             // 
             this._Bonus6Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus6Type.FormattingEnabled = true;
-            this._Bonus6Type.Location = new System.Drawing.Point(229, 153);
+            this._Bonus6Type.Location = new System.Drawing.Point(229, 150);
             this._Bonus6Type.Name = "_Bonus6Type";
             this._Bonus6Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus6Type.TabIndex = 76;
@@ -510,7 +510,7 @@
             // 
             this._Bonus5Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus5Type.FormattingEnabled = true;
-            this._Bonus5Type.Location = new System.Drawing.Point(229, 123);
+            this._Bonus5Type.Location = new System.Drawing.Point(229, 120);
             this._Bonus5Type.Name = "_Bonus5Type";
             this._Bonus5Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus5Type.TabIndex = 71;
@@ -554,7 +554,7 @@
             // 
             this._Bonus4Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus4Type.FormattingEnabled = true;
-            this._Bonus4Type.Location = new System.Drawing.Point(229, 92);
+            this._Bonus4Type.Location = new System.Drawing.Point(229, 89);
             this._Bonus4Type.Name = "_Bonus4Type";
             this._Bonus4Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus4Type.TabIndex = 66;
@@ -598,7 +598,7 @@
             // 
             this._Bonus3Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus3Type.FormattingEnabled = true;
-            this._Bonus3Type.Location = new System.Drawing.Point(229, 62);
+            this._Bonus3Type.Location = new System.Drawing.Point(229, 59);
             this._Bonus3Type.Name = "_Bonus3Type";
             this._Bonus3Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus3Type.TabIndex = 61;
@@ -642,7 +642,7 @@
             // 
             this._Bonus2Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus2Type.FormattingEnabled = true;
-            this._Bonus2Type.Location = new System.Drawing.Point(229, 32);
+            this._Bonus2Type.Location = new System.Drawing.Point(229, 29);
             this._Bonus2Type.Name = "_Bonus2Type";
             this._Bonus2Type.Size = new System.Drawing.Size(149, 21);
             this._Bonus2Type.TabIndex = 56;
@@ -686,7 +686,7 @@
             // 
             this._Bonus1Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._Bonus1Type.FormattingEnabled = true;
-            this._Bonus1Type.Location = new System.Drawing.Point(229, 4);
+            this._Bonus1Type.Location = new System.Drawing.Point(230, 2);
             this._Bonus1Type.Name = "_Bonus1Type";
             this._Bonus1Type.Size = new System.Drawing.Size(153, 21);
             this._Bonus1Type.TabIndex = 51;
@@ -1011,6 +1011,220 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(163, 175);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(59, 13);
+            this.label69.TabIndex = 140;
+            this.label69.Text = "Translation";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(320, 71);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(78, 13);
+            this.label46.TabIndex = 132;
+            this.label46.Text = "Can Use Every";
+            // 
+            // _CanUseEvery
+            // 
+            this._CanUseEvery.Location = new System.Drawing.Point(403, 64);
+            this._CanUseEvery.Name = "_CanUseEvery";
+            this._CanUseEvery.Size = new System.Drawing.Size(65, 20);
+            this._CanUseEvery.TabIndex = 133;
+            // 
+            // _TranslationId
+            // 
+            this._TranslationId.Location = new System.Drawing.Point(228, 172);
+            this._TranslationId.Name = "_TranslationId";
+            this._TranslationId.Size = new System.Drawing.Size(414, 20);
+            this._TranslationId.TabIndex = 141;
+            // 
+            // _PackSize
+            // 
+            this._PackSize.Location = new System.Drawing.Point(562, 58);
+            this._PackSize.Name = "_PackSize";
+            this._PackSize.Size = new System.Drawing.Size(80, 20);
+            this._PackSize.TabIndex = 136;
+            // 
+            // _SalvageYieldID
+            // 
+            this._SalvageYieldID.Location = new System.Drawing.Point(562, 6);
+            this._SalvageYieldID.Name = "_SalvageYieldID";
+            this._SalvageYieldID.Size = new System.Drawing.Size(80, 20);
+            this._SalvageYieldID.TabIndex = 138;
+            // 
+            // _MaxCount
+            // 
+            this._MaxCount.Location = new System.Drawing.Point(562, 32);
+            this._MaxCount.Name = "_MaxCount";
+            this._MaxCount.Size = new System.Drawing.Size(80, 20);
+            this._MaxCount.TabIndex = 134;
+            // 
+            // _ExamineArticle
+            // 
+            this._ExamineArticle.Location = new System.Drawing.Point(228, 120);
+            this._ExamineArticle.Name = "_ExamineArticle";
+            this._ExamineArticle.Size = new System.Drawing.Size(414, 20);
+            this._ExamineArticle.TabIndex = 129;
+            // 
+            // _MessageArticle
+            // 
+            this._MessageArticle.Location = new System.Drawing.Point(228, 146);
+            this._MessageArticle.Name = "_MessageArticle";
+            this._MessageArticle.Size = new System.Drawing.Size(414, 20);
+            this._MessageArticle.TabIndex = 131;
+            // 
+            // _Description
+            // 
+            this._Description.Location = new System.Drawing.Point(228, 94);
+            this._Description.Name = "_Description";
+            this._Description.Size = new System.Drawing.Size(414, 20);
+            this._Description.TabIndex = 127;
+            // 
+            // _DPS_AF
+            // 
+            this._DPS_AF.Location = new System.Drawing.Point(385, 6);
+            this._DPS_AF.Name = "_DPS_AF";
+            this._DPS_AF.Size = new System.Drawing.Size(83, 20);
+            this._DPS_AF.TabIndex = 118;
+            // 
+            // _SPD_ABS
+            // 
+            this._SPD_ABS.Location = new System.Drawing.Point(385, 33);
+            this._SPD_ABS.Name = "_SPD_ABS";
+            this._SPD_ABS.Size = new System.Drawing.Size(83, 20);
+            this._SPD_ABS.TabIndex = 119;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(501, 65);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(55, 13);
+            this.label58.TabIndex = 137;
+            this.label58.Text = "Pack Size";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(474, 9);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(83, 13);
+            this.label64.TabIndex = 139;
+            this.label64.Text = "Salvage YieldID";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(498, 37);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(58, 13);
+            this.label57.TabIndex = 135;
+            this.label57.Text = "Max Count";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(143, 123);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(79, 13);
+            this.label48.TabIndex = 128;
+            this.label48.Text = "Examine Article";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(140, 153);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(82, 13);
+            this.label49.TabIndex = 130;
+            this.label49.Text = "Message Article";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(162, 97);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(60, 13);
+            this.label66.TabIndex = 126;
+            this.label66.Text = "Description";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(189, 5);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(33, 13);
+            this.label50.TabIndex = 124;
+            this.label50.Text = "Hand";
+            // 
+            // _Hand
+            // 
+            this._Hand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Hand.FormattingEnabled = true;
+            this._Hand.Location = new System.Drawing.Point(228, 2);
+            this._Hand.Name = "_Hand";
+            this._Hand.Size = new System.Drawing.Size(85, 21);
+            this._Hand.TabIndex = 125;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(331, 10);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(48, 13);
+            this.label37.TabIndex = 117;
+            this.label37.Text = "DPS_AF";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(326, 37);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(55, 13);
+            this.label36.TabIndex = 116;
+            this.label36.Text = "SPD/ABS";
+            // 
+            // _Extension
+            // 
+            this._Extension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Extension.FormattingEnabled = true;
+            this._Extension.Location = new System.Drawing.Point(228, 67);
+            this._Extension.Name = "_Extension";
+            this._Extension.Size = new System.Drawing.Size(86, 21);
+            this._Extension.TabIndex = 121;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(169, 70);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(53, 13);
+            this.label52.TabIndex = 120;
+            this.label52.Text = "Extension";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(148, 37);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(74, 13);
+            this.label53.TabIndex = 122;
+            this.label53.Text = "Damage Type";
+            // 
+            // _Type_Damage
+            // 
+            this._Type_Damage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Type_Damage.FormattingEnabled = true;
+            this._Type_Damage.Location = new System.Drawing.Point(228, 33);
+            this._Type_Damage.Name = "_Type_Damage";
+            this._Type_Damage.Size = new System.Drawing.Size(85, 21);
+            this._Type_Damage.TabIndex = 123;
             // 
             // tabPage2
             // 
@@ -1501,220 +1715,6 @@
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 16;
             this.label17.Text = "Name";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(163, 175);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(59, 13);
-            this.label69.TabIndex = 140;
-            this.label69.Text = "Translation";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(320, 71);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(78, 13);
-            this.label46.TabIndex = 132;
-            this.label46.Text = "Can Use Every";
-            // 
-            // _CanUseEvery
-            // 
-            this._CanUseEvery.Location = new System.Drawing.Point(403, 64);
-            this._CanUseEvery.Name = "_CanUseEvery";
-            this._CanUseEvery.Size = new System.Drawing.Size(65, 20);
-            this._CanUseEvery.TabIndex = 133;
-            // 
-            // _TranslationId
-            // 
-            this._TranslationId.Location = new System.Drawing.Point(228, 172);
-            this._TranslationId.Name = "_TranslationId";
-            this._TranslationId.Size = new System.Drawing.Size(414, 20);
-            this._TranslationId.TabIndex = 141;
-            // 
-            // _PackSize
-            // 
-            this._PackSize.Location = new System.Drawing.Point(562, 58);
-            this._PackSize.Name = "_PackSize";
-            this._PackSize.Size = new System.Drawing.Size(80, 20);
-            this._PackSize.TabIndex = 136;
-            // 
-            // _SalvageYieldID
-            // 
-            this._SalvageYieldID.Location = new System.Drawing.Point(562, 6);
-            this._SalvageYieldID.Name = "_SalvageYieldID";
-            this._SalvageYieldID.Size = new System.Drawing.Size(80, 20);
-            this._SalvageYieldID.TabIndex = 138;
-            // 
-            // _MaxCount
-            // 
-            this._MaxCount.Location = new System.Drawing.Point(562, 32);
-            this._MaxCount.Name = "_MaxCount";
-            this._MaxCount.Size = new System.Drawing.Size(80, 20);
-            this._MaxCount.TabIndex = 134;
-            // 
-            // _ExamineArticle
-            // 
-            this._ExamineArticle.Location = new System.Drawing.Point(228, 120);
-            this._ExamineArticle.Name = "_ExamineArticle";
-            this._ExamineArticle.Size = new System.Drawing.Size(414, 20);
-            this._ExamineArticle.TabIndex = 129;
-            // 
-            // _MessageArticle
-            // 
-            this._MessageArticle.Location = new System.Drawing.Point(228, 146);
-            this._MessageArticle.Name = "_MessageArticle";
-            this._MessageArticle.Size = new System.Drawing.Size(414, 20);
-            this._MessageArticle.TabIndex = 131;
-            // 
-            // _Description
-            // 
-            this._Description.Location = new System.Drawing.Point(228, 94);
-            this._Description.Name = "_Description";
-            this._Description.Size = new System.Drawing.Size(414, 20);
-            this._Description.TabIndex = 127;
-            // 
-            // _DPS_AF
-            // 
-            this._DPS_AF.Location = new System.Drawing.Point(385, 6);
-            this._DPS_AF.Name = "_DPS_AF";
-            this._DPS_AF.Size = new System.Drawing.Size(83, 20);
-            this._DPS_AF.TabIndex = 118;
-            // 
-            // _SPD_ABS
-            // 
-            this._SPD_ABS.Location = new System.Drawing.Point(385, 33);
-            this._SPD_ABS.Name = "_SPD_ABS";
-            this._SPD_ABS.Size = new System.Drawing.Size(83, 20);
-            this._SPD_ABS.TabIndex = 119;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(501, 65);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(55, 13);
-            this.label58.TabIndex = 137;
-            this.label58.Text = "Pack Size";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(474, 9);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(83, 13);
-            this.label64.TabIndex = 139;
-            this.label64.Text = "Salvage YieldID";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(498, 37);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(58, 13);
-            this.label57.TabIndex = 135;
-            this.label57.Text = "Max Count";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(143, 123);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(79, 13);
-            this.label48.TabIndex = 128;
-            this.label48.Text = "Examine Article";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(140, 153);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(82, 13);
-            this.label49.TabIndex = 130;
-            this.label49.Text = "Message Article";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(162, 97);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(60, 13);
-            this.label66.TabIndex = 126;
-            this.label66.Text = "Description";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(189, 5);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(33, 13);
-            this.label50.TabIndex = 124;
-            this.label50.Text = "Hand";
-            // 
-            // _Hand
-            // 
-            this._Hand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._Hand.FormattingEnabled = true;
-            this._Hand.Location = new System.Drawing.Point(228, 2);
-            this._Hand.Name = "_Hand";
-            this._Hand.Size = new System.Drawing.Size(85, 21);
-            this._Hand.TabIndex = 125;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(331, 10);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(48, 13);
-            this.label37.TabIndex = 117;
-            this.label37.Text = "DPS_AF";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(326, 37);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(55, 13);
-            this.label36.TabIndex = 116;
-            this.label36.Text = "SPD/ABS";
-            // 
-            // _Extension
-            // 
-            this._Extension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._Extension.FormattingEnabled = true;
-            this._Extension.Location = new System.Drawing.Point(228, 67);
-            this._Extension.Name = "_Extension";
-            this._Extension.Size = new System.Drawing.Size(86, 21);
-            this._Extension.TabIndex = 121;
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(169, 70);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(53, 13);
-            this.label52.TabIndex = 120;
-            this.label52.Text = "Extension";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(148, 37);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(74, 13);
-            this.label53.TabIndex = 122;
-            this.label53.Text = "Damage Type";
-            // 
-            // _Type_Damage
-            // 
-            this._Type_Damage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._Type_Damage.FormattingEnabled = true;
-            this._Type_Damage.Location = new System.Drawing.Point(228, 33);
-            this._Type_Damage.Name = "_Type_Damage";
-            this._Type_Damage.Size = new System.Drawing.Size(85, 21);
-            this._Type_Damage.TabIndex = 123;
             // 
             // ItemTemplateControl
             // 
