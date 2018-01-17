@@ -9,15 +9,16 @@ namespace DOLToolbox.Services
             return DatabaseManager.Database.FindObjectByKey<Mob>(mobId);
         }
 
-        public void SaveMob(Mob mob)
+        public string SaveMob(Mob mob)
         {
-            if (string.IsNullOrWhiteSpace(mob.ObjectId))
+            if (!mob.IsPersisted)
             {
                 DatabaseManager.Database.AddObject(mob);
-                return;
+                return mob.ObjectId;
             }
             
             DatabaseManager.Database.SaveObject(mob);
+            return mob.ObjectId;
         }
 
         public void DeleteMob(Mob mob)

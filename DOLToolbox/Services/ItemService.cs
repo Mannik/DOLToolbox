@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DOL.Database;
+using DOL.Database.UniqueID;
 
 namespace DOLToolbox.Services
 {
@@ -20,18 +21,20 @@ namespace DOLToolbox.Services
             return await Task.Run(() => DatabaseManager.Database.SelectAllObjects<ItemTemplate>().ToList());
         }
 
-        public void SaveItem(ItemTemplate _item)
+        public string SaveItem(ItemTemplate item)
         {
-            _item.AllowUpdate = true;
-            _item.Dirty = true;
+            item.AllowUpdate = true;
+            item.Dirty = true;
 
-            if (string.IsNullOrWhiteSpace(_item.ObjectId))
+            if (!item.IsPersisted)
             {
-                DatabaseManager.Database.AddObject(_item);
-                return;
+                DatabaseManager.Database.AddObject(item);
+                return item.ObjectId;
             }
 
-            DatabaseManager.Database.SaveObject(_item);
+            DatabaseManager.Database.SaveObject(item);
+
+            return item.ObjectId;
         }
 
 

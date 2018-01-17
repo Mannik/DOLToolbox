@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DOL.Database;
+using DOL.Database.UniqueID;
 
 namespace DOLToolbox.Services
 {
@@ -19,15 +20,17 @@ namespace DOLToolbox.Services
             return await Task.Run(() => DatabaseManager.Database.SelectAllObjects<DBNpcTemplate>().ToList());
         }
 
-        public void Save(DBNpcTemplate template)
+        public string Save(DBNpcTemplate template)
         {
-            if (string.IsNullOrWhiteSpace(template.ObjectId))
+            if (!template.IsPersisted)
             {
+                template.ObjectId = IDGenerator.GenerateID();
                 DatabaseManager.Database.AddObject(template);
-                return;
+                return template.ObjectId;
             }
             
             DatabaseManager.Database.SaveObject(template);
+            return template.ObjectId;
         }
 
         public void Delete(DBNpcTemplate template)
