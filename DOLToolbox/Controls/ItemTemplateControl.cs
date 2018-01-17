@@ -224,10 +224,7 @@ namespace DOLToolbox.Controls
         {
             if (_item == null)
             {
-                _item = new ItemTemplate
-                {
-                    ObjectId = null
-                };
+                _item = new ItemTemplate();
             }
 
             try
@@ -239,7 +236,9 @@ namespace DOLToolbox.Controls
                 MessageBox.Show(ex.Message);
                 return;
             }
-            _itemService.SaveItem(_item);
+
+            var itemId = _itemService.SaveItem(_item);
+            LoadItem(itemId);
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DOL.Database;
+using DOL.Database.UniqueID;
 
 namespace DOLToolbox.Services
 {
@@ -19,15 +20,17 @@ namespace DOLToolbox.Services
             return await Task.Run(() => DatabaseManager.Database.SelectAllObjects<DBSpell>().ToList());
         }
 
-        public void Save(DBSpell spell)
+        public string Save(DBSpell spell)
         {
-            if (string.IsNullOrWhiteSpace(spell.ObjectId))
+            if (!spell.IsPersisted)
             {
+                spell.ObjectId = IDGenerator.GenerateID();
                 DatabaseManager.Database.AddObject(spell);
-                return;
+                return spell.ObjectId;
             }
 
             DatabaseManager.Database.SaveObject(spell);
+            return spell.ObjectId;
         }
 
         public int GetNextSpellId()

@@ -50,7 +50,7 @@ namespace DOLToolbox.Controls
             ComboboxService.BindInstrumentRequirements(_InstrumentRequirement);
         }
 
-        private void Insertspell_Click(object sender, EventArgs e)
+        private async void Insertspell_Click(object sender, EventArgs e)
         {
             _spell = new DBSpell
             {
@@ -58,12 +58,11 @@ namespace DOLToolbox.Controls
             };
 
             SyncSpell();
-
-            _spell.ObjectId = null;
+            
             _spell.SpellID = _spellService.GetNextSpellId();
-
-            _spellService.Save(_spell);
-            BindingService.ClearData(this);
+            
+            var spellId = _spellService.Save(_spell);
+            await LoadSpell(spellId);
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -80,7 +79,7 @@ namespace DOLToolbox.Controls
             dialog.Dispose();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             if (_spell == null)
             {
@@ -88,8 +87,9 @@ namespace DOLToolbox.Controls
             }
 
             SyncSpell();
-            _spellService.Save(_spell);
-            Clear();
+
+            var spellId = _spellService.Save(_spell);
+            await LoadSpell(spellId);
         }
 
         private void SyncSpell()
@@ -100,11 +100,12 @@ namespace DOLToolbox.Controls
         private void Clear()
         {
             _spell = null;
+            BindingService.ClearData(this);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            BindingService.ClearData(this);
+            Clear();
         }
 
         private void button4_Click(object sender, EventArgs e)

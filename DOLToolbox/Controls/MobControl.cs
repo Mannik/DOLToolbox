@@ -49,8 +49,11 @@ namespace DOLToolbox.Controls
         private void LoadMob(string mobId)
         {
             if (string.IsNullOrWhiteSpace(mobId))
+            {
                 return;
+            }
 
+            ClearMob();
             _mob = _mobService.GetMob(mobId);
 
             if (_mob == null)
@@ -71,10 +74,7 @@ namespace DOLToolbox.Controls
         {
             if (_mob == null)
             {
-                _mob = new Mob
-                {
-                    ObjectId = null
-                };
+                _mob = new Mob();
             }
 
             try
@@ -89,8 +89,9 @@ namespace DOLToolbox.Controls
 
             SyncFlags();
             SyncWeaponSlots();
-            _mobService.SaveMob(_mob);
-            BindingService.ClearData(this);
+
+            var mobId = _mobService.SaveMob(_mob);
+            LoadMob(mobId);
         }
 
         private void _Model_Leave(object sender, EventArgs e)

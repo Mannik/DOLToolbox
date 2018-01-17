@@ -157,6 +157,8 @@ namespace DOLToolbox.Controls
                 return;
             }
 
+            Clear();
+
             BindingService.BindData(_template, this);
             BindFlags();
             BindWeaponSlots();
@@ -186,8 +188,9 @@ namespace DOLToolbox.Controls
             BindingService.SyncData(_template, this);
             SyncFlags();
             SyncWeaponSlots();
-            _npcTemplateService.Save(_template);
-            BindingService.ClearData(this);
+
+            var templateId = _npcTemplateService.Save(_template);
+            LoadItem(templateId);
         }
 
         private void _Race_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -212,8 +215,9 @@ namespace DOLToolbox.Controls
             SyncWeaponSlots();
 
             _template.ObjectId = null;
-            _npcTemplateService.Save(_template);
-            BindingService.ClearData(this);
+
+            var templateId = _npcTemplateService.Save(_template);
+            LoadItem(templateId);
         }
 
         private void button3_Click(object sender, System.EventArgs e)
