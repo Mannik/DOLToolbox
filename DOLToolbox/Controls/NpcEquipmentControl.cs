@@ -174,6 +174,8 @@ namespace DOLToolbox.Controls
             _equipment = new List<NPCEquipment>();
             pictureBox1.Image = null;
             _templateId = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
