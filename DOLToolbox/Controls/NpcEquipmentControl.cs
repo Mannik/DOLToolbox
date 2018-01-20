@@ -30,7 +30,7 @@ namespace DOLToolbox.Controls
                 new ComboboxService.SelectItemModel(28, "Arms")
             };
 
-        private List<NPCEquipment> _equipment;
+        private List<NPCEquipment> _equipment = new List<NPCEquipment>();
         private NPCEquipment _selected;
         private string _templateId;
 
@@ -171,6 +171,7 @@ namespace DOLToolbox.Controls
         private void Clear()
         {
             BindingService.ClearData(this);
+            _equipment = new List<NPCEquipment>();
             pictureBox1.Image = null;
             _templateId = null;
         }
@@ -183,7 +184,6 @@ namespace DOLToolbox.Controls
         private void button2_Click(object sender, EventArgs e)
         {
             Clear();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
