@@ -60,7 +60,7 @@ namespace DOLToolbox.Forms
             if (!string.IsNullOrWhiteSpace(filter))
             {
                 filter = filter.ToWildcardRegex();
-                _data = _allData.Where(x => Regex.IsMatch(x.LootTemplateName, filter, RegexOptions.IgnoreCase)).ToList();
+                query = query.Where(x => Regex.IsMatch(x.LootTemplateName, filter, RegexOptions.IgnoreCase));
             }
 
             return query.ToList();
