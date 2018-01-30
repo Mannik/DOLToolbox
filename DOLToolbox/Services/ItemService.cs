@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DOL.Database;
 using DOL.Database.UniqueID;
+using DOL.GS.RealmAbilities;
 
 namespace DOLToolbox.Services
 {
@@ -29,12 +30,33 @@ namespace DOLToolbox.Services
             if (!item.IsPersisted)
             {
                 DatabaseManager.Database.AddObject(item);
+                DatabaseManager.Database.UpdateInCache<ItemTemplate>(item.ObjectId);
+
                 return item.ObjectId;
             }
 
             DatabaseManager.Database.SaveObject(item);
+            DatabaseManager.Database.UpdateInCache<ItemTemplate>(item.ObjectId);
 
             return item.ObjectId;
+        }
+
+        public bool UpdateId(string oldId, string newId, string objectId)
+        {
+            var item = DatabaseManager.Database.SelectObjects<ItemTemplate>("`Id_nb` = @Id", new QueryParameter("@Id", newId)).FirstOrDefault();
+
+            if (item != null)
+            {
+                return false;
+            }
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            DatabaseManager.Database.ExecuteNonQuery($"UPDATE ItemTemplate SET `Id_nb` = '{newId}' WHERE `Id_nb` = '{oldId}'");
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            DatabaseManager.Database.UpdateInCache<ItemTemplate>(objectId);
+
+            return true;
         }
 
 
