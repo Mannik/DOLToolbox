@@ -1280,5 +1280,42 @@ namespace DOLToolbox.Services
             public int? Id { get; set; }
             public string Value { get; set; }
         }
+
+        public static void BindQuestType(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(0, "Standard"),
+                new SelectItemModel(1, "Collection"),
+                new SelectItemModel(2, "AutoStart"),
+                new SelectItemModel(3, "KillComplete"),
+                new SelectItemModel(4, "InteractComplete"),
+                new SelectItemModel(5, "SearchStart"),
+                new SelectItemModel(200, "RewardQuest")
+            };
+
+            BindData(input, items);
+        }
+
+        public static void BindQuestStep(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(0, "Kill"),
+                new SelectItemModel(1, "KillFinish"),
+                new SelectItemModel(2, "Deliver"),
+                new SelectItemModel(3, "DeliverFinish"),
+                new SelectItemModel(4, "Interact"),
+                new SelectItemModel(5, "InteractFinish"),
+                new SelectItemModel(6, "Whisper"),
+                new SelectItemModel(7, "WhisperFinish"),
+                new SelectItemModel(8, "Search"),
+                new SelectItemModel(9, "SearchFinish"),
+                new SelectItemModel(10, "Collect"),
+                new SelectItemModel(11, "CollectFinish")
+            };
+
+            BindData(input, items);
+        }
     }
 }

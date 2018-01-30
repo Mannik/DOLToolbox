@@ -101,6 +101,9 @@ namespace DOLToolbox.Forms
 
             control = new LootTemplateControl { Dock = DockStyle.Fill };
             tabLootTemplate.Controls.Add(control);
+
+            control = new DataQuestControl { Dock = DockStyle.Fill };
+            tabQuest.Controls.Add(control);
         }
 
 		private void Menu_DB_Click(object sender, EventArgs e)

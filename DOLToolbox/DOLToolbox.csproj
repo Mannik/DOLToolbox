@@ -87,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\DatabaseManager.cs" />
+    <Compile Include="Controls\DataQuestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataQuestControl.Designer.cs">
+      <DependentUpon>DataQuestControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LootTemplateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -217,6 +223,9 @@
     <Compile Include="Services\MobService.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\SpellService.cs" />
+    <EmbeddedResource Include="Controls\DataQuestControl.resx">
+      <DependentUpon>DataQuestControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LootTemplateControl.resx">
       <DependentUpon>LootTemplateControl.cs</DependentUpon>
     </EmbeddedResource>
