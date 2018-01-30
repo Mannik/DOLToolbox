@@ -68,7 +68,7 @@ namespace DOLToolbox.Controls
                     .ContinueWith(x => _modelImageService.AttachImage(pictureBox2, x));
             }
 
-            var bindingList = new BindingList<LootTemplate>(_model.LootTemplates);
+            var bindingList = new BindingList<LootTemplate>(_model.LootTemplates.OrderBy(x => x.ItemTemplateID).ToList());
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
             SetGridColumns();
