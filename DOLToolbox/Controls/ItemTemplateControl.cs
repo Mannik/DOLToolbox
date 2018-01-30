@@ -222,18 +222,31 @@ namespace DOLToolbox.Controls
 
         private void itemSave_Click_1(object sender, EventArgs e)
         {
+            string id;
             if (_item == null)
             {
                 _item = new ItemTemplate();
+                id = _item.Id_nb;
+            }
+            else
+            {
+                id = _item.Id_nb;
             }
 
             try
             {
+                _item.AllowUpdate = true;
                 BindingService.SyncData(_item, this);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (id != _item.Id_nb && !_itemService.UpdateId(id, _item.Id_nb, _item.ObjectId))
+            {
+                MessageBox.Show(@"Unfortunately Id_nb cannot be changed. Please update manually if needed.");
                 return;
             }
 
