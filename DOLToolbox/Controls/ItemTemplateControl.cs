@@ -293,5 +293,14 @@ namespace DOLToolbox.Controls
 
             modelViewer.Show(this);
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            var modelViewer = new ModelViewerSearchForm(ModelViewerSearchForm.ModelType.Item);
+
+            modelViewer.SelectClicked += (o, args) => { _Model.Text = o.ToString(); };
+
+            modelViewer.Show(this);
+        }
     }
 }
