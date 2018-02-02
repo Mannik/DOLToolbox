@@ -30,15 +30,13 @@ namespace DOLToolbox.Services
             if (!item.IsPersisted)
             {
                 DatabaseManager.Database.AddObject(item);
-                DatabaseManager.Database.UpdateInCache<ItemTemplate>(item.ObjectId);
 
-                return item.ObjectId;
+                return item.Id_nb;
             }
 
             DatabaseManager.Database.SaveObject(item);
-            DatabaseManager.Database.UpdateInCache<ItemTemplate>(item.ObjectId);
 
-            return item.ObjectId;
+            return item.Id_nb;
         }
 
         public bool UpdateId(string oldId, string newId, string objectId)
