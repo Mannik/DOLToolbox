@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
 using DOLToolbox.Extensions;
@@ -18,6 +17,7 @@ namespace DOLToolbox.Forms
         private List<Mob> _data;
         private IList<Mob> _allData;
         private readonly ImageService _modelImageService = new ImageService();
+        private readonly MobService _mobService = new MobService();
 
         public event EventHandler SelectNpcClicked;
 
@@ -41,7 +41,7 @@ namespace DOLToolbox.Forms
                 };
                 loading.Show();
 
-                _allData = await Task.Run(() => DatabaseManager.Database.SelectAllObjects<Mob>());
+                _allData = await _mobService.GetMobs();
 
                 loading.Close();
             }
