@@ -14,13 +14,16 @@ namespace DOLToolbox.Forms
     {
         private readonly ImageService _imageService = new ImageService();
         public event EventHandler SelectClicked;
+        private int _page;
+        private int _pageSize = 25;
+        private int _totalPages;
+        private ModelType _type = ModelType.Item;
 
         public enum ModelType
         {
             Item, Mob
         }
 
-        private ModelType _type = ModelType.Item;
 
         public ModelViewerSearchForm()
         {
@@ -75,19 +78,24 @@ namespace DOLToolbox.Forms
             cboType.Items.Add("Other");
         }
 
-        private void LoadGrid()
+        private void LoadGrid(bool paging = false)
         {
             if (_type == ModelType.Item)
             {
-                LoadItems();
+                LoadItems(paging);
                 return;
             }
 
-            LoadMobs();
+            LoadMobs(paging);
         }
 
-        private void LoadItems()
+        private void LoadItems(bool paging)
         {
+            if (!paging)
+            {
+                _page = 0;
+            }
+
             var items = ModelService.Instance.GetItems().AsQueryable();
 
             var filter = txtSearch.Text;
@@ -129,15 +137,29 @@ namespace DOLToolbox.Forms
                 }
             }
 
-            var bindingList = new BindingList<Item>(items.ToList());
+
+            _totalPages = (int)Math.Ceiling(items.Count() / (decimal)_pageSize);
+            lblPage.Text = $@"Page {_page + 1} of {_totalPages}";
+
+            var data = items
+                .Skip(_page * _pageSize)
+                .Take(_pageSize)
+                .ToList();
+
+            var bindingList = new BindingList<Item>(data);
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
 
             SetGridColumns();
         }
 
-        private void LoadMobs()
+        private void LoadMobs(bool paging)
         {
+            if (!paging)
+            {
+                _page = 0;
+            }
+
             var mobs = ModelService.Instance.GetMobs().AsQueryable();
 
             var filter = txtSearch.Text;
@@ -173,7 +195,16 @@ namespace DOLToolbox.Forms
                         break;
                 }
             }
-            var bindingList = new BindingList<Mob>(mobs.ToList());
+
+            _totalPages = (int)Math.Ceiling(mobs.Count() / (decimal) _pageSize);
+            lblPage.Text = $@"Page {_page + 1} of {_totalPages}";
+
+            var data = mobs
+                .Skip(_page * _pageSize)
+                .Take(_pageSize)
+                .ToList();
+
+            var bindingList = new BindingList<Mob>(data);
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
 
@@ -426,6 +457,50 @@ namespace DOLToolbox.Forms
 
             SelectClicked?.Invoke(selected.ModelId, e);
             Close();
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (_page == 0)
+            {
+                return;
+            }
+
+            _page = _page - 1;
+            LoadGrid(true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (_page == 0)
+            {
+                return;
+            }
+
+            _page = 0;
+            LoadGrid(true);
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            if (_page == _totalPages - 1)
+            {
+                return;
+            }
+
+            _page = _totalPages - 1;
+            LoadGrid(true);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (_page == _totalPages - 1)
+            {
+                return;
+            }
+
+            _page = _page + 1;
+            LoadGrid(true);
         }
     }
 }
