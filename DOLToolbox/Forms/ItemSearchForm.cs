@@ -226,5 +226,11 @@ namespace DOLToolbox.Forms
             _modelImageService.LoadItem(selected.Model, pictureBox1.Width, pictureBox1.Height)
                 .ContinueWith(x => _modelImageService.AttachImage(pictureBox1, x));
         }
+
+        private void ItemSearchForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _allData = null;
+            _data = null;
+        }
     }
 }
