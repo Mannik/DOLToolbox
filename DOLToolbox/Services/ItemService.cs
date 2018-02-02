@@ -3,13 +3,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DOL.Database;
-using DOL.Database.UniqueID;
-using DOL.GS.RealmAbilities;
 
 namespace DOLToolbox.Services
 {
     public class ItemService
     {
+        private static List<ItemTemplate> _items;
+
         public ItemTemplate GetItem(string itemId)
         {
             return DatabaseManager.Database.FindObjectByKey<ItemTemplate>(itemId) ??
@@ -19,11 +19,12 @@ namespace DOLToolbox.Services
 
         public async Task<List<ItemTemplate>> GetItems()
         {
-            return await Task.Run(() => DatabaseManager.Database.SelectAllObjects<ItemTemplate>().ToList());
+            return await Task.Run(() => _items ?? (_items = DatabaseManager.Database.SelectAllObjects<ItemTemplate>().ToList()));
         }
 
         public string SaveItem(ItemTemplate item)
         {
+            _items = null;
             item.AllowUpdate = true;
             item.Dirty = true;
 

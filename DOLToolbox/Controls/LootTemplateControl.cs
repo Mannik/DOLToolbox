@@ -15,6 +15,7 @@ namespace DOLToolbox.Controls
     {
         private readonly LootTemplateService _lootTemplateService = new LootTemplateService();
         private readonly ItemService _itemService = new ItemService();
+        private readonly MobService _mobService = new MobService();
         private readonly ImageService _modelImageService = new ImageService();
         
         private List<ItemTemplate> _items;
@@ -213,7 +214,7 @@ namespace DOLToolbox.Controls
 
             BindingService.ToggleEnabled(this);
             _items = await _itemService.GetItems();
-            _mobs = await Task.Run(() => DatabaseManager.Database.SelectAllObjects<Mob>().ToList());
+            _mobs = await _mobService.GetMobs();
             BindingService.ToggleEnabled(this);
 
             loading.Close();
