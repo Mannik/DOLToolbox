@@ -221,9 +221,18 @@ namespace DOLToolbox.Controls
             }
 
             DBDataQuest q = new DBDataQuest();
-            q.ID = int.Parse(_ID.Text);
+           // q.ID = int.Parse(_ID.Text);
+   
             q.Name = _Name.Text;
-            q.StartType = (byte)(_StartType.SelectedIndex);
+
+            q.StartType = (byte)((_StartType.SelectedIndex) -1);
+                 if (q.StartType == 6)
+                     { q.StartType = 200; } // mannik's lazy workaround.
+                 if (q.StartType >= 201 || q.StartType < 0)
+                     { q.StartType = 0;
+                MessageBox.Show("Quest type entered invald. Replaced with quest type Standard (0), please check DB to correct.", "Invalid Quest Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } //Mannik's other lazy workaround.
+
             q.StartName = _StartName.Text;
             q.StartRegionID = ushort.Parse(_StartRegionID.Text);
             q.AcceptText = _AcceptText.Text;
