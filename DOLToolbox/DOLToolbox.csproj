@@ -52,9 +52,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DOLDatabase, Version=1.9.5.37002, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="DOLDatabase, Version=1.9.7.24554, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\DOLDatabase.dll</HintPath>
+      <HintPath>libs\DOLDatabase.dll</HintPath>
     </Reference>
     <Reference Include="EODModelViewer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -87,11 +87,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\DatabaseManager.cs" />
+    <Compile Include="Controls\LOSQuestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LOSQuestControl.Designer.cs">
+      <DependentUpon>LOSQuestControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DataQuestControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\DataQuestControl.Designer.cs">
       <DependentUpon>DataQuestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DOLQuestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DOLQuestControl.Designer.cs">
+      <DependentUpon>DOLQuestControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\LootTemplateControl.cs">
       <SubType>UserControl</SubType>
@@ -105,6 +117,12 @@
     </Compile>
     <Compile Include="Forms\ControlForm.Designer.cs">
       <DependentUpon>ControlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ObjectSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ObjectSearch.Designer.cs">
+      <DependentUpon>ObjectSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LootTemplateSearchForm.cs">
       <SubType>Form</SubType>
@@ -123,6 +141,12 @@
     </Compile>
     <Compile Include="Forms\NpcTemplateSearchForm.Designer.cs">
       <DependentUpon>NpcTemplateSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RewardQuestSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RewardQuestSearchForm.designer.cs">
+      <DependentUpon>RewardQuestSearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SpellSearchForm.cs">
       <SubType>Form</SubType>
@@ -222,9 +246,17 @@
     <Compile Include="Services\NpcTemplateService.cs" />
     <Compile Include="Services\MobService.cs" />
     <Compile Include="Services\ImageService.cs" />
+    <Compile Include="Services\ObjectService.cs" />
+    <Compile Include="Services\RewardQuestService.cs" />
     <Compile Include="Services\SpellService.cs" />
+    <EmbeddedResource Include="Controls\LOSQuestControl.resx">
+      <DependentUpon>LOSQuestControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataQuestControl.resx">
       <DependentUpon>DataQuestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DOLQuestControl.resx">
+      <DependentUpon>DOLQuestControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LootTemplateControl.resx">
       <DependentUpon>LootTemplateControl.cs</DependentUpon>
@@ -234,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ControlForm.resx">
       <DependentUpon>ControlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ObjectSearch.resx">
+      <DependentUpon>ObjectSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LootTemplateSearchForm.resx">
       <DependentUpon>LootTemplateSearchForm.cs</DependentUpon>
@@ -281,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NpcTemplateSearchForm.resx">
       <DependentUpon>NpcTemplateSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RewardQuestSearchForm.resx">
+      <DependentUpon>RewardQuestSearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpellSearchForm.resx">
       <DependentUpon>SpellSearchForm.cs</DependentUpon>
