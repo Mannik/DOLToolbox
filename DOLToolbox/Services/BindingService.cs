@@ -48,6 +48,12 @@ namespace DOLToolbox.Services
                             input.SelectedIndex = 0;
                         }
                         break;
+                    case RichTextBox input:
+                        input.Text = null;
+                        break;
+                    case ListBox input:
+                        input.SelectedItems.Clear();
+                        break;
                 }
             }
         }
@@ -70,6 +76,9 @@ namespace DOLToolbox.Services
                     case TextBox input:
                         input.Text = mobProperty.GetValue(source)?.ToString();
                         break;
+                    case RichTextBox input:
+                        input.Text = mobProperty.GetValue(source)?.ToString();
+                        break;
                     case CheckBox input:
                         input.Checked = mobProperty.GetValue(source) is bool && (bool)mobProperty.GetValue(source);
                         break;
@@ -86,7 +95,7 @@ namespace DOLToolbox.Services
 
                             input.SelectedItem = item;
                         }
-                        else if(mobProperty.PropertyType == typeof(string))
+                        else if (mobProperty.PropertyType == typeof(string))
                         {
                             var item = input.Items.Cast<ComboboxService.SelectItemModel>().FirstOrDefault(x => x.Value == sourceValue);
 
@@ -129,7 +138,7 @@ namespace DOLToolbox.Services
                     case ComboBox input:
                         if (input.SelectedItem == null)
                         {
-                            mobProperty.SetValue(destination, null);                            
+                            mobProperty.SetValue(destination, null);
                         }
 
                         var selected = (ComboboxService.SelectItemModel)input.SelectedItem;
@@ -292,3 +301,4 @@ namespace DOLToolbox.Services
         }
     }
 }
+
