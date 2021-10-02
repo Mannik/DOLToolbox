@@ -43,9 +43,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
-    <PackageReference Include="log4net" Version="2.0.10" />
-    <PackageReference Include="MySql.Data" Version="6.9.10" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="MySql.Data" Version="6.10.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <Reference Include="DOLDatabase" HintPath="libs\DOLDatabase.dll" SpecificVersion="False" />
     <Reference Include="EODModelViewer" HintPath="libs\EODModelViewer.dll" SpecificVersion="False" />
     <Reference Include="GameServer" HintPath="libs\GameServer.dll" SpecificVersion="False" />
