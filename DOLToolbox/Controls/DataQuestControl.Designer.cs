@@ -603,13 +603,12 @@
             // questdependencySearch
             // 
             this.questdependencySearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questdependencySearch.Enabled = false;
             this.questdependencySearch.Location = new System.Drawing.Point(13, 197);
             this.questdependencySearch.Name = "questdependencySearch";
             this.questdependencySearch.Size = new System.Drawing.Size(100, 20);
             this.questdependencySearch.TabIndex = 186;
             this.questdependencySearch.Text = "Quest Dep ->";
-            this.questdependencySearch.UseVisualStyleBackColor = false;
+            this.questdependencySearch.UseVisualStyleBackColor = true;
             // 
             // _MaxCount
             // 
@@ -675,10 +674,11 @@
             this.label13.TabIndex = 190;
             this.label13.Text = "Max";
             // 
-            // description
+            // description / Start Text 
             // 
             this.description.BackColor = System.Drawing.Color.White;
             this.description.ForeColor = System.Drawing.Color.Black;
+            this.description.Enabled = false;
             this.description.Location = new System.Drawing.Point(13, 233);
             this.description.Name = "description";
             this.description.Size = new System.Drawing.Size(361, 74);
@@ -932,27 +932,25 @@
             // stepBack
             // 
             this.stepBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stepBack.Enabled = false;
             this.stepBack.Location = new System.Drawing.Point(57, 0);
             this.stepBack.Name = "stepBack";
             this.stepBack.Size = new System.Drawing.Size(28, 23);
             this.stepBack.TabIndex = 100;
             this.stepBack.TabStop = false;
             this.stepBack.Text = "<";
-            this.stepBack.UseVisualStyleBackColor = false;
+            this.stepBack.UseVisualStyleBackColor = true;
             this.stepBack.Click += new System.EventHandler(this.stepBack_Click);
             // 
             // stepForward
             // 
             this.stepForward.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stepForward.Enabled = false;
             this.stepForward.Location = new System.Drawing.Point(116, 0);
             this.stepForward.Name = "stepForward";
             this.stepForward.Size = new System.Drawing.Size(28, 23);
             this.stepForward.TabIndex = 100;
             this.stepForward.TabStop = false;
             this.stepForward.Text = ">";
-            this.stepForward.UseVisualStyleBackColor = false;
+            this.stepForward.UseVisualStyleBackColor = true;
             this.stepForward.Click += new System.EventHandler(this.stepForward_Click);
             // 
             // stepNumber
@@ -1072,13 +1070,12 @@
             // questDelete
             // 
             this.questDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questDelete.Enabled = false;
             this.questDelete.Location = new System.Drawing.Point(246, 3);
             this.questDelete.Name = "questDelete";
             this.questDelete.Size = new System.Drawing.Size(75, 23);
             this.questDelete.TabIndex = 167;
             this.questDelete.Text = "Delete";
-            this.questDelete.UseVisualStyleBackColor = false;
+            this.questDelete.UseVisualStyleBackColor = true;
             this.questDelete.Click += new System.EventHandler(this.questDelete_Click);
             // 
             // questSearch
@@ -1089,27 +1086,32 @@
             this.questSearch.TabIndex = 166;
             this.questSearch.Text = "Search";
             this.questSearch.UseVisualStyleBackColor = true;
+            this.questSearch.Click += new System.EventHandler(this.questSearch_Click);
+
             // 
             // questSave
             // 
             this.questSave.Location = new System.Drawing.Point(84, 3);
+            this.questSave.Enabled = false;
             this.questSave.Name = "questSave";
             this.questSave.Size = new System.Drawing.Size(75, 23);
             this.questSave.TabIndex = 165;
             this.questSave.Text = "Save";
-            this.questSave.UseVisualStyleBackColor = true;
+            this.questSave.UseVisualStyleBackColor = false;
             this.questSave.Click += new System.EventHandler(this.questSave_Click);
+
             // 
             // questLoad
             // 
             this.questLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questLoad.Enabled = false;
             this.questLoad.Location = new System.Drawing.Point(165, 3);
             this.questLoad.Name = "questLoad";
             this.questLoad.Size = new System.Drawing.Size(75, 23);
             this.questLoad.TabIndex = 164;
             this.questLoad.Text = "Load";
-            this.questLoad.UseVisualStyleBackColor = false;
+            this.questLoad.UseVisualStyleBackColor = true;
+            this.questLoad.Click += new System.EventHandler(this.questLoad_Click);
+
             // 
             // DataQuestControl
             // 
