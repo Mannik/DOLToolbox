@@ -15,6 +15,11 @@ namespace DOLToolbox.Controls
 {
     public partial class DataQuestControl : UserControl
     {
+        private readonly DataQuestService _questService = new DataQuestService();
+
+        // using this to determine if quest can be saved back to original ID
+        private bool LoadedQuest { get; set; } = false;
+
         public DataQuestControl()
         {
             InitializeComponent();
@@ -143,6 +148,19 @@ namespace DOLToolbox.Controls
             else _OptionalReward.Text = "";
         }
 
+        // convert database string entries to dictionary for quest step usage
+        private void StringToDictionary(string[] str, Dictionary<int, string> dict)
+        {
+            if (str == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                dict.Add(i + 1, str[i]);
+            }
+        }
         private void optrewardBack_Click(object sender, EventArgs e)
         {
             int optNum = int.Parse(optNumber.Text);
@@ -284,8 +302,257 @@ namespace DOLToolbox.Controls
             mobsearch.ShowDialog(this);
         }
 
+        private void questSearch_Click(object sender, EventArgs e)
+        {
+            var search = new DataQuestSearchForm();
 
+            search.SelectClicked += async (o, args) =>
+            {
+                if (!(o is DBDataQuest item))
+                {
+                    return;
+                }
 
+                await LoadQuest(item.ID.ToString());
+
+            };
+
+            search.ShowDialog(this);
+        }
+
+        // load a quest from an ID
+        private async void questLoad_Click(object sender, EventArgs e)
+        {
+            var dialog = new InputDialogBox
+            {
+                Caption = { Text = @"Please enter Quest ID" }
+            };
+
+            if (dialog.ShowDialog(this) == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.Input.Text))
+            {
+                await LoadQuest(dialog.Input.Text);
+            }
+            dialog.Dispose();
+        }
+
+        private async Task LoadQuest(string questId)
+        {
+            Clear();
+
+            if (string.IsNullOrWhiteSpace(questId))
+            {
+                return;
+            }
+
+            _quest = await _questService.Get(questId);
+
+            if (_quest == null)
+            {
+                MessageBox.Show($@"Object with ObjectId: {questId} not found", @"Object not found");
+                return;
+            }
+
+            BindingService.BindData(_quest, this);
+            // need to grab the serialized data and turn it back to usable form            
+            DeserializeData(_quest);
+
+        }
+
+        /// <summary>
+        /// convert database format "kill bandit;2|talk to NPC;3" to usable format
+        /// </summary>        
+        private void DeserializeData(DBDataQuest quest)
+        {
+            if (_quest == null)
+            {
+                return;
+            }
+
+            try
+            {
+
+                // Step type 
+                StringBuilder stype = new StringBuilder(quest.StepType);
+                stype.Replace("0", "Kill");
+                stype.Replace("1", "KillFinish");
+                stype.Replace("2", "Deliver");
+                stype.Replace("3", "DeliverFinish");
+                stype.Replace("4", "Interact");
+                stype.Replace("5", "InteractFinish");
+                stype.Replace("6", "Whisper");
+                stype.Replace("7", "WhisperFinish");
+                stype.Replace("8", "Search");
+                stype.Replace("9", "SearchFinish");
+                stype.Replace("10", "Collect");
+                stype.Replace("11", "CollectFinish");
+                _StepType = stype.ToString();
+                if (_StepType != null && !_StepType.Equals(""))
+                {
+                    string[] splitStepType = _StepType.Split(new string[] { "|" }, StringSplitOptions.None);
+                    steptype_dictionary.Clear();
+                    StringToDictionary(splitStepType, steptype_dictionary);
+                    StepType.Text = steptype_dictionary[1];
+                }
+
+                // Source name 
+                _SourceName = quest.SourceName;
+                if (_SourceName != null && !_SourceName.Equals(""))
+                {
+                    string[] splitSourceName = _SourceName.Split(new string[] { "|" }, StringSplitOptions.None);
+                    srcname_dictionary.Clear();
+                    StringToDictionary(splitSourceName, srcname_dictionary);
+                    SourceName.Text = srcname_dictionary[1];
+                }
+
+                // Target name 
+                _TargetName = quest.TargetName;
+                if (_TargetName != null && !_TargetName.Equals(""))
+                {
+                    string[] splitTargetName = _TargetName.Split(new string[] { "|" }, StringSplitOptions.None);
+                    trgtname_dictionary.Clear();
+                    StringToDictionary(splitTargetName, trgtname_dictionary);
+                    TargetName.Text = trgtname_dictionary[1];
+                }
+
+                // Source text 
+                _SourceText = quest.SourceText;
+                if (_SourceText != null && !_SourceText.Equals(""))
+                {
+                    string[] splitSourceText = _SourceText.Split(new string[] { "|" }, StringSplitOptions.None);
+                    srctext_dictionary.Clear();
+                    StringToDictionary(splitSourceText, srctext_dictionary);
+                    SourceText.Text = srctext_dictionary[1];
+                }
+
+                // Step text 
+                _StepText = quest.StepText;
+                if (_StepText != null && !_StepText.Equals(""))
+                {
+                    string[] splitStepText = _StepText.Split(new string[] { "|" }, StringSplitOptions.None);
+                    steptext_dictionary.Clear();
+                    StringToDictionary(splitStepText, steptext_dictionary);
+                    StepText.Text = steptext_dictionary[1];
+                }
+
+                // Advance text 
+                _AdvanceText = quest.AdvanceText;
+                if (_AdvanceText != null && !_AdvanceText.Equals(""))
+                {
+                    string[] splitAdvanceText = _StepText.Split(new string[] { "|" }, StringSplitOptions.None);
+                    advtext_dictionary.Clear();
+                    StringToDictionary(splitAdvanceText, advtext_dictionary);
+                    AdvanceText.Text = advtext_dictionary[1];
+                }
+
+                // Target text 
+                _TargetText = quest.TargetText;
+                if (_TargetText != null && !_TargetText.Equals(""))
+                {
+                    string[] splitTargetText = _TargetText.Split(new string[] { "|" }, StringSplitOptions.None);
+                    trgttext_dictionary.Clear();
+                    StringToDictionary(splitTargetText, trgttext_dictionary);
+                    TargetText.Text = trgttext_dictionary[1];
+                }
+
+                // Step item templates
+                _StepItemTemplates = quest.StepItemTemplates;
+                if (_StepItemTemplates != null && !_StepItemTemplates.Equals(""))
+                {
+                    string[] splitStepItemTemplates = _StepItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
+                    stepitem_dictionary.Clear();
+                    StringToDictionary(splitStepItemTemplates, stepitem_dictionary);
+                    StepItem.Text = trgttext_dictionary[1];
+                }
+
+                // Collect item templates 
+                _CollectItemTemplate = quest.CollectItemTemplate;
+                if (_CollectItemTemplate != null && !_CollectItemTemplate.Equals(""))
+                {
+                    string[] splitCollectItemTemplate = _CollectItemTemplate.Split(new string[] { "|" }, StringSplitOptions.None);
+                    colitem_dictionary.Clear();
+                    StringToDictionary(splitCollectItemTemplate, colitem_dictionary);
+                    CollectItem.Text = colitem_dictionary[1];
+                }
+
+                // Option reward 
+                _OptionalRewardItemTemplates = quest.OptionalRewardItemTemplates;
+                if (_OptionalRewardItemTemplates != null && !_OptionalRewardItemTemplates.Equals(""))
+                {
+                    string[] splitOptionalRewardItemTemplates = _OptionalRewardItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
+                    opt_dictionary.Clear();
+                    StringToDictionary(splitOptionalRewardItemTemplates, opt_dictionary);
+                    _OptionalReward.Text = opt_dictionary[1];
+                }
+
+                // Final reward 
+                _FinalRewardItemTemplates = quest.FinalRewardItemTemplates;
+                if (_FinalRewardItemTemplates != null && !_FinalRewardItemTemplates.Equals(""))
+                {
+                    string[] splitFinalRewardItemTemplates = _FinalRewardItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
+                    fin_dictionary.Clear();
+                    StringToDictionary(splitFinalRewardItemTemplates, fin_dictionary);
+                    _FinalReward.Text = splitFinalRewardItemTemplates[1];
+                }
+
+                // Money 
+                _RewardMoney = quest.RewardMoney;
+                if (_RewardMoney != null && !_RewardMoney.Equals(""))
+                {
+                    string[] splitRewardLoney = _RewardMoney.Split(new string[] { "|" }, StringSplitOptions.None);
+                    money_dictionary.Clear();
+                    StringToDictionary(splitRewardLoney, money_dictionary);
+                    RewardMoney.Text = money_dictionary[1];
+                }
+
+                // XP 
+                _RewardXP = quest.RewardXP;
+                if (_RewardXP != null && !_RewardXP.Equals(""))
+                {
+                    string[] splitRewardXP = _RewardXP.Split(new string[] { "|" }, StringSplitOptions.None);
+                    xp_dictionary.Clear();
+                    StringToDictionary(splitRewardXP, xp_dictionary);
+                    RewardXp.Text = xp_dictionary[1];
+                }
+
+                // CLXP
+                _RewardCLXP = quest.RewardCLXP;
+                if (_RewardCLXP != null && !_RewardCLXP.Equals(""))
+                {
+                    string[] splitRewardCLXP = _RewardCLXP.Split(new string[] { "|" }, StringSplitOptions.None);
+                    clxp_dictionary.Clear();
+                    StringToDictionary(splitRewardCLXP, clxp_dictionary);
+                    RewardCLXp.Text = clxp_dictionary[1];
+                }
+
+                // RP
+                _RewardRp = quest.RewardRP;
+                if (_RewardRp != null && !_RewardRp.Equals(""))
+                {
+                    string[] splitRewardRP = _RewardRp.Split(new string[] { "|" }, StringSplitOptions.None);
+                    rp_dictionary.Clear();
+                    StringToDictionary(splitRewardRP, rp_dictionary);
+                    RewardRp.Text = rp_dictionary[1];
+                }
+
+                // BP
+                _RewardBp = quest.RewardBP;
+                if (_RewardBp != null && !_RewardBp.Equals(""))
+                {
+                    string[] splitRewardBP = _RewardBp.Split(new string[] { "|" }, StringSplitOptions.None);
+                    bp_dictionary.Clear();
+                    StringToDictionary(splitRewardBP, bp_dictionary);
+                    RewardBp.Text = bp_dictionary[1];
+                }
+
+                // Allowed classes : todo
+ 
+                LoadedQuest = true;
+            }
+            catch (Exception g)
+            {
+                MessageBox.Show(g.Message, "Error while deserializing data! Quest was not loaded completely - Errors in database format.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             var objectsearch = new ObjectSearch();
@@ -302,7 +569,7 @@ namespace DOLToolbox.Controls
                 return;
             }
 
-            var confirmResult = MessageBox.Show(@"Are you sure to delete the selected object",
+            var confirmResult = MessageBox.Show(@"This will clear the form. Are you sure you want to continue? (If this quest is in the database it will NOT be deleted)",
                 @"Confirm Delete!!",
                 MessageBoxButtons.YesNo);
 
@@ -1066,7 +1333,25 @@ namespace DOLToolbox.Controls
             q.QuestDependency = _QuestDependency; //might need to serialize....if quest has multiple dependencies
             q.AllowedClasses = _AllowedClasses; //serialized
             q.ClassType = _ClassType.Text;
-            DatabaseManager.Database.AddObject(q);
+
+            try
+            { // This is probabaly a bad way to do this, but i can't get the quest to save onto the same ID 
+                if (!LoadedQuest)
+                {
+                    DatabaseManager.Database.AddObject(q);
+                    LoadedQuest = true; // quest has been added to DB so can now be saved on its existing ID
+                    _ID.Text = q.ID.ToString(); // set the generated ID to the ID text field so next save it has a value
+                }
+                else
+                {
+                    DatabaseManager.Database.SaveObject(q);
+                }
+                MessageBox.Show("Quest successfully saved!", "", MessageBoxButtons.OK);
+            }
+            catch (Exception g)
+            {
+                MessageBox.Show(g.Message, "Error saving data!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
