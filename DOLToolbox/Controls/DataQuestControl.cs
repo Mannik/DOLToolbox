@@ -1164,37 +1164,36 @@ namespace DOLToolbox.Controls
             int stepNum = int.Parse(stepNumber.Text);
             int optNum = int.Parse(optNumber.Text);
             int finNum = int.Parse(finNumber.Text);
-            //if (!steptype_dictionary.ContainsKey(stepNum)) //Adds step data to the dictionary on last step if the forward/back button has not been pressed yet
-            //{
-                advtext_dictionary.Remove(stepNum);
-                advtext_dictionary.Add(stepNum, AdvanceText.Text);
-                colitem_dictionary.Remove(stepNum);
-                colitem_dictionary.Add(stepNum, CollectItem.Text);
-                money_dictionary.Remove(stepNum);
-                money_dictionary.Add(stepNum, RewardMoney.Text);
-                xp_dictionary.Remove(stepNum);
-                xp_dictionary.Add(stepNum, RewardXp.Text);
-                clxp_dictionary.Remove(stepNum);
-                clxp_dictionary.Add(stepNum, RewardCLXp.Text);
-                rp_dictionary.Remove(stepNum);
-                rp_dictionary.Add(stepNum, RewardRp.Text);
-                bp_dictionary.Remove(stepNum);
-                bp_dictionary.Add(stepNum, RewardBp.Text);
-                srctext_dictionary.Remove(stepNum);
-                srctext_dictionary.Add(stepNum, SourceText.Text);
-                srcname_dictionary.Remove(stepNum);
-                srcname_dictionary.Add(stepNum, SourceName.Text);
-                stepitem_dictionary.Remove(stepNum);
-                stepitem_dictionary.Add(stepNum, StepItem.Text);
-                steptext_dictionary.Remove(stepNum);
-                steptext_dictionary.Add(stepNum, StepText.Text);
-                trgtname_dictionary.Remove(stepNum);
-                trgtname_dictionary.Add(stepNum, TargetName.Text);
-                trgttext_dictionary.Remove(stepNum);
-                trgttext_dictionary.Add(stepNum, TargetText.Text);
-                steptype_dictionary.Remove(stepNum);
-                steptype_dictionary.Add(stepNum, StepType.Text);
-            //}
+            
+            // Refresh step data to the dictionary if the forward/back button has not been pressed 
+            advtext_dictionary.Remove(stepNum);
+            advtext_dictionary.Add(stepNum, AdvanceText.Text);
+            colitem_dictionary.Remove(stepNum);
+            colitem_dictionary.Add(stepNum, CollectItem.Text);
+            money_dictionary.Remove(stepNum);
+            money_dictionary.Add(stepNum, RewardMoney.Text);
+            xp_dictionary.Remove(stepNum);
+            xp_dictionary.Add(stepNum, RewardXp.Text);
+            clxp_dictionary.Remove(stepNum);
+            clxp_dictionary.Add(stepNum, RewardCLXp.Text);
+            rp_dictionary.Remove(stepNum);
+            rp_dictionary.Add(stepNum, RewardRp.Text);
+            bp_dictionary.Remove(stepNum);
+            bp_dictionary.Add(stepNum, RewardBp.Text);
+            srctext_dictionary.Remove(stepNum);
+            srctext_dictionary.Add(stepNum, SourceText.Text);
+            srcname_dictionary.Remove(stepNum);
+            srcname_dictionary.Add(stepNum, SourceName.Text);
+            stepitem_dictionary.Remove(stepNum);
+            stepitem_dictionary.Add(stepNum, StepItem.Text);
+            steptext_dictionary.Remove(stepNum);
+            steptext_dictionary.Add(stepNum, StepText.Text);
+            trgtname_dictionary.Remove(stepNum);
+            trgtname_dictionary.Add(stepNum, TargetName.Text);
+            trgttext_dictionary.Remove(stepNum);
+            trgttext_dictionary.Add(stepNum, TargetText.Text);
+            steptype_dictionary.Remove(stepNum);
+            steptype_dictionary.Add(stepNum, StepType.Text);
 
             opt_dictionary.Remove(optNum); // do this incase it was edited without pressing forward/back
             if (!string.IsNullOrWhiteSpace(_OptionalReward.Text)) 
