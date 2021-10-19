@@ -379,6 +379,10 @@ namespace DOLToolbox.Controls
 
                 // Step type 
                 StringBuilder stype = new StringBuilder(quest.StepType);
+                // Start with long wording first to avoid any bad replace 
+                stype.Replace("200", "RewardQuest");
+                stype.Replace("11", "CollectFinish");
+                stype.Replace("10", "Collect");
                 stype.Replace("0", "Kill");
                 stype.Replace("1", "KillFinish");
                 stype.Replace("2", "Deliver");
@@ -389,8 +393,6 @@ namespace DOLToolbox.Controls
                 stype.Replace("7", "WhisperFinish");
                 stype.Replace("8", "Search");
                 stype.Replace("9", "SearchFinish");
-                stype.Replace("10", "Collect");
-                stype.Replace("11", "CollectFinish");
                 _StepType = stype.ToString();
                 if (_StepType != null && !_StepType.Equals(""))
                 {
@@ -1229,18 +1231,19 @@ namespace DOLToolbox.Controls
 
                 //eStepType string replace values:
                 StringBuilder stype = new StringBuilder(_StepType);
+                // Start with long wording first to avoid any bad replace 
+                stype.Replace("KillFinish", "1");
+                stype.Replace("DeliverFinish", "3");
+                stype.Replace("InteractFinish", "5");
+                stype.Replace("WhisperFinish", "7");
+                stype.Replace("SearchFinish", "9");
+                stype.Replace("CollectFinish", "11");
                 stype.Replace("Kill", "0");
-                stype.Replace("killFinish", "1");
                 stype.Replace("Deliver", "2");
-                stype.Replace("deliverFinish", "3");
                 stype.Replace("Interact", "4");
-                stype.Replace("interactFinish", "5");
                 stype.Replace("Whisper", "6");
-                stype.Replace("whisperFinish", "7");
                 stype.Replace("Search", "8");
-                stype.Replace("searchFinish", "9");
                 stype.Replace("Collect", "10");
-                stype.Replace("collectFinish", "11");
                 stype.Replace("RewardQuest", "200");
                 _StepType = stype.ToString();
 
