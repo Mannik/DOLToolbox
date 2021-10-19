@@ -1089,28 +1089,27 @@
             this.questSearch.Click += new System.EventHandler(this.questSearch_Click);
 
             // 
-            // questSave
-            // 
-            this.questSave.Location = new System.Drawing.Point(84, 3);
-            this.questSave.Enabled = false;
-            this.questSave.Name = "questSave";
-            this.questSave.Size = new System.Drawing.Size(75, 23);
-            this.questSave.TabIndex = 165;
-            this.questSave.Text = "Save";
-            this.questSave.UseVisualStyleBackColor = false;
-            this.questSave.Click += new System.EventHandler(this.questSave_Click);
-
-            // 
             // questLoad
             // 
             this.questLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questLoad.Location = new System.Drawing.Point(165, 3);
+            this.questLoad.Location = new System.Drawing.Point(84, 3);
             this.questLoad.Name = "questLoad";
             this.questLoad.Size = new System.Drawing.Size(75, 23);
-            this.questLoad.TabIndex = 164;
+            this.questLoad.TabIndex = 165;
             this.questLoad.Text = "Load";
             this.questLoad.UseVisualStyleBackColor = true;
             this.questLoad.Click += new System.EventHandler(this.questLoad_Click);
+
+            // 
+            // questSave
+            // 
+            this.questSave.Location = new System.Drawing.Point(165, 3);
+            this.questSave.Name = "questSave";
+            this.questSave.Size = new System.Drawing.Size(75, 23);
+            this.questSave.TabIndex = 164;
+            this.questSave.Text = "Save";
+            this.questSave.UseVisualStyleBackColor = false;
+            this.questSave.Click += new System.EventHandler(this.questSave_Click);
 
             // 
             // DataQuestControl

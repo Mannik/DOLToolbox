@@ -10,6 +10,7 @@ using System.Text;
 using DOLToolbox.Controls;
 using EODModelViewer;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace DOLToolbox.Controls
 {
@@ -40,6 +41,8 @@ namespace DOLToolbox.Controls
             trgtname_dictionary = new Dictionary<int, string>();
             trgttext_dictionary = new Dictionary<int, string>();
             steptype_dictionary = new Dictionary<int, string>();
+
+            quest_errors = new List<string>();
         }
         #region variables
         private DBDataQuest _quest;
@@ -64,6 +67,7 @@ namespace DOLToolbox.Controls
         public Dictionary<int, string> trgtname_dictionary;
         public Dictionary<int, string> trgttext_dictionary;
         public Dictionary<int, string> steptype_dictionary;
+        public List<string> quest_errors;
 
         #endregion
 
@@ -337,6 +341,8 @@ namespace DOLToolbox.Controls
 
         private async Task LoadQuest(string questId)
         {
+            stepNumber.Text = "1";
+            cleanDictionaries();
             Clear();
 
             if (string.IsNullOrWhiteSpace(questId))
@@ -438,7 +444,7 @@ namespace DOLToolbox.Controls
                 _AdvanceText = quest.AdvanceText;
                 if (_AdvanceText != null && !_AdvanceText.Equals(""))
                 {
-                    string[] splitAdvanceText = _StepText.Split(new string[] { "|" }, StringSplitOptions.None);
+                    string[] splitAdvanceText = _AdvanceText.Split(new string[] { "|" }, StringSplitOptions.None);
                     advtext_dictionary.Clear();
                     StringToDictionary(splitAdvanceText, advtext_dictionary);
                     AdvanceText.Text = advtext_dictionary[1];
@@ -578,8 +584,31 @@ namespace DOLToolbox.Controls
                 return;
             }
 
+            LoadedQuest = false;
 
+            stepNumber.Text = "1";
+            cleanDictionaries();
             Clear();
+        }
+
+        private void cleanDictionaries()
+        {
+            opt_dictionary.Clear();
+            fin_dictionary.Clear();
+            advtext_dictionary.Clear();
+            colitem_dictionary.Clear();
+            money_dictionary.Clear();
+            xp_dictionary.Clear();
+            clxp_dictionary.Clear();
+            rp_dictionary.Clear();
+            bp_dictionary.Clear();
+            srctext_dictionary.Clear();
+            srcname_dictionary.Clear();
+            stepitem_dictionary.Clear();
+            steptext_dictionary.Clear();
+            trgtname_dictionary.Clear();
+            trgttext_dictionary.Clear();
+            steptype_dictionary.Clear();
         }
 
         private void collectSelect_Click(object sender, EventArgs e)
@@ -1135,8 +1164,8 @@ namespace DOLToolbox.Controls
             int stepNum = int.Parse(stepNumber.Text);
             int optNum = int.Parse(optNumber.Text);
             int finNum = int.Parse(finNumber.Text);
-            if (!steptype_dictionary.ContainsKey(stepNum)) //Adds step data to the dictionary on last step if the forward/back button has not been pressed yet
-            {
+            //if (!steptype_dictionary.ContainsKey(stepNum)) //Adds step data to the dictionary on last step if the forward/back button has not been pressed yet
+            //{
                 advtext_dictionary.Remove(stepNum);
                 advtext_dictionary.Add(stepNum, AdvanceText.Text);
                 colitem_dictionary.Remove(stepNum);
@@ -1165,20 +1194,18 @@ namespace DOLToolbox.Controls
                 trgttext_dictionary.Add(stepNum, TargetText.Text);
                 steptype_dictionary.Remove(stepNum);
                 steptype_dictionary.Add(stepNum, StepType.Text);
-            }
+            //}
 
             opt_dictionary.Remove(optNum); // do this incase it was edited without pressing forward/back
-            if (!string.IsNullOrWhiteSpace(_OptionalReward.Text)) //!opt_dictionary.ContainsKey(optNum) && 
+            if (!string.IsNullOrWhiteSpace(_OptionalReward.Text)) 
             {
                 opt_dictionary.Add(optNum, _OptionalReward.Text);
             }
             fin_dictionary.Remove(finNum); // do this incase it was edited without pressing forward/back
-            if (!string.IsNullOrWhiteSpace(_FinalReward.Text)) //!fin_dictionary.ContainsKey(finNum) && 
+            if (!string.IsNullOrWhiteSpace(_FinalReward.Text))
             {
                 fin_dictionary.Add(finNum, _FinalReward.Text);
             }
-
-
 
             try
             {
@@ -1200,8 +1227,8 @@ namespace DOLToolbox.Controls
                 _TargetText = String.Join("|", Array.ConvertAll(trgttext_dictionary.Values.ToArray(), i => i.ToString()));
                 _StepType = String.Join("|", Array.ConvertAll(steptype_dictionary.Values.ToArray(), i => i.ToString()));
                 //string acl = String.Join("|", allowedClasses.SelectedItems.Cast<object>().Select(i => i.ToString()));
-                //eStepType string replace values:
 
+                //eStepType string replace values:
                 StringBuilder stype = new StringBuilder(_StepType);
                 stype.Replace("Kill", "0");
                 stype.Replace("killFinish", "1");
@@ -1281,8 +1308,6 @@ namespace DOLToolbox.Controls
                 allcl.Replace("Seer", "37");
                 allcl.Replace("Stalker", "54");
                 allcl.Replace("Viking", "35");
-
-
                 _AllowedClasses = allcl.ToString();
                 #endregion
 
@@ -1293,19 +1318,25 @@ namespace DOLToolbox.Controls
             }
 
             DBDataQuest q = new DBDataQuest();
-            // q.ID = int.Parse(_ID.Text);
 
-            q.Name = _Name.Text;
-
-            q.StartType = (byte)((_StartType.SelectedIndex) - 1);
-            if (q.StartType == 6)
-            { q.StartType = 200; } // mannik's lazy workaround.
-            if (q.StartType >= 201 || q.StartType < 0)
+            // Before saving check for missing or wrong information in the quest 
+            if (CheckQuestOK() == false)
             {
-                q.StartType = 0;
-                MessageBox.Show("Quest type entered invald. Replaced with quest type Standard (0), please check DB to correct.", "Invalid Quest Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } //Mannik's other lazy workaround.
+                MessageBox.Show("Quest data is invalid, please fix the below fields : \n\n" + String.Join("\n", quest_errors), 
+                    "Error on quest", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                return;
+            }
 
+            // Save can be done : retrieve all values from Form for DB insertion 
+            if (!_ID.Text.Equals(""))
+            {
+                q.ID = int.Parse(_ID.Text);
+            }
+            q.Name = _Name.Text;
+            ComboboxService.SelectItemModel item = (ComboboxService.SelectItemModel) _StartType.Items[_StartType.SelectedIndex];
+            q.StartType = Convert.ToByte(item.Id);
             q.StartName = _StartName.Text;
             q.StartRegionID = ushort.Parse(_StartRegionID.Text);
             q.AcceptText = _AcceptText.Text;
@@ -1357,7 +1388,63 @@ namespace DOLToolbox.Controls
 
         #region Methods
 
+        private bool CheckQuestOK()
+        {
+            bool error_raised = false;
+            quest_errors.Clear();
 
+            ComboboxService.SelectItemModel item = (ComboboxService.SelectItemModel)_StartType.Items[_StartType.SelectedIndex];
+
+            // Quest type undefined
+            if (item.Id == null)
+            {
+                error_raised = true;
+                quest_errors.Add("Start type is invalid");
+            }
+
+            // Quest name 
+            if (_Name.Text.Equals(""))
+            {
+                error_raised = true;
+                quest_errors.Add("Quest name must be defined");
+            }
+
+            // Min or Max level
+            if (_MinLevel.Text.Equals(""))
+            {
+                error_raised = true;
+                quest_errors.Add("Min level must be defined");
+            }
+            if (_MaxLevel.Text.Equals(""))
+            {
+                error_raised = true;
+                quest_errors.Add("Max level must be defined");
+            }
+            if (_MaxCount.Text.Equals(""))
+            {
+                error_raised = true;
+                quest_errors.Add("Max count must be defined");
+            }
+
+            // Start NPC 
+            if (_StartName.Text.Equals(""))
+            {
+                error_raised = true;
+                quest_errors.Add("Start NPC name must be defined");
+            }
+            if (_StartRegionID.Text.Equals(""))
+            {
+                error_raised = true;
+                quest_errors.Add("Start NPC region id must be defined");
+            }
+
+
+            // Overall status 
+            if (error_raised == true)
+                return false;
+
+            return true;
+        }
 
         private void SetupDropdowns()
         {
