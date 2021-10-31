@@ -40,7 +40,7 @@ jobs:
   netframework_build:
     name: Create NetFramework Build
     needs: get_release_info
-    runs-on: windows-2019
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         build_target: [Release]
@@ -53,12 +53,12 @@ jobs:
         uses: actions/download-artifact@v2
       - name: Build
         run: |
-          $Env:DOTNET_CLI_TELEMETRY_OPTOUT=1
-          $assembly_version="$(cat release_info/version.txt)"
+          export DOTNET_CLI_TELEMETRY_OPTOUT=1
+          assembly_version="$(cat release_info/version.txt)"
           dotnet build -c "${{ matrix.build_target}}" -p:Version="$assembly_version" "DOLToolbox.sln"
       - name: Compress Build Artifacts
         run: |
-          Compress-Archive -Path .\${{ matrix.build_target }}\* -DestinationPath ${{ env.OUTPUT_FILE_NAME }}
+          (cd ${{ matrix.build_target }} && zip -r ../${{ env.OUTPUT_FILE_NAME }} .)
       - name: Upload Build Output
         uses: actions/upload-artifact@v2
         with:
