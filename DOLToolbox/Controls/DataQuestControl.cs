@@ -162,7 +162,7 @@ namespace DOLToolbox.Controls
 
             for (int i = 0; i < str.Length; i++)
             {
-                dict.Add(i + 1, str[i]);
+                dict.Add(i, str[i]);
             }
         }
         private void optrewardBack_Click(object sender, EventArgs e)
@@ -399,7 +399,7 @@ namespace DOLToolbox.Controls
                     string[] splitStepType = _StepType.Split(new string[] { "|" }, StringSplitOptions.None);
                     steptype_dictionary.Clear();
                     StringToDictionary(splitStepType, steptype_dictionary);
-                    StepType.Text = steptype_dictionary[1];
+                    StepType.Text = steptype_dictionary[0];
                 }
 
                 // Source name 
@@ -409,7 +409,7 @@ namespace DOLToolbox.Controls
                     string[] splitSourceName = _SourceName.Split(new string[] { "|" }, StringSplitOptions.None);
                     srcname_dictionary.Clear();
                     StringToDictionary(splitSourceName, srcname_dictionary);
-                    SourceName.Text = srcname_dictionary[1];
+                    SourceName.Text = srcname_dictionary[0];
                 }
 
                 // Target name 
@@ -419,7 +419,7 @@ namespace DOLToolbox.Controls
                     string[] splitTargetName = _TargetName.Split(new string[] { "|" }, StringSplitOptions.None);
                     trgtname_dictionary.Clear();
                     StringToDictionary(splitTargetName, trgtname_dictionary);
-                    TargetName.Text = trgtname_dictionary[1];
+                    TargetName.Text = trgtname_dictionary[0];
                 }
 
                 // Source text 
@@ -429,7 +429,7 @@ namespace DOLToolbox.Controls
                     string[] splitSourceText = _SourceText.Split(new string[] { "|" }, StringSplitOptions.None);
                     srctext_dictionary.Clear();
                     StringToDictionary(splitSourceText, srctext_dictionary);
-                    SourceText.Text = srctext_dictionary[1];
+                    SourceText.Text = srctext_dictionary[0];
                 }
 
                 // Step text 
@@ -439,7 +439,7 @@ namespace DOLToolbox.Controls
                     string[] splitStepText = _StepText.Split(new string[] { "|" }, StringSplitOptions.None);
                     steptext_dictionary.Clear();
                     StringToDictionary(splitStepText, steptext_dictionary);
-                    StepText.Text = steptext_dictionary[1];
+                    StepText.Text = steptext_dictionary[0];
                 }
 
                 // Advance text 
@@ -449,7 +449,7 @@ namespace DOLToolbox.Controls
                     string[] splitAdvanceText = _AdvanceText.Split(new string[] { "|" }, StringSplitOptions.None);
                     advtext_dictionary.Clear();
                     StringToDictionary(splitAdvanceText, advtext_dictionary);
-                    AdvanceText.Text = advtext_dictionary[1];
+                    AdvanceText.Text = advtext_dictionary[0];
                 }
 
                 // Target text 
@@ -459,7 +459,7 @@ namespace DOLToolbox.Controls
                     string[] splitTargetText = _TargetText.Split(new string[] { "|" }, StringSplitOptions.None);
                     trgttext_dictionary.Clear();
                     StringToDictionary(splitTargetText, trgttext_dictionary);
-                    TargetText.Text = trgttext_dictionary[1];
+                    TargetText.Text = trgttext_dictionary[0];
                 }
 
                 // Step item templates
@@ -469,7 +469,7 @@ namespace DOLToolbox.Controls
                     string[] splitStepItemTemplates = _StepItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
                     stepitem_dictionary.Clear();
                     StringToDictionary(splitStepItemTemplates, stepitem_dictionary);
-                    StepItem.Text = trgttext_dictionary[1];
+                    StepItem.Text = stepitem_dictionary[0];
                 }
 
                 // Collect item templates 
@@ -479,7 +479,7 @@ namespace DOLToolbox.Controls
                     string[] splitCollectItemTemplate = _CollectItemTemplate.Split(new string[] { "|" }, StringSplitOptions.None);
                     colitem_dictionary.Clear();
                     StringToDictionary(splitCollectItemTemplate, colitem_dictionary);
-                    CollectItem.Text = colitem_dictionary[1];
+                    CollectItem.Text = colitem_dictionary[0];
                 }
 
                 // Option reward 
@@ -489,7 +489,7 @@ namespace DOLToolbox.Controls
                     string[] splitOptionalRewardItemTemplates = _OptionalRewardItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
                     opt_dictionary.Clear();
                     StringToDictionary(splitOptionalRewardItemTemplates, opt_dictionary);
-                    _OptionalReward.Text = opt_dictionary[1];
+                    _OptionalReward.Text = opt_dictionary[0];
                 }
 
                 // Final reward 
@@ -499,7 +499,7 @@ namespace DOLToolbox.Controls
                     string[] splitFinalRewardItemTemplates = _FinalRewardItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
                     fin_dictionary.Clear();
                     StringToDictionary(splitFinalRewardItemTemplates, fin_dictionary);
-                    _FinalReward.Text = splitFinalRewardItemTemplates[1];
+                    _FinalReward.Text = splitFinalRewardItemTemplates[0];
                 }
 
                 // Money 
@@ -509,7 +509,7 @@ namespace DOLToolbox.Controls
                     string[] splitRewardLoney = _RewardMoney.Split(new string[] { "|" }, StringSplitOptions.None);
                     money_dictionary.Clear();
                     StringToDictionary(splitRewardLoney, money_dictionary);
-                    RewardMoney.Text = money_dictionary[1];
+                    RewardMoney.Text = money_dictionary[0];
                 }
 
                 // XP 
@@ -519,7 +519,7 @@ namespace DOLToolbox.Controls
                     string[] splitRewardXP = _RewardXP.Split(new string[] { "|" }, StringSplitOptions.None);
                     xp_dictionary.Clear();
                     StringToDictionary(splitRewardXP, xp_dictionary);
-                    RewardXp.Text = xp_dictionary[1];
+                    RewardXp.Text = xp_dictionary[0];
                 }
 
                 // CLXP
@@ -529,7 +529,7 @@ namespace DOLToolbox.Controls
                     string[] splitRewardCLXP = _RewardCLXP.Split(new string[] { "|" }, StringSplitOptions.None);
                     clxp_dictionary.Clear();
                     StringToDictionary(splitRewardCLXP, clxp_dictionary);
-                    RewardCLXp.Text = clxp_dictionary[1];
+                    RewardCLXp.Text = clxp_dictionary[0];
                 }
 
                 // RP
@@ -539,7 +539,7 @@ namespace DOLToolbox.Controls
                     string[] splitRewardRP = _RewardRp.Split(new string[] { "|" }, StringSplitOptions.None);
                     rp_dictionary.Clear();
                     StringToDictionary(splitRewardRP, rp_dictionary);
-                    RewardRp.Text = rp_dictionary[1];
+                    RewardRp.Text = rp_dictionary[0];
                 }
 
                 // BP
@@ -549,7 +549,7 @@ namespace DOLToolbox.Controls
                     string[] splitRewardBP = _RewardBp.Split(new string[] { "|" }, StringSplitOptions.None);
                     bp_dictionary.Clear();
                     StringToDictionary(splitRewardBP, bp_dictionary);
-                    RewardBp.Text = bp_dictionary[1];
+                    RewardBp.Text = bp_dictionary[0];
                 }
 
                 // Allowed classes : todo
@@ -632,170 +632,170 @@ namespace DOLToolbox.Controls
             #region Step forward data entry
 
             //AdvanceText.Text
-            if (!advtext_dictionary.ContainsKey(stepNum))
+            if (!advtext_dictionary.ContainsKey(stepNum - 1))
             {
-                advtext_dictionary.Add(stepNum, AdvanceText.Text);
+                advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
             }
             else
             {
-                advtext_dictionary.Remove(stepNum);
-                advtext_dictionary.Add(stepNum, AdvanceText.Text);
+                advtext_dictionary.Remove(stepNum - 1);
+                advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
             }
             AdvanceText.Text = "";
 
             //CollectItem.Text
-            if (!colitem_dictionary.ContainsKey(stepNum))
+            if (!colitem_dictionary.ContainsKey(stepNum - 1))
             {
-                colitem_dictionary.Add(stepNum, CollectItem.Text);
+                colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
             }
             else
             {
-                colitem_dictionary.Remove(stepNum);
-                colitem_dictionary.Add(stepNum, CollectItem.Text);
+                colitem_dictionary.Remove(stepNum - 1);
+                colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
             }
             CollectItem.Text = "";
 
             //RewardMoney.Text
-            if (!money_dictionary.ContainsKey(stepNum))
+            if (!money_dictionary.ContainsKey(stepNum - 1))
             {
-                money_dictionary.Add(stepNum, RewardMoney.Text);
+                money_dictionary.Add(stepNum - 1, RewardMoney.Text);
             }
             else
             {
-                money_dictionary.Remove(stepNum);
-                money_dictionary.Add(stepNum, RewardMoney.Text);
+                money_dictionary.Remove(stepNum - 1);
+                money_dictionary.Add(stepNum - 1, RewardMoney.Text);
             }
             RewardMoney.Text = "";
 
             //RewardXp.Text
-            if (!xp_dictionary.ContainsKey(stepNum))
+            if (!xp_dictionary.ContainsKey(stepNum - 1))
             {
-                xp_dictionary.Add(stepNum, RewardXp.Text);
+                xp_dictionary.Add(stepNum - 1, RewardXp.Text);
             }
             else
             {
-                xp_dictionary.Remove(stepNum);
-                xp_dictionary.Add(stepNum, RewardXp.Text);
+                xp_dictionary.Remove(stepNum - 1);
+                xp_dictionary.Add(stepNum - 1, RewardXp.Text);
             }
             RewardXp.Text = "";
 
             //RewardCLXp.Text
-            if (!clxp_dictionary.ContainsKey(stepNum))
+            if (!clxp_dictionary.ContainsKey(stepNum - 1))
             {
-                clxp_dictionary.Add(stepNum, RewardCLXp.Text);
+                clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
             }
             else
             {
-                clxp_dictionary.Remove(stepNum);
-                clxp_dictionary.Add(stepNum, RewardCLXp.Text);
+                clxp_dictionary.Remove(stepNum - 1);
+                clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
             }
             RewardCLXp.Text = "";
 
             //RewardRp.Text
-            if (!rp_dictionary.ContainsKey(stepNum))
+            if (!rp_dictionary.ContainsKey(stepNum - 1))
             {
-                rp_dictionary.Add(stepNum, RewardRp.Text);
+                rp_dictionary.Add(stepNum - 1, RewardRp.Text);
             }
             else
             {
-                rp_dictionary.Remove(stepNum);
-                rp_dictionary.Add(stepNum, RewardRp.Text);
+                rp_dictionary.Remove(stepNum - 1);
+                rp_dictionary.Add(stepNum - 1, RewardRp.Text);
             }
             RewardRp.Text = "";
 
             //RewardBp.Text
-            if (!bp_dictionary.ContainsKey(stepNum))
+            if (!bp_dictionary.ContainsKey(stepNum - 1))
             {
-                bp_dictionary.Add(stepNum, RewardBp.Text);
+                bp_dictionary.Add(stepNum - 1, RewardBp.Text);
             }
             else
             {
-                bp_dictionary.Remove(stepNum);
-                bp_dictionary.Add(stepNum, RewardBp.Text);
+                bp_dictionary.Remove(stepNum - 1);
+                bp_dictionary.Add(stepNum - 1, RewardBp.Text);
             }
             RewardBp.Text = "";
 
             //SourceText.Text
-            if (!srctext_dictionary.ContainsKey(stepNum))
+            if (!srctext_dictionary.ContainsKey(stepNum - 1))
             {
-                srctext_dictionary.Add(stepNum, SourceText.Text);
+                srctext_dictionary.Add(stepNum - 1, SourceText.Text);
             }
             else
             {
-                srctext_dictionary.Remove(stepNum);
-                srctext_dictionary.Add(stepNum, SourceText.Text);
+                srctext_dictionary.Remove(stepNum - 1);
+                srctext_dictionary.Add(stepNum - 1, SourceText.Text);
             }
             SourceText.Text = "";
 
             //SourceName.Text
-            if (!srcname_dictionary.ContainsKey(stepNum))
+            if (!srcname_dictionary.ContainsKey(stepNum - 1))
             {
-                srcname_dictionary.Add(stepNum, SourceName.Text);
+                srcname_dictionary.Add(stepNum - 1, SourceName.Text);
             }
             else
             {
-                srcname_dictionary.Remove(stepNum);
-                srcname_dictionary.Add(stepNum, SourceName.Text);
+                srcname_dictionary.Remove(stepNum - 1);
+                srcname_dictionary.Add(stepNum - 1, SourceName.Text);
             }
             SourceText.Text = "";
 
             //StepItem.Text
-            if (!stepitem_dictionary.ContainsKey(stepNum))
+            if (!stepitem_dictionary.ContainsKey(stepNum - 1))
             {
-                stepitem_dictionary.Add(stepNum, StepItem.Text);
+                stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
             }
             else
             {
-                stepitem_dictionary.Remove(stepNum);
-                stepitem_dictionary.Add(stepNum, StepItem.Text);
+                stepitem_dictionary.Remove(stepNum - 1);
+                stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
             }
             StepItem.Text = "";
 
             //StepText.Text
-            if (!steptext_dictionary.ContainsKey(stepNum))
+            if (!steptext_dictionary.ContainsKey(stepNum - 1))
             {
-                steptext_dictionary.Add(stepNum, StepText.Text);
+                steptext_dictionary.Add(stepNum - 1, StepText.Text);
             }
             else
             {
-                steptext_dictionary.Remove(stepNum);
-                steptext_dictionary.Add(stepNum, StepText.Text);
+                steptext_dictionary.Remove(stepNum - 1);
+                steptext_dictionary.Add(stepNum - 1, StepText.Text);
             }
             StepText.Text = "";
 
             //TargetName.Text
-            if (!trgtname_dictionary.ContainsKey(stepNum))
+            if (!trgtname_dictionary.ContainsKey(stepNum - 1))
             {
-                trgtname_dictionary.Add(stepNum, TargetName.Text);
+                trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
             }
             else
             {
-                trgtname_dictionary.Remove(stepNum);
-                trgtname_dictionary.Add(stepNum, TargetName.Text);
+                trgtname_dictionary.Remove(stepNum - 1);
+                trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
             }
             TargetName.Text = "";
 
             //TargetText.Text
-            if (!trgttext_dictionary.ContainsKey(stepNum))
+            if (!trgttext_dictionary.ContainsKey(stepNum - 1))
             {
-                trgttext_dictionary.Add(stepNum, TargetText.Text);
+                trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
             }
             else
             {
-                trgttext_dictionary.Remove(stepNum);
-                trgttext_dictionary.Add(stepNum, TargetText.Text);
+                trgttext_dictionary.Remove(stepNum - 1);
+                trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
             }
             TargetText.Text = "";
 
             //StepType.Text
-            if (!steptype_dictionary.ContainsKey(stepNum))
+            if (!steptype_dictionary.ContainsKey(stepNum - 1))
             {
-                steptype_dictionary.Add(stepNum, StepType.Text);
+                steptype_dictionary.Add(stepNum - 1, StepType.Text);
             }
             else
             {
-                steptype_dictionary.Remove(stepNum);
-                steptype_dictionary.Add(stepNum, StepType.Text);
+                steptype_dictionary.Remove(stepNum - 1);
+                steptype_dictionary.Add(stepNum - 1, StepType.Text);
             }
             StepType.Text = "";
 
@@ -808,98 +808,98 @@ namespace DOLToolbox.Controls
             int stepNext = int.Parse(stepNumber.Text);
             string stepvalue;
 
-            if (advtext_dictionary.ContainsKey(stepNext))
+            if (advtext_dictionary.ContainsKey(stepNext - 1))
             {
-                advtext_dictionary.TryGetValue(stepNext, out stepvalue);
+                advtext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 AdvanceText.Text = stepvalue;
             }
             else AdvanceText.Text = "";
 
-            if (colitem_dictionary.ContainsKey(stepNext))
+            if (colitem_dictionary.ContainsKey(stepNext - 1))
             {
-                colitem_dictionary.TryGetValue(stepNext, out stepvalue);
+                colitem_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 CollectItem.Text = stepvalue;
             }
             else CollectItem.Text = "";
 
-            if (money_dictionary.ContainsKey(stepNext))
+            if (money_dictionary.ContainsKey(stepNext - 1))
             {
-                money_dictionary.TryGetValue(stepNext, out stepvalue);
+                money_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 RewardMoney.Text = stepvalue;
             }
             else RewardMoney.Text = "0";
 
-            if (xp_dictionary.ContainsKey(stepNext))
+            if (xp_dictionary.ContainsKey(stepNext - 1))
             {
-                xp_dictionary.TryGetValue(stepNext, out stepvalue);
+                xp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 RewardXp.Text = stepvalue;
             }
             else RewardXp.Text = "0";
 
-            if (clxp_dictionary.ContainsKey(stepNext))
+            if (clxp_dictionary.ContainsKey(stepNext - 1))
             {
-                clxp_dictionary.TryGetValue(stepNext, out stepvalue);
+                clxp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 RewardCLXp.Text = stepvalue;
             }
             else RewardCLXp.Text = "0";
 
-            if (rp_dictionary.ContainsKey(stepNext))
+            if (rp_dictionary.ContainsKey(stepNext - 1))
             {
-                rp_dictionary.TryGetValue(stepNext, out stepvalue);
+                rp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 RewardRp.Text = stepvalue;
             }
             else RewardRp.Text = "0";
 
-            if (bp_dictionary.ContainsKey(stepNext))
+            if (bp_dictionary.ContainsKey(stepNext - 1))
             {
-                bp_dictionary.TryGetValue(stepNext, out stepvalue);
+                bp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 RewardBp.Text = stepvalue;
             }
             else RewardBp.Text = "0";
 
-            if (srctext_dictionary.ContainsKey(stepNext))
+            if (srctext_dictionary.ContainsKey(stepNext - 1))
             {
-                srctext_dictionary.TryGetValue(stepNext, out stepvalue);
+                srctext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 SourceText.Text = stepvalue;
             }
-            if (srcname_dictionary.ContainsKey(stepNext))
+            if (srcname_dictionary.ContainsKey(stepNext - 1))
             {
-                srcname_dictionary.TryGetValue(stepNext, out stepvalue);
+                srcname_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 SourceName.Text = stepvalue;
             }
             else SourceText.Text = "";
 
-            if (stepitem_dictionary.ContainsKey(stepNext))
+            if (stepitem_dictionary.ContainsKey(stepNext - 1))
             {
-                stepitem_dictionary.TryGetValue(stepNext, out stepvalue);
+                stepitem_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 StepItem.Text = stepvalue;
             }
             else StepItem.Text = "";
 
-            if (steptext_dictionary.ContainsKey(stepNext))
+            if (steptext_dictionary.ContainsKey(stepNext - 1))
             {
-                steptext_dictionary.TryGetValue(stepNext, out stepvalue);
+                steptext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 StepText.Text = stepvalue;
             }
             else StepText.Text = "";
 
-            if (trgtname_dictionary.ContainsKey(stepNext))
+            if (trgtname_dictionary.ContainsKey(stepNext - 1))
             {
-                trgtname_dictionary.TryGetValue(stepNext, out stepvalue);
+                trgtname_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 TargetName.Text = stepvalue;
             }
             else TargetName.Text = "";
 
-            if (trgttext_dictionary.ContainsKey(stepNext))
+            if (trgttext_dictionary.ContainsKey(stepNext - 1))
             {
-                trgttext_dictionary.TryGetValue(stepNext, out stepvalue);
+                trgttext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 TargetText.Text = stepvalue;
             }
             else TargetText.Text = "";
 
-            if (steptype_dictionary.ContainsKey(stepNext))
+            if (steptype_dictionary.ContainsKey(stepNext - 1))
             {
-                steptype_dictionary.TryGetValue(stepNext, out stepvalue);
+                steptype_dictionary.TryGetValue(stepNext - 1, out stepvalue);
                 StepType.Text = stepvalue;
             }
             else StepType.Text = "";
@@ -920,52 +920,52 @@ namespace DOLToolbox.Controls
             //remove step altogether if mandatory fields are not entered
             if (TargetName.Text == "" || StepType.Text == "")
             {
-                advtext_dictionary.Remove(stepNum);
-                colitem_dictionary.Remove(stepNum);
-                money_dictionary.Remove(stepNum);
-                xp_dictionary.Remove(stepNum);
-                clxp_dictionary.Remove(stepNum);
-                rp_dictionary.Remove(stepNum);
-                bp_dictionary.Remove(stepNum);
-                srctext_dictionary.Remove(stepNum);
-                srcname_dictionary.Remove(stepNum);
-                stepitem_dictionary.Remove(stepNum);
-                steptext_dictionary.Remove(stepNum);
-                trgtname_dictionary.Remove(stepNum);
-                trgttext_dictionary.Remove(stepNum);
-                steptype_dictionary.Remove(stepNum);
+                advtext_dictionary.Remove(stepNum - 1);
+                colitem_dictionary.Remove(stepNum - 1);
+                money_dictionary.Remove(stepNum - 1);
+                xp_dictionary.Remove(stepNum - 1);
+                clxp_dictionary.Remove(stepNum - 1);
+                rp_dictionary.Remove(stepNum - 1);
+                bp_dictionary.Remove(stepNum - 1);
+                srctext_dictionary.Remove(stepNum - 1);
+                srcname_dictionary.Remove(stepNum - 1);
+                stepitem_dictionary.Remove(stepNum - 1);
+                steptext_dictionary.Remove(stepNum - 1);
+                trgtname_dictionary.Remove(stepNum - 1);
+                trgttext_dictionary.Remove(stepNum - 1);
+                steptype_dictionary.Remove(stepNum - 1);
             }
             else
             //Needed to commit data to m_dictionary when the back button is clicked
             {
-                advtext_dictionary.Remove(stepNum);
-                advtext_dictionary.Add(stepNum, AdvanceText.Text);
-                colitem_dictionary.Remove(stepNum);
-                colitem_dictionary.Add(stepNum, CollectItem.Text);
-                money_dictionary.Remove(stepNum);
-                money_dictionary.Add(stepNum, RewardMoney.Text);
-                xp_dictionary.Remove(stepNum);
-                xp_dictionary.Add(stepNum, RewardXp.Text);
-                clxp_dictionary.Remove(stepNum);
-                clxp_dictionary.Add(stepNum, RewardCLXp.Text);
-                rp_dictionary.Remove(stepNum);
-                rp_dictionary.Add(stepNum, RewardRp.Text);
-                bp_dictionary.Remove(stepNum);
-                bp_dictionary.Add(stepNum, RewardBp.Text);
-                srctext_dictionary.Remove(stepNum);
-                srctext_dictionary.Add(stepNum, SourceText.Text);
-                srcname_dictionary.Remove(stepNum);
-                srcname_dictionary.Add(stepNum, SourceName.Text);
-                stepitem_dictionary.Remove(stepNum);
-                stepitem_dictionary.Add(stepNum, StepItem.Text);
-                steptext_dictionary.Remove(stepNum);
-                steptext_dictionary.Add(stepNum, StepText.Text);
-                trgtname_dictionary.Remove(stepNum);
-                trgtname_dictionary.Add(stepNum, TargetName.Text);
-                trgttext_dictionary.Remove(stepNum);
-                trgttext_dictionary.Add(stepNum, TargetText.Text);
-                steptype_dictionary.Remove(stepNum);
-                steptype_dictionary.Add(stepNum, StepType.Text);
+                advtext_dictionary.Remove(stepNum - 1);
+                advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
+                colitem_dictionary.Remove(stepNum - 1);
+                colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
+                money_dictionary.Remove(stepNum - 1);
+                money_dictionary.Add(stepNum - 1, RewardMoney.Text);
+                xp_dictionary.Remove(stepNum - 1);
+                xp_dictionary.Add(stepNum - 1, RewardXp.Text);
+                clxp_dictionary.Remove(stepNum - 1);
+                clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
+                rp_dictionary.Remove(stepNum - 1);
+                rp_dictionary.Add(stepNum - 1, RewardRp.Text);
+                bp_dictionary.Remove(stepNum - 1);
+                bp_dictionary.Add(stepNum - 1, RewardBp.Text);
+                srctext_dictionary.Remove(stepNum - 1);
+                srctext_dictionary.Add(stepNum - 1, SourceText.Text);
+                srcname_dictionary.Remove(stepNum - 1);
+                srcname_dictionary.Add(stepNum - 1, SourceName.Text);
+                stepitem_dictionary.Remove(stepNum - 1);
+                stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
+                steptext_dictionary.Remove(stepNum - 1);
+                steptext_dictionary.Add(stepNum - 1, StepText.Text);
+                trgtname_dictionary.Remove(stepNum - 1);
+                trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
+                trgttext_dictionary.Remove(stepNum - 1);
+                trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
+                steptype_dictionary.Remove(stepNum - 1);
+                steptype_dictionary.Add(stepNum - 1, StepType.Text);
             }
 
 
@@ -974,101 +974,101 @@ namespace DOLToolbox.Controls
             stepNum--;
 
             //Previous step data check
-            if (advtext_dictionary.ContainsKey(stepNum))
+            if (advtext_dictionary.ContainsKey(stepNum - 1))
             {
-                advtext_dictionary.TryGetValue(stepNum, out stepvalue);
+                advtext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 AdvanceText.Text = stepvalue;
             }
             else AdvanceText.Text = "";
 
-            if (colitem_dictionary.ContainsKey(stepNum))
+            if (colitem_dictionary.ContainsKey(stepNum - 1))
             {
-                colitem_dictionary.TryGetValue(stepNum, out stepvalue);
+                colitem_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 CollectItem.Text = stepvalue;
             }
             else CollectItem.Text = "";
 
-            if (money_dictionary.ContainsKey(stepNum))
+            if (money_dictionary.ContainsKey(stepNum - 1))
             {
-                money_dictionary.TryGetValue(stepNum, out stepvalue);
+                money_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 RewardMoney.Text = stepvalue;
             }
             else RewardMoney.Text = "0";
 
-            if (xp_dictionary.ContainsKey(stepNum))
+            if (xp_dictionary.ContainsKey(stepNum - 1))
             {
-                xp_dictionary.TryGetValue(stepNum, out stepvalue);
+                xp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 RewardXp.Text = stepvalue;
             }
             else RewardXp.Text = "0";
 
-            if (clxp_dictionary.ContainsKey(stepNum))
+            if (clxp_dictionary.ContainsKey(stepNum - 1))
             {
-                clxp_dictionary.TryGetValue(stepNum, out stepvalue);
+                clxp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 RewardCLXp.Text = stepvalue;
             }
             else RewardCLXp.Text = "0";
 
-            if (rp_dictionary.ContainsKey(stepNum))
+            if (rp_dictionary.ContainsKey(stepNum - 1))
             {
-                rp_dictionary.TryGetValue(stepNum, out stepvalue);
+                rp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 RewardRp.Text = stepvalue;
             }
             else RewardRp.Text = "0";
 
-            if (bp_dictionary.ContainsKey(stepNum))
+            if (bp_dictionary.ContainsKey(stepNum - 1))
             {
-                bp_dictionary.TryGetValue(stepNum, out stepvalue);
+                bp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 RewardBp.Text = stepvalue;
             }
             else RewardBp.Text = "0";
 
-            if (srctext_dictionary.ContainsKey(stepNum))
+            if (srctext_dictionary.ContainsKey(stepNum - 1))
             {
-                srctext_dictionary.TryGetValue(stepNum, out stepvalue);
+                srctext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 SourceText.Text = stepvalue;
             }
             else SourceText.Text = "";
 
-            if (srcname_dictionary.ContainsKey(stepNum))
+            if (srcname_dictionary.ContainsKey(stepNum - 1))
             {
-                srcname_dictionary.TryGetValue(stepNum, out stepvalue);
+                srcname_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 SourceName.Text = stepvalue;
             }
             else SourceName.Text = "";
 
-            if (stepitem_dictionary.ContainsKey(stepNum))
+            if (stepitem_dictionary.ContainsKey(stepNum - 1))
             {
-                stepitem_dictionary.TryGetValue(stepNum, out stepvalue);
+                stepitem_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 StepItem.Text = stepvalue;
 
             }
             else StepItem.Text = "";
 
-            if (steptext_dictionary.ContainsKey(stepNum))
+            if (steptext_dictionary.ContainsKey(stepNum - 1))
             {
-                steptext_dictionary.TryGetValue(stepNum, out stepvalue);
+                steptext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 StepText.Text = stepvalue;
             }
             else StepText.Text = "";
 
-            if (trgtname_dictionary.ContainsKey(stepNum))
+            if (trgtname_dictionary.ContainsKey(stepNum - 1))
             {
-                trgtname_dictionary.TryGetValue(stepNum, out stepvalue);
+                trgtname_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 TargetName.Text = stepvalue;
             }
             else TargetName.Text = "";
 
-            if (trgttext_dictionary.ContainsKey(stepNum))
+            if (trgttext_dictionary.ContainsKey(stepNum - 1))
             {
-                trgttext_dictionary.TryGetValue(stepNum, out stepvalue);
+                trgttext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 TargetText.Text = stepvalue;
             }
             else TargetText.Text = "";
 
-            if (steptype_dictionary.ContainsKey(stepNum)) //wtf...enum can get bent
+            if (steptype_dictionary.ContainsKey(stepNum - 1)) //wtf...enum can get bent
             {
-                steptype_dictionary.TryGetValue(stepNum, out stepvalue);
+                steptype_dictionary.TryGetValue(stepNum - 1, out stepvalue);
                 StepType.Text = stepvalue;
             }
             else StepType.Text = "";
@@ -1168,44 +1168,44 @@ namespace DOLToolbox.Controls
             int finNum = int.Parse(finNumber.Text);
             
             // Refresh step data to the dictionary if the forward/back button has not been pressed 
-            advtext_dictionary.Remove(stepNum);
-            advtext_dictionary.Add(stepNum, AdvanceText.Text);
-            colitem_dictionary.Remove(stepNum);
-            colitem_dictionary.Add(stepNum, CollectItem.Text);
-            money_dictionary.Remove(stepNum);
-            money_dictionary.Add(stepNum, RewardMoney.Text);
-            xp_dictionary.Remove(stepNum);
-            xp_dictionary.Add(stepNum, RewardXp.Text);
-            clxp_dictionary.Remove(stepNum);
-            clxp_dictionary.Add(stepNum, RewardCLXp.Text);
-            rp_dictionary.Remove(stepNum);
-            rp_dictionary.Add(stepNum, RewardRp.Text);
-            bp_dictionary.Remove(stepNum);
-            bp_dictionary.Add(stepNum, RewardBp.Text);
-            srctext_dictionary.Remove(stepNum);
-            srctext_dictionary.Add(stepNum, SourceText.Text);
-            srcname_dictionary.Remove(stepNum);
-            srcname_dictionary.Add(stepNum, SourceName.Text);
-            stepitem_dictionary.Remove(stepNum);
-            stepitem_dictionary.Add(stepNum, StepItem.Text);
-            steptext_dictionary.Remove(stepNum);
-            steptext_dictionary.Add(stepNum, StepText.Text);
-            trgtname_dictionary.Remove(stepNum);
-            trgtname_dictionary.Add(stepNum, TargetName.Text);
-            trgttext_dictionary.Remove(stepNum);
-            trgttext_dictionary.Add(stepNum, TargetText.Text);
-            steptype_dictionary.Remove(stepNum);
-            steptype_dictionary.Add(stepNum, StepType.Text);
+            advtext_dictionary.Remove(stepNum - 1);
+            advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
+            colitem_dictionary.Remove(stepNum - 1);
+            colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
+            money_dictionary.Remove(stepNum - 1);
+            money_dictionary.Add(stepNum - 1, RewardMoney.Text);
+            xp_dictionary.Remove(stepNum - 1);
+            xp_dictionary.Add(stepNum - 1, RewardXp.Text);
+            clxp_dictionary.Remove(stepNum - 1);
+            clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
+            rp_dictionary.Remove(stepNum - 1);
+            rp_dictionary.Add(stepNum - 1, RewardRp.Text);
+            bp_dictionary.Remove(stepNum - 1);
+            bp_dictionary.Add(stepNum - 1, RewardBp.Text);
+            srctext_dictionary.Remove(stepNum - 1);
+            srctext_dictionary.Add(stepNum - 1, SourceText.Text);
+            srcname_dictionary.Remove(stepNum - 1);
+            srcname_dictionary.Add(stepNum - 1, SourceName.Text);
+            stepitem_dictionary.Remove(stepNum - 1);
+            stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
+            steptext_dictionary.Remove(stepNum - 1);
+            steptext_dictionary.Add(stepNum - 1, StepText.Text);
+            trgtname_dictionary.Remove(stepNum - 1);
+            trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
+            trgttext_dictionary.Remove(stepNum - 1);
+            trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
+            steptype_dictionary.Remove(stepNum - 1);
+            steptype_dictionary.Add(stepNum - 1, StepType.Text);
 
-            opt_dictionary.Remove(optNum); // do this incase it was edited without pressing forward/back
+            opt_dictionary.Remove(optNum - 1); // do this incase it was edited without pressing forward/back
             if (!string.IsNullOrWhiteSpace(_OptionalReward.Text)) 
             {
-                opt_dictionary.Add(optNum, _OptionalReward.Text);
+                opt_dictionary.Add(optNum - 1, _OptionalReward.Text);
             }
-            fin_dictionary.Remove(finNum); // do this incase it was edited without pressing forward/back
+            fin_dictionary.Remove(finNum - 1); // do this incase it was edited without pressing forward/back
             if (!string.IsNullOrWhiteSpace(_FinalReward.Text))
             {
-                fin_dictionary.Add(finNum, _FinalReward.Text);
+                fin_dictionary.Add(finNum - 1, _FinalReward.Text);
             }
 
             try
