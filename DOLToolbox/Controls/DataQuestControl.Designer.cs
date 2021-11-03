@@ -291,6 +291,7 @@
             // 
             this.listClasses.FormattingEnabled = true;
             this.listClasses.Items.AddRange(new object[] {
+            "All",
             "Acolyte",
             "AlbionRogue",
             "Disciple",
