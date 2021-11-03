@@ -41,8 +41,10 @@ namespace DOLToolbox.Controls
             trgtname_dictionary = new Dictionary<int, string>();
             trgttext_dictionary = new Dictionary<int, string>();
             steptype_dictionary = new Dictionary<int, string>();
-
+            allClasses = new Dictionary<int, string>();
             quest_errors = new List<string>();
+
+            PopulateClassDictionary();
         }
         #region variables
         private DBDataQuest _quest;
@@ -67,6 +69,8 @@ namespace DOLToolbox.Controls
         public Dictionary<int, string> trgtname_dictionary;
         public Dictionary<int, string> trgttext_dictionary;
         public Dictionary<int, string> steptype_dictionary;
+        // quest restrictions
+        private Dictionary<int, string> allClasses;
         public List<string> quest_errors;
 
         #endregion
@@ -364,6 +368,74 @@ namespace DOLToolbox.Controls
 
         }
 
+        // Add classes and associated ID to a dictionary for later use
+        private void PopulateClassDictionary()
+        {
+            allClasses.Add(2, "Armsman");
+            allClasses.Add(13, "Cabalist");
+            allClasses.Add(6, "Cleric");
+            allClasses.Add(10, "Friar");
+            allClasses.Add(33, "Heretic");
+            allClasses.Add(9, "Infiltrator");
+            allClasses.Add(11, "Mercenary");
+            allClasses.Add(4, "Minstrel");
+            allClasses.Add(12, "Necromancer");
+            allClasses.Add(1, "Paladin");
+            allClasses.Add(19, "Reaver");
+            allClasses.Add(3, "Scout");
+            allClasses.Add(8, "Sorcerer");
+            allClasses.Add(5, "Theurgist");
+            allClasses.Add(7, "Wizard");
+            allClasses.Add(60, "MaulerAlb");
+            allClasses.Add(31, "Berserker");
+            allClasses.Add(30, "Bonedancer");
+            allClasses.Add(26, "Healer");
+            allClasses.Add(25, "Hunter");
+            allClasses.Add(29, "Runemaster");
+            allClasses.Add(32, "Savage");
+            allClasses.Add(23, "Shadowblade");
+            allClasses.Add(28, "Shaman");
+            allClasses.Add(24, "Skald");
+            allClasses.Add(27, "Spiritmaster");
+            allClasses.Add(21, "Thane");
+            allClasses.Add(34, "Valkyrie");
+            allClasses.Add(59, "Warlock");
+            allClasses.Add(22, "Warrior");
+            allClasses.Add(61, "MaulerMid");
+            allClasses.Add(55, "Animist");
+            allClasses.Add(39, "Bainshee");
+            allClasses.Add(48, "Bard");
+            allClasses.Add(43, "Blademaster");
+            allClasses.Add(45, "Champion");
+            allClasses.Add(47, "Druid");
+            allClasses.Add(40, "Eldritch");
+            allClasses.Add(41, "Enchanter");
+            allClasses.Add(44, "Hero");
+            allClasses.Add(42, "Mentalist");
+            allClasses.Add(49, "Nightshade");
+            allClasses.Add(50, "Ranger");
+            allClasses.Add(56, "Valewalker");
+            allClasses.Add(58, "Vampiir");
+            allClasses.Add(46, "Warden");
+            allClasses.Add(62, "MaulerHib");
+            allClasses.Add(16, "Acolyte");
+            allClasses.Add(17, "AlbionRogue");
+            allClasses.Add(20, "Disciple");
+            allClasses.Add(15, "Elementalist");
+            allClasses.Add(14, "Fighter");
+            allClasses.Add(57, "Forester");
+            allClasses.Add(52, "Guardian");
+            allClasses.Add(18, "Mage");
+            allClasses.Add(51, "Magician");
+            allClasses.Add(38, "MidgardRogue");
+            allClasses.Add(36, "Mystic");
+            allClasses.Add(53, "Naturalist");
+            allClasses.Add(37, "Seer");
+            allClasses.Add(54, "Stalker");
+            allClasses.Add(35, "Viking");
+        }
+
+
         /// <summary>
         /// convert database format "kill bandit;2|talk to NPC;3" to usable format
         /// </summary>        
@@ -552,8 +624,33 @@ namespace DOLToolbox.Controls
                     RewardBp.Text = bp_dictionary[0];
                 }
 
-                // Allowed classes : todo
- 
+                // Allowed classes
+                _AllowedClasses = quest.AllowedClasses;
+
+                string[] splitAllowedClasses;
+                if (!string.IsNullOrWhiteSpace(_AllowedClasses))
+                {
+                    splitAllowedClasses = _AllowedClasses.Split(new string[] { "|" }, StringSplitOptions.None);
+
+                    for (int i = 0; i < splitAllowedClasses.Length; i++)
+                    {
+                        int.TryParse(splitAllowedClasses[i], out int result);
+                        splitAllowedClasses[i] = allClasses[result];
+                    }
+                    for (int i = 0; i < splitAllowedClasses.Length; i++)
+                    {
+                        for (int j = 0; j < listClasses.Items.Count; j++)
+                        {
+                            string cls = listClasses.Items[j].ToString();
+                            if (cls == splitAllowedClasses[i])
+                            {
+                                listClasses.SetSelected(j, true);
+                                continue;
+                            }
+                        }
+                    }
+                }
+
                 LoadedQuest = true;
             }
             catch (Exception g)
@@ -1227,7 +1324,7 @@ namespace DOLToolbox.Controls
                 _TargetName = String.Join("|", Array.ConvertAll(trgtname_dictionary.Values.ToArray(), i => i.ToString()));
                 _TargetText = String.Join("|", Array.ConvertAll(trgttext_dictionary.Values.ToArray(), i => i.ToString()));
                 _StepType = String.Join("|", Array.ConvertAll(steptype_dictionary.Values.ToArray(), i => i.ToString()));
-                //string acl = String.Join("|", allowedClasses.SelectedItems.Cast<object>().Select(i => i.ToString()));
+                _AllowedClasses = String.Join("|", listClasses.SelectedItems.Cast<object>().Select(i => i.ToString()));
 
                 //eStepType string replace values:
                 StringBuilder stype = new StringBuilder(_StepType);
