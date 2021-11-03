@@ -51,7 +51,7 @@ namespace DOLToolbox.Controls
 
         string _SourceName, _SourceText, _StepType, _StepText, _StepItemTemplates, _AdvanceText, _TargetName, _TargetText;
         string _CollectItemTemplate, _RewardMoney, _RewardXP, _RewardCLXP, _RewardRp, _RewardBp, _OptionalRewardItemTemplates;
-        string _FinalRewardItemTemplates, _QuestDependency, _AllowedClasses;
+        string _FinalRewardItemTemplates, QuestDependency, _AllowedClasses;
 
         public Dictionary<int, string> opt_dictionary;
         public Dictionary<int, string> fin_dictionary;
@@ -1461,7 +1461,7 @@ namespace DOLToolbox.Controls
             q.OptionalRewardItemTemplates = _OptionalRewardItemTemplates;
             q.FinalRewardItemTemplates = _FinalRewardItemTemplates;
             q.FinishText = _FinishText.Text;
-            q.QuestDependency = _QuestDependency; //might need to serialize....if quest has multiple dependencies
+            q.QuestDependency = _QuestDependency.Text; //might need to serialize....if quest has multiple dependencies
             q.AllowedClasses = _AllowedClasses; //serialized
             q.ClassType = _ClassType.Text;
 

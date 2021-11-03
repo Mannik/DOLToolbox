@@ -79,7 +79,7 @@
             this._MaxLevel = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.description = new System.Windows.Forms.RichTextBox();
-            this.QuestDependency = new System.Windows.Forms.TextBox();
+            this._QuestDependency = new System.Windows.Forms.TextBox();
             this._ClassType = new System.Windows.Forms.TextBox();
             this._StartName = new System.Windows.Forms.TextBox();
             this._Name = new System.Windows.Forms.TextBox();
@@ -688,12 +688,12 @@
             // 
             // QuestDependency
             // 
-            this.QuestDependency.BackColor = System.Drawing.Color.White;
-            this.QuestDependency.ForeColor = System.Drawing.Color.Black;
-            this.QuestDependency.Location = new System.Drawing.Point(119, 197);
-            this.QuestDependency.Name = "QuestDependency";
-            this.QuestDependency.Size = new System.Drawing.Size(255, 20);
-            this.QuestDependency.TabIndex = 194;
+            this._QuestDependency.BackColor = System.Drawing.Color.White;
+            this._QuestDependency.ForeColor = System.Drawing.Color.Black;
+            this._QuestDependency.Location = new System.Drawing.Point(119, 197);
+            this._QuestDependency.Name = "QuestDependency";
+            this._QuestDependency.Size = new System.Drawing.Size(255, 20);
+            this._QuestDependency.TabIndex = 194;
             // 
             // _ClassType
             // 
@@ -1159,7 +1159,7 @@
             this.Controls.Add(this._MaxLevel);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.description);
-            this.Controls.Add(this.QuestDependency);
+            this.Controls.Add(this._QuestDependency);
             this.Controls.Add(this._ClassType);
             this.Controls.Add(this._StartName);
             this.Controls.Add(this._Name);
@@ -1247,7 +1247,7 @@
         private System.Windows.Forms.TextBox _MaxLevel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.RichTextBox description;
-        private System.Windows.Forms.TextBox QuestDependency;
+        private System.Windows.Forms.TextBox _QuestDependency;
         private System.Windows.Forms.TextBox _ClassType;
         private System.Windows.Forms.TextBox _StartName;
         private System.Windows.Forms.TextBox _Name;
