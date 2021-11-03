@@ -1345,6 +1345,7 @@ namespace DOLToolbox.Controls
                 _StepType = stype.ToString();
 
                 StringBuilder allcl = new StringBuilder(_AllowedClasses);
+                allcl.Replace("All", ""); // added all incase one is selected, you cannot deselect
                 allcl.Replace("Armsman", "2");
                 allcl.Replace("Cabalist", "13");
                 allcl.Replace("Cleric", "6");
