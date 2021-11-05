@@ -79,7 +79,7 @@
             this._MaxLevel = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.description = new System.Windows.Forms.RichTextBox();
-            this.QuestDependency = new System.Windows.Forms.TextBox();
+            this._QuestDependency = new System.Windows.Forms.TextBox();
             this._ClassType = new System.Windows.Forms.TextBox();
             this._StartName = new System.Windows.Forms.TextBox();
             this._Name = new System.Windows.Forms.TextBox();
@@ -291,6 +291,7 @@
             // 
             this.listClasses.FormattingEnabled = true;
             this.listClasses.Items.AddRange(new object[] {
+            "All",
             "Acolyte",
             "AlbionRogue",
             "Disciple",
@@ -603,13 +604,12 @@
             // questdependencySearch
             // 
             this.questdependencySearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questdependencySearch.Enabled = false;
             this.questdependencySearch.Location = new System.Drawing.Point(13, 197);
             this.questdependencySearch.Name = "questdependencySearch";
             this.questdependencySearch.Size = new System.Drawing.Size(100, 20);
             this.questdependencySearch.TabIndex = 186;
             this.questdependencySearch.Text = "Quest Dep ->";
-            this.questdependencySearch.UseVisualStyleBackColor = false;
+            this.questdependencySearch.UseVisualStyleBackColor = true;
             // 
             // _MaxCount
             // 
@@ -675,10 +675,11 @@
             this.label13.TabIndex = 190;
             this.label13.Text = "Max";
             // 
-            // description
+            // description / Start Text 
             // 
             this.description.BackColor = System.Drawing.Color.White;
             this.description.ForeColor = System.Drawing.Color.Black;
+            this.description.Enabled = false;
             this.description.Location = new System.Drawing.Point(13, 233);
             this.description.Name = "description";
             this.description.Size = new System.Drawing.Size(361, 74);
@@ -687,12 +688,12 @@
             // 
             // QuestDependency
             // 
-            this.QuestDependency.BackColor = System.Drawing.Color.White;
-            this.QuestDependency.ForeColor = System.Drawing.Color.Black;
-            this.QuestDependency.Location = new System.Drawing.Point(119, 197);
-            this.QuestDependency.Name = "QuestDependency";
-            this.QuestDependency.Size = new System.Drawing.Size(255, 20);
-            this.QuestDependency.TabIndex = 194;
+            this._QuestDependency.BackColor = System.Drawing.Color.White;
+            this._QuestDependency.ForeColor = System.Drawing.Color.Black;
+            this._QuestDependency.Location = new System.Drawing.Point(119, 197);
+            this._QuestDependency.Name = "QuestDependency";
+            this._QuestDependency.Size = new System.Drawing.Size(255, 20);
+            this._QuestDependency.TabIndex = 194;
             // 
             // _ClassType
             // 
@@ -932,27 +933,25 @@
             // stepBack
             // 
             this.stepBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stepBack.Enabled = false;
             this.stepBack.Location = new System.Drawing.Point(57, 0);
             this.stepBack.Name = "stepBack";
             this.stepBack.Size = new System.Drawing.Size(28, 23);
             this.stepBack.TabIndex = 100;
             this.stepBack.TabStop = false;
             this.stepBack.Text = "<";
-            this.stepBack.UseVisualStyleBackColor = false;
+            this.stepBack.UseVisualStyleBackColor = true;
             this.stepBack.Click += new System.EventHandler(this.stepBack_Click);
             // 
             // stepForward
             // 
             this.stepForward.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stepForward.Enabled = false;
             this.stepForward.Location = new System.Drawing.Point(116, 0);
             this.stepForward.Name = "stepForward";
             this.stepForward.Size = new System.Drawing.Size(28, 23);
             this.stepForward.TabIndex = 100;
             this.stepForward.TabStop = false;
             this.stepForward.Text = ">";
-            this.stepForward.UseVisualStyleBackColor = false;
+            this.stepForward.UseVisualStyleBackColor = true;
             this.stepForward.Click += new System.EventHandler(this.stepForward_Click);
             // 
             // stepNumber
@@ -1072,13 +1071,12 @@
             // questDelete
             // 
             this.questDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questDelete.Enabled = false;
             this.questDelete.Location = new System.Drawing.Point(246, 3);
             this.questDelete.Name = "questDelete";
             this.questDelete.Size = new System.Drawing.Size(75, 23);
             this.questDelete.TabIndex = 167;
             this.questDelete.Text = "Delete";
-            this.questDelete.UseVisualStyleBackColor = false;
+            this.questDelete.UseVisualStyleBackColor = true;
             this.questDelete.Click += new System.EventHandler(this.questDelete_Click);
             // 
             // questSearch
@@ -1089,27 +1087,31 @@
             this.questSearch.TabIndex = 166;
             this.questSearch.Text = "Search";
             this.questSearch.UseVisualStyleBackColor = true;
-            // 
-            // questSave
-            // 
-            this.questSave.Location = new System.Drawing.Point(84, 3);
-            this.questSave.Name = "questSave";
-            this.questSave.Size = new System.Drawing.Size(75, 23);
-            this.questSave.TabIndex = 165;
-            this.questSave.Text = "Save";
-            this.questSave.UseVisualStyleBackColor = true;
-            this.questSave.Click += new System.EventHandler(this.questSave_Click);
+            this.questSearch.Click += new System.EventHandler(this.questSearch_Click);
+
             // 
             // questLoad
             // 
             this.questLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.questLoad.Enabled = false;
-            this.questLoad.Location = new System.Drawing.Point(165, 3);
+            this.questLoad.Location = new System.Drawing.Point(84, 3);
             this.questLoad.Name = "questLoad";
             this.questLoad.Size = new System.Drawing.Size(75, 23);
-            this.questLoad.TabIndex = 164;
+            this.questLoad.TabIndex = 165;
             this.questLoad.Text = "Load";
-            this.questLoad.UseVisualStyleBackColor = false;
+            this.questLoad.UseVisualStyleBackColor = true;
+            this.questLoad.Click += new System.EventHandler(this.questLoad_Click);
+
+            // 
+            // questSave
+            // 
+            this.questSave.Location = new System.Drawing.Point(165, 3);
+            this.questSave.Name = "questSave";
+            this.questSave.Size = new System.Drawing.Size(75, 23);
+            this.questSave.TabIndex = 164;
+            this.questSave.Text = "Save";
+            this.questSave.UseVisualStyleBackColor = false;
+            this.questSave.Click += new System.EventHandler(this.questSave_Click);
+
             // 
             // DataQuestControl
             // 
@@ -1157,7 +1159,7 @@
             this.Controls.Add(this._MaxLevel);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.description);
-            this.Controls.Add(this.QuestDependency);
+            this.Controls.Add(this._QuestDependency);
             this.Controls.Add(this._ClassType);
             this.Controls.Add(this._StartName);
             this.Controls.Add(this._Name);
@@ -1245,7 +1247,7 @@
         private System.Windows.Forms.TextBox _MaxLevel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.RichTextBox description;
-        private System.Windows.Forms.TextBox QuestDependency;
+        private System.Windows.Forms.TextBox _QuestDependency;
         private System.Windows.Forms.TextBox _ClassType;
         private System.Windows.Forms.TextBox _StartName;
         private System.Windows.Forms.TextBox _Name;
