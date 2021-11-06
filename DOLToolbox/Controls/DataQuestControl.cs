@@ -7,10 +7,6 @@ using DOLToolbox.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DOLToolbox.Controls;
-using EODModelViewer;
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 
 namespace DOLToolbox.Controls
 {
@@ -19,79 +15,53 @@ namespace DOLToolbox.Controls
         private readonly DataQuestService _questService = new DataQuestService();
 
         // using this to determine if quest can be saved back to original ID
-        private bool LoadedQuest { get; set; } = false;
+        private bool LoadedQuest { get; set; }
 
         public DataQuestControl()
         {
             InitializeComponent();
-
-            opt_dictionary = new Dictionary<int, string>();
-            fin_dictionary = new Dictionary<int, string>();
-            advtext_dictionary = new Dictionary<int, string>();
-            colitem_dictionary = new Dictionary<int, string>();
-            money_dictionary = new Dictionary<int, string>();
-            xp_dictionary = new Dictionary<int, string>();
-            clxp_dictionary = new Dictionary<int, string>();
-            rp_dictionary = new Dictionary<int, string>();
-            bp_dictionary = new Dictionary<int, string>();
-            srctext_dictionary = new Dictionary<int, string>();
-            srcname_dictionary = new Dictionary<int, string>();
-            stepitem_dictionary = new Dictionary<int, string>();
-            steptext_dictionary = new Dictionary<int, string>();
-            trgtname_dictionary = new Dictionary<int, string>();
-            trgttext_dictionary = new Dictionary<int, string>();
-            steptype_dictionary = new Dictionary<int, string>();
-            allClasses = new Dictionary<int, string>();
-            quest_errors = new List<string>();
-
             PopulateClassDictionary();
         }
-        #region variables
+
         private DBDataQuest _quest;
 
-        string _SourceName, _SourceText, _StepType, _StepText, _StepItemTemplates, _AdvanceText, _TargetName, _TargetText;
-        string _CollectItemTemplate, _RewardMoney, _RewardXP, _RewardCLXP, _RewardRp, _RewardBp, _OptionalRewardItemTemplates;
-        string _FinalRewardItemTemplates, QuestDependency, _AllowedClasses;
+        private string _sourceName, _sourceText, _stepType, _stepText, _stepItemTemplates, _advanceText, _targetName, _targetText;
+        private string _collectItemTemplate, _rewardMoney, _rewardXp, _rewardClXp, _rewardRp, _rewardBp, _optionalRewardItemTemplates;
+        private string _finalRewardItemTemplates, _allowedClasses;
 
-        public Dictionary<int, string> opt_dictionary;
-        public Dictionary<int, string> fin_dictionary;
-        public Dictionary<int, string> advtext_dictionary;
-        public Dictionary<int, string> colitem_dictionary;
-        public Dictionary<int, string> money_dictionary;
-        public Dictionary<int, string> xp_dictionary;
-        public Dictionary<int, string> clxp_dictionary;
-        public Dictionary<int, string> rp_dictionary;
-        public Dictionary<int, string> bp_dictionary;
-        public Dictionary<int, string> srctext_dictionary;
-        public Dictionary<int, string> srcname_dictionary;
-        public Dictionary<int, string> stepitem_dictionary;
-        public Dictionary<int, string> steptext_dictionary;
-        public Dictionary<int, string> trgtname_dictionary;
-        public Dictionary<int, string> trgttext_dictionary;
-        public Dictionary<int, string> steptype_dictionary;
+        private readonly Dictionary<int, string> _optDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _finDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _advTextDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _colItemDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _moneyDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _xpDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _clXpDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _rpDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _bpDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _srcTextDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _srcNameDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _stepItemDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _stepTextDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _trgNameDictionary = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _trgTextDictionary = new Dictionary<int, string>();
+
+        private readonly Dictionary<int, string> _stepTypeDictionary = new Dictionary<int, string>();
         // quest restrictions
-        private Dictionary<int, string> allClasses;
-        public List<string> quest_errors;
+        private readonly Dictionary<int, string> _allClasses = new Dictionary<int, string>();
+        private readonly List<string> _questErrors = new List<string>();
 
-        #endregion
-
-        #region buttonclicks
         private void SearchStartNPC_Click(object sender, EventArgs e)
         {
-            var mobsearch = new MobSearch();
-
-            mobsearch.SelectNpcClicked += (o, args) => { LoadStartNPC(((Mob)o).Name, ((Mob)o).Region); };
-
-            mobsearch.ShowDialog(this);
+            var mobSearch = new MobSearch();
+            mobSearch.SelectNpcClicked += (o, args) => { LoadStartNpc(((Mob)o).Name, ((Mob)o).Region); };
+            mobSearch.ShowDialog(this);
         }
 
         private void SearchStartObject_Click(object sender, EventArgs e)
         {
-            var objectsearch = new ObjectSearch();
-
-            objectsearch.SelectNpcClicked += (o, args) => { LoadStartNPC(((WorldObject)o).Name, ((WorldObject)o).Region); };
-
-            objectsearch.ShowDialog(this);
+            var objectSearch = new ObjectSearch();
+            objectSearch.SelectNpcClicked += (o, args) => { LoadStartNpc(((WorldObject)o).Name, ((WorldObject)o).Region); };
+            objectSearch.ShowDialog(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -111,11 +81,11 @@ namespace DOLToolbox.Controls
             search.ShowDialog(this);
         }
 
-        private void optrewardForward_Click(object sender, EventArgs e)
+        private void OptRewardForward_Click(object sender, EventArgs e)
         {
             if (_OptionalReward.Text == "")
             {
-                MessageBox.Show("You can't add nothing as a reward!", "PEBKAC");
+                MessageBox.Show(@"You can't add nothing as a reward!", @"PEBKAC");
                 return;
             }
 
@@ -123,53 +93,53 @@ namespace DOLToolbox.Controls
 
             if (optNum == 8)
             {
-                opt_dictionary.Remove(optNum);
-                opt_dictionary.Add(optNum, _OptionalReward.Text);
-                MessageBox.Show("Last optional item added", "8 Optional Rewards Max");
+                _optDictionary.Remove(optNum);
+                _optDictionary.Add(optNum, _OptionalReward.Text);
+                MessageBox.Show(@"Last optional item added", @"8 Optional Rewards Max");
                 return;
             }
 
-            if (!opt_dictionary.ContainsKey(optNum)) //If the reward data is not in the dictionary...check for step 1, then add
+            if (!_optDictionary.ContainsKey(optNum)) //If the reward data is not in the dictionary...check for step 1, then add
             {
-                opt_dictionary.Add(optNum, _OptionalReward.Text);
+                _optDictionary.Add(optNum, _OptionalReward.Text);
             }
             else //If the reward data is in the dictionary...check if the values match and add if they don't
             {
-                opt_dictionary.TryGetValue(optNum, out string optvalue);
+                _optDictionary.TryGetValue(optNum, out var optValue);
 
-                if (optvalue != _OptionalReward.Text)
+                if (optValue != _OptionalReward.Text)
                 {
-                    opt_dictionary.Remove(optNum);
-                    opt_dictionary.Add(optNum, _OptionalReward.Text);
+                    _optDictionary.Remove(optNum);
+                    _optDictionary.Add(optNum, _OptionalReward.Text);
                 }
             }
 
             optNumber.Text = (optNum + 1).ToString();
 
             //Check if next step contains data
-            int optNext = int.Parse(optNumber.Text);
-            if (opt_dictionary.ContainsKey(optNext))
+            var optNext = int.Parse(optNumber.Text);
+            if (_optDictionary.ContainsKey(optNext))
             {
-                opt_dictionary.TryGetValue(optNext, out string optvalue);
-                _OptionalReward.Text = optvalue;
+                _optDictionary.TryGetValue(optNext, out var optValue);
+                _OptionalReward.Text = optValue;
             }
             else _OptionalReward.Text = "";
         }
 
         // convert database string entries to dictionary for quest step usage
-        private void StringToDictionary(string[] str, Dictionary<int, string> dict)
+        private static void StringToDictionary(string[] str, Dictionary<int, string> dict)
         {
             if (str == null)
             {
                 return;
             }
 
-            for (int i = 0; i < str.Length; i++)
+            for (var i = 0; i < str.Length; i++)
             {
                 dict.Add(i, str[i]);
             }
         }
-        private void optrewardBack_Click(object sender, EventArgs e)
+        private void OptRewardBack_Click(object sender, EventArgs e)
         {
             int optNum = int.Parse(optNumber.Text);
 
@@ -180,75 +150,75 @@ namespace DOLToolbox.Controls
 
             if (_OptionalReward.Text != "") //Add data on back click
             {
-                opt_dictionary.TryGetValue(optNum, out string optvalue);
-                if (optvalue != _OptionalReward.Text)
+                _optDictionary.TryGetValue(optNum, out var optValue);
+                if (optValue != _OptionalReward.Text)
                 {
-                    opt_dictionary.Remove(optNum);
-                    opt_dictionary.Add(optNum, _OptionalReward.Text);
+                    _optDictionary.Remove(optNum);
+                    _optDictionary.Add(optNum, _OptionalReward.Text);
                 }
             }
             else
             {
-                if (opt_dictionary.ContainsKey(optNum + 1))
+                if (_optDictionary.ContainsKey(optNum + 1))
                 {
-                    MessageBox.Show("You must remove the items listed after the current item to remove this one!", "Error");
+                    MessageBox.Show(@"You must remove the items listed after the current item to remove this one!", @"Error");
                     return;
                 }
                 else
                 {
-                    opt_dictionary.Remove(optNum);
+                    _optDictionary.Remove(optNum);
                 }
             }
 
             //Pull previous step data
-            int optcheck = int.Parse(optNumber.Text);
-            optcheck--;
-            opt_dictionary.TryGetValue(optcheck, out string optback);
-            _OptionalReward.Text = optback;
+            var optCheck = int.Parse(optNumber.Text);
+            optCheck--;
+            _optDictionary.TryGetValue(optCheck, out var optBack);
+            _OptionalReward.Text = optBack;
 
             optNumber.Text = (optNum - 1).ToString(); //finally, decrement opt label
         }
 
-        private void finrewardForward_Click_1(object sender, EventArgs e)
+        private void FinRewardForward_Click_1(object sender, EventArgs e)
         {
             if (_FinalReward.Text == "")
             {
-                MessageBox.Show("You can't add nothing as a reward!", "PEBKAC");
+                MessageBox.Show(@"You can't add nothing as a reward!", @"PEBKAC");
                 return;
             }
 
-            int finNum = int.Parse(finNumber.Text);
+            var finNum = int.Parse(finNumber.Text);
 
-            if (!fin_dictionary.ContainsKey(finNum)) //If the reward data is not in the dictionary...check for step 1, then add
+            if (!_finDictionary.ContainsKey(finNum)) //If the reward data is not in the dictionary...check for step 1, then add
             {
-                fin_dictionary.Add(finNum, _FinalReward.Text);
+                _finDictionary.Add(finNum, _FinalReward.Text);
             }
             else //If the reward data is in the dictionary...check if the values match and add if they don't
             {
-                fin_dictionary.TryGetValue(finNum, out string finvalue);
+                _finDictionary.TryGetValue(finNum, out var finValue);
 
-                if (finvalue != _FinalReward.Text)
+                if (finValue != _FinalReward.Text)
                 {
-                    fin_dictionary.Remove(finNum);
-                    fin_dictionary.Add(finNum, _FinalReward.Text);
+                    _finDictionary.Remove(finNum);
+                    _finDictionary.Add(finNum, _FinalReward.Text);
                 }
             }
 
             finNumber.Text = (finNum + 1).ToString();
 
             //Check if next step contains data
-            int finNext = int.Parse(finNumber.Text);
-            if (fin_dictionary.ContainsKey(finNext))
+            var finNext = int.Parse(finNumber.Text);
+            if (_finDictionary.ContainsKey(finNext))
             {
-                fin_dictionary.TryGetValue(finNext, out string finvalue);
-                _FinalReward.Text = finvalue;
+                _finDictionary.TryGetValue(finNext, out var finValue);
+                _FinalReward.Text = finValue;
             }
             else _FinalReward.Text = "";
         }
 
-        private void finrewardBack_Click_1(object sender, EventArgs e)
+        private void FinRewardBack_Click_1(object sender, EventArgs e)
         {
-            int finNum = int.Parse(finNumber.Text);
+            var finNum = int.Parse(finNumber.Text);
 
             if (finNum == 1) //return if already at step 1, there ain't no step 0
             {
@@ -257,31 +227,29 @@ namespace DOLToolbox.Controls
 
             if (_FinalReward.Text != "") //Add data on back click
             {
-                fin_dictionary.TryGetValue(finNum, out string finvalue);
-                if (finvalue != _FinalReward.Text) //check if data is different from dictionary data
+                _finDictionary.TryGetValue(finNum, out var finValue);
+                if (finValue != _FinalReward.Text) //check if data is different from dictionary data
                 {
-                    fin_dictionary.Remove(finNum);
-                    fin_dictionary.Add(finNum, _FinalReward.Text);
+                    _finDictionary.Remove(finNum);
+                    _finDictionary.Add(finNum, _FinalReward.Text);
                 }
             }
             else //There are no breaks in reward data, so a blank box cannot exist between populated blocks
             {
-                if (fin_dictionary.ContainsKey(finNum + 1))
+                if (_finDictionary.ContainsKey(finNum + 1))
                 {
-                    MessageBox.Show("You must remove the items listed after the current item to remove this one!", "Error");
+                    MessageBox.Show(@"You must remove the items listed after the current item to remove this one!", @"Error");
                     return;
                 }
-                else
-                {
-                    fin_dictionary.Remove(finNum);
-                }
+
+                _finDictionary.Remove(finNum);
             }
 
             //Pull previous step data
-            int fincheck = int.Parse(finNumber.Text);
-            fincheck--;
-            fin_dictionary.TryGetValue(fincheck, out string finback);
-            _FinalReward.Text = finback;
+            var finCheck = int.Parse(finNumber.Text);
+            finCheck--;
+            _finDictionary.TryGetValue(finCheck, out var finBack);
+            _FinalReward.Text = finBack;
             finNumber.Text = (finNum - 1).ToString(); //finally, decrement fin label
         }
 
@@ -302,12 +270,9 @@ namespace DOLToolbox.Controls
 
         private void npcSearch_Click(object sender, EventArgs e)
         {
-
-            var mobsearch = new MobSearch();
-
-            mobsearch.SelectNpcClicked += (o, args) => { LoadTargetNPC(((Mob)o).Name, ((Mob)o).Region); };
-
-            mobsearch.ShowDialog(this);
+            var mobSearch = new MobSearch();
+            mobSearch.SelectNpcClicked += (o, args) => { LoadTargetNpc(((Mob)o).Name, ((Mob)o).Region); };
+            mobSearch.ShowDialog(this);
         }
 
         private void questSearch_Click(object sender, EventArgs e)
@@ -345,8 +310,8 @@ namespace DOLToolbox.Controls
 
         private async Task LoadQuest(string questId)
         {
-            stepNumber.Text = "1";
-            cleanDictionaries();
+            stepNumber.Text = @"1";
+            CleanDictionaries();
             Clear();
 
             if (string.IsNullOrWhiteSpace(questId))
@@ -363,82 +328,81 @@ namespace DOLToolbox.Controls
             }
 
             BindingService.BindData(_quest, this);
-            // need to grab the serialized data and turn it back to usable form            
+            // need to grab the serialized data and turn it back to usable form
             DeserializeData(_quest);
-
         }
 
         // Add classes and associated ID to a dictionary for later use
         private void PopulateClassDictionary()
         {
-            allClasses.Add(2, "Armsman");
-            allClasses.Add(13, "Cabalist");
-            allClasses.Add(6, "Cleric");
-            allClasses.Add(10, "Friar");
-            allClasses.Add(33, "Heretic");
-            allClasses.Add(9, "Infiltrator");
-            allClasses.Add(11, "Mercenary");
-            allClasses.Add(4, "Minstrel");
-            allClasses.Add(12, "Necromancer");
-            allClasses.Add(1, "Paladin");
-            allClasses.Add(19, "Reaver");
-            allClasses.Add(3, "Scout");
-            allClasses.Add(8, "Sorcerer");
-            allClasses.Add(5, "Theurgist");
-            allClasses.Add(7, "Wizard");
-            allClasses.Add(60, "MaulerAlb");
-            allClasses.Add(31, "Berserker");
-            allClasses.Add(30, "Bonedancer");
-            allClasses.Add(26, "Healer");
-            allClasses.Add(25, "Hunter");
-            allClasses.Add(29, "Runemaster");
-            allClasses.Add(32, "Savage");
-            allClasses.Add(23, "Shadowblade");
-            allClasses.Add(28, "Shaman");
-            allClasses.Add(24, "Skald");
-            allClasses.Add(27, "Spiritmaster");
-            allClasses.Add(21, "Thane");
-            allClasses.Add(34, "Valkyrie");
-            allClasses.Add(59, "Warlock");
-            allClasses.Add(22, "Warrior");
-            allClasses.Add(61, "MaulerMid");
-            allClasses.Add(55, "Animist");
-            allClasses.Add(39, "Bainshee");
-            allClasses.Add(48, "Bard");
-            allClasses.Add(43, "Blademaster");
-            allClasses.Add(45, "Champion");
-            allClasses.Add(47, "Druid");
-            allClasses.Add(40, "Eldritch");
-            allClasses.Add(41, "Enchanter");
-            allClasses.Add(44, "Hero");
-            allClasses.Add(42, "Mentalist");
-            allClasses.Add(49, "Nightshade");
-            allClasses.Add(50, "Ranger");
-            allClasses.Add(56, "Valewalker");
-            allClasses.Add(58, "Vampiir");
-            allClasses.Add(46, "Warden");
-            allClasses.Add(62, "MaulerHib");
-            allClasses.Add(16, "Acolyte");
-            allClasses.Add(17, "AlbionRogue");
-            allClasses.Add(20, "Disciple");
-            allClasses.Add(15, "Elementalist");
-            allClasses.Add(14, "Fighter");
-            allClasses.Add(57, "Forester");
-            allClasses.Add(52, "Guardian");
-            allClasses.Add(18, "Mage");
-            allClasses.Add(51, "Magician");
-            allClasses.Add(38, "MidgardRogue");
-            allClasses.Add(36, "Mystic");
-            allClasses.Add(53, "Naturalist");
-            allClasses.Add(37, "Seer");
-            allClasses.Add(54, "Stalker");
-            allClasses.Add(35, "Viking");
+            _allClasses.Add(2, "Armsman");
+            _allClasses.Add(13, "Cabalist");
+            _allClasses.Add(6, "Cleric");
+            _allClasses.Add(10, "Friar");
+            _allClasses.Add(33, "Heretic");
+            _allClasses.Add(9, "Infiltrator");
+            _allClasses.Add(11, "Mercenary");
+            _allClasses.Add(4, "Minstrel");
+            _allClasses.Add(12, "Necromancer");
+            _allClasses.Add(1, "Paladin");
+            _allClasses.Add(19, "Reaver");
+            _allClasses.Add(3, "Scout");
+            _allClasses.Add(8, "Sorcerer");
+            _allClasses.Add(5, "Theurgist");
+            _allClasses.Add(7, "Wizard");
+            _allClasses.Add(60, "MaulerAlb");
+            _allClasses.Add(31, "Berserker");
+            _allClasses.Add(30, "Bonedancer");
+            _allClasses.Add(26, "Healer");
+            _allClasses.Add(25, "Hunter");
+            _allClasses.Add(29, "Runemaster");
+            _allClasses.Add(32, "Savage");
+            _allClasses.Add(23, "Shadowblade");
+            _allClasses.Add(28, "Shaman");
+            _allClasses.Add(24, "Skald");
+            _allClasses.Add(27, "Spiritmaster");
+            _allClasses.Add(21, "Thane");
+            _allClasses.Add(34, "Valkyrie");
+            _allClasses.Add(59, "Warlock");
+            _allClasses.Add(22, "Warrior");
+            _allClasses.Add(61, "MaulerMid");
+            _allClasses.Add(55, "Animist");
+            _allClasses.Add(39, "Bainshee");
+            _allClasses.Add(48, "Bard");
+            _allClasses.Add(43, "Blademaster");
+            _allClasses.Add(45, "Champion");
+            _allClasses.Add(47, "Druid");
+            _allClasses.Add(40, "Eldritch");
+            _allClasses.Add(41, "Enchanter");
+            _allClasses.Add(44, "Hero");
+            _allClasses.Add(42, "Mentalist");
+            _allClasses.Add(49, "Nightshade");
+            _allClasses.Add(50, "Ranger");
+            _allClasses.Add(56, "Valewalker");
+            _allClasses.Add(58, "Vampiir");
+            _allClasses.Add(46, "Warden");
+            _allClasses.Add(62, "MaulerHib");
+            _allClasses.Add(16, "Acolyte");
+            _allClasses.Add(17, "AlbionRogue");
+            _allClasses.Add(20, "Disciple");
+            _allClasses.Add(15, "Elementalist");
+            _allClasses.Add(14, "Fighter");
+            _allClasses.Add(57, "Forester");
+            _allClasses.Add(52, "Guardian");
+            _allClasses.Add(18, "Mage");
+            _allClasses.Add(51, "Magician");
+            _allClasses.Add(38, "MidgardRogue");
+            _allClasses.Add(36, "Mystic");
+            _allClasses.Add(53, "Naturalist");
+            _allClasses.Add(37, "Seer");
+            _allClasses.Add(54, "Stalker");
+            _allClasses.Add(35, "Viking");
         }
 
 
         /// <summary>
         /// convert database format "kill bandit;2|talk to NPC;3" to usable format
-        /// </summary>        
+        /// </summary>
         private void DeserializeData(DBDataQuest quest)
         {
             if (_quest == null)
@@ -446,207 +410,121 @@ namespace DOLToolbox.Controls
                 return;
             }
 
+            void PrepareInput(string input, Dictionary<int, string> dictionary, Control control)
+            {
+                if (input == null || input.Equals(""))
+                {
+                    return;
+                }
+
+                var splitStepType = input.Split(new[] { "|" }, StringSplitOptions.None);
+                dictionary.Clear();
+                StringToDictionary(splitStepType, dictionary);
+                control.Text = dictionary[0];
+            }
+
             try
             {
+                // Step type
+                var builder = new StringBuilder(quest.StepType);
+                // Start with long wording first to avoid any bad replace
+                builder.Replace("200", "RewardQuest");
+                builder.Replace("11", "CollectFinish");
+                builder.Replace("10", "Collect");
+                builder.Replace("0", "Kill");
+                builder.Replace("1", "KillFinish");
+                builder.Replace("2", "Deliver");
+                builder.Replace("3", "DeliverFinish");
+                builder.Replace("4", "Interact");
+                builder.Replace("5", "InteractFinish");
+                builder.Replace("6", "Whisper");
+                builder.Replace("7", "WhisperFinish");
+                builder.Replace("8", "Search");
+                builder.Replace("9", "SearchFinish");
+                _stepType = builder.ToString();
 
-                // Step type 
-                StringBuilder stype = new StringBuilder(quest.StepType);
-                // Start with long wording first to avoid any bad replace 
-                stype.Replace("200", "RewardQuest");
-                stype.Replace("11", "CollectFinish");
-                stype.Replace("10", "Collect");
-                stype.Replace("0", "Kill");
-                stype.Replace("1", "KillFinish");
-                stype.Replace("2", "Deliver");
-                stype.Replace("3", "DeliverFinish");
-                stype.Replace("4", "Interact");
-                stype.Replace("5", "InteractFinish");
-                stype.Replace("6", "Whisper");
-                stype.Replace("7", "WhisperFinish");
-                stype.Replace("8", "Search");
-                stype.Replace("9", "SearchFinish");
-                _StepType = stype.ToString();
-                if (_StepType != null && !_StepType.Equals(""))
-                {
-                    string[] splitStepType = _StepType.Split(new string[] { "|" }, StringSplitOptions.None);
-                    steptype_dictionary.Clear();
-                    StringToDictionary(splitStepType, steptype_dictionary);
-                    StepType.Text = steptype_dictionary[0];
-                }
+                PrepareInput(_stepType, _stepTypeDictionary, StepType);
 
-                // Source name 
-                _SourceName = quest.SourceName;
-                if (_SourceName != null && !_SourceName.Equals(""))
-                {
-                    string[] splitSourceName = _SourceName.Split(new string[] { "|" }, StringSplitOptions.None);
-                    srcname_dictionary.Clear();
-                    StringToDictionary(splitSourceName, srcname_dictionary);
-                    SourceName.Text = srcname_dictionary[0];
-                }
+                // Source name
+                _sourceName = quest.SourceName;
+                PrepareInput(_sourceName, _srcNameDictionary, SourceName);
 
-                // Target name 
-                _TargetName = quest.TargetName;
-                if (_TargetName != null && !_TargetName.Equals(""))
-                {
-                    string[] splitTargetName = _TargetName.Split(new string[] { "|" }, StringSplitOptions.None);
-                    trgtname_dictionary.Clear();
-                    StringToDictionary(splitTargetName, trgtname_dictionary);
-                    TargetName.Text = trgtname_dictionary[0];
-                }
+                // Target name
+                _targetName = quest.TargetName;
+                PrepareInput(_targetName, _trgNameDictionary, TargetName);
 
-                // Source text 
-                _SourceText = quest.SourceText;
-                if (_SourceText != null && !_SourceText.Equals(""))
-                {
-                    string[] splitSourceText = _SourceText.Split(new string[] { "|" }, StringSplitOptions.None);
-                    srctext_dictionary.Clear();
-                    StringToDictionary(splitSourceText, srctext_dictionary);
-                    SourceText.Text = srctext_dictionary[0];
-                }
+                // Source text
+                _sourceText = quest.SourceText;
+                PrepareInput(_sourceText, _srcTextDictionary, SourceText);
 
-                // Step text 
-                _StepText = quest.StepText;
-                if (_StepText != null && !_StepText.Equals(""))
-                {
-                    string[] splitStepText = _StepText.Split(new string[] { "|" }, StringSplitOptions.None);
-                    steptext_dictionary.Clear();
-                    StringToDictionary(splitStepText, steptext_dictionary);
-                    StepText.Text = steptext_dictionary[0];
-                }
+                // Step text
+                _stepText = quest.StepText;
+                PrepareInput(_stepText, _stepTextDictionary, StepText);
 
-                // Advance text 
-                _AdvanceText = quest.AdvanceText;
-                if (_AdvanceText != null && !_AdvanceText.Equals(""))
-                {
-                    string[] splitAdvanceText = _AdvanceText.Split(new string[] { "|" }, StringSplitOptions.None);
-                    advtext_dictionary.Clear();
-                    StringToDictionary(splitAdvanceText, advtext_dictionary);
-                    AdvanceText.Text = advtext_dictionary[0];
-                }
+                // Advance text
+                _advanceText = quest.AdvanceText;
+                PrepareInput(_advanceText, _advTextDictionary, AdvanceText);
 
-                // Target text 
-                _TargetText = quest.TargetText;
-                if (_TargetText != null && !_TargetText.Equals(""))
-                {
-                    string[] splitTargetText = _TargetText.Split(new string[] { "|" }, StringSplitOptions.None);
-                    trgttext_dictionary.Clear();
-                    StringToDictionary(splitTargetText, trgttext_dictionary);
-                    TargetText.Text = trgttext_dictionary[0];
-                }
+                // Target text
+                _targetText = quest.TargetText;
+                PrepareInput(_targetText, _trgTextDictionary, TargetText);
 
                 // Step item templates
-                _StepItemTemplates = quest.StepItemTemplates;
-                if (_StepItemTemplates != null && !_StepItemTemplates.Equals(""))
-                {
-                    string[] splitStepItemTemplates = _StepItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
-                    stepitem_dictionary.Clear();
-                    StringToDictionary(splitStepItemTemplates, stepitem_dictionary);
-                    StepItem.Text = stepitem_dictionary[0];
-                }
+                _stepItemTemplates = quest.StepItemTemplates;
+                PrepareInput(_stepItemTemplates, _stepItemDictionary, StepItem);
 
-                // Collect item templates 
-                _CollectItemTemplate = quest.CollectItemTemplate;
-                if (_CollectItemTemplate != null && !_CollectItemTemplate.Equals(""))
-                {
-                    string[] splitCollectItemTemplate = _CollectItemTemplate.Split(new string[] { "|" }, StringSplitOptions.None);
-                    colitem_dictionary.Clear();
-                    StringToDictionary(splitCollectItemTemplate, colitem_dictionary);
-                    CollectItem.Text = colitem_dictionary[0];
-                }
+                // Collect item templates
+                _collectItemTemplate = quest.CollectItemTemplate;
+                PrepareInput(_collectItemTemplate, _colItemDictionary, CollectItem);
 
-                // Option reward 
-                _OptionalRewardItemTemplates = quest.OptionalRewardItemTemplates;
-                if (_OptionalRewardItemTemplates != null && !_OptionalRewardItemTemplates.Equals(""))
-                {
-                    string[] splitOptionalRewardItemTemplates = _OptionalRewardItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
-                    opt_dictionary.Clear();
-                    StringToDictionary(splitOptionalRewardItemTemplates, opt_dictionary);
-                    _OptionalReward.Text = opt_dictionary[0];
-                }
+                // Option reward
+                _optionalRewardItemTemplates = quest.OptionalRewardItemTemplates;
+                PrepareInput(_optionalRewardItemTemplates, _optDictionary, _OptionalReward);
 
-                // Final reward 
-                _FinalRewardItemTemplates = quest.FinalRewardItemTemplates;
-                if (_FinalRewardItemTemplates != null && !_FinalRewardItemTemplates.Equals(""))
-                {
-                    string[] splitFinalRewardItemTemplates = _FinalRewardItemTemplates.Split(new string[] { "|" }, StringSplitOptions.None);
-                    fin_dictionary.Clear();
-                    StringToDictionary(splitFinalRewardItemTemplates, fin_dictionary);
-                    _FinalReward.Text = splitFinalRewardItemTemplates[0];
-                }
+                // Final reward
+                _finalRewardItemTemplates = quest.FinalRewardItemTemplates;
+                PrepareInput(_finalRewardItemTemplates, _finDictionary, _FinalReward);
 
-                // Money 
-                _RewardMoney = quest.RewardMoney;
-                if (_RewardMoney != null && !_RewardMoney.Equals(""))
-                {
-                    string[] splitRewardLoney = _RewardMoney.Split(new string[] { "|" }, StringSplitOptions.None);
-                    money_dictionary.Clear();
-                    StringToDictionary(splitRewardLoney, money_dictionary);
-                    RewardMoney.Text = money_dictionary[0];
-                }
+                // Money
+                _rewardMoney = quest.RewardMoney;
+                PrepareInput(_rewardMoney, _moneyDictionary, RewardMoney);
 
-                // XP 
-                _RewardXP = quest.RewardXP;
-                if (_RewardXP != null && !_RewardXP.Equals(""))
-                {
-                    string[] splitRewardXP = _RewardXP.Split(new string[] { "|" }, StringSplitOptions.None);
-                    xp_dictionary.Clear();
-                    StringToDictionary(splitRewardXP, xp_dictionary);
-                    RewardXp.Text = xp_dictionary[0];
-                }
+                // XP
+                _rewardXp = quest.RewardXP;
+                PrepareInput(_rewardXp, _xpDictionary, RewardXp);
 
-                // CLXP
-                _RewardCLXP = quest.RewardCLXP;
-                if (_RewardCLXP != null && !_RewardCLXP.Equals(""))
-                {
-                    string[] splitRewardCLXP = _RewardCLXP.Split(new string[] { "|" }, StringSplitOptions.None);
-                    clxp_dictionary.Clear();
-                    StringToDictionary(splitRewardCLXP, clxp_dictionary);
-                    RewardCLXp.Text = clxp_dictionary[0];
-                }
+                // ClXp
+                _rewardClXp = quest.RewardCLXP;
+                PrepareInput(_rewardClXp, _clXpDictionary, RewardCLXp);
 
                 // RP
-                _RewardRp = quest.RewardRP;
-                if (_RewardRp != null && !_RewardRp.Equals(""))
-                {
-                    string[] splitRewardRP = _RewardRp.Split(new string[] { "|" }, StringSplitOptions.None);
-                    rp_dictionary.Clear();
-                    StringToDictionary(splitRewardRP, rp_dictionary);
-                    RewardRp.Text = rp_dictionary[0];
-                }
+                _rewardRp = quest.RewardRP;
+                PrepareInput(_rewardRp, _rpDictionary, RewardRp);
 
                 // BP
-                _RewardBp = quest.RewardBP;
-                if (_RewardBp != null && !_RewardBp.Equals(""))
-                {
-                    string[] splitRewardBP = _RewardBp.Split(new string[] { "|" }, StringSplitOptions.None);
-                    bp_dictionary.Clear();
-                    StringToDictionary(splitRewardBP, bp_dictionary);
-                    RewardBp.Text = bp_dictionary[0];
-                }
+                _rewardBp = quest.RewardBP;
+                PrepareInput(_rewardBp, _bpDictionary, RewardBp);
 
                 // Allowed classes
-                _AllowedClasses = quest.AllowedClasses;
+                _allowedClasses = quest.AllowedClasses;
 
-                string[] splitAllowedClasses;
-                if (!string.IsNullOrWhiteSpace(_AllowedClasses))
+                if (!string.IsNullOrWhiteSpace(_allowedClasses))
                 {
-                    splitAllowedClasses = _AllowedClasses.Split(new string[] { "|" }, StringSplitOptions.None);
+                    var splitAllowedClasses = _allowedClasses.Split(new[] { "|" }, StringSplitOptions.None);
 
-                    for (int i = 0; i < splitAllowedClasses.Length; i++)
+                    for (var i = 0; i < splitAllowedClasses.Length; i++)
                     {
                         int.TryParse(splitAllowedClasses[i], out int result);
-                        splitAllowedClasses[i] = allClasses[result];
+                        splitAllowedClasses[i] = _allClasses[result];
                     }
-                    for (int i = 0; i < splitAllowedClasses.Length; i++)
+
+                    foreach (var allowedClass in splitAllowedClasses)
                     {
-                        for (int j = 0; j < listClasses.Items.Count; j++)
+                        for (var j = 0; j < listClasses.Items.Count; j++)
                         {
-                            string cls = listClasses.Items[j].ToString();
-                            if (cls == splitAllowedClasses[i])
-                            {
-                                listClasses.SetSelected(j, true);
-                                continue;
-                            }
+                            var cls = listClasses.Items[j].ToString();
+                            if (cls != allowedClass) continue;
+                            listClasses.SetSelected(j, true);
                         }
                     }
                 }
@@ -655,16 +533,18 @@ namespace DOLToolbox.Controls
             }
             catch (Exception g)
             {
-                MessageBox.Show(g.Message, "Error while deserializing data! Quest was not loaded completely - Errors in database format.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    g.Message,
+                    @"Error while deserializing data! Quest was not loaded completely - Errors in database format.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
             }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            var objectsearch = new ObjectSearch();
-
-            objectsearch.SelectNpcClicked += (o, args) => { LoadTargetNPC(((WorldObject)o).Name, ((WorldObject)o).Region); };
-
-            objectsearch.ShowDialog(this);
+            var objectSearch = new ObjectSearch();
+            objectSearch.SelectNpcClicked += (o, args) => { LoadTargetNpc(((WorldObject)o).Name, ((WorldObject)o).Region); };
+            objectSearch.ShowDialog(this);
         }
 
         private void questDelete_Click(object sender, EventArgs e)
@@ -674,9 +554,11 @@ namespace DOLToolbox.Controls
                 return;
             }
 
-            var confirmResult = MessageBox.Show(@"This will clear the form. Are you sure you want to continue? (If this quest is in the database it will NOT be deleted)",
+            var confirmResult = MessageBox.Show(
+                @"This will clear the form. Are you sure you want to continue? (If this quest is in the database it will NOT be deleted)",
                 @"Confirm Delete!!",
-                MessageBoxButtons.YesNo);
+                MessageBoxButtons.YesNo
+            );
 
             if (confirmResult != DialogResult.Yes)
             {
@@ -685,29 +567,29 @@ namespace DOLToolbox.Controls
 
             LoadedQuest = false;
 
-            stepNumber.Text = "1";
-            cleanDictionaries();
+            stepNumber.Text = @"1";
+            CleanDictionaries();
             Clear();
         }
 
-        private void cleanDictionaries()
+        private void CleanDictionaries()
         {
-            opt_dictionary.Clear();
-            fin_dictionary.Clear();
-            advtext_dictionary.Clear();
-            colitem_dictionary.Clear();
-            money_dictionary.Clear();
-            xp_dictionary.Clear();
-            clxp_dictionary.Clear();
-            rp_dictionary.Clear();
-            bp_dictionary.Clear();
-            srctext_dictionary.Clear();
-            srcname_dictionary.Clear();
-            stepitem_dictionary.Clear();
-            steptext_dictionary.Clear();
-            trgtname_dictionary.Clear();
-            trgttext_dictionary.Clear();
-            steptype_dictionary.Clear();
+            _optDictionary.Clear();
+            _finDictionary.Clear();
+            _advTextDictionary.Clear();
+            _colItemDictionary.Clear();
+            _moneyDictionary.Clear();
+            _xpDictionary.Clear();
+            _clXpDictionary.Clear();
+            _rpDictionary.Clear();
+            _bpDictionary.Clear();
+            _srcTextDictionary.Clear();
+            _srcNameDictionary.Clear();
+            _stepItemDictionary.Clear();
+            _stepTextDictionary.Clear();
+            _trgNameDictionary.Clear();
+            _trgTextDictionary.Clear();
+            _stepTypeDictionary.Clear();
         }
 
         private void collectSelect_Click(object sender, EventArgs e)
@@ -717,298 +599,41 @@ namespace DOLToolbox.Controls
         //Step data forward
         private void stepForward_Click(object sender, EventArgs e)
         {
-
-            int stepNum = int.Parse(stepNumber.Text);
+            var stepNum = int.Parse(stepNumber.Text);
 
             if (StepType.Text == "" || TargetName.Text == "")
             {
-                MessageBox.Show("You cannot proceed until you have selected a step type and target!");
+                MessageBox.Show(@"You cannot proceed until you have selected a step type and target!");
                 return;
             }
 
-            #region Step forward data entry
+            RefreshDictionaries(stepNum);
 
-            //AdvanceText.Text
-            if (!advtext_dictionary.ContainsKey(stepNum - 1))
-            {
-                advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
-            }
-            else
-            {
-                advtext_dictionary.Remove(stepNum - 1);
-                advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
-            }
             AdvanceText.Text = "";
-
-            //CollectItem.Text
-            if (!colitem_dictionary.ContainsKey(stepNum - 1))
-            {
-                colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
-            }
-            else
-            {
-                colitem_dictionary.Remove(stepNum - 1);
-                colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
-            }
             CollectItem.Text = "";
-
-            //RewardMoney.Text
-            if (!money_dictionary.ContainsKey(stepNum - 1))
-            {
-                money_dictionary.Add(stepNum - 1, RewardMoney.Text);
-            }
-            else
-            {
-                money_dictionary.Remove(stepNum - 1);
-                money_dictionary.Add(stepNum - 1, RewardMoney.Text);
-            }
             RewardMoney.Text = "";
-
-            //RewardXp.Text
-            if (!xp_dictionary.ContainsKey(stepNum - 1))
-            {
-                xp_dictionary.Add(stepNum - 1, RewardXp.Text);
-            }
-            else
-            {
-                xp_dictionary.Remove(stepNum - 1);
-                xp_dictionary.Add(stepNum - 1, RewardXp.Text);
-            }
             RewardXp.Text = "";
-
-            //RewardCLXp.Text
-            if (!clxp_dictionary.ContainsKey(stepNum - 1))
-            {
-                clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
-            }
-            else
-            {
-                clxp_dictionary.Remove(stepNum - 1);
-                clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
-            }
             RewardCLXp.Text = "";
-
-            //RewardRp.Text
-            if (!rp_dictionary.ContainsKey(stepNum - 1))
-            {
-                rp_dictionary.Add(stepNum - 1, RewardRp.Text);
-            }
-            else
-            {
-                rp_dictionary.Remove(stepNum - 1);
-                rp_dictionary.Add(stepNum - 1, RewardRp.Text);
-            }
             RewardRp.Text = "";
-
-            //RewardBp.Text
-            if (!bp_dictionary.ContainsKey(stepNum - 1))
-            {
-                bp_dictionary.Add(stepNum - 1, RewardBp.Text);
-            }
-            else
-            {
-                bp_dictionary.Remove(stepNum - 1);
-                bp_dictionary.Add(stepNum - 1, RewardBp.Text);
-            }
             RewardBp.Text = "";
-
-            //SourceText.Text
-            if (!srctext_dictionary.ContainsKey(stepNum - 1))
-            {
-                srctext_dictionary.Add(stepNum - 1, SourceText.Text);
-            }
-            else
-            {
-                srctext_dictionary.Remove(stepNum - 1);
-                srctext_dictionary.Add(stepNum - 1, SourceText.Text);
-            }
             SourceText.Text = "";
-
-            //SourceName.Text
-            if (!srcname_dictionary.ContainsKey(stepNum - 1))
-            {
-                srcname_dictionary.Add(stepNum - 1, SourceName.Text);
-            }
-            else
-            {
-                srcname_dictionary.Remove(stepNum - 1);
-                srcname_dictionary.Add(stepNum - 1, SourceName.Text);
-            }
             SourceText.Text = "";
-
-            //StepItem.Text
-            if (!stepitem_dictionary.ContainsKey(stepNum - 1))
-            {
-                stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
-            }
-            else
-            {
-                stepitem_dictionary.Remove(stepNum - 1);
-                stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
-            }
             StepItem.Text = "";
-
-            //StepText.Text
-            if (!steptext_dictionary.ContainsKey(stepNum - 1))
-            {
-                steptext_dictionary.Add(stepNum - 1, StepText.Text);
-            }
-            else
-            {
-                steptext_dictionary.Remove(stepNum - 1);
-                steptext_dictionary.Add(stepNum - 1, StepText.Text);
-            }
             StepText.Text = "";
-
-            //TargetName.Text
-            if (!trgtname_dictionary.ContainsKey(stepNum - 1))
-            {
-                trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
-            }
-            else
-            {
-                trgtname_dictionary.Remove(stepNum - 1);
-                trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
-            }
             TargetName.Text = "";
-
-            //TargetText.Text
-            if (!trgttext_dictionary.ContainsKey(stepNum - 1))
-            {
-                trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
-            }
-            else
-            {
-                trgttext_dictionary.Remove(stepNum - 1);
-                trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
-            }
             TargetText.Text = "";
-
-            //StepType.Text
-            if (!steptype_dictionary.ContainsKey(stepNum - 1))
-            {
-                steptype_dictionary.Add(stepNum - 1, StepType.Text);
-            }
-            else
-            {
-                steptype_dictionary.Remove(stepNum - 1);
-                steptype_dictionary.Add(stepNum - 1, StepType.Text);
-            }
             StepType.Text = "";
-
-            #endregion
 
             stepNumber.Text = (stepNum + 1).ToString(); //increment label
 
-            #region Step forward check next step
-
-            int stepNext = int.Parse(stepNumber.Text);
-            string stepvalue;
-
-            if (advtext_dictionary.ContainsKey(stepNext - 1))
-            {
-                advtext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                AdvanceText.Text = stepvalue;
-            }
-            else AdvanceText.Text = "";
-
-            if (colitem_dictionary.ContainsKey(stepNext - 1))
-            {
-                colitem_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                CollectItem.Text = stepvalue;
-            }
-            else CollectItem.Text = "";
-
-            if (money_dictionary.ContainsKey(stepNext - 1))
-            {
-                money_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                RewardMoney.Text = stepvalue;
-            }
-            else RewardMoney.Text = "0";
-
-            if (xp_dictionary.ContainsKey(stepNext - 1))
-            {
-                xp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                RewardXp.Text = stepvalue;
-            }
-            else RewardXp.Text = "0";
-
-            if (clxp_dictionary.ContainsKey(stepNext - 1))
-            {
-                clxp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                RewardCLXp.Text = stepvalue;
-            }
-            else RewardCLXp.Text = "0";
-
-            if (rp_dictionary.ContainsKey(stepNext - 1))
-            {
-                rp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                RewardRp.Text = stepvalue;
-            }
-            else RewardRp.Text = "0";
-
-            if (bp_dictionary.ContainsKey(stepNext - 1))
-            {
-                bp_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                RewardBp.Text = stepvalue;
-            }
-            else RewardBp.Text = "0";
-
-            if (srctext_dictionary.ContainsKey(stepNext - 1))
-            {
-                srctext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                SourceText.Text = stepvalue;
-            }
-            if (srcname_dictionary.ContainsKey(stepNext - 1))
-            {
-                srcname_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                SourceName.Text = stepvalue;
-            }
-            else SourceText.Text = "";
-
-            if (stepitem_dictionary.ContainsKey(stepNext - 1))
-            {
-                stepitem_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                StepItem.Text = stepvalue;
-            }
-            else StepItem.Text = "";
-
-            if (steptext_dictionary.ContainsKey(stepNext - 1))
-            {
-                steptext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                StepText.Text = stepvalue;
-            }
-            else StepText.Text = "";
-
-            if (trgtname_dictionary.ContainsKey(stepNext - 1))
-            {
-                trgtname_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                TargetName.Text = stepvalue;
-            }
-            else TargetName.Text = "";
-
-            if (trgttext_dictionary.ContainsKey(stepNext - 1))
-            {
-                trgttext_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                TargetText.Text = stepvalue;
-            }
-            else TargetText.Text = "";
-
-            if (steptype_dictionary.ContainsKey(stepNext - 1))
-            {
-                steptype_dictionary.TryGetValue(stepNext - 1, out stepvalue);
-                StepType.Text = stepvalue;
-            }
-            else StepType.Text = "";
-
-            #endregion
+            var stepNext = int.Parse(stepNumber.Text);
+            SetStepValues(stepNext);
         }
 
         //Step data back
         private void stepBack_Click(object sender, EventArgs e)
         {
-            int stepNum = int.Parse(stepNumber.Text);
-
+            var stepNum = int.Parse(stepNumber.Text);
             if (stepNum == 1) //return if already at step 1, there ain't no step 0
             {
                 return;
@@ -1017,318 +642,101 @@ namespace DOLToolbox.Controls
             //remove step altogether if mandatory fields are not entered
             if (TargetName.Text == "" || StepType.Text == "")
             {
-                advtext_dictionary.Remove(stepNum - 1);
-                colitem_dictionary.Remove(stepNum - 1);
-                money_dictionary.Remove(stepNum - 1);
-                xp_dictionary.Remove(stepNum - 1);
-                clxp_dictionary.Remove(stepNum - 1);
-                rp_dictionary.Remove(stepNum - 1);
-                bp_dictionary.Remove(stepNum - 1);
-                srctext_dictionary.Remove(stepNum - 1);
-                srcname_dictionary.Remove(stepNum - 1);
-                stepitem_dictionary.Remove(stepNum - 1);
-                steptext_dictionary.Remove(stepNum - 1);
-                trgtname_dictionary.Remove(stepNum - 1);
-                trgttext_dictionary.Remove(stepNum - 1);
-                steptype_dictionary.Remove(stepNum - 1);
+                _advTextDictionary.Remove(stepNum - 1);
+                _colItemDictionary.Remove(stepNum - 1);
+                _moneyDictionary.Remove(stepNum - 1);
+                _xpDictionary.Remove(stepNum - 1);
+                _clXpDictionary.Remove(stepNum - 1);
+                _rpDictionary.Remove(stepNum - 1);
+                _bpDictionary.Remove(stepNum - 1);
+                _srcTextDictionary.Remove(stepNum - 1);
+                _srcNameDictionary.Remove(stepNum - 1);
+                _stepItemDictionary.Remove(stepNum - 1);
+                _stepTextDictionary.Remove(stepNum - 1);
+                _trgNameDictionary.Remove(stepNum - 1);
+                _trgTextDictionary.Remove(stepNum - 1);
+                _stepTypeDictionary.Remove(stepNum - 1);
             }
             else
             //Needed to commit data to m_dictionary when the back button is clicked
             {
-                advtext_dictionary.Remove(stepNum - 1);
-                advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
-                colitem_dictionary.Remove(stepNum - 1);
-                colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
-                money_dictionary.Remove(stepNum - 1);
-                money_dictionary.Add(stepNum - 1, RewardMoney.Text);
-                xp_dictionary.Remove(stepNum - 1);
-                xp_dictionary.Add(stepNum - 1, RewardXp.Text);
-                clxp_dictionary.Remove(stepNum - 1);
-                clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
-                rp_dictionary.Remove(stepNum - 1);
-                rp_dictionary.Add(stepNum - 1, RewardRp.Text);
-                bp_dictionary.Remove(stepNum - 1);
-                bp_dictionary.Add(stepNum - 1, RewardBp.Text);
-                srctext_dictionary.Remove(stepNum - 1);
-                srctext_dictionary.Add(stepNum - 1, SourceText.Text);
-                srcname_dictionary.Remove(stepNum - 1);
-                srcname_dictionary.Add(stepNum - 1, SourceName.Text);
-                stepitem_dictionary.Remove(stepNum - 1);
-                stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
-                steptext_dictionary.Remove(stepNum - 1);
-                steptext_dictionary.Add(stepNum - 1, StepText.Text);
-                trgtname_dictionary.Remove(stepNum - 1);
-                trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
-                trgttext_dictionary.Remove(stepNum - 1);
-                trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
-                steptype_dictionary.Remove(stepNum - 1);
-                steptype_dictionary.Add(stepNum - 1, StepType.Text);
+                RefreshDictionaries(stepNum);
             }
 
-
             stepNumber.Text = (stepNum - 1).ToString();
-            string stepvalue;
             stepNum--;
 
             //Previous step data check
-            if (advtext_dictionary.ContainsKey(stepNum - 1))
-            {
-                advtext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                AdvanceText.Text = stepvalue;
-            }
-            else AdvanceText.Text = "";
-
-            if (colitem_dictionary.ContainsKey(stepNum - 1))
-            {
-                colitem_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                CollectItem.Text = stepvalue;
-            }
-            else CollectItem.Text = "";
-
-            if (money_dictionary.ContainsKey(stepNum - 1))
-            {
-                money_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                RewardMoney.Text = stepvalue;
-            }
-            else RewardMoney.Text = "0";
-
-            if (xp_dictionary.ContainsKey(stepNum - 1))
-            {
-                xp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                RewardXp.Text = stepvalue;
-            }
-            else RewardXp.Text = "0";
-
-            if (clxp_dictionary.ContainsKey(stepNum - 1))
-            {
-                clxp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                RewardCLXp.Text = stepvalue;
-            }
-            else RewardCLXp.Text = "0";
-
-            if (rp_dictionary.ContainsKey(stepNum - 1))
-            {
-                rp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                RewardRp.Text = stepvalue;
-            }
-            else RewardRp.Text = "0";
-
-            if (bp_dictionary.ContainsKey(stepNum - 1))
-            {
-                bp_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                RewardBp.Text = stepvalue;
-            }
-            else RewardBp.Text = "0";
-
-            if (srctext_dictionary.ContainsKey(stepNum - 1))
-            {
-                srctext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                SourceText.Text = stepvalue;
-            }
-            else SourceText.Text = "";
-
-            if (srcname_dictionary.ContainsKey(stepNum - 1))
-            {
-                srcname_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                SourceName.Text = stepvalue;
-            }
-            else SourceName.Text = "";
-
-            if (stepitem_dictionary.ContainsKey(stepNum - 1))
-            {
-                stepitem_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                StepItem.Text = stepvalue;
-
-            }
-            else StepItem.Text = "";
-
-            if (steptext_dictionary.ContainsKey(stepNum - 1))
-            {
-                steptext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                StepText.Text = stepvalue;
-            }
-            else StepText.Text = "";
-
-            if (trgtname_dictionary.ContainsKey(stepNum - 1))
-            {
-                trgtname_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                TargetName.Text = stepvalue;
-            }
-            else TargetName.Text = "";
-
-            if (trgttext_dictionary.ContainsKey(stepNum - 1))
-            {
-                trgttext_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                TargetText.Text = stepvalue;
-            }
-            else TargetText.Text = "";
-
-            if (steptype_dictionary.ContainsKey(stepNum - 1)) //wtf...enum can get bent
-            {
-                steptype_dictionary.TryGetValue(stepNum - 1, out stepvalue);
-                StepType.Text = stepvalue;
-            }
-            else StepType.Text = "";
+            SetStepValues(stepNum);
         }
 
-        //Final Reward forward dictionary
-        private void finrewardForward_Click(object sender, EventArgs e)
+        private void SetStepValues(int stepNum)
         {
-            if (_FinalReward.Text == "")
-            {
-                MessageBox.Show("You can't add nothing as a reward!", "PEBKAC");
-                return;
-            }
-
-            int finNum = int.Parse(finNumber.Text);
-
-            if (!fin_dictionary.ContainsKey(finNum)) //If the reward data is not in the dictionary...check for step 1, then add
-            {
-                fin_dictionary.Add(finNum, _FinalReward.Text);
-            }
-            else //If the reward data is in the dictionary...check if the values match and add if they don't
-            {
-                string finvalue;
-                fin_dictionary.TryGetValue(finNum, out finvalue);
-
-                if (finvalue != _FinalReward.Text)
-                {
-                    fin_dictionary.Remove(finNum);
-                    fin_dictionary.Add(finNum, _FinalReward.Text);
-                }
-            }
-
-            finNumber.Text = (finNum + 1).ToString();
-
-            //Check if next step contains data
-            int finNext = int.Parse(finNumber.Text);
-            if (fin_dictionary.ContainsKey(finNext))
-            {
-                string finvalue;
-                fin_dictionary.TryGetValue(finNext, out finvalue);
-                _FinalReward.Text = finvalue;
-            }
-            else _FinalReward.Text = "";
-
+            SetStepValue(stepNum, _advTextDictionary, AdvanceText);
+            SetStepValue(stepNum, _colItemDictionary, CollectItem);
+            SetStepValue(stepNum, _moneyDictionary, RewardMoney, defaultEmpty: false);
+            SetStepValue(stepNum, _xpDictionary, RewardXp, defaultEmpty: false);
+            SetStepValue(stepNum, _clXpDictionary, RewardCLXp, defaultEmpty: false);
+            SetStepValue(stepNum, _rpDictionary, RewardRp, defaultEmpty: false);
+            SetStepValue(stepNum, _bpDictionary, RewardBp, defaultEmpty: false);
+            SetStepValue(stepNum, _srcTextDictionary, SourceText);
+            SetStepValue(stepNum, _srcNameDictionary, SourceName);
+            SetStepValue(stepNum, _stepItemDictionary, StepItem);
+            SetStepValue(stepNum, _stepTextDictionary, StepText);
+            SetStepValue(stepNum, _trgNameDictionary, TargetName);
+            SetStepValue(stepNum, _trgTextDictionary, TargetText);
+            SetStepValue(stepNum, _stepTypeDictionary, StepType);
         }
 
-        //Final Reward back Dictionary
-        private void finrewardBack_Click(object sender, EventArgs e)
+        private static void SetStepValue(int stepNum, Dictionary<int, string> dictionary, Control textBox, bool defaultEmpty = true)
         {
-            int finNum = int.Parse(finNumber.Text);
-
-            if (finNum == 1) //return if already at step 1, there ain't no step 0
-            {
-                return;
-            }
-
-            if (_FinalReward.Text != "") //Add data on back click
-            {
-                string finvalue;
-                fin_dictionary.TryGetValue(finNum, out finvalue);
-                if (finvalue != _FinalReward.Text) //check if data is different from dictionary data
-                {
-                    fin_dictionary.Remove(finNum);
-                    fin_dictionary.Add(finNum, _FinalReward.Text);
-                }
-            }
-            else //There are no breaks in reward data, so a blank box cannot exist between populated blocks
-            {
-                if (fin_dictionary.ContainsKey(finNum + 1))
-                {
-                    MessageBox.Show("You must remove the items listed after the current item to remove this one!", "Error");
-                    return;
-                }
-                else
-                {
-                    fin_dictionary.Remove(finNum);
-                }
-            }
-
-
-            //Pull previous step data
-            string finback;
-            int fincheck = int.Parse(finNumber.Text);
-            fincheck--;
-            fin_dictionary.TryGetValue(fincheck, out finback);
-            _FinalReward.Text = finback;
-
-            finNumber.Text = (finNum - 1).ToString(); //finally, decrement fin label
+            textBox.Text = dictionary.TryGetValue(stepNum - 1, out var value) ? value : (defaultEmpty ? "" : "0");
         }
-        #endregion
 
-        #region SaveQuestButton
         private void questSave_Click(object sender, EventArgs e)
         {
-            int stepNum = int.Parse(stepNumber.Text);
-            int optNum = int.Parse(optNumber.Text);
-            int finNum = int.Parse(finNumber.Text);
-            
-            // Refresh step data to the dictionary if the forward/back button has not been pressed 
-            advtext_dictionary.Remove(stepNum - 1);
-            advtext_dictionary.Add(stepNum - 1, AdvanceText.Text);
-            colitem_dictionary.Remove(stepNum - 1);
-            colitem_dictionary.Add(stepNum - 1, CollectItem.Text);
-            money_dictionary.Remove(stepNum - 1);
-            money_dictionary.Add(stepNum - 1, RewardMoney.Text);
-            xp_dictionary.Remove(stepNum - 1);
-            xp_dictionary.Add(stepNum - 1, RewardXp.Text);
-            clxp_dictionary.Remove(stepNum - 1);
-            clxp_dictionary.Add(stepNum - 1, RewardCLXp.Text);
-            rp_dictionary.Remove(stepNum - 1);
-            rp_dictionary.Add(stepNum - 1, RewardRp.Text);
-            bp_dictionary.Remove(stepNum - 1);
-            bp_dictionary.Add(stepNum - 1, RewardBp.Text);
-            srctext_dictionary.Remove(stepNum - 1);
-            srctext_dictionary.Add(stepNum - 1, SourceText.Text);
-            srcname_dictionary.Remove(stepNum - 1);
-            srcname_dictionary.Add(stepNum - 1, SourceName.Text);
-            stepitem_dictionary.Remove(stepNum - 1);
-            stepitem_dictionary.Add(stepNum - 1, StepItem.Text);
-            steptext_dictionary.Remove(stepNum - 1);
-            steptext_dictionary.Add(stepNum - 1, StepText.Text);
-            trgtname_dictionary.Remove(stepNum - 1);
-            trgtname_dictionary.Add(stepNum - 1, TargetName.Text);
-            trgttext_dictionary.Remove(stepNum - 1);
-            trgttext_dictionary.Add(stepNum - 1, TargetText.Text);
-            steptype_dictionary.Remove(stepNum - 1);
-            steptype_dictionary.Add(stepNum - 1, StepType.Text);
+            var stepNum = int.Parse(stepNumber.Text);
+            var optNum = int.Parse(optNumber.Text);
+            var finNum = int.Parse(finNumber.Text);
 
-            opt_dictionary.Remove(optNum - 1); // do this incase it was edited without pressing forward/back
-            if (!string.IsNullOrWhiteSpace(_OptionalReward.Text)) 
+            // Refresh step data to the dictionary if the forward/back button has not been pressed
+            RefreshDictionaries(stepNum);
+
+            _optDictionary.Remove(optNum - 1); // do this in case it was edited without pressing forward/back
+            if (!string.IsNullOrWhiteSpace(_OptionalReward.Text))
             {
-                opt_dictionary.Add(optNum - 1, _OptionalReward.Text);
+                _optDictionary.Add(optNum - 1, _OptionalReward.Text);
             }
-            fin_dictionary.Remove(finNum - 1); // do this incase it was edited without pressing forward/back
+
+            _finDictionary.Remove(finNum - 1); // do this in case it was edited without pressing forward/back
             if (!string.IsNullOrWhiteSpace(_FinalReward.Text))
             {
-                fin_dictionary.Add(finNum - 1, _FinalReward.Text);
+                _finDictionary.Add(finNum - 1, _FinalReward.Text);
             }
 
             try
             {
-                #region String conversions                
-                _OptionalRewardItemTemplates = String.Join("|", Array.ConvertAll(opt_dictionary.Values.ToArray(), i => i.ToString()));
-                _FinalRewardItemTemplates = String.Join("|", Array.ConvertAll(fin_dictionary.Values.ToArray(), i => i.ToString()));
-                _AdvanceText = String.Join("|", Array.ConvertAll(advtext_dictionary.Values.ToArray(), i => i.ToString()));
-                _CollectItemTemplate = String.Join("|", Array.ConvertAll(colitem_dictionary.Values.ToArray(), i => i.ToString()));
-                _RewardMoney = String.Join("|", Array.ConvertAll(money_dictionary.Values.ToArray(), i => i.ToString()));
-                _RewardXP = String.Join("|", Array.ConvertAll(xp_dictionary.Values.ToArray(), i => i.ToString()));
-                _RewardCLXP = String.Join("|", Array.ConvertAll(clxp_dictionary.Values.ToArray(), i => i.ToString()));
-                _RewardRp = String.Join("|", Array.ConvertAll(rp_dictionary.Values.ToArray(), i => i.ToString()));
-                _RewardBp = String.Join("|", Array.ConvertAll(bp_dictionary.Values.ToArray(), i => i.ToString()));
-                _SourceText = String.Join("|", Array.ConvertAll(srctext_dictionary.Values.ToArray(), i => i.ToString()));
-                _SourceName = String.Join("|", Array.ConvertAll(srcname_dictionary.Values.ToArray(), i => i.ToString()));
-                _StepItemTemplates = String.Join("|", Array.ConvertAll(stepitem_dictionary.Values.ToArray(), i => i.ToString()));
-                _StepText = String.Join("|", Array.ConvertAll(steptext_dictionary.Values.ToArray(), i => i.ToString()));
-                _TargetName = String.Join("|", Array.ConvertAll(trgtname_dictionary.Values.ToArray(), i => i.ToString()));
-                _TargetText = String.Join("|", Array.ConvertAll(trgttext_dictionary.Values.ToArray(), i => i.ToString()));
-                _StepType = String.Join("|", Array.ConvertAll(steptype_dictionary.Values.ToArray(), i => i.ToString()));
-                _AllowedClasses = String.Join("|", listClasses.SelectedItems.Cast<object>().Select(i => i.ToString()));
+                _optionalRewardItemTemplates = string.Join("|", Array.ConvertAll(_optDictionary.Values.ToArray(), i => i.ToString()));
+                _finalRewardItemTemplates = string.Join("|", Array.ConvertAll(_finDictionary.Values.ToArray(), i => i.ToString()));
+                _advanceText = string.Join("|", Array.ConvertAll(_advTextDictionary.Values.ToArray(), i => i.ToString()));
+                _collectItemTemplate = string.Join("|", Array.ConvertAll(_colItemDictionary.Values.ToArray(), i => i.ToString()));
+                _rewardMoney = string.Join("|", Array.ConvertAll(_moneyDictionary.Values.ToArray(), i => i.ToString()));
+                _rewardXp = string.Join("|", Array.ConvertAll(_xpDictionary.Values.ToArray(), i => i.ToString()));
+                _rewardClXp = string.Join("|", Array.ConvertAll(_clXpDictionary.Values.ToArray(), i => i.ToString()));
+                _rewardRp = string.Join("|", Array.ConvertAll(_rpDictionary.Values.ToArray(), i => i.ToString()));
+                _rewardBp = string.Join("|", Array.ConvertAll(_bpDictionary.Values.ToArray(), i => i.ToString()));
+                _sourceText = string.Join("|", Array.ConvertAll(_srcTextDictionary.Values.ToArray(), i => i.ToString()));
+                _sourceName = string.Join("|", Array.ConvertAll(_srcNameDictionary.Values.ToArray(), i => i.ToString()));
+                _stepItemTemplates = string.Join("|", Array.ConvertAll(_stepItemDictionary.Values.ToArray(), i => i.ToString()));
+                _stepText = string.Join("|", Array.ConvertAll(_stepTextDictionary.Values.ToArray(), i => i.ToString()));
+                _targetName = string.Join("|", Array.ConvertAll(_trgNameDictionary.Values.ToArray(), i => i.ToString()));
+                _targetText = string.Join("|", Array.ConvertAll(_trgTextDictionary.Values.ToArray(), i => i.ToString()));
+                _stepType = string.Join("|", Array.ConvertAll(_stepTypeDictionary.Values.ToArray(), i => i.ToString()));
+                _allowedClasses = string.Join("|", listClasses.SelectedItems.Cast<object>().Select(i => i.ToString()));
 
                 //eStepType string replace values:
-                StringBuilder stype = new StringBuilder(_StepType);
-                // Start with long wording first to avoid any bad replace 
+                StringBuilder stype = new StringBuilder(_stepType);
+                // Start with long wording first to avoid any bad replace
                 stype.Replace("KillFinish", "1");
                 stype.Replace("DeliverFinish", "3");
                 stype.Replace("InteractFinish", "5");
@@ -1342,9 +750,9 @@ namespace DOLToolbox.Controls
                 stype.Replace("Search", "8");
                 stype.Replace("Collect", "10");
                 stype.Replace("RewardQuest", "200");
-                _StepType = stype.ToString();
+                _stepType = stype.ToString();
 
-                StringBuilder allcl = new StringBuilder(_AllowedClasses);
+                StringBuilder allcl = new StringBuilder(_allowedClasses);
                 allcl.Replace("All", ""); // added all incase one is selected, you cannot deselect
                 allcl.Replace("Armsman", "2");
                 allcl.Replace("Cabalist", "13");
@@ -1408,9 +816,7 @@ namespace DOLToolbox.Controls
                 allcl.Replace("Seer", "37");
                 allcl.Replace("Stalker", "54");
                 allcl.Replace("Viking", "35");
-                _AllowedClasses = allcl.ToString();
-                #endregion
-
+                _allowedClasses = allcl.ToString();
             }
             catch (Exception g)
             {
@@ -1419,54 +825,57 @@ namespace DOLToolbox.Controls
 
             DBDataQuest q = new DBDataQuest();
 
-            // Before saving check for missing or wrong information in the quest 
-            if (CheckQuestOK() == false)
+            // Before saving check for missing or wrong information in the quest
+            if (CheckQuestOk() == false)
             {
-                MessageBox.Show("Quest data is invalid, please fix the below fields : \n\n" + String.Join("\n", quest_errors), 
-                    "Error on quest", 
-                    MessageBoxButtons.OK, 
+                MessageBox.Show(
+                    $"Quest data is invalid, please fix the below fields : \n\n{string.Join("\n", _questErrors)}",
+                    @"Error on quest",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
 
-            // Save can be done : retrieve all values from Form for DB insertion 
+            // Save can be done : retrieve all values from Form for DB insertion
             if (!_ID.Text.Equals(""))
             {
                 q.ID = int.Parse(_ID.Text);
             }
+
             q.Name = _Name.Text;
-            ComboboxService.SelectItemModel item = (ComboboxService.SelectItemModel) _StartType.Items[_StartType.SelectedIndex];
+
+            var item = (ComboboxService.SelectItemModel) _StartType.Items[_StartType.SelectedIndex];
             q.StartType = Convert.ToByte(item.Id);
             q.StartName = _StartName.Text;
             q.StartRegionID = ushort.Parse(_StartRegionID.Text);
             q.AcceptText = _AcceptText.Text;
             q.Description = _Description.Text;
-            q.SourceText = _SourceText; //serialized
-            q.SourceName = _SourceName;
-            q.StepType = _StepType; //serialized
-            q.StepText = _StepText; //serialized
-            q.StepItemTemplates = _StepItemTemplates; //serialized
-            q.AdvanceText = _AdvanceText; //serialized
-            q.TargetName = _TargetName; //serialized
-            q.TargetText = _TargetText; //serialized
-            q.CollectItemTemplate = _CollectItemTemplate; //serialized
+            q.SourceText = _sourceText; //serialized
+            q.SourceName = _sourceName;
+            q.StepType = _stepType; //serialized
+            q.StepText = _stepText; //serialized
+            q.StepItemTemplates = _stepItemTemplates; //serialized
+            q.AdvanceText = _advanceText; //serialized
+            q.TargetName = _targetName; //serialized
+            q.TargetText = _targetText; //serialized
+            q.CollectItemTemplate = _collectItemTemplate; //serialized
             q.MaxCount = byte.Parse(_MaxCount.Text);
             q.MinLevel = byte.Parse(_MinLevel.Text);
             q.MaxLevel = byte.Parse(_MaxLevel.Text);
-            q.RewardMoney = _RewardMoney; //serialized
-            q.RewardXP = _RewardXP; //serialized
-            q.RewardCLXP = _RewardCLXP; //serialized
-            q.RewardRP = _RewardRp; //serialized
-            q.RewardBP = _RewardBp; //serialized
-            q.OptionalRewardItemTemplates = _OptionalRewardItemTemplates;
-            q.FinalRewardItemTemplates = _FinalRewardItemTemplates;
+            q.RewardMoney = _rewardMoney; //serialized
+            q.RewardXP = _rewardXp; //serialized
+            q.RewardCLXP = _rewardClXp; //serialized
+            q.RewardRP = _rewardRp; //serialized
+            q.RewardBP = _rewardBp; //serialized
+            q.OptionalRewardItemTemplates = _optionalRewardItemTemplates;
+            q.FinalRewardItemTemplates = _finalRewardItemTemplates;
             q.FinishText = _FinishText.Text;
             q.QuestDependency = _QuestDependency.Text; //might need to serialize....if quest has multiple dependencies
-            q.AllowedClasses = _AllowedClasses; //serialized
+            q.AllowedClasses = _allowedClasses; //serialized
             q.ClassType = _ClassType.Text;
 
             try
-            { // This is probabaly a bad way to do this, but i can't get the quest to save onto the same ID 
+            { // This is probably a bad way to do this, but i can't get the quest to save onto the same ID
                 if (!LoadedQuest)
                 {
                     DatabaseManager.Database.AddObject(q);
@@ -1477,82 +886,73 @@ namespace DOLToolbox.Controls
                 {
                     DatabaseManager.Database.SaveObject(q);
                 }
-                MessageBox.Show("Quest successfully saved!", "", MessageBoxButtons.OK);
+                MessageBox.Show(@"Quest successfully saved!", "", MessageBoxButtons.OK);
             }
             catch (Exception g)
             {
-                MessageBox.Show(g.Message, "Error saving data!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(g.Message, @"Error saving data!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
 
-        #region Methods
-
-        private bool CheckQuestOK()
+        private void RefreshDictionaries(int stepNum)
         {
-            bool error_raised = false;
-            quest_errors.Clear();
+            _advTextDictionary[stepNum -1] = AdvanceText.Text;
+            _colItemDictionary[stepNum -1] = CollectItem.Text;
+            _moneyDictionary[stepNum -1] = RewardMoney.Text;
+            _xpDictionary[stepNum -1] = RewardXp.Text;
+            _clXpDictionary[stepNum -1] = RewardCLXp.Text;
+            _rpDictionary[stepNum -1] = RewardRp.Text;
+            _bpDictionary[stepNum -1] = RewardBp.Text;
+            _srcTextDictionary[stepNum -1] = SourceText.Text;
+            _srcNameDictionary[stepNum -1] = SourceName.Text;
+            _stepItemDictionary[stepNum -1] = StepItem.Text;
+            _stepTextDictionary[stepNum -1] = StepText.Text;
+            _trgNameDictionary[stepNum -1] = TargetName.Text;
+            _trgTextDictionary[stepNum -1] = TargetText.Text;
+            _stepTypeDictionary[stepNum - 1] = StepType.Text;
+        }
 
-            ComboboxService.SelectItemModel item = (ComboboxService.SelectItemModel)_StartType.Items[_StartType.SelectedIndex];
+        private bool CheckQuestOk()
+        {
+            var errorRaised = false;
+            _questErrors.Clear();
+
+            var item = (ComboboxService.SelectItemModel)_StartType.Items[_StartType.SelectedIndex];
+
+            void ValidateString(Control input, string message)
+            {
+                if (!string.IsNullOrWhiteSpace(input.Text))
+                {
+                    return;
+                }
+
+                errorRaised = true;
+                _questErrors.Add($"{message} must be defined");
+            }
 
             // Quest type undefined
             if (item.Id == null)
             {
-                error_raised = true;
-                quest_errors.Add("Start type is invalid");
+                errorRaised = true;
+                _questErrors.Add("Start type is invalid");
             }
 
-            // Quest name 
-            if (_Name.Text.Equals(""))
-            {
-                error_raised = true;
-                quest_errors.Add("Quest name must be defined");
-            }
+            // Quest name
+            ValidateString(_Name, "Quest name");
+            ValidateString(_MinLevel, "Min level");
+            ValidateString(_MaxLevel, "Max level");
+            ValidateString(_MaxCount, "Max count");
+            ValidateString(_StartName, "Start NPC name");
+            ValidateString(_StartRegionID, "Start NPC region id");
 
-            // Min or Max level
-            if (_MinLevel.Text.Equals(""))
-            {
-                error_raised = true;
-                quest_errors.Add("Min level must be defined");
-            }
-            if (_MaxLevel.Text.Equals(""))
-            {
-                error_raised = true;
-                quest_errors.Add("Max level must be defined");
-            }
-            if (_MaxCount.Text.Equals(""))
-            {
-                error_raised = true;
-                quest_errors.Add("Max count must be defined");
-            }
-
-            // Start NPC 
-            if (_StartName.Text.Equals(""))
-            {
-                error_raised = true;
-                quest_errors.Add("Start NPC name must be defined");
-            }
-            if (_StartRegionID.Text.Equals(""))
-            {
-                error_raised = true;
-                quest_errors.Add("Start NPC region id must be defined");
-            }
-
-
-            // Overall status 
-            if (error_raised == true)
-                return false;
-
-            return true;
+            return !errorRaised;
         }
 
         private void SetupDropdowns()
         {
             ComboboxService.BindQuestType(_StartType);
             ComboboxService.BindQuestStep(StepType);
-
         }
-
 
         private void Clear()
         {
@@ -1560,26 +960,21 @@ namespace DOLToolbox.Controls
             BindingService.ClearData(this);
         }
 
-
-
-        private void SyncDataQuest()
-        {
-            BindingService.SyncData(_quest, this);
-        }
-
         private void DataQuestControl_Load_1(object sender, EventArgs e)
         {
             SetupDropdowns();
         }
-        private void LoadTargetNPC(string mobName, ushort mobRegion)
+
+        private void LoadTargetNpc(string mobName, ushort mobRegion)
         {
             if (string.IsNullOrWhiteSpace(mobName))
             {
                 return;
             }
-            TargetName.Text = mobName + ";" + mobRegion.ToString();
+            TargetName.Text = $@"{mobName};{mobRegion}";
 
         }
+
         private void LoadItem(string itemId)
         {
             if (string.IsNullOrWhiteSpace(itemId))
@@ -1590,7 +985,7 @@ namespace DOLToolbox.Controls
             ItemTemplateBox.Text = itemId;
         }
 
-        private void LoadStartNPC(string mobName, ushort mobRegion)
+        private void LoadStartNpc(string mobName, ushort mobRegion)
         {
             if (string.IsNullOrWhiteSpace(mobName))
             {
@@ -1600,7 +995,5 @@ namespace DOLToolbox.Controls
             _StartName.Text = mobName;
             _StartRegionID.Text = mobRegion.ToString();
         }
-        #endregion
-
     }
 }
