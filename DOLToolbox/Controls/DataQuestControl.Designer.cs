@@ -485,7 +485,7 @@
             this.optrewardForward.TabStop = false;
             this.optrewardForward.Text = ">";
             this.optrewardForward.UseVisualStyleBackColor = true;
-            this.optrewardForward.Click += new System.EventHandler(this.optrewardForward_Click);
+            this.optrewardForward.Click += new System.EventHandler(this.OptRewardForward_Click);
             // 
             // optrewardBack
             // 
@@ -496,7 +496,7 @@
             this.optrewardBack.TabStop = false;
             this.optrewardBack.Text = "<";
             this.optrewardBack.UseVisualStyleBackColor = true;
-            this.optrewardBack.Click += new System.EventHandler(this.optrewardBack_Click);
+            this.optrewardBack.Click += new System.EventHandler(this.OptRewardBack_Click);
             // 
             // finNumber
             // 
@@ -516,7 +516,7 @@
             this.finrewardForward.TabStop = false;
             this.finrewardForward.Text = ">";
             this.finrewardForward.UseVisualStyleBackColor = true;
-            this.finrewardForward.Click += new System.EventHandler(this.finrewardForward_Click_1);
+            this.finrewardForward.Click += new System.EventHandler(this.FinRewardForward_Click_1);
             // 
             // finrewardBack
             // 
@@ -527,7 +527,7 @@
             this.finrewardBack.TabStop = false;
             this.finrewardBack.Text = "<";
             this.finrewardBack.UseVisualStyleBackColor = true;
-            this.finrewardBack.Click += new System.EventHandler(this.finrewardBack_Click_1);
+            this.finrewardBack.Click += new System.EventHandler(this.FinRewardBack_Click_1);
             // 
             // _FinalReward
             // 
