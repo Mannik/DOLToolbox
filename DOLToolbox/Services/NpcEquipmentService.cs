@@ -10,7 +10,7 @@ namespace DOLToolbox.Services
         public List<NPCEquipment> Get(string id)
         {
             return DatabaseManager.Database
-                .SelectObjects<NPCEquipment>("`TemplateID` = @Id", new QueryParameter("@Id", id))
+                .SelectObjects<NPCEquipment>(DB.Column("TemplateID").IsEqualTo(id))
                 .ToList();
         }
 

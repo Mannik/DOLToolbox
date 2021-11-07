@@ -13,8 +13,7 @@ namespace DOLToolbox.Services
         public ItemTemplate GetItem(string itemId)
         {
             return DatabaseManager.Database.FindObjectByKey<ItemTemplate>(itemId) ??
-                   DatabaseManager.Database.SelectObjects<ItemTemplate>("`Id_nb` = @Id",
-                       new QueryParameter("@Id", itemId)).FirstOrDefault();
+                   DatabaseManager.Database.SelectObject<ItemTemplate>(DB.Column("Id_nb").IsEqualTo(itemId));
         }
 
         public async Task<List<ItemTemplate>> GetItems()
@@ -42,7 +41,7 @@ namespace DOLToolbox.Services
 
         public bool UpdateId(string oldId, string newId, string objectId)
         {
-            var item = DatabaseManager.Database.SelectObjects<ItemTemplate>("`Id_nb` = @Id", new QueryParameter("@Id", newId)).FirstOrDefault();
+            var item = DatabaseManager.Database.SelectObject<ItemTemplate>(DB.Column("Id_nb").IsEqualTo(newId));
 
             if (item != null)
             {

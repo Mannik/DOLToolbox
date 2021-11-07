@@ -22,8 +22,7 @@ namespace DOLToolbox.Services
                 {
                     MobXLootTemplate = template,
                     LootTemplates = DatabaseManager.Database
-                        .SelectObjects<LootTemplate>("`TemplateName` = @TemplateName",
-                            new QueryParameter("@TemplateName", template.LootTemplateName))
+                        .SelectObjects<LootTemplate>(DB.Column("TemplateName").IsEqualTo(template.LootTemplateName))
                         .ToList()
                 };
 
@@ -46,8 +45,7 @@ namespace DOLToolbox.Services
             await Task.Run(() =>
             {
                 DatabaseManager.Database
-                    .SelectObjects<LootTemplate>("`TemplateName` = @TemplateName",
-                        new QueryParameter("@TemplateName", template.LootTemplateName))
+                    .SelectObjects<LootTemplate>(DB.Column("TemplateName").IsEqualTo(template.LootTemplateName))
                     .ToList()
                     .ForEach(x => DatabaseManager.Database.DeleteObject(x));
 

@@ -12,7 +12,7 @@ namespace DOLToolbox.Services
         public List<MerchantItem> Get(string id)
         {
             return DatabaseManager.Database
-                .SelectObjects<MerchantItem>("`ItemListID` = @ItemListID", new QueryParameter("@ItemListID", id))
+                .SelectObjects<MerchantItem>(DB.Column("ItemListID").IsEqualTo(id))
                 .ToList();
         }
 
