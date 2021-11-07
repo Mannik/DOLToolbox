@@ -30,9 +30,8 @@ namespace DOLToolbox.Controls
             {
                 return;
             }
-
-            MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
-            MySqlConnection testConnection = new MySqlConnection(sb.ConnectionString);
+            var connectionString = ConnectionStringService.DbConfig.ConnectionString;
+            var testConnection = new MySqlConnection(connectionString);
 
             try
             {

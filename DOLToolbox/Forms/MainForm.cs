@@ -21,8 +21,8 @@ namespace DOLToolbox.Forms
             bool isDbConnected = false;
 		    while (!isDbConnected)
 		    {
-		        MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
-		        MySqlConnection testConnection = new MySqlConnection(sb.ConnectionString);
+				var connectionString = ConnectionStringService.DbConfig.ConnectionString;
+				var testConnection = new MySqlConnection(connectionString);
 
 		        try
 		        {
@@ -72,7 +72,7 @@ namespace DOLToolbox.Forms
 
             loading.Close();
             ToolboxTabControl.Enabled = true;
-            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
+            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.DbConfig.GetValueOf("Server")})";
 		    LoadTabForms();
         }
 

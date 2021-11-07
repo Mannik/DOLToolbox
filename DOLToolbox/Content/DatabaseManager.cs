@@ -54,9 +54,9 @@ namespace DOLToolbox
         public static void SetDatabaseConnection(IProgress<int> progress = null)
         {
             //Create a connection string using the string builder
-            MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
-            sb.ConnectionTimeout = 2;
-            var connectionString = sb.ConnectionString;
+            var dbConfig = new DbConfig(ConnectionStringService.DbConfig.ConnectionString);
+            dbConfig.SetOption("ConnectionTimeout", "2");
+            var connectionString = dbConfig.ConnectionString;
 
             Database = new MySQLObjectDatabase(connectionString);
 
