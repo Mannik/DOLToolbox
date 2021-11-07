@@ -1,7 +1,6 @@
 ﻿using System;
 using DOL.Database;
 using DOL.Database.Handlers;
-using MySql.Data.MySqlClient;
 using DOLToolbox.Services;
 
 namespace DOLToolbox

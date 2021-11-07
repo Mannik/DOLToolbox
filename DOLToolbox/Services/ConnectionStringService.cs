@@ -19,7 +19,7 @@ namespace DOLToolbox.Services
             DbConfig.ApplyConnectionString(connString);
         }
 
-        public static void SetString(string userId, string password, string hostname, string database, uint port)
+        public static void SetString(string userId, string password, string hostname, string database, string port)
         {
             var connString = $"server={hostname};port={port};database={database};user id={userId};password={password};treattinyasboolean=False";
             DbConfig.ApplyConnectionString(connString);

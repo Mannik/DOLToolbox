@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DOL.Database.Handlers;
 using DOLToolbox.Controls;
 using DOLToolbox.Services;
 using EODModelViewer;
-using MySql.Data.MySqlClient;
 
 namespace DOLToolbox.Forms
 {
@@ -22,13 +22,14 @@ namespace DOLToolbox.Forms
 		    while (!isDbConnected)
 		    {
 				var connectionString = ConnectionStringService.DbConfig.ConnectionString;
-				var testConnection = new MySqlConnection(connectionString);
+				var db = new MySQLObjectDatabase(connectionString);
+				var testConnection = db.CreateConnection();
 
 		        try
 		        {
 		            testConnection.Open();
 		        }
-		        catch (MySqlException ex)
+		        catch (Exception ex)
 		        {
 		            var response = MessageBox.Show($@"DB connection error: {ex.Message}", @"DB Connection Error", MessageBoxButtons.RetryCancel);
 

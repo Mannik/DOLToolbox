@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using DOL.Database;
+using DOL.Database.Handlers;
 using DOLToolbox.Services;
-using MySql.Data.MySqlClient;
 
 namespace DOLToolbox.Controls
 {
@@ -31,31 +31,34 @@ namespace DOLToolbox.Controls
                 return;
             }
             var connectionString = ConnectionStringService.DbConfig.ConnectionString;
-            var testConnection = new MySqlConnection(connectionString);
+            var db = new MySQLObjectDatabase(connectionString);
+            var testConnection = db.CreateConnection();
 
             try
             {
                 testConnection.Open();
             }
-            catch (MySqlException)
+            catch (Exception)
             {
                 // swallow db connection issues
             }
-
-            if (testConnection.State == System.Data.ConnectionState.Open)
+            finally
             {
-                lblAccounts.Text = @"Accounts Created = " + DatabaseManager.Database.GetObjectCount<Account>();
-                lblChrCreated.Text = @"Characters Created = " + DatabaseManager.Database.GetObjectCount<DOLCharacters>();
-                lblBugReports.Text = @"Bug Reports = " + DatabaseManager.Database.GetObjectCount<BugReport>();
-                lblAppeals.Text = @"Pending Appeals = " + DatabaseManager.Database.GetObjectCount<BugReport>();
-                testConnection.Close();
-            }
-            else
-            {
-                lblAccounts.Text = @"Not connected to database";
-                lblChrCreated.Text = string.Empty;
-                lblBugReports.Text = string.Empty;
-                lblAppeals.Text = string.Empty;
+                if (testConnection.State == System.Data.ConnectionState.Open)
+                {
+                    lblAccounts.Text = @"Accounts Created = " + DatabaseManager.Database.GetObjectCount<Account>();
+                    lblChrCreated.Text = @"Characters Created = " + DatabaseManager.Database.GetObjectCount<DOLCharacters>();
+                    lblBugReports.Text = @"Bug Reports = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+                    lblAppeals.Text = @"Pending Appeals = " + DatabaseManager.Database.GetObjectCount<BugReport>();
+                    testConnection.Close();
+                }
+                else
+                {
+                    lblAccounts.Text = @"Not connected to database";
+                    lblChrCreated.Text = string.Empty;
+                    lblBugReports.Text = string.Empty;
+                    lblAppeals.Text = string.Empty;
+                }
             }
 
             lblCPUUsage.Text = @"CPU Usage = " + (int)_cpu.NextValue() + @"%";
