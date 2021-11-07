@@ -102,7 +102,7 @@ namespace DOLToolbox.Forms
             control = new LootTemplateControl { Dock = DockStyle.Fill };
             tabLootTemplate.Controls.Add(control);
 
-            control = new DOLQuestControl { Dock = DockStyle.Fill };
+            control = new DataQuestControl { Dock = DockStyle.Fill };
             tabQuest.Controls.Add(control);
         }
 
