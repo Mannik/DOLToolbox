@@ -45,7 +45,6 @@
     <Reference Include="System.Windows.Forms" />
     <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
     <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <ProjectReference Include="..\DOLSharp\DOLDatabase\DOLDatabase.csproj" />
     <ProjectReference Include="..\DOLSharp\GameServer\GameServer.csproj" />
     <ProjectReference Include="..\EODModelViewer\EODModelViewer\EODModelViewer.csproj" />
