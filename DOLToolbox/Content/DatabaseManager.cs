@@ -28,9 +28,7 @@ namespace DOLToolbox
             typeof(NPCEquipment),
             typeof(MobXLootTemplate),
             typeof(LootTemplate),
-            typeof(WorldObject),
-            typeof(DBDQRewardQ)
-                
+            typeof(WorldObject)
         };
 
     private static IObjectDatabase m_database;
