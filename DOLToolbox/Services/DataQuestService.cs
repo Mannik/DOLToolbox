@@ -11,8 +11,7 @@ namespace DOLToolbox.Services
         public async Task<DBDataQuest> Get(string objectId)
         {
             return await Task.Run(() => DatabaseManager.Database.FindObjectByKey<DBDataQuest>(objectId) ??
-                                        DatabaseManager.Database.SelectObjects<DBDataQuest>("`ID` = @Id",
-                                            new QueryParameter("@Id", objectId)).FirstOrDefault());
+                                        DatabaseManager.Database.SelectObject<DBDataQuest>(DB.Column("ID").IsEqualTo(objectId)));
         }
 
         public async Task<List<DBDataQuest>> Get()

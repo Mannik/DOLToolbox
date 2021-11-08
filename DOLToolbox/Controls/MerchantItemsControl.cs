@@ -87,10 +87,8 @@ namespace DOLToolbox.Controls
 
             foreach (var page in pages)
             {
-                page
-                    .OrderBy(x => x.SlotPosition)
-                    .Select((x, i) => new { Item = x, Index = i})
-                    .ForEach(x => x.Item.SlotPosition = x.Index);
+                Util.ForEach(page.OrderBy(x => x.SlotPosition).Select((x, i) => new { Item = x, Index = i }), 
+                    x => x.Item.SlotPosition = x.Index);
             }
         }
 
@@ -338,10 +336,9 @@ namespace DOLToolbox.Controls
             {
                 _merchantItems.Remove(selectedItem.MerchantItem);
 
-                _merchantItems
-                    .Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber &&
-                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition)
-                    .ForEach(x => x.SlotPosition -= 1);
+                Util.ForEach(_merchantItems.Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber 
+                    && x.SlotPosition > selectedItem.MerchantItem.SlotPosition),
+                    x => x.SlotPosition -= 1);
 
                 await Save();
             }
@@ -434,10 +431,10 @@ namespace DOLToolbox.Controls
             {
                 _merchantItems.Remove(selectedItem.MerchantItem);
 
-                _merchantItems
+                Util.ForEach(_merchantItems
                     .Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber &&
-                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition)
-                    .ForEach(x => x.SlotPosition -= 1);
+                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition),
+                    x => x.SlotPosition -= 1);
 
                 await _merchantItemService.DeleteList(selectedItem.MerchantItem.ItemListID);
                 Clear();

@@ -2,8 +2,9 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using DOL.Database;
+using DOL.Database.Handlers;
 using DOLToolbox.Services;
-using MySql.Data.MySqlClient;
 
 namespace DOLToolbox.Forms
 {
@@ -37,7 +38,7 @@ namespace DOLToolbox.Forms
 
             #region Loki - Create MySQL Connection String
 
-            var sb = new MySqlConnectionStringBuilder();
+            var dbConfig = new DbConfig();
             //Host
             if (String.IsNullOrEmpty(mysql_host_textbox.Text))
             {
@@ -45,50 +46,55 @@ namespace DOLToolbox.Forms
                     "The value of \"Server Address\" in \"MySQL Database settings\" is not set.");
                 return;
             }
-            sb.Server = mysql_host_textbox.Text;
+            dbConfig.SetOption("Server", mysql_host_textbox.Text);
 
             //Port
-            if (String.IsNullOrEmpty(mysql_port_textbox.Text))
+            if (string.IsNullOrEmpty(mysql_port_textbox.Text))
             {
                 addWrongValueErrorHandler(mysql_port_textbox,
                     "The value of \"Port\" in \"MySQL Database settings\" is not allowed.");
                 return;
             }
-            sb.Port = Convert.ToUInt16(mysql_port_textbox.Text);
+            dbConfig.SetOption("Port", Convert.ToUInt16(mysql_port_textbox.Text).ToString());
 
             //Database Name
-            if (String.IsNullOrEmpty(mysql_database_name_textbox.Text))
+            if (string.IsNullOrEmpty(mysql_database_name_textbox.Text))
             {
                 addWrongValueErrorHandler(mysql_database_name_textbox,
                     "The value of \"Database Name\" in \"MySQL Database settings\" is not set.");
                 return;
             }
-            sb.Database = mysql_database_name_textbox.Text;
+            dbConfig.SetOption("Database", mysql_database_name_textbox.Text);
 
             //Username
-            if (String.IsNullOrEmpty(mysql_username_textbox.Text))
+            if (string.IsNullOrEmpty(mysql_username_textbox.Text))
             {
                 addWrongValueErrorHandler(mysql_username_textbox,
                     "The value of \"Username\" in \"MySQL Database settings\" is not set.");
                 return;
             }
-            sb.UserID = mysql_username_textbox.Text;
+            dbConfig.SetOption("UserID", mysql_username_textbox.Text);
 
             //Password
-            sb.Password = mysql_password_textbox.Text;
+            dbConfig.SetOption("Password", mysql_password_textbox.Text);
 
             //Treat tiny as boolean
-            sb.TreatTinyAsBoolean = false;
+            dbConfig.SetOption("TreatTinyAsBoolean", "false");
 
             //Set generated connection string
-            var t = sb.ConnectionString;
+            var t = dbConfig.ConnectionString;
 
             //Just for fun: Test the connection
             // mysql_test_button_Click(null, null);
 
             #endregion
             
-            ConnectionStringService.SetString(sb.UserID, sb.Password, sb.Server, sb.Database, sb.Port);
+            ConnectionStringService.SetString(
+                dbConfig.GetValueOf("UserID"), 
+                dbConfig.GetValueOf("Password"), 
+                dbConfig.GetValueOf("Server"), 
+                dbConfig.GetValueOf("Database"), 
+                dbConfig.GetValueOf("Port"));
             Close();
         }
 
@@ -96,22 +102,23 @@ namespace DOLToolbox.Forms
 
         private void mysql_test_background_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var sb = new MySqlConnectionStringBuilder();
-            sb.Server = mysql_host_textbox.Text;
-            sb.Port = Convert.ToUInt32(mysql_port_textbox.Text);
-            sb.Database = mysql_database_name_textbox.Text;
-            sb.UserID = mysql_username_textbox.Text;
-            sb.Password = mysql_password_textbox.Text;
-            sb.ConnectionTimeout = 2;
+            var dbConfig = new DbConfig();
+            dbConfig.SetOption("Server", mysql_host_textbox.Text);
+            dbConfig.SetOption("Port", Convert.ToUInt32(mysql_port_textbox.Text).ToString());
+            dbConfig.SetOption("Database", mysql_database_name_textbox.Text);
+            dbConfig.SetOption("UserID", mysql_username_textbox.Text);
+            dbConfig.SetOption("Password", mysql_password_textbox.Text);
+            dbConfig.SetOption("ConnectionTimeout", "2");
 
-            var con = new MySqlConnection(sb.ConnectionString);
+            var db = new MySQLObjectDatabase(dbConfig.ConnectionString);
+            var con = db.CreateConnection();
             try
             {
                 con.Open();
                 e.Result = "Congratulations! I am connected!";
                 ;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
                 e.Result = ex;
             }
@@ -123,11 +130,11 @@ namespace DOLToolbox.Forms
 
         private void mysql_test_background_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Result.GetType() == typeof(MySqlException))
+            if (e.Result.GetType().IsSubclassOf(typeof(Exception)))
             {
                 mysql_test_label.ForeColor = Color.Red;
                 mysql_test_label.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-                mysql_test_label.Text = ((MySqlException)e.Result).Message;
+                mysql_test_label.Text = ((Exception)e.Result).Message;
             }
             else
             {

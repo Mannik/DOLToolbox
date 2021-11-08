@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DOL.Database.Handlers;
 using DOLToolbox.Controls;
 using DOLToolbox.Services;
 using EODModelViewer;
-using MySql.Data.MySqlClient;
 
 namespace DOLToolbox.Forms
 {
@@ -21,14 +21,15 @@ namespace DOLToolbox.Forms
             bool isDbConnected = false;
 		    while (!isDbConnected)
 		    {
-		        MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
-		        MySqlConnection testConnection = new MySqlConnection(sb.ConnectionString);
+				var connectionString = ConnectionStringService.DbConfig.ConnectionString;
+				var db = new MySQLObjectDatabase(connectionString);
+				var testConnection = db.CreateConnection();
 
 		        try
 		        {
 		            testConnection.Open();
 		        }
-		        catch (MySqlException ex)
+		        catch (Exception ex)
 		        {
 		            var response = MessageBox.Show($@"DB connection error: {ex.Message}", @"DB Connection Error", MessageBoxButtons.RetryCancel);
 
@@ -72,7 +73,7 @@ namespace DOLToolbox.Forms
 
             loading.Close();
             ToolboxTabControl.Enabled = true;
-            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.ConnectionString.Server})";
+            Text = $@"Dawn of Light Database Toolbox ({ConnectionStringService.DbConfig.GetValueOf("Server")})";
 		    LoadTabForms();
         }
 
@@ -102,7 +103,7 @@ namespace DOLToolbox.Forms
             control = new LootTemplateControl { Dock = DockStyle.Fill };
             tabLootTemplate.Controls.Add(control);
 
-            control = new DOLQuestControl { Dock = DockStyle.Fill };
+            control = new DataQuestControl { Dock = DockStyle.Fill };
             tabQuest.Controls.Add(control);
         }
 

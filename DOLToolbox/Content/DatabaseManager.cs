@@ -1,7 +1,6 @@
 ﻿using System;
 using DOL.Database;
 using DOL.Database.Handlers;
-using MySql.Data.MySqlClient;
 using DOLToolbox.Services;
 
 namespace DOLToolbox
@@ -28,9 +27,7 @@ namespace DOLToolbox
             typeof(NPCEquipment),
             typeof(MobXLootTemplate),
             typeof(LootTemplate),
-            typeof(WorldObject),
-            typeof(DBDQRewardQ)
-                
+            typeof(WorldObject)
         };
 
     private static IObjectDatabase m_database;
@@ -56,9 +53,9 @@ namespace DOLToolbox
         public static void SetDatabaseConnection(IProgress<int> progress = null)
         {
             //Create a connection string using the string builder
-            MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
-            sb.ConnectionTimeout = 2;
-            var connectionString = sb.ConnectionString;
+            var dbConfig = new DbConfig(ConnectionStringService.DbConfig.ConnectionString);
+            dbConfig.SetOption("ConnectionTimeout", "2");
+            var connectionString = dbConfig.ConnectionString;
 
             Database = new MySQLObjectDatabase(connectionString);
 

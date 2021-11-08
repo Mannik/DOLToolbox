@@ -11,8 +11,7 @@ namespace DOLToolbox.Services
         public async Task<DBSpell> Get(string objectId)
         {
             return await Task.Run(() => DatabaseManager.Database.FindObjectByKey<DBSpell>(objectId) ??
-                                        DatabaseManager.Database.SelectObjects<DBSpell>("`SpellID` = @Id",
-                                            new QueryParameter("@Id", objectId)).FirstOrDefault());
+                                        DatabaseManager.Database.SelectObject<DBSpell>(DB.Column("SpellID").IsEqualTo(objectId)));
         }
 
         public async Task<List<DBSpell>> Get()

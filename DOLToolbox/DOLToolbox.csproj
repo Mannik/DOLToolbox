@@ -45,11 +45,9 @@
     <Reference Include="System.Windows.Forms" />
     <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
     <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="MySql.Data" Version="6.10.9" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <Reference Include="DOLDatabase" HintPath="libs\DOLDatabase.dll" SpecificVersion="False" />
-    <Reference Include="EODModelViewer" HintPath="libs\EODModelViewer.dll" SpecificVersion="False" />
-    <Reference Include="GameServer" HintPath="libs\GameServer.dll" SpecificVersion="False" />
+    <ProjectReference Include="..\DOLSharp\DOLDatabase\DOLDatabase.csproj" />
+    <ProjectReference Include="..\DOLSharp\GameServer\GameServer.csproj" />
+    <ProjectReference Include="..\EODModelViewer\EODModelViewer\EODModelViewer.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\loading.gif" CopyToOutputDirectory="PreserveNewest" />

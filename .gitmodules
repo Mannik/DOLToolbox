@@ -1,0 +1,6 @@
+[submodule "DOLSharp"]
+	path = DOLSharp
+	url = https://github.com/Dawn-of-Light/DOLSharp
+[submodule "EODModelViewer"]
+	path = EODModelViewer
+	url = https://github.com/Eve-of-Darkness/EODModelViewer
