@@ -90,27 +90,28 @@ namespace DOLToolbox.Controls
             }
 
             int optNum = int.Parse(optNumber.Text);
+            var optNumDic = optNum - 1;
 
             if (optNum == 8)
             {
-                _optDictionary.Remove(optNum);
-                _optDictionary.Add(optNum, _OptionalReward.Text);
+                _optDictionary.Remove(optNumDic);
+                _optDictionary.Add(optNumDic, _OptionalReward.Text);
                 MessageBox.Show(@"Last optional item added", @"8 Optional Rewards Max");
                 return;
             }
 
-            if (!_optDictionary.ContainsKey(optNum)) //If the reward data is not in the dictionary...check for step 1, then add
+            if (!_optDictionary.ContainsKey(optNumDic)) //If the reward data is not in the dictionary...check for step 1, then add
             {
-                _optDictionary.Add(optNum, _OptionalReward.Text);
+                _optDictionary.Add(optNumDic, _OptionalReward.Text);
             }
             else //If the reward data is in the dictionary...check if the values match and add if they don't
             {
-                _optDictionary.TryGetValue(optNum, out var optValue);
+                _optDictionary.TryGetValue(optNumDic, out var optValue);
 
                 if (optValue != _OptionalReward.Text)
                 {
-                    _optDictionary.Remove(optNum);
-                    _optDictionary.Add(optNum, _OptionalReward.Text);
+                    _optDictionary.Remove(optNumDic);
+                    _optDictionary.Add(optNumDic, _OptionalReward.Text);
                 }
             }
 
@@ -118,9 +119,10 @@ namespace DOLToolbox.Controls
 
             //Check if next step contains data
             var optNext = int.Parse(optNumber.Text);
-            if (_optDictionary.ContainsKey(optNext))
+            var optNextDic = optNext - 1;
+            if (_optDictionary.ContainsKey(optNextDic))
             {
-                _optDictionary.TryGetValue(optNext, out var optValue);
+                _optDictionary.TryGetValue(optNextDic, out var optValue);
                 _OptionalReward.Text = optValue;
             }
             else _OptionalReward.Text = "";
@@ -142,6 +144,7 @@ namespace DOLToolbox.Controls
         private void OptRewardBack_Click(object sender, EventArgs e)
         {
             int optNum = int.Parse(optNumber.Text);
+            var optNumDic = optNum - 1;
 
             if (optNum == 1) //return if already at step 1, there ain't no step 0
             {
@@ -150,30 +153,31 @@ namespace DOLToolbox.Controls
 
             if (_OptionalReward.Text != "") //Add data on back click
             {
-                _optDictionary.TryGetValue(optNum, out var optValue);
+                _optDictionary.TryGetValue(optNumDic, out var optValue);
                 if (optValue != _OptionalReward.Text)
                 {
-                    _optDictionary.Remove(optNum);
-                    _optDictionary.Add(optNum, _OptionalReward.Text);
+                    _optDictionary.Remove(optNumDic);
+                    _optDictionary.Add(optNumDic, _OptionalReward.Text);
                 }
             }
             else
             {
-                if (_optDictionary.ContainsKey(optNum + 1))
+                if (_optDictionary.ContainsKey(optNumDic + 1))
                 {
                     MessageBox.Show(@"You must remove the items listed after the current item to remove this one!", @"Error");
                     return;
                 }
                 else
                 {
-                    _optDictionary.Remove(optNum);
+                    _optDictionary.Remove(optNumDic);
                 }
             }
 
             //Pull previous step data
             var optCheck = int.Parse(optNumber.Text);
             optCheck--;
-            _optDictionary.TryGetValue(optCheck, out var optBack);
+            var optCheckDic = optCheck - 1;
+            _optDictionary.TryGetValue(optCheckDic, out var optBack);
             _OptionalReward.Text = optBack;
 
             optNumber.Text = (optNum - 1).ToString(); //finally, decrement opt label
@@ -188,19 +192,20 @@ namespace DOLToolbox.Controls
             }
 
             var finNum = int.Parse(finNumber.Text);
+            var finNumDic = finNum - 1;
 
-            if (!_finDictionary.ContainsKey(finNum)) //If the reward data is not in the dictionary...check for step 1, then add
+            if (!_finDictionary.ContainsKey(finNumDic)) //If the reward data is not in the dictionary...check for step 1, then add
             {
-                _finDictionary.Add(finNum, _FinalReward.Text);
+                _finDictionary.Add(finNumDic, _FinalReward.Text);
             }
             else //If the reward data is in the dictionary...check if the values match and add if they don't
             {
-                _finDictionary.TryGetValue(finNum, out var finValue);
+                _finDictionary.TryGetValue(finNumDic, out var finValue);
 
                 if (finValue != _FinalReward.Text)
                 {
-                    _finDictionary.Remove(finNum);
-                    _finDictionary.Add(finNum, _FinalReward.Text);
+                    _finDictionary.Remove(finNumDic);
+                    _finDictionary.Add(finNumDic, _FinalReward.Text);
                 }
             }
 
@@ -208,9 +213,10 @@ namespace DOLToolbox.Controls
 
             //Check if next step contains data
             var finNext = int.Parse(finNumber.Text);
-            if (_finDictionary.ContainsKey(finNext))
+            var finNextDic = finNext - 1;
+            if (_finDictionary.ContainsKey(finNextDic))
             {
-                _finDictionary.TryGetValue(finNext, out var finValue);
+                _finDictionary.TryGetValue(finNextDic, out var finValue);
                 _FinalReward.Text = finValue;
             }
             else _FinalReward.Text = "";
@@ -219,6 +225,7 @@ namespace DOLToolbox.Controls
         private void FinRewardBack_Click_1(object sender, EventArgs e)
         {
             var finNum = int.Parse(finNumber.Text);
+            var finNumDic = finNum - 1;
 
             if (finNum == 1) //return if already at step 1, there ain't no step 0
             {
@@ -227,28 +234,29 @@ namespace DOLToolbox.Controls
 
             if (_FinalReward.Text != "") //Add data on back click
             {
-                _finDictionary.TryGetValue(finNum, out var finValue);
+                _finDictionary.TryGetValue(finNumDic, out var finValue);
                 if (finValue != _FinalReward.Text) //check if data is different from dictionary data
                 {
-                    _finDictionary.Remove(finNum);
-                    _finDictionary.Add(finNum, _FinalReward.Text);
+                    _finDictionary.Remove(finNumDic);
+                    _finDictionary.Add(finNumDic, _FinalReward.Text);
                 }
             }
             else //There are no breaks in reward data, so a blank box cannot exist between populated blocks
             {
-                if (_finDictionary.ContainsKey(finNum + 1))
+                if (_finDictionary.ContainsKey(finNumDic + 1))
                 {
                     MessageBox.Show(@"You must remove the items listed after the current item to remove this one!", @"Error");
                     return;
                 }
 
-                _finDictionary.Remove(finNum);
+                _finDictionary.Remove(finNumDic);
             }
 
             //Pull previous step data
             var finCheck = int.Parse(finNumber.Text);
             finCheck--;
-            _finDictionary.TryGetValue(finCheck, out var finBack);
+            var finCheckDic = finCheck - 1;
+            _finDictionary.TryGetValue(finCheckDic, out var finBack);
             _FinalReward.Text = finBack;
             finNumber.Text = (finNum - 1).ToString(); //finally, decrement fin label
         }
