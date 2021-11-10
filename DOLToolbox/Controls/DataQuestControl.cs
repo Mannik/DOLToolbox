@@ -780,8 +780,8 @@ namespace DOLToolbox.Controls
                 allcl.Replace("MaulerAlb", "60");
                 allcl.Replace("Berserker", "31");
                 allcl.Replace("Bonedancer", "30");
-                allcl.Replace("Healer", "36");
-                allcl.Replace("Hunter", "35");
+                allcl.Replace("Healer", "26");
+                allcl.Replace("Hunter", "25");
                 allcl.Replace("Runemaster", "29");
                 allcl.Replace("Savage", "32");
                 allcl.Replace("Shadowblade", "23");
