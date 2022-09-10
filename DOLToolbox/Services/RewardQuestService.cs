@@ -11,8 +11,7 @@ namespace DOLToolbox.Services
         public async Task<DBDQRewardQ> Get(string objectId)
         {
             return await Task.Run(() => DatabaseManager.Database.FindObjectByKey<DBDQRewardQ>(objectId) ??
-                                        DatabaseManager.Database.SelectObjects<DBDQRewardQ>("`ID` = @Id",
-                                            new QueryParameter("@Id", objectId)).FirstOrDefault());
+                                        DatabaseManager.Database.SelectObjects<DBDQRewardQ>(DB.Column(nameof(DBDQRewardQ.ID)).IsEqualTo(objectId)).FirstOrDefault());
         }
 
         public async Task<List<DBDQRewardQ>> Get()

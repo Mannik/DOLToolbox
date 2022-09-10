@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using DOLToolbox.Services;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace DOLToolbox.Forms
 {

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using DOLToolbox.Controls;
 using DOLToolbox.Services;
 using EODModelViewer;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace DOLToolbox.Forms
 {
@@ -21,7 +21,7 @@ namespace DOLToolbox.Forms
             bool isDbConnected = false;
 		    while (!isDbConnected)
 		    {
-		        MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
+		        var sb = ConnectionStringService.ConnectionString;
 		        MySqlConnection testConnection = new MySqlConnection(sb.ConnectionString);
 
 		        try

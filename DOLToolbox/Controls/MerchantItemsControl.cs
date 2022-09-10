@@ -87,10 +87,14 @@ namespace DOLToolbox.Controls
 
             foreach (var page in pages)
             {
-                page
+                var items = page
                     .OrderBy(x => x.SlotPosition)
-                    .Select((x, i) => new { Item = x, Index = i})
-                    .ForEach(x => x.Item.SlotPosition = x.Index);
+                    .Select((x, i) => new { Item = x, Index = i});
+
+                foreach (var x in items)
+                {
+                    x.Item.SlotPosition = x.Index;
+                }
             }
         }
 
@@ -338,10 +342,13 @@ namespace DOLToolbox.Controls
             {
                 _merchantItems.Remove(selectedItem.MerchantItem);
 
-                _merchantItems
+                var items = _merchantItems
                     .Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber &&
-                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition)
-                    .ForEach(x => x.SlotPosition -= 1);
+                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition);
+                foreach (var x in items)
+                {
+                    x.SlotPosition -= 1;
+                }
 
                 await Save();
             }
@@ -433,11 +440,13 @@ namespace DOLToolbox.Controls
             if (confirmResult == DialogResult.Yes)
             {
                 _merchantItems.Remove(selectedItem.MerchantItem);
-
-                _merchantItems
+                var items = _merchantItems
                     .Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber &&
-                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition)
-                    .ForEach(x => x.SlotPosition -= 1);
+                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition);
+                foreach (var x in items)
+                {
+                    x.SlotPosition -= 1;
+                }
 
                 await _merchantItemService.DeleteList(selectedItem.MerchantItem.ItemListID);
                 Clear();
