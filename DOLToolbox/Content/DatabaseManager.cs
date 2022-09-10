@@ -30,8 +30,7 @@ namespace DOLToolbox
             typeof(MobXLootTemplate),
             typeof(LootTemplate),
             typeof(WorldObject),
-            typeof(DBQuest),
-            typeof(DBDataQuest)
+            typeof(DBDQRewardQ)
         };
 
     private static IObjectDatabase m_database;
