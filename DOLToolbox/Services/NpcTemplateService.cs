@@ -11,8 +11,7 @@ namespace DOLToolbox.Services
         public DBNpcTemplate Get(string id)
         {
             return DatabaseManager.Database.FindObjectByKey<DBNpcTemplate>(id) ??
-                   DatabaseManager.Database.SelectObjects<DBNpcTemplate>("`TemplateId` = @Id",
-                       new QueryParameter("@Id", id)).FirstOrDefault();
+                   DatabaseManager.Database.SelectObjects<DBNpcTemplate>(DB.Column(nameof(DBNpcTemplate.TemplateId)).IsEqualTo(id)).FirstOrDefault();
         }
 
         public async Task<List<DBNpcTemplate>> Get()

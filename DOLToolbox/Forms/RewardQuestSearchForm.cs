@@ -81,7 +81,7 @@ namespace DOLToolbox.Forms
 		private void SetGridColumns()
 		{
 			dataGridView1.Columns.Clear();
-            
+
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "ID",
@@ -95,7 +95,7 @@ namespace DOLToolbox.Forms
                 HeaderText = @"QuestName",
                 Name = "QuestName",
             });
-            
+
             foreach (DataGridViewColumn column in dataGridView1.Columns)
 			{
 				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;

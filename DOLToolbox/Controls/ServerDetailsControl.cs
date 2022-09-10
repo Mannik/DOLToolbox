@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using DOL.Database;
 using DOLToolbox.Services;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace DOLToolbox.Controls
 {
@@ -31,7 +31,7 @@ namespace DOLToolbox.Controls
                 return;
             }
 
-            MySqlConnectionStringBuilder sb = ConnectionStringService.ConnectionString;
+            var sb = ConnectionStringService.ConnectionString;
             MySqlConnection testConnection = new MySqlConnection(sb.ConnectionString);
 
             try
