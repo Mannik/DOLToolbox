@@ -44,7 +44,7 @@
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
     <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
-    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="log4net" Version="2.0.15" />
     <ProjectReference Include="..\DOLSharp\DOLDatabase\DOLDatabase.csproj" />
     <ProjectReference Include="..\EODModelViewer\EODModelViewer\EODModelViewer.csproj" />
   </ItemGroup>
