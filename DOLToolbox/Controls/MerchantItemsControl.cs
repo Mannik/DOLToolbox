@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DOL.Database;
-using DOL.GS;
 using DOLToolbox.Forms;
 using DOLToolbox.Services;
 
@@ -87,8 +86,8 @@ namespace DOLToolbox.Controls
 
             foreach (var page in pages)
             {
-                Util.ForEach(page.OrderBy(x => x.SlotPosition).Select((x, i) => new { Item = x, Index = i }), 
-                    x => x.Item.SlotPosition = x.Index);
+                var merchantItemAndIndex = page.OrderBy(x => x.SlotPosition).Select((x, i) => (Item: x, Index: i));
+                foreach (var i in merchantItemAndIndex) i.Item.SlotPosition = i.Index;
             }
         }
 
@@ -336,9 +335,9 @@ namespace DOLToolbox.Controls
             {
                 _merchantItems.Remove(selectedItem.MerchantItem);
 
-                Util.ForEach(_merchantItems.Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber 
-                    && x.SlotPosition > selectedItem.MerchantItem.SlotPosition),
-                    x => x.SlotPosition -= 1);
+                var remainingItems = _merchantItems.Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber 
+                    && x.SlotPosition > selectedItem.MerchantItem.SlotPosition);
+                foreach(var i in remainingItems) i.SlotPosition -= 1;
 
                 await Save();
             }
@@ -431,10 +430,9 @@ namespace DOLToolbox.Controls
             {
                 _merchantItems.Remove(selectedItem.MerchantItem);
 
-                Util.ForEach(_merchantItems
-                    .Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber &&
-                                x.SlotPosition > selectedItem.MerchantItem.SlotPosition),
-                    x => x.SlotPosition -= 1);
+                var remainingItems = _merchantItems.Where(x => x.PageNumber == selectedItem.MerchantItem.PageNumber 
+                    && x.SlotPosition > selectedItem.MerchantItem.SlotPosition);
+                foreach(var i in remainingItems) i.SlotPosition -= 1;
 
                 await _merchantItemService.DeleteList(selectedItem.MerchantItem.ItemListID);
                 Clear();

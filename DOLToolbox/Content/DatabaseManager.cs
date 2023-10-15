@@ -27,6 +27,7 @@ namespace DOLToolbox
             typeof(NPCEquipment),
             typeof(MobXLootTemplate),
             typeof(LootTemplate),
+            typeof(DBRewardQuest),
             typeof(WorldObject)
         };
 
