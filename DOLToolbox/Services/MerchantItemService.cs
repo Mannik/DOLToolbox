@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DOL.Database;
 using DOL.Database.UniqueID;
-using DOL.GS;
 
 namespace DOLToolbox.Services
 {
@@ -34,22 +33,20 @@ namespace DOLToolbox.Services
                 }
 
                 // update all items to the set ID
-                Util.ForEach(
-                    models.Where(x => !string.IsNullOrWhiteSpace(x.ItemListID)),
-                    x => x.ItemListID = itemListId
-                );
+                var validModels = models.Where(x => !string.IsNullOrWhiteSpace(x.ItemListID));
+                foreach(var m in validModels) m.ItemListID = itemListId;
 
                 // remove deleted
-                Util.ForEach(
-                    current.Where(x => !models.Select(s => s.ObjectId).Contains(x.ObjectId)),
-                    x => DatabaseManager.Database.DeleteObject(x)
-                );
+                var deletedModels = current.Where(x => !models.Select(s => s.ObjectId).Contains(x.ObjectId));
+                foreach(var m in deletedModels) DatabaseManager.Database.DeleteObject(m);
 
                 // add new
-                Util.ForEach(
-                    models.Where(x => string.IsNullOrWhiteSpace(x.ItemListID)),
-                    x => { x.ItemListID = itemListId; DatabaseManager.Database.AddObject(x); }
-                );
+                var newModels = models.Where(x => string.IsNullOrWhiteSpace(x.ItemListID));
+                foreach(var m in newModels)
+                {
+                    m.ItemListID = itemListId;
+                    DatabaseManager.Database.AddObject(m);
+                }
 
                 // update changed
                 (from model in models
