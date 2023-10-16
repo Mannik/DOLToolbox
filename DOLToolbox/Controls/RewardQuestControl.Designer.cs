@@ -1256,6 +1256,7 @@
             this.Controls.Add(this._FinishText);
             this.Controls.Add(this.finishTextLabel);
             this.Name = "RewardQuestControl";
+            this.Load += new System.EventHandler(this.RewardQuestControl_Load_1);
             this.Size = new System.Drawing.Size(885, 529);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();

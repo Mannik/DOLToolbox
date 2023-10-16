@@ -1317,5 +1317,21 @@ namespace DOLToolbox.Services
 
             BindData(input, items);
         }
+
+        public static void BindQuestGoal(ComboBox input)
+        {
+            var items = new List<SelectItemModel>
+            {
+                new SelectItemModel(2, "Search"),
+                new SelectItemModel(3, "Kill"),
+                new SelectItemModel(4, "Interact"),
+                new SelectItemModel(5, "InteractFinish"),
+                new SelectItemModel(6, "InteractWhisper"),
+                new SelectItemModel(7, "InteractDeliver")
+            };
+
+            BindData(input, items);
+        }
+
     }
 }
