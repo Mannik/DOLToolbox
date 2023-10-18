@@ -44,7 +44,7 @@
             this.tabControl1.Size = new System.Drawing.Size(973, 624);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabData
+            // tabDataQuest
             // 
             this.tabData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabData.Location = new System.Drawing.Point(4, 22);
@@ -52,9 +52,9 @@
             this.tabData.Padding = new System.Windows.Forms.Padding(3);
             this.tabData.Size = new System.Drawing.Size(965, 598);
             this.tabData.TabIndex = 0;
-            this.tabData.Text = "DOL";
+            this.tabData.Text = "DataQuest";
             // 
-            // tabLos
+            // tabRewardQuest
             // 
             this.tabLos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabLos.Location = new System.Drawing.Point(4, 22);
@@ -62,7 +62,7 @@
             this.tabLos.Padding = new System.Windows.Forms.Padding(3);
             this.tabLos.Size = new System.Drawing.Size(965, 598);
             this.tabLos.TabIndex = 1;
-            this.tabLos.Text = "Los Ojos/1.124";
+            this.tabLos.Text = "RewardQuest";
             // 
             // DOLQuestControl
             // 

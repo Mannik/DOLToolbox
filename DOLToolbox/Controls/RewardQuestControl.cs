@@ -1625,6 +1625,11 @@ namespace DOLToolbox.Controls
             objectsearch.ShowDialog(this);
         }
 
+        private void RewardQuestControl_Load_1(object sender, EventArgs e)
+        {
+            SetupDropdowns();
+        }
+
         private void label33_MouseHover(object sender, EventArgs e)
         {
             toolTip1.InitialDelay = 500;
@@ -1733,8 +1738,9 @@ namespace DOLToolbox.Controls
 
         private void SetupDropdowns()
         {
-            ComboboxService.BindQuestStep(_GoalType);
+            ComboboxService.BindQuestGoal(_GoalType);
         }
+
     }
 
     //StringBuilder allcl = new StringBuilder(allowedClasses);
